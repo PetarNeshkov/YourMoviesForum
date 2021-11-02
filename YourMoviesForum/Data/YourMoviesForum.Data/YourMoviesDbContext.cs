@@ -15,15 +15,13 @@ namespace YourMoviesForum
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Category> Categories { get; init; }
 
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Post> Posts { get; init; }
 
-        public DbSet<Post> Posts { get; set; }
+        public DbSet<Tag> Tags { get; init; }
 
-        public DbSet<Tag> Tags { get; set; }
-
-        public DbSet<Reply> Replies { get; set; }
+        public DbSet<Reply> Replies { get; init; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
@@ -32,8 +30,7 @@ namespace YourMoviesForum
                 builder.UseSqlServer(DataSettings.ConnectionString);
             }
         }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-                => builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+        //protected override void OnModelCreating(ModelBuilder builder)
+          //      => builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
     }
 }

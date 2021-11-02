@@ -1,31 +1,22 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+
+using YourMoviesForum.Data.Common.Models;
+
 using static YourMoviesForum.Data.Common.DataValidation.Reply;
 
 namespace YourMoviesForum.Data.Models
 {
-    public class Reply
+    public class Reply:BaseDeletetableModel<string>
     {
         [Required]
-        [MaxLength(IdMaxLength)]
-        public string Id { get; init; } = Guid.NewGuid().ToString();
-
-        [Required]
         [MaxLength(ContentMaxLength)]
-        [Column("Content")]
         public string Content { get; set; }
 
-        public DateTime RepliedOn { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public int PostId { get; set; }
+        public string PostId { get; set; }
         public Post Post { get; set; }
 
-        public int AuthorId { get; set; }
-
-        public User Author { get; set; }
+        public string AuthorId { get; set; }
+        public ApplicationUser Author { get; set; }
 
     }
 }

@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using YourMoviesForum.Data.Common.Models;
 using static YourMoviesForum.Data.Common.DataValidation.Tag;
 
 namespace YourMoviesForum.Data.Models
 {
-    public class Tag
+    public class Tag:BaseDeletetableModel<string>
     {
-        [Required]
-        public string Id { get; init; } = Guid.NewGuid().ToString();
+        public Tag()
+        {
+            Posts = new HashSet<Post>();
+        }
 
         [Required]
         [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
-        public DateTime CreatedOn { get; set; }
-
-        public DateTime? ModifiedOn { get; set; }
-
-        public ICollection<Post> Posts { get; init; } = new HashSet<Post>();
+        public ICollection<Post> Posts { get; init; }
     }
 }
