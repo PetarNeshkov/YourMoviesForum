@@ -22,4 +22,10 @@
     <ProjectReference Include="..\..\Data\YourMoviesForum.Data\YourMoviesForum.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Program.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>
