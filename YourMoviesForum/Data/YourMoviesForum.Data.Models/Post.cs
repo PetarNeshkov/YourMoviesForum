@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 using YourMoviesForum.Data.Common.Models;
 using static YourMoviesForum.Data.Common.DataValidation.Post;
@@ -23,8 +22,15 @@ namespace YourMoviesForum.Data.Models
 
         [Required]
         [MaxLength(ContentMaxLength)]
-        [Column("Column")]
         public string Content { get; set; }
+
+        [Required]
+        public string ImageUrl { get; set; }
+
+        [Required]
+        public string CategoryId { get; set; }
+
+        public Category Category { get; set; }
 
         public int Views { get; set; }
 

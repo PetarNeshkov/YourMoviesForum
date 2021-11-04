@@ -26,13 +26,6 @@ namespace YourMoviesForum
 
         public DbSet<Reply> Replies { get; init; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder builder)
-        {
-            if (!builder.IsConfigured)
-            {
-                builder.UseSqlServer(DataSettings.ConnectionString);
-            }
-        }
 
         public override int SaveChanges() => SaveChanges(true);
 
