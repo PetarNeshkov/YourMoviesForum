@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using YourMoviesForum.Web.InputModels.Posts;
 using YourMoviesForum.Web.InputModels.Tags;
 
 using static YourMoviesForum.Common.ErrorMessages;
@@ -30,8 +31,14 @@ namespace YourMoviesForum.Web.InputModels
         public string ImageUrl { get; init; }
 
         [Required]
-        [Display(Name ="Category")]
+        [Display(Name ="Categories")]
         public string CategoryId { get; init; }
+
+        [Required]
+        [Display(Name ="Tags")]
+        public string TagId { get; init; }
+
+        public IEnumerable<PostCategoryViewModel> Categories { get; set; }
         public IEnumerable<PostsTagViewModel> Tags { get; set; }
     }
 }

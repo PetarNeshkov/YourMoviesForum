@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Threading.Tasks;
 
-using YourMoviesForum.Services.Data.Tags;
-
-namespace YourMoviesForum.Services.Data
+namespace YourMoviesForum.Services.Data.Tags
 {
     public class TagService : ITagService
     {

@@ -10,8 +10,8 @@ using YourMoviesForum;
 namespace YourMoviesForum.Data.Migrations
 {
     [DbContext(typeof(YourMoviesDbContext))]
-    [Migration("20211102105533_DatabaseInitialise")]
-    partial class DatabaseInitialise
+    [Migration("20211105114952_Initialise")]
+    partial class Initialise
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -148,19 +148,23 @@ namespace YourMoviesForum.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CategoryId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)")
-                        .HasColumnName("Column");
+                        .HasColumnType("nvarchar(400)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -256,13 +260,13 @@ namespace YourMoviesForum.Data.Migrations
                     b.HasOne("YourMoviesForum.Data.Models.Post", null)
                         .WithMany()
                         .HasForeignKey("PostsId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("YourMoviesForum.Data.Models.Tag", null)
                         .WithMany()
                         .HasForeignKey("TagsId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -272,9 +276,13 @@ namespace YourMoviesForum.Data.Migrations
                         .WithMany("Posts")
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("YourMoviesForum.Data.Models.Category", null)
+                    b.HasOne("YourMoviesForum.Data.Models.Category", "Category")
                         .WithMany("Posts")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("YourMoviesForum.Data.Models.Reply", b =>

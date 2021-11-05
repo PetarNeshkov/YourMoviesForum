@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Mvc;
-
 using YourMoviesForum;
-using YourMoviesForum.Data.Models;
+using YourMoviesForum.Services.Data;
 using YourMoviesForum.Web.InputModels;
+using YourMoviesForum.Web.InputModels.Posts;
 using YourMoviesForum.Web.InputModels.Tags;
 
 namespace YourMovies.Web.Controllers
@@ -14,11 +13,26 @@ namespace YourMovies.Web.Controllers
     public class PostsController : Controller
     {
         private readonly YourMoviesDbContext data;
+        private readonly IPostService postService;
 
-        public PostsController(YourMoviesDbContext data)
-            => this.data = data;
+        public PostsController(
+            YourMoviesDbContext data,
+            IPostService postService)
+        {
+            this.postService = postService;
+            this.data = data;
+        }
 
-        public async Task<IActionResult> Add() => View();
+        public async Task<IActionResult> Add()
+        {
+            var viewModel = new AddPostFormModel
+            {
+                Tags = GetPostTags(),
+                Categories = GetPostCategories()
+            };
+
+            return View(viewModel);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(AddPostFormModel input)
@@ -30,14 +44,18 @@ namespace YourMovies.Web.Controllers
                 return View(input);
             }
 
-            var post=new Post 
-            { 
+            var post = await postService.CreateAsync(
+                input.Title,
+                input.ImageUrl,
+                input.Content,
+                input.CategoryId);
 
-            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         private IEnumerable<PostsTagViewModel> GetPostTags()
-           => this.data
+           => data
                .Categories
                .Select(c => new PostsTagViewModel
                {
@@ -46,5 +64,14 @@ namespace YourMovies.Web.Controllers
                })
                .ToList();
 
+        private IEnumerable<PostCategoryViewModel> GetPostCategories()
+            => data
+                .Tags
+                .Select(t => new PostCategoryViewModel
+                {
+                    Id = t.Id,
+                    Name = t.Name
+                })
+                .ToList();
     }
 }

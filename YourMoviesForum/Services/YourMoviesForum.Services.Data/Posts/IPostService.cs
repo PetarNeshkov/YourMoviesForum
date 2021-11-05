@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace YourMoviesForum.Services.Data.Posts
+namespace YourMoviesForum.Services.Data
 {
     public interface IPostService
     {
-        Task<int> CreateAsync(string title, string content, string ImageUrl, string categoryId, IEnumerable<string> tagIds);
+        Task<string> CreateAsync(string title, string content, string ImageUrl, string categoryId);
     }
 }

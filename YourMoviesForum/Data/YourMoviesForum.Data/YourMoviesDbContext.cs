@@ -2,7 +2,6 @@
 using System;
 using System.Linq;
 using YourMoviesForum.Data.Common.Models;
-using YourMoviesForum.Data.Configuration;
 using YourMoviesForum.Data.Models;
 
 namespace YourMoviesForum
