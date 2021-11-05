@@ -27,4 +27,8 @@
     <ProjectReference Include="..\YourMoviesForum.Data.Models\YourMoviesForum.Data.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

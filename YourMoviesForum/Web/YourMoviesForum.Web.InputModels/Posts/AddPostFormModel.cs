@@ -27,7 +27,7 @@ namespace YourMoviesForum.Web.InputModels
 
         [Required]
         [Url]
-        [Display(Name ="Image")]
+        [Display(Name ="Image Url")]
         public string ImageUrl { get; init; }
 
         [Required]
@@ -36,7 +36,7 @@ namespace YourMoviesForum.Web.InputModels
 
         [Required]
         [Display(Name ="Tags")]
-        public int TagId { get; init; }
+        public IEnumerable<int> TagIds { get; init; }
 
         public IEnumerable<PostCategoryViewModel> Categories { get; set; }
         public IEnumerable<PostsTagViewModel> Tags { get; set; }

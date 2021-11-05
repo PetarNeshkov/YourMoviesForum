@@ -1,0 +1,50 @@
+﻿@model AddPostFormModel
+
+@{ 
+    ViewData["Title"] = "Add Post";
+}
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">Add Post</h2>
+</div>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" placeholder="Enter a Title">
+    </div>
+    <div class="form-group">
+        <label asp-for="Content"></label>
+        <input asp-for="Content" row="4" class="form-control" placeholder="Description...">
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageUrl"></label>
+        <input asp-for="ImageUrl" class="form-control" placeholder="Your Url...">
+    </div>
+    <div class="form-group">
+        <label asp-for="TagIds">Tags</label>
+        <select asp-for="TagIds" id="input-tags">
+            @foreach (var tag in Model.Tags)
+            {
+                <option value="@tag.Id">@tag.Name</option>
+            }
+        </select>
+        <span asp-validation-for="TagIds"></span>
+    </div>
+    <div>
+        <label asp-for="CategoryId">Category</label>
+        <select asp-for="CategoryId" id="input-category">
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    </div>
+    <div class="row">
+        <div class="col-auto ml-md-auto">
+            <button type="submit" class="btn btn-secondary btn-width-lg">Create Post</button>
+        </div>
+    </div>
+</form>
+</div>

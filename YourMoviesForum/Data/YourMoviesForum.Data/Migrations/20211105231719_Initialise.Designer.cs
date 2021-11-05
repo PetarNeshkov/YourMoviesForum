@@ -10,7 +10,7 @@ using YourMoviesForum;
 namespace YourMoviesForum.Data.Migrations
 {
     [DbContext(typeof(YourMoviesDbContext))]
-    [Migration("20211105114952_Initialise")]
+    [Migration("20211105231719_Initialise")]
     partial class Initialise
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,11 +23,11 @@ namespace YourMoviesForum.Data.Migrations
 
             modelBuilder.Entity("PostTag", b =>
                 {
-                    b.Property<string>("PostsId")
-                        .HasColumnType("nvarchar(40)");
+                    b.Property<int>("PostsId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("TagsId")
-                        .HasColumnType("nvarchar(40)");
+                    b.Property<int>("TagsId")
+                        .HasColumnType("int");
 
                     b.HasKey("PostsId", "TagsId");
 
@@ -112,9 +112,10 @@ namespace YourMoviesForum.Data.Migrations
 
             modelBuilder.Entity("YourMoviesForum.Data.Models.Category", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -140,16 +141,16 @@ namespace YourMoviesForum.Data.Migrations
 
             modelBuilder.Entity("YourMoviesForum.Data.Models.Post", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CategoryId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(40)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -191,9 +192,10 @@ namespace YourMoviesForum.Data.Migrations
 
             modelBuilder.Entity("YourMoviesForum.Data.Models.Reply", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AuthorId")
                         .HasColumnType("nvarchar(450)");
@@ -216,22 +218,26 @@ namespace YourMoviesForum.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PostId")
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PostId1")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
 
-                    b.HasIndex("PostId");
+                    b.HasIndex("PostId1");
 
                     b.ToTable("Replies");
                 });
 
             modelBuilder.Entity("YourMoviesForum.Data.Models.Tag", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -293,7 +299,7 @@ namespace YourMoviesForum.Data.Migrations
 
                     b.HasOne("YourMoviesForum.Data.Models.Post", "Post")
                         .WithMany("Replies")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId1");
 
                     b.Navigation("Author");
 

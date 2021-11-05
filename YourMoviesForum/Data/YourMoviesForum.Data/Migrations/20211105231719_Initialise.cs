@@ -42,7 +42,8 @@ namespace YourMoviesForum.Data.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -58,7 +59,8 @@ namespace YourMoviesForum.Data.Migrations
                 name: "Tags",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -74,11 +76,12 @@ namespace YourMoviesForum.Data.Migrations
                 name: "Posts",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Content = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CategoryId = table.Column<string>(type: "nvarchar(40)", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     Views = table.Column<int>(type: "int", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -107,8 +110,8 @@ namespace YourMoviesForum.Data.Migrations
                 name: "PostTag",
                 columns: table => new
                 {
-                    PostsId = table.Column<string>(type: "nvarchar(40)", nullable: false),
-                    TagsId = table.Column<string>(type: "nvarchar(40)", nullable: false)
+                    PostsId = table.Column<int>(type: "int", nullable: false),
+                    TagsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,9 +134,11 @@ namespace YourMoviesForum.Data.Migrations
                 name: "Replies",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Content = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
-                    PostId = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    PostId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostId1 = table.Column<int>(type: "int", nullable: true),
                     AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -150,8 +155,8 @@ namespace YourMoviesForum.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Replies_Posts_PostId",
-                        column: x => x.PostId,
+                        name: "FK_Replies_Posts_PostId1",
+                        column: x => x.PostId1,
                         principalTable: "Posts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -178,9 +183,9 @@ namespace YourMoviesForum.Data.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Replies_PostId",
+                name: "IX_Replies_PostId1",
                 table: "Replies",
-                column: "PostId");
+                column: "PostId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

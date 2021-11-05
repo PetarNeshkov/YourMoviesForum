@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,10 +15,10 @@ namespace YourMovies.Web.Infrastructure
         //checks whether there are new migrations and apply them when the program starts
         public static  IApplicationBuilder PrepareDatabase(this IApplicationBuilder app)
         {
-           //Creating a scope where the code will exist
-           using var scopedServices = app.ApplicationServices.CreateScope();
+            //Creating a scope where the code will exist
+            using var scopedServices = app.ApplicationServices.CreateScope();
 
-           var data=scopedServices.ServiceProvider.GetService<YourMoviesDbContext>();
+            var data = scopedServices.ServiceProvider.GetService<YourMoviesDbContext>();
 
             data.Database.Migrate();
 
@@ -28,41 +29,22 @@ namespace YourMovies.Web.Infrastructure
 
         public  static void SeedCategories(YourMoviesDbContext data)
         {
-            if (data.Posts.Any())
+            if (data.Categories.Any())
             {
                 return;
             }
 
-            var categories = new List<Category>
-            {
-                new Category
-                {
-                    Name="Sci-Fi"
-                },
-                 new Category
-                {
-                    Name="Action"
-                },
-                  new Category
-                {
-                    Name="Horror"
-                },
-                   new Category
-                {
-                    Name="Romantic"
-                },
-                    new Category
-                {
-                    Name="Cartoon"
-                },
-                     new Category
-                {
-                    Name="Sci-Fi"
-                }
-            };
+            data.Categories.AddRange(new[]
+          {
+                new Category { Name = "Sci-Fi" },
+                new Category { Name = "Action" },
+                new Category { Name = "Horror" },
+                new Category { Name = "Romantic" },
+                new Category { Name = "Cartoon" },
+                new Category { Name = "Adventure" }
+            });
 
-
-            data.Categories.AddRange(categories);
+            data.SaveChanges();
         }
     }
 }

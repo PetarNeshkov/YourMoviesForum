@@ -56,7 +56,7 @@ namespace YourMovies.Web.Controllers
 
         private IEnumerable<PostsTagViewModel> GetPostTags()
            => data
-               .Categories
+               .Tags
                .Select(c => new PostsTagViewModel
                {
                    Id = c.Id,
@@ -66,7 +66,7 @@ namespace YourMovies.Web.Controllers
 
         private IEnumerable<PostCategoryViewModel> GetPostCategories()
             => data
-                .Tags
+                .Categories
                 .Select(t => new PostCategoryViewModel
                 {
                     Id = t.Id,
