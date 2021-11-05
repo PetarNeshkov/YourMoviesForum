@@ -4,6 +4,6 @@ namespace YourMoviesForum.Services.Data.Tags
 {
     public interface ITagService
     {
-        Task<bool> IsExistingAsync(string id);
+        Task<bool> IsExistingAsync(int id);
     }
 }

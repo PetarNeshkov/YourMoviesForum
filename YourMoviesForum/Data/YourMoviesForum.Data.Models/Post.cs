@@ -8,7 +8,7 @@ using static YourMoviesForum.Data.Common.DataValidation.Post;
 namespace YourMoviesForum.Data.Models
 {
 
-    public class Post : BaseDeletetableModel<string>
+    public class Post : BaseDeletetableModel<int>
     {
         public Post()
         {
@@ -28,7 +28,7 @@ namespace YourMoviesForum.Data.Models
         public string ImageUrl { get; set; }
 
         [Required]
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
         public Category Category { get; set; }
 

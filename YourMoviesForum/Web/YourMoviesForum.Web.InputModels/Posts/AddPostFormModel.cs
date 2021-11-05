@@ -32,11 +32,11 @@ namespace YourMoviesForum.Web.InputModels
 
         [Required]
         [Display(Name ="Categories")]
-        public string CategoryId { get; init; }
+        public int CategoryId { get; init; }
 
         [Required]
         [Display(Name ="Tags")]
-        public string TagId { get; init; }
+        public int TagId { get; init; }
 
         public IEnumerable<PostCategoryViewModel> Categories { get; set; }
         public IEnumerable<PostsTagViewModel> Tags { get; set; }

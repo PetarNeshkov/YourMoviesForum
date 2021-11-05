@@ -14,7 +14,7 @@ namespace YourMoviesForum.Services.Data.Posts
         {
             this.data = data;
         }
-        public async Task<string> CreateAsync(string title, string content, string ImageUrl, string categoryId)
+        public async Task<int> CreateAsync(string title, string content, string ImageUrl, int categoryId)
         {
             var post = new Post
             {
@@ -30,7 +30,7 @@ namespace YourMoviesForum.Services.Data.Posts
             return post.Id;
         }
 
-        private async Task<Post> GetByIdAsync(string id)
+        private async Task<Post> GetByIdAsync(int id)
             => await data.Posts.FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
     }
 }

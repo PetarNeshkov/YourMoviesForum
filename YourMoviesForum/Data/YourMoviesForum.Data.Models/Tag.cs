@@ -6,7 +6,7 @@ using static YourMoviesForum.Data.Common.DataValidation.Tag;
 
 namespace YourMoviesForum.Data.Models
 {
-    public class Tag:BaseDeletetableModel<string>
+    public class Tag:BaseDeletetableModel<int>
     {
         public Tag()
         {

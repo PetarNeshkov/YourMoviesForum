@@ -11,7 +11,7 @@ namespace YourMoviesForum.Services.Data.Tags
         {
             this.data = data;
         }
-        public async Task<bool> IsExistingAsync(string id)
+        public async Task<bool> IsExistingAsync(int id)
             => await data.Tags.AnyAsync(t => t.Id == id && !t.IsDeleted);
     }
 }

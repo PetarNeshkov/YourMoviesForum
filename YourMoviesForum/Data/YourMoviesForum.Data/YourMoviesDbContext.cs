@@ -61,6 +61,7 @@ namespace YourMoviesForum
             foreach (var entry in changedEntries)
             {
                 var entity = (IAuditInfo)entry.Entity;
+
                 if (entry.State==EntityState.Added && entity.CreatedOn==default)
                 {
                     entity.CreatedOn = DateTime.UtcNow;

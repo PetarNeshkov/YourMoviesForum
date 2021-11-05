@@ -6,7 +6,7 @@ using static YourMoviesForum.Data.Common.DataValidation.Category;
 
 namespace YourMoviesForum.Data.Models
 {
-    public class Category:BaseDeletetableModel<string>
+    public class Category:BaseDeletetableModel<int>
     {
         public Category()
         {

@@ -6,7 +6,7 @@ using static YourMoviesForum.Data.Common.DataValidation.Reply;
 
 namespace YourMoviesForum.Data.Models
 {
-    public class Reply:BaseDeletetableModel<string>
+    public class Reply:BaseDeletetableModel<int>
     {
         [Required]
         [MaxLength(ContentMaxLength)]
