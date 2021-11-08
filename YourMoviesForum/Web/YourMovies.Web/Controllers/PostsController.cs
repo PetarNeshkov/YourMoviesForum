@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,12 +30,14 @@ namespace YourMovies.Web.Controllers
             Categories = GetPostCategories()
         });
        
+
         [HttpPost]
-        public async Task<IActionResult> Create(AddPostFormModel input)
+        public async Task<IActionResult> Add(AddPostFormModel input)
         {
             if (!ModelState.IsValid)
             {
                 input.Tags = GetPostTags();
+                input.Categories = GetPostCategories();
 
                 return View(input);
             }
@@ -43,7 +46,8 @@ namespace YourMovies.Web.Controllers
                 input.Title,
                 input.ImageUrl,
                 input.Content,
-                input.CategoryId);
+                input.CategoryId,
+                input.TagIds);
 
 
             return RedirectToAction("Index", "Home");

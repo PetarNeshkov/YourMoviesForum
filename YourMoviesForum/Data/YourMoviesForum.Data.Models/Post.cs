@@ -34,8 +34,8 @@ namespace YourMoviesForum.Data.Models
 
         public int Views { get; set; }
 
-        public ICollection<Reply> Replies { get; init; }
-        public ICollection<Tag> Tags { get; init; }
+        public ICollection<Reply> Replies { get; set; }
+        public ICollection<Tag> Tags { get; set; }
      
     }
 }

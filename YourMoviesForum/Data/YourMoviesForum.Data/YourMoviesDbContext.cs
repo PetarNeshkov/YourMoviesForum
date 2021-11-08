@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using YourMoviesForum.Data.Common.Models;
 using YourMoviesForum.Data.Models;
 
@@ -34,11 +36,22 @@ namespace YourMoviesForum
             return base.SaveChanges(acceptAllChangesOnSuccess);
         }
 
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
+            SaveChangesAsync(true, cancellationToken);
+
+        public override Task<int> SaveChangesAsync(
+            bool acceptAllChangesOnSuccess,
+            CancellationToken cancellationToken = default)
+        {
+            ApplyAuditforRules();
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
         //Disable cascade delete
-         protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
             var entityTypes = builder.Model.GetEntityTypes().ToList();
-
+          
             var foreignKeys = entityTypes
                 .SelectMany(e => e.GetForeignKeys()
                 .Where(f => f.DeleteBehavior == DeleteBehavior.Cascade));
