@@ -23,17 +23,12 @@ namespace YourMovies.Web.Controllers
             this.data = data;
         }
 
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Add() => View(new AddPostFormModel
         {
-            var viewModel = new AddPostFormModel
-            {
-                Tags = GetPostTags(),
-                Categories = GetPostCategories()
-            };
-
-            return View(viewModel);
-        }
-
+            Tags = GetPostTags(),
+            Categories = GetPostCategories()
+        });
+       
         [HttpPost]
         public async Task<IActionResult> Create(AddPostFormModel input)
         {
