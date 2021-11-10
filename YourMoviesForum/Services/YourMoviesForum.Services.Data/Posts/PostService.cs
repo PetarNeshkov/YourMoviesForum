@@ -48,10 +48,8 @@ namespace YourMoviesForum.Services.Data.Posts
                 post.Tags.Add(new Tag
                 {
                     Id = tagId,
-                    Name= currentName
-
-
-                }); ; 
+                    Name = currentName
+                });
             }
 
             await data.SaveChangesAsync();

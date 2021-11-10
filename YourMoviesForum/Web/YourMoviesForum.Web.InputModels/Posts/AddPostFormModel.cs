@@ -23,6 +23,7 @@ namespace YourMoviesForum.Web.InputModels
             PostContentMaxLength,
             ErrorMessage =ContentLengthErrorMessage,
             MinimumLength =PostContentMinLength)]
+        [DataType(DataType.MultilineText)]
         public string Content { get; init; }
 
         [Required]

@@ -19,9 +19,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Content"></label>
-                <input asp-for="Content" row="4" class="form-control" placeholder="Description...">
+                <textarea id="tinymceInput" asp-for="Content" placeholder="Description"></textarea>
                 <span asp-validation-for="Content"></span>
-
             </div>
             <div class="form-group">
                 <label asp-for="ImageUrl"></label>
@@ -30,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId">Category</label>
-                <select asp-for="CategoryId" id="input-category">
+                <select asp-for="CategoryId" id="input-category" placeholder="Please select">
                     @foreach (var category in Model.Categories)
                     {
                         <option value="@category.Id">@category.Name</option>
@@ -62,14 +61,30 @@
         var $select = $('#input-category').selectize({
             create: false,
             sortField: 'text',
-            placeholder: 'Please select...'
         });
      
         $('#input-tags').selectize({
+            create: false,
+            sortField: 'text',
             plugins: ['remove_button'],
             delimiter: ',',
-            persist: false,
-            create: false
+            persist: false
         });
+
+        tinymce.init({
+            selector: 'textarea#tinymceInput',
+            height: 180,
+            plugins: [
+                'advlist autolink link image lists charmap preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen  media nonbreaking',
+                'emoticons template paste help'
+            ],
+            toolbar: [
+                'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify  bullist numlist hr | emoticons link codesample image media |'
+            ],
+            link_default_protocol: "https",
+            menubar: false
+        });
+     
     </script>  
 }

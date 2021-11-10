@@ -30,7 +30,6 @@
 }(this, function($, Sifter, MicroPlugin) {
 	'use strict';
 
-	@@js
 
 	return Selectize;
 }));
