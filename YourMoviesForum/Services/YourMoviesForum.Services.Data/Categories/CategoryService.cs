@@ -7,33 +7,30 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 
-namespace YourMoviesForum.Services.Data.Tags
+namespace YourMoviesForum.Services.Data.Categories
 {
-    public class TagService : ITagService
+    public class CategoryService : ICategoryService
     {
         private readonly YourMoviesDbContext data;
         private readonly IMapper mapper;
 
-        public TagService(YourMoviesDbContext data,IMapper mapper)
+        public CategoryService(YourMoviesDbContext data,IMapper mapper)
         {
             this.data = data;
             this.mapper = mapper;
         }
-        public async Task<IEnumerable<TModel>> GetAllTagsAsync<TModel>()
+
+        public async Task<IEnumerable<TModel>> GetAllCategoriesAsync<TModel>()
         {
-            var queryableTags = data.Tags
-                 .Where(t => !t.IsDeleted)
+            var queryableCategories = data.Categories
+                 .Where(c => !c.IsDeleted)
                  .AsNoTracking();
 
-            var tags = await queryableTags
+            var categories = await queryableCategories
                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
                 .ToListAsync();
 
-            return tags;
+            return categories;
         }
-
-        public async Task<bool> IsExistingAsync(int id)
-            => await data.Tags.AnyAsync(t => t.Id == id && !t.IsDeleted);
-
     }
 }

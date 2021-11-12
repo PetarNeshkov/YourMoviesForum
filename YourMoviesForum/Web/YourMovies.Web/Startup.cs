@@ -10,6 +10,8 @@ using YourMoviesForum;
 using YourMovies.Web.Infrastructure;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Posts;
+using YourMoviesForum.Services.Data.Categories;
+using YourMoviesForum.Services.Data.Tags;
 
 namespace YourMovies.Web
 {
@@ -41,9 +43,13 @@ namespace YourMovies.Web
 
             services.AddControllersWithViews();
 
+            services.AddAutoMapper(typeof(MappingProfiler));
+
 
             //Application services
-            services.AddTransient<IPostService, PostService>();
+            services.AddTransient<IPostService, PostService>()
+                    .AddTransient<ICategoryService, CategoryService>()
+                    .AddTransient<ITagService, TagService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,13 +59,15 @@ namespace YourMovies.Web
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseMigrationsEndPoint();
+                app
+                   .UseDeveloperExceptionPage()
+                   .UseMigrationsEndPoint();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
+                app
+                    .UseExceptionHandler("/Home/Error")
+                    .UseHsts();
             }
 
             app

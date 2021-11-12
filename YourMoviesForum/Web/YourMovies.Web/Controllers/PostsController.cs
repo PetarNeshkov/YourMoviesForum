@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using YourMoviesForum;
 using YourMoviesForum.Services.Data;
+using YourMoviesForum.Services.Data.Categories;
+using YourMoviesForum.Services.Data.Tags;
 using YourMoviesForum.Web.InputModels;
 using YourMoviesForum.Web.InputModels.Posts;
 using YourMoviesForum.Web.InputModels.Tags;
@@ -15,19 +18,25 @@ namespace YourMovies.Web.Controllers
     {
         private readonly YourMoviesDbContext data;
         private readonly IPostService postService;
+        private readonly ICategoryService categoryService;
+        private readonly ITagService tagService;
 
         public PostsController(
             YourMoviesDbContext data,
-            IPostService postService)
+            IPostService postService,
+            ICategoryService categoryService,
+            ITagService tagService)
         {
-            this.postService = postService;
             this.data = data;
+            this.postService = postService;
+            this.categoryService = categoryService;
+            this.tagService = tagService;
         }
 
         public async Task<IActionResult> Add() => View(new AddPostFormModel
         {
-            Tags = GetPostTags(),
-            Categories = GetPostCategories()
+            Tags = await tagService.GetAllTagsAsync<PostsTagViewModel>(),
+            Categories = await categoryService.GetAllCategoriesAsync<PostCategoryViewModel>()
         });
        
 
@@ -36,8 +45,8 @@ namespace YourMovies.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                input.Tags = GetPostTags();
-                input.Categories = GetPostCategories();
+                input.Tags = await tagService.GetAllTagsAsync<PostsTagViewModel>();
+                input.Categories = await categoryService.GetAllCategoriesAsync<PostCategoryViewModel>();
 
                 return View(input);
             }
@@ -52,25 +61,5 @@ namespace YourMovies.Web.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
-        private IEnumerable<PostsTagViewModel> GetPostTags()
-           => data
-               .Tags
-               .Select(c => new PostsTagViewModel
-               {
-                   Id = c.Id,
-                   Name = c.Name
-               })
-               .ToList();
-
-        private IEnumerable<PostCategoryViewModel> GetPostCategories()
-            => data
-                .Categories
-                .Select(t => new PostCategoryViewModel
-                {
-                    Id = t.Id,
-                    Name = t.Name
-                })
-                .ToList();
     }
 }
