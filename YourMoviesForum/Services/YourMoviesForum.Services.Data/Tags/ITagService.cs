@@ -9,5 +9,7 @@ namespace YourMoviesForum.Services.Data.Tags
 
         Task<bool> IsExistingAsync(int id);
 
+        Task<IEnumerable<TModel>> GetAllPostTagsAsync<TModel>(int postId);
+
     }
 }

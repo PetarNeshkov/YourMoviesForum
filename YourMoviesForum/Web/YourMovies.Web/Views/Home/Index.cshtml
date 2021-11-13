@@ -1,8 +1,37 @@
-﻿@{
+﻿@model IndexViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@{ 
+    var posts = Model.Posts;
+}
+
+@if (!posts.Any())
+{
+    <div class="text-center">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to @GlobalConstants.SystemName</h1>
+            <p class="lead">There are no posts in the system currently available. Hurry and add some!</p>
+            <hr class="my-4">
+            <p class="lead">
+                <a asp-controller="Posts" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Post</a>
+            </p>
+        </div>
+    </div>
+}
+else
+{ 
+    <div class="jumbotron">
+        <div class="row">
+            <h1>Currently our community has:</h1>
+            <h2 class="col-md-4 text-center">
+                @Model.TotalPosts Posts
+            </h2>
+            <h2 class="col-md-4 text-center">
+                @Model.TotalUsers Users
+            </h2>
+        </div>
+    </div>
+}

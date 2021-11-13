@@ -1,21 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Microsoft.EntityFrameworkCore;
+
 using YourMoviesForum.Data.Models;
+
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace YourMoviesForum.Services.Data.Posts
 {
     public class PostService : IPostService
     {
         private readonly YourMoviesDbContext data;
+        private readonly IMapper mapper;
 
-        public PostService(YourMoviesDbContext data)
+        public PostService(YourMoviesDbContext data,IMapper mapper)
         {
             this.data = data;
+            this.mapper = mapper;
         }
-        public async Task<int> CreateAsync(string title, string content, string ImageUrl, int categoryId,IEnumerable<int>tagIds)
+        public async Task<int> CreatePostAsync(string title, string content, string ImageUrl, int categoryId,IEnumerable<int>tagIds)
         {
             var post = new Post
             {
@@ -53,6 +60,33 @@ namespace YourMoviesForum.Services.Data.Posts
             }
 
             await data.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>()
+        {
+            var queryablePosts = data.Posts
+                 .AsNoTracking()
+                 .OrderByDescending(d => d.CreatedOn)
+                 .Where(p => !p.IsDeleted);
+
+            var posts = await queryablePosts
+                .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                .ToListAsync();
+
+            return posts;
+        }
+
+        public IEnumerable<TModel> GetThreeRandomPosts<TModel>()
+        {
+
+            var totalPosts = data.Posts
+                            .Where(x => !x.IsDeleted)
+                            .OrderBy(x=> Guid.NewGuid())
+                            .Take(3)
+                            .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                            .ToList();
+
+            return totalPosts;
         }
     }
 }

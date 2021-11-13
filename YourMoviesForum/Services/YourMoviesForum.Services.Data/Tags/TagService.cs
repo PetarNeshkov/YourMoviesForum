@@ -19,6 +19,8 @@ namespace YourMoviesForum.Services.Data.Tags
             this.data = data;
             this.mapper = mapper;
         }
+
+
         public async Task<IEnumerable<TModel>> GetAllTagsAsync<TModel>()
         {
             var queryableTags = data.Tags
@@ -31,6 +33,12 @@ namespace YourMoviesForum.Services.Data.Tags
 
             return tags;
         }
+
+        public Task<IEnumerable<TModel>> GetAllPostTagsAsync<TModel>(int postId)
+        {
+            return null;
+        }
+       
 
         public async Task<bool> IsExistingAsync(int id)
             => await data.Tags.AnyAsync(t => t.Id == id && !t.IsDeleted);

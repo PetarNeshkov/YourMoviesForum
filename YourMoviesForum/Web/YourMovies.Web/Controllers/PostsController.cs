@@ -9,6 +9,7 @@ using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Categories;
 using YourMoviesForum.Services.Data.Tags;
 using YourMoviesForum.Web.InputModels;
+using YourMoviesForum.Web.InputModels.Home;
 using YourMoviesForum.Web.InputModels.Posts;
 using YourMoviesForum.Web.InputModels.Tags;
 
@@ -33,6 +34,16 @@ namespace YourMovies.Web.Controllers
             this.tagService = tagService;
         }
 
+        //public async Task<IActionResult> All()
+        //{
+        //    var posts = await postService.GetAllPostsAsync<PostListingViewModel>();
+
+        //    foreach (var post in posts)
+        //    {
+        //        post.Tags=await tagService.GetAllTagsAsync<>
+        //    }
+        //}
+
         public async Task<IActionResult> Add() => View(new AddPostFormModel
         {
             Tags = await tagService.GetAllTagsAsync<PostsTagViewModel>(),
@@ -51,7 +62,7 @@ namespace YourMovies.Web.Controllers
                 return View(input);
             }
 
-            var post = await postService.CreateAsync(
+            var post = await postService.CreatePostAsync(
                 input.Title,
                 input.ImageUrl,
                 input.Content,

@@ -27,6 +27,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Add">Add Post</a>
                         </li>
                         <li class="nav-item">
+                            
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
@@ -43,7 +46,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.UtcNow - Forum for Movies - <a asp-area="" asp-controller="Posts" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.UtcNow.Year - Forum for Movies - <a asp-area="" asp-controller="Posts" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
