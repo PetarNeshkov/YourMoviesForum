@@ -2,36 +2,83 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{ 
+@section Scripts
+{
+    <link href="~/css/homePage.css" rel="stylesheet" runat="server" type="text/css" />
+    <link href="~/lib/fontawesome/css/all.min.css" rel="stylesheet" asp-append-version="true" />
+}
+
+@{
     var posts = Model.Posts;
 }
 
-@if (!posts.Any())
-{
-    <div class="text-center">
-        <div class="jumbotron">
-            <h1 class="display-4">Welcome to @GlobalConstants.SystemName</h1>
-            <p class="lead">There are no posts in the system currently available. Hurry and add some!</p>
-            <hr class="my-4">
-            <p class="lead">
-                <a asp-controller="Posts" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Post</a>
-            </p>
+<body>
+    @if (!posts.Any())
+    {
+        <div class="text-center">
+            <div class="jumbotron">
+                <h1 class="display-4">Welcome to @GlobalConstants.SystemName</h1>
+                <p class="lead">There are no posts in the system currently available. Hurry and add some!</p>
+                <hr class="my-4">
+                <p class="lead">
+                    <a asp-controller="Posts" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Post</a>
+                </p>
+            </div>
         </div>
-    </div>
-}
-else
-{ 
-    <div class="jumbotron">
-        <div class="row">
-            <h1>Currently our community has:</h1>
-            <h2 class="col-md-4 text-center">
-                @Model.TotalPosts Posts
-            </h2>
-            <h2 class="col-md-4 text-center">
-                @Model.TotalUsers Users
-            </h2>
+    }
+
+    else
+
+    {
+        @*<div class="jumbotron">
+                <h1 class="text-center">Currently our community has:</h1>
+                <div class="row">
+                    <h2 class="col-md-6 text-center">
+                        @Model.TotalPosts Posts
+                    </h2>
+                    <h2 class="col-md-6 text-center">
+                        @Model.TotalUsers Users
+                    </h2>
+                </div>
+            </div>*@
+
+        <div class="header">
+            <h3 id="topic">Topic</h3>
+            <h3 id="category">Category</h3>
+            <h3 id="rating">Rating</h3>
+            <h3 id="replies">Replies</h3>
+            <h3 id="activity">Activity</h3>
         </div>
-    </div>
-}
+
+        <div class="items">
+            @foreach (var post in Model.Posts)
+            {
+                <div class="topic-section">
+                    <h5>@post.Title</h5>
+                    <div class="tags">
+
+                        @foreach (var tag in post.Tags)
+                        {
+                            <span class="tagElement">
+                                <i class="fas fa-tags"></i>
+                                @tag.Name
+                            </span>
+                        }
+
+                    </div>
+                </div>
+                <div class="category">
+                    <h5 class="category-name">@post.Category.Name</h5>
+                </div>
+                <div class="rating-section">2</div>
+                <div class="replies-section">4</div>
+                <div class="activity-section">3 days</div>
+            }
+        </div>
+
+    }
+</body>
+
