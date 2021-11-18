@@ -17,24 +17,23 @@ namespace YourMoviesForum.Services.Data.Posts
         private readonly YourMoviesDbContext data;
         private readonly IMapper mapper;
 
-        public PostService(YourMoviesDbContext data,IMapper mapper)
+        public PostService(YourMoviesDbContext data, IMapper mapper)
         {
             this.data = data;
             this.mapper = mapper;
         }
-        public async Task<int> CreatePostAsync(string title, string content, string ImageUrl, int categoryId,IEnumerable<int>tagIds)
+        public async Task<int> CreatePostAsync(string title, string content,int categoryId, IEnumerable<int> tagIds)
         {
             var post = new Post
             {
                 Title = title,
                 Content = content,
-                ImageUrl = ImageUrl,
                 CategoryId = categoryId,
             };
 
             await data.Posts.AddAsync(post);
             await data.SaveChangesAsync();
-            await AddTagsAsync(post.Id,tagIds);
+            await AddTagsAsync(post.Id, tagIds);
 
             return post.Id;
         }
@@ -42,7 +41,7 @@ namespace YourMoviesForum.Services.Data.Posts
         private async Task<Post> GetByIdAsync(int id)
             => await data.Posts.FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
 
-        private async Task AddTagsAsync(int id,IEnumerable<int>tagIds)
+        private async Task AddTagsAsync(int id, IEnumerable<int> tagIds)
         {
             var post = await GetByIdAsync(id);
 
@@ -62,31 +61,56 @@ namespace YourMoviesForum.Services.Data.Posts
             await data.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>()
+        public async Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>(
+            string searchFilter = null, int skip = 0, int take = 0)
         {
             var queryablePosts = data.Posts
                  .AsNoTracking()
                  .OrderByDescending(d => d.CreatedOn)
                  .Where(p => !p.IsDeleted);
 
+            if (!string.IsNullOrWhiteSpace(searchFilter))
+            {
+                queryablePosts = queryablePosts
+                     .Where(p => p.Title.ToLower().Contains(searchFilter.ToLower())
+                     || p.Category.Name.ToLower().Contains(searchFilter.ToLower()));
+            }
+
             var posts = await queryablePosts
+                .Skip(skip).Take(take)
                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
                 .ToListAsync();
 
             return posts;
         }
 
-        public IEnumerable<TModel> GetThreeRandomPosts<TModel>()
+        public async Task<IEnumerable<TModel>> GetThreeRandomPosts<TModel>()
         {
 
-            var totalPosts = data.Posts
+            var totalPosts = await data.Posts
                             .Where(x => !x.IsDeleted)
-                            .OrderBy(x=> Guid.NewGuid())
+                            .OrderBy(x => Guid.NewGuid())
                             .Take(3)
                             .ProjectTo<TModel>(mapper.ConfigurationProvider)
-                            .ToList();
+                            .ToListAsync();
 
             return totalPosts;
+        }
+
+        public async Task<int> GetPostsSearchCountAsync(string searchFilter = null)
+        {
+            var queryablePosts = data.Posts.Where(p => !p.IsDeleted);
+
+            if (!string.IsNullOrWhiteSpace(searchFilter))
+            {
+                queryablePosts = queryablePosts
+                        .Where(p => p.Title.ToLower().Contains(searchFilter.ToLower())
+                        || p.Category.Name.ToLower().Contains(searchFilter.ToLower()));
+
+            }
+            var countOfPosts = await queryablePosts.CountAsync();
+
+            return countOfPosts;
         }
     }
 }

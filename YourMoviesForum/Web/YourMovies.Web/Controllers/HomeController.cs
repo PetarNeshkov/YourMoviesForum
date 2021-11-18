@@ -1,41 +1,51 @@
-﻿using System.Diagnostics;
-
-using Microsoft.AspNetCore.Mvc;
-
-using YourMoviesForum;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using YourMovies.Web.Models;
-using System.Linq;
+using YourMoviesForum;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Web.InputModels.Home;
-using System;
+using YourMoviesForum.Web.InputModels.Posts;
+
+using static YourMoviesForum.Common.GlobalConstants;
 
 namespace YourMovies.Web.Controllers
 {
     public class HomeController : Controller
     {
+
         private readonly YourMoviesDbContext data;
         private readonly IPostService postservice;
-        public HomeController(YourMoviesDbContext data,IPostService postservice)
+        public HomeController(YourMoviesDbContext data, IPostService postservice)
         {
             this.data = data;
             this.postservice = postservice;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index([FromQuery] AllPostsQueryModel query)
         {
-            var totalPosts = data.Posts
-                            .Where(x => !x.IsDeleted)
-                            .Count();
 
-            var posts = postservice.GetThreeRandomPosts<PostListingViewModel>();
+            //var totalPosts = data.Posts
+            //                .Where(x => !x.IsDeleted)
+            //                .Count();
 
-            var viewModel = new IndexViewModel
+            if (!User.Identity.IsAuthenticated)
             {
-                TotalPosts=totalPosts,
-                Posts= posts
-            };
+                var skip = (query.CurrentPage - 1) * PostPerPage;
+                var count = await postservice.GetPostsSearchCountAsync(query.SearchTerm);
+                var posts = await postservice
+                        .GetAllPostsAsync<PostListingViewModel>(query.SearchTerm,skip,PostPerPage);
 
-            return View(viewModel);
+                query.TotalPages= (int)Math.Ceiling(count /(decimal) PostPerPage);
+                query.Posts = posts;
+            }
+            else
+            {
+                var posts = await postservice.GetThreeRandomPosts<PostListingViewModel>();
+                query.Posts = posts;
+            }
+            return View(query);
         }
 
         public IActionResult Privacy()

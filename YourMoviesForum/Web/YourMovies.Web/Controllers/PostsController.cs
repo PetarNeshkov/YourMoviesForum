@@ -34,16 +34,6 @@ namespace YourMovies.Web.Controllers
             this.tagService = tagService;
         }
 
-        //public async Task<IActionResult> All()
-        //{
-        //    var posts = await postService.GetAllPostsAsync<PostListingViewModel>();
-
-        //    foreach (var post in posts)
-        //    {
-        //        post.Tags=await tagService.GetAllTagsAsync<>
-        //    }
-        //}
-
         public async Task<IActionResult> Add() => View(new AddPostFormModel
         {
             Tags = await tagService.GetAllTagsAsync<PostsTagViewModel>(),
@@ -64,7 +54,6 @@ namespace YourMovies.Web.Controllers
 
             var post = await postService.CreatePostAsync(
                 input.Title,
-                input.ImageUrl,
                 input.Content,
                 input.CategoryId,
                 input.TagIds);

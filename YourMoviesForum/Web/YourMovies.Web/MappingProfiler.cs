@@ -14,7 +14,7 @@ namespace YourMovies.Web
         {
             //Posts
             CreateMap<Post, PostListingViewModel>();
-            CreateMap<Post, IndexViewModel>();
+            CreateMap<Post, AllPostsQueryModel>();
 
             //Categories
             CreateMap<Category, PostCategoryViewModel>();
