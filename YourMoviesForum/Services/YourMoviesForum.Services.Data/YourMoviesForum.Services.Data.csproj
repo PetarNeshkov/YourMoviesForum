@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\YourMoviesForum.Data\YourMoviesForum.Data.csproj" />
+    <ProjectReference Include="..\..\Web\YourMoviesForum.Web.InputModels\YourMoviesForum.Web.InputModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>

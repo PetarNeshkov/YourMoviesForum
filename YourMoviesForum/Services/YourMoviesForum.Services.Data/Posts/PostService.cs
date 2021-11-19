@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 using YourMoviesForum.Data.Models;
+using YourMoviesForum.Web.InputModels.Posts;
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -61,7 +62,7 @@ namespace YourMoviesForum.Services.Data.Posts
             await data.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>(
+        public async Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>(AllPostsQueryModel query,
             string searchFilter = null, int skip = 0, int take = 0)
         {
             var queryablePosts = data.Posts
@@ -69,12 +70,9 @@ namespace YourMoviesForum.Services.Data.Posts
                  .OrderByDescending(d => d.CreatedOn)
                  .Where(p => !p.IsDeleted);
 
-            if (!string.IsNullOrWhiteSpace(searchFilter))
-            {
-                queryablePosts = queryablePosts
-                     .Where(p => p.Title.ToLower().Contains(searchFilter.ToLower())
-                     || p.Category.Name.ToLower().Contains(searchFilter.ToLower()));
-            }
+            queryablePosts = SortingBySearch(searchFilter, queryablePosts);
+
+            queryablePosts = SortingByFilter(query, queryablePosts);
 
             var posts = await queryablePosts
                 .Skip(skip).Take(take)
@@ -82,6 +80,28 @@ namespace YourMoviesForum.Services.Data.Posts
                 .ToListAsync();
 
             return posts;
+        }
+
+        private static IQueryable<Post> SortingBySearch(string searchFilter, IQueryable<Post> queryablePosts)
+        {
+            if (!string.IsNullOrWhiteSpace(searchFilter))
+            {
+                queryablePosts = queryablePosts
+                     .Where(p => p.Title.ToLower().Contains(searchFilter.ToLower())
+                     || p.Category.Name.ToLower().Contains(searchFilter.ToLower()));
+            }
+
+            return queryablePosts;
+        }
+
+        private IQueryable<Post> SortingByFilter(AllPostsQueryModel query, IQueryable<Post> queryablePosts)
+        {
+            queryablePosts = query.Sorting switch
+            {
+                PostSorting.TagsCount => queryablePosts.OrderByDescending(t => t.Tags.Count()),
+                PostSorting.DateCreated or _ => queryablePosts.OrderByDescending(c => c.Id)
+            };
+            return queryablePosts;
         }
 
         public async Task<IEnumerable<TModel>> GetThreeRandomPosts<TModel>()

@@ -49,6 +49,19 @@
             <div class="form-group col-md-4">
                 <label asp-for="SearchTerm"></label>
                 <input asp-for="SearchTerm" class="form-control" placeholder="Search...">
+                <button id="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+
+            <div class="form-group col-md-4">
+                <div class="form-group">
+                    <label asp-for="Sorting"></label>
+                    <select asp-for="Sorting" class="form-control">
+                        <option value="0" selected>Date Created</option>
+                        <option value="1">Tags</option>
+                        <option value="2">Rating</option>
+                        <option value="3">Reply</option>
+                    </select>
+                </div>
             </div>
         </form>
 
@@ -88,45 +101,47 @@
             }
         </div>
 
-            <nav>
-                <ul class="pagination">
-                    <li>
-                        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+        <nav>
+            <ul class="pagination">
+                <li>
+                    <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                       asp-controller="Home"
+                       asp-action="Index"
+                       asp-route-search="@Model.SearchTerm"
+                       asp-route-page="@Model.PreviousPage"
+                       asp-route-sorting="@((int)Model.Sorting)">
+                        Previous
+                    </a>
+                </li>
+                
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    var active = i == Model.CurrentPage ? "active" : string.Empty;
+                    <li class="active-pages">
+                        <a class="@active"
                            asp-controller="Home"
                            asp-action="Index"
                            asp-route-search="@Model.SearchTerm"
-                           asp-route-page="@Model.PreviousPage">
-                            Previous
+                           asp-route-page="@i"
+                           asp-route-sorting="@((int)Model.Sorting)">
+                            @i
                         </a>
                     </li>
-                    @*asp-route-sorting="@((int)Model.Sorting)"*@
-                    @for (int i = 1; i <= Model.TotalPages; i++)
-                    {
-                        var active = i == Model.CurrentPage ? "active" : string.Empty;
-                        <li class="active-pages">
-                            <a class="@active"
-                               asp-controller="Home"
-                               asp-action="Index"
-                               asp-route-search="@Model.SearchTerm"
-                               asp-route-page="@i">
-                                @i
-                            </a>
-                        </li>
-                    }
-                    <li>
-                        <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages ?
+                }
+                <li>
+                    <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages ?
                            "disabled" : string.Empty)"
-                           asp-controller="Home"
-                           asp-action="Index"
-                           asp-route-search="@Model.SearchTerm"
-                           asp-route-page="@Model.NextPage">
-                            Next
-                        </a>
-                    </li>
-                    @*asp-route-sorting="@((int)Model.Sorting)"*@
-                </ul>
-            </nav>
-        }
+                       asp-controller="Home"
+                       asp-action="Index"
+                       asp-route-search="@Model.SearchTerm"
+                       asp-route-page="@Model.NextPage"
+                       asp-route-sorting="@((int)Model.Sorting)">
+                        Next
+                    </a>
+                </li>
+                @*asp-route-sorting="@((int)Model.Sorting)"*@
+            </ul>
+        </nav>
     }
 </body>
 
