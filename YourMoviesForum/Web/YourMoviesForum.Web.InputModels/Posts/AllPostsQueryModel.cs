@@ -11,7 +11,7 @@ namespace YourMoviesForum.Web.InputModels.Posts
 
         public PostSorting Sorting { get; init; }
 
-        public int CurrentPage { get; init; } = 1;
+        public int CurrentPage { get; set; }
 
         public int TotalPages { get; set; }
         public int NextPage

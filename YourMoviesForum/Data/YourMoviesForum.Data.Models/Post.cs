@@ -25,9 +25,6 @@ namespace YourMoviesForum.Data.Models
         public string Content { get; set; }
 
         [Required]
-        public string ImageUrl { get; set; }
-
-        [Required]
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }

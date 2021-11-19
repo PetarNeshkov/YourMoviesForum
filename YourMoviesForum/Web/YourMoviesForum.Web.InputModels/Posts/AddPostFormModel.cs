@@ -27,11 +27,6 @@ namespace YourMoviesForum.Web.InputModels
         public string Content { get; init; }
 
         [Required]
-        [Url]
-        [Display(Name ="Image Url")]
-        public string ImageUrl { get; init; }
-
-        [Required]
         [Display(Name ="Categories")]
         public int CategoryId { get; init; }
 

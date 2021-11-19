@@ -4,7 +4,7 @@
     {
         //Global
         public const string SystemName = "Your Movies";
-        public const int PostPerPage = 4;
+        public const int PostPerPage = 3;
 
         //Posts
         public const int PostTitleMinLength = 3;

@@ -57,26 +57,28 @@
         <div class="items">
             @foreach (var post in Model.Posts)
             {
-                <div class="topic-section">
-                    <h5>@post.Title</h5>
-                    <div class="tags">
+                <div class="current-item">
+                    <div class="topic-section">
+                        <h5>@post.Title</h5>
+                        <div class="tags">
 
-                        @foreach (var tag in post.Tags)
-                        {
-                            <span class="tagElement">
-                                <i class="fas fa-tags"></i>
-                                @tag.Name
-                            </span>
-                        }
+                            @foreach (var tag in post.Tags)
+                            {
+                                <span class="tagElement">
+                                    <i class="fas fa-tags"></i>
+                                    @tag.Name
+                                </span>
+                            }
 
+                        </div>
                     </div>
+                    <div class="category">
+                        <h5 class="category-name">@post.Category.Name</h5>
+                    </div>
+                    <div class="rating-section">2</div>
+                    <div class="replies-section">4</div>
+                    <div class="activity-section">3 days</div>
                 </div>
-                <div class="category">
-                    <h5 class="category-name">@post.Category.Name</h5>
-                </div>
-                <div class="rating-section">2</div>
-                <div class="replies-section">4</div>
-                <div class="activity-section">3 days</div>
             }
         </div>
 
@@ -87,36 +89,35 @@
                     <li>
                         <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
                            asp-controller="Home"
-                           asp-action="All"
-                           asp-route-currentPage="@Model.PreviousPage"
-                           asp-route-sorting="@((int)Model.Sorting)">
+                           asp-action="Index"
+                           asp-route-currentPage="@Model.PreviousPage">
                             Previous
                         </a>
                     </li>
+                    @*asp-route-sorting="@((int)Model.Sorting)"*@
                     @for (int i = 1; i <= Model.TotalPages; i++)
                     {
                         var active = i == Model.CurrentPage ? "active" : string.Empty;
                         <li class="active-pages">
                             <a class="@active"
                                asp-controller="Home"
-                               asp-action="All"
-                               asp-route-page="@i"
-                               asp-route-sorting="@((int)Model.Sorting)">
+                               asp-action="Index"
+                               asp-route-page="@i">
                                 @i
                             </a>
                         </li>
-                               @*asp-route-currentPage="@(Model.CurrentPage + 1)"*@
+                        //asp - route - sorting = "@((int)Model.Sorting)"
                     }
                     <li>
                         <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages ?
                            "disabled" : string.Empty)"
-                           asp-controller="Posts"
-                           asp-action="All"
-                           asp-route-page="@Model.NextPage"
-                           asp-route-sorting="@((int)Model.Sorting)">
+                           asp-controller="Home"
+                           asp-action="Index"
+                           asp-route-page="@Model.NextPage">
                             Next
                         </a>
                     </li>
+                    @*asp-route-sorting="@((int)Model.Sorting)"*@
                 </ul>
             </nav>
         }
@@ -127,38 +128,37 @@
                     <li>
                         <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
                            asp-controller="Home"
-                           asp-action="All"
+                           asp-action="Index"
                            asp-route-search="@Model.SearchTerm"
-                           asp-route-page="@Model.PreviousPage"
-                           asp-route-sorting="@((int)Model.Sorting)">
+                           asp-route-page="@Model.PreviousPage">
                             Previous
                         </a>
                     </li>
+                    @*asp-route-sorting="@((int)Model.Sorting)"*@
                     @for (int i = 1; i <= Model.TotalPages; i++)
                     {
                         var active = i == Model.CurrentPage ? "active" : string.Empty;
                         <li class="active-pages">
                             <a class="@active"
                                asp-controller="Home"
-                               asp-action="All"
+                               asp-action="Index"
                                asp-route-search="@Model.SearchTerm"
                                asp-route-page="@i">
                                 @i
                             </a>
-                            @*asp-route-currentPage="@(Model.CurrentPage + 1)"*@
                         </li>
                     }
                     <li>
                         <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages ?
                            "disabled" : string.Empty)"
                            asp-controller="Home"
-                           asp-action="All"
+                           asp-action="Index"
                            asp-route-search="@Model.SearchTerm"
-                           asp-route-page="@Model.NextPage"
-                           asp-route-sorting="@((int)Model.Sorting)">
+                           asp-route-page="@Model.NextPage">
                             Next
                         </a>
                     </li>
+                    @*asp-route-sorting="@((int)Model.Sorting)"*@
                 </ul>
             </nav>
         }

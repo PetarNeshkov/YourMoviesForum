@@ -23,7 +23,7 @@ namespace YourMovies.Web.Controllers
             this.postservice = postservice;
         }
 
-        public async Task<IActionResult> Index([FromQuery] AllPostsQueryModel query)
+        public async Task<IActionResult> Index([FromQuery] AllPostsQueryModel query,int page=1)
         {
 
             //var totalPosts = data.Posts
@@ -32,6 +32,7 @@ namespace YourMovies.Web.Controllers
 
             if (!User.Identity.IsAuthenticated)
             {
+                query.CurrentPage = page;
                 var skip = (query.CurrentPage - 1) * PostPerPage;
                 var count = await postservice.GetPostsSearchCountAsync(query.SearchTerm);
                 var posts = await postservice

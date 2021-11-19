@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YourMoviesForum;
 
 namespace YourMoviesForum.Data.Migrations
 {
     [DbContext(typeof(YourMoviesDbContext))]
-    partial class YourMoviesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211119093217_deletedImageUrl")]
+    partial class deletedImageUrl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
