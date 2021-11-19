@@ -45,6 +45,12 @@
                     </h2>
                 </div>
             </div>*@
+        <form method="get">
+            <div class="form-group col-md-4">
+                <label asp-for="SearchTerm"></label>
+                <input asp-for="SearchTerm" class="form-control" placeholder="Search...">
+            </div>
+        </form>
 
         <div class="header">
             <h3 id="topic">Topic</h3>
@@ -82,47 +88,6 @@
             }
         </div>
 
-        @if (Model.TotalPages > 0 && Model.SearchTerm == null)
-        {
-            <nav>
-                <ul class="pagination">
-                    <li>
-                        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
-                           asp-controller="Home"
-                           asp-action="Index"
-                           asp-route-currentPage="@Model.PreviousPage">
-                            Previous
-                        </a>
-                    </li>
-                    @*asp-route-sorting="@((int)Model.Sorting)"*@
-                    @for (int i = 1; i <= Model.TotalPages; i++)
-                    {
-                        var active = i == Model.CurrentPage ? "active" : string.Empty;
-                        <li class="active-pages">
-                            <a class="@active"
-                               asp-controller="Home"
-                               asp-action="Index"
-                               asp-route-page="@i">
-                                @i
-                            </a>
-                        </li>
-                        //asp - route - sorting = "@((int)Model.Sorting)"
-                    }
-                    <li>
-                        <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages ?
-                           "disabled" : string.Empty)"
-                           asp-controller="Home"
-                           asp-action="Index"
-                           asp-route-page="@Model.NextPage">
-                            Next
-                        </a>
-                    </li>
-                    @*asp-route-sorting="@((int)Model.Sorting)"*@
-                </ul>
-            </nav>
-        }
-        else if (Model.TotalPages > 0 && Model.SearchTerm != null)
-        {
             <nav>
                 <ul class="pagination">
                     <li>

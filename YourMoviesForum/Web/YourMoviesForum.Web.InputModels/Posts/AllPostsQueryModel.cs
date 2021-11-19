@@ -6,7 +6,7 @@ namespace YourMoviesForum.Web.InputModels.Posts
 {
     public class AllPostsQueryModel
     {
-        [Display(Name = "Search...")]
+        [Display(Name = "Search Bar")]
         public string SearchTerm { get; init; }
 
         public PostSorting Sorting { get; init; }
@@ -18,7 +18,7 @@ namespace YourMoviesForum.Web.InputModels.Posts
         {
             get
             {
-                if (CurrentPage >= TotalPages)
+                if (CurrentPage == TotalPages)
                 {
                     return 1;
                 }
@@ -31,7 +31,7 @@ namespace YourMoviesForum.Web.InputModels.Posts
         {
             get
             {
-                if (CurrentPage <= 1)
+                if (CurrentPage == 1)
                 {
                     return this.TotalPages;
                 }
