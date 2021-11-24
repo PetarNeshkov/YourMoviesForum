@@ -36,7 +36,7 @@ namespace YourMovies.Web.Controllers
                 var skip = (query.CurrentPage - 1) * PostPerPage;
                 var count = await postservice.GetPostsSearchCountAsync(query.SearchTerm);
                 var posts = await postservice
-                        .GetAllPostsAsync<PostListingViewModel>(query,query.SearchTerm,skip,PostPerPage);
+                        .GetAllPostsAsync<PostListingViewModel>(query.Sorting,query.SearchTerm,skip,PostPerPage);
 
                 query.TotalPages=(int) Math.Ceiling(count /(decimal) PostPerPage);
                 query.Posts = posts;

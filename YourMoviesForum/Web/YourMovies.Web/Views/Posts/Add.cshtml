@@ -32,15 +32,15 @@
                 </select>
             </div>
             <div class="form-group">
-               <label asp-for="TagIds">Tags</label>
+                <label asp-for="TagIds">Tags</label>
                 <select asp-for="TagIds" multiple data-mdb-filter="true" id="input-tags">
-                   @foreach (var tag in Model.Tags)
+                    @foreach (var tag in Model.Tags)
                     {
-                       <option value="@tag.Id">@tag.Name</option>
+                        <option value="@tag.Id">@tag.Name</option>
                     }
                 </select>
                 <span asp-validation-for="TagIds"></span>
-                </div>
+            </div>
             <div>
                 <div class="heading-margin text-center">
                     <button type="submit" class="btn btn-secondary btn-width-lg">Create Post</button>
@@ -50,36 +50,7 @@
     </div>
 </div>
 
-@section Scripts 
+@section Scripts
 {
-    <script>
-        var $select = $('#input-category').selectize({
-            create: false,
-            sortField: 'text',
-        });
-     
-        $('#input-tags').selectize({
-            create: false,
-            sortField: 'text',
-            plugins: ['remove_button'],
-            delimiter: ',',
-            persist: false
-        });
-
-        tinymce.init({
-            selector: 'textarea#tinymceInput',
-            height: 180,
-            plugins: [
-                'advlist autolink link image lists charmap preview hr anchor pagebreak',
-                'searchreplace wordcount visualblocks visualchars code fullscreen  media nonbreaking',
-                'emoticons template paste help'
-            ],
-            toolbar: [
-                'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify  bullist numlist hr | emoticons link codesample image media |'
-            ],
-            link_default_protocol: "https",
-            menubar: false
-        });
-     
-    </script>  
+    <script src="~/lib/tinymce/tinymceInit.js"></script>
 }

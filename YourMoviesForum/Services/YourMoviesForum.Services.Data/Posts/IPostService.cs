@@ -8,7 +8,7 @@ namespace YourMoviesForum.Services.Data
     {
         Task<int> CreatePostAsync(string title, string content,int categoryId,IEnumerable<int> tagIds);
 
-        Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>(AllPostsQueryModel query, 
+        Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>(PostSorting query, 
             string searchFilter = null, int skip = 0,
             int take = 0);
 

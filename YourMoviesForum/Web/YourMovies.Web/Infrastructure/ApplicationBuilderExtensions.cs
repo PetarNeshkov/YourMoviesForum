@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 using YourMoviesForum;
-using YourMoviesForum.Data.Models;
 using YourMoviesForum.Data.Seeding;
 
 namespace YourMovies.Web.Infrastructure

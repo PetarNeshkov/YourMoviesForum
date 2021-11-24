@@ -62,7 +62,7 @@ namespace YourMoviesForum.Services.Data.Posts
             await data.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>(AllPostsQueryModel query,
+        public async Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>(PostSorting query,
             string searchFilter = null, int skip = 0, int take = 0)
         {
             var queryablePosts = data.Posts
@@ -94,9 +94,9 @@ namespace YourMoviesForum.Services.Data.Posts
             return queryablePosts;
         }
 
-        private IQueryable<Post> SortingByFilter(AllPostsQueryModel query, IQueryable<Post> queryablePosts)
+        private IQueryable<Post> SortingByFilter(PostSorting query, IQueryable<Post> queryablePosts)
         {
-            queryablePosts = query.Sorting switch
+            queryablePosts = query switch
             {
                 PostSorting.TagsCount => queryablePosts.OrderByDescending(t => t.Tags.Count()),
                 PostSorting.DateCreated or _ => queryablePosts.OrderByDescending(c => c.Id)
