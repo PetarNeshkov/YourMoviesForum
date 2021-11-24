@@ -45,17 +45,19 @@
                     </h2>
                 </div>
             </div>*@
-        <form method="get">
+        <form method="get" class="d-flex">
             <div class="form-group col-md-4">
                 <label asp-for="SearchTerm"></label>
-                <input asp-for="SearchTerm" class="form-control" placeholder="Search...">
-                <button id="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                <div class="d-flex">
+                    <input asp-for="SearchTerm" class="form-control" placeholder="Search...">
+                    <button id="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
             </div>
 
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label asp-for="Sorting"></label>
-                    <select asp-for="Sorting" class="form-control">
+                    <select asp-for="Sorting" class="form-control" onchange="this.form.submit()">
                         <option value="0" selected>Date Created</option>
                         <option value="1">Tags</option>
                         <option value="2">Rating</option>
@@ -139,7 +141,6 @@
                         Next
                     </a>
                 </li>
-                @*asp-route-sorting="@((int)Model.Sorting)"*@
             </ul>
         </nav>
     }
