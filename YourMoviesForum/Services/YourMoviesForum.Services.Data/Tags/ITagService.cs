@@ -5,11 +5,13 @@ namespace YourMoviesForum.Services.Data.Tags
 {
     public interface ITagService
     {
-        Task<IEnumerable<TModel>> GetAllTagsAsync<TModel>();
+        Task<IEnumerable<TModel>> GetAllTagsAsync<TModel>(string searchFilter=null,int skip=0,int take=0);
 
         Task<bool> IsExistingAsync(int id);
 
         Task<IEnumerable<TModel>> GetAllPostTagsAsync<TModel>(int postId);
+
+        Task<int> GetPostsSearchCountAsync(string searchFilter = null);
 
     }
 }

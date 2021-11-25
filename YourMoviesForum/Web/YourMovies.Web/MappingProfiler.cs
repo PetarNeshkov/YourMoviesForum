@@ -22,6 +22,7 @@ namespace YourMovies.Web
 
             //Tags
             CreateMap<Tag, PostsTagViewModel>();
+            CreateMap<Tag, TagsListingViewModel>();
         }
     }
 }

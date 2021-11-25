@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Categories\" />
-    <Folder Include="Tags\" />
   </ItemGroup>
 
   <ItemGroup>
