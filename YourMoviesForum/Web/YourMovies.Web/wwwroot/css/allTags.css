@@ -1,0 +1,49 @@
+﻿body {
+    text-align: center;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+}
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    gap:30px;
+}
+
+.items .current-item {
+    flex: 1 20 21%;
+    padding: 30px;
+    margin-top: 30px;
+    background-color: #f8f9fb;
+    border-radius: 3px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+
+.tag-class {
+    width:100%;
+    border-radius: 3px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+
+.tag-Name {
+    width: 100%;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    text-align: center;
+    cursor: pointer;
+    background-color: #A96067;
+    color: white;
+}
+
+.items a{
+    text-decoration:none;
+}

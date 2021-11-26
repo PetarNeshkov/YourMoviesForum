@@ -24,7 +24,7 @@ namespace YourMovies.Web.Controllers
         }
 
         
-        public async Task<IActionResult> All(AllTagsQueryModel query,int page = 1)
+        public async Task<IActionResult> All([FromQuery]AllTagsQueryModel query,int page = 1)
         {
             var skip = (page - 1) * TagsPerPage;
             var count = await tagService.GetPostsSearchCountAsync(query.SearchTerm);

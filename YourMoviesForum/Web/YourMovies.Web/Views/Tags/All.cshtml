@@ -1,1 +1,54 @@
-﻿
+﻿@model AllTagsQueryModel
+
+
+@{
+    ViewData["Title"] = "Tags";
+}
+
+
+<link href="~/css/allTags.css" rel="stylesheet" />
+<link href="~/lib/fontawesome/css/all.min.css" rel="stylesheet" asp-append-version="true" />
+
+
+<body>
+    <div class="items">
+        @foreach (var tag in Model.Tags)
+        {
+            <div class="current-item">
+                <div>
+                    <div class="tag-class">
+                        <a asp-area=""
+                           asp-controller="Tags"
+                           asp-action="Details"
+                           asp-route-id="@tag.Id">
+                            <h4 class="tag-Name">@tag.Name</h4>
+                        </a>
+                    </div>
+                    <h6>
+                        <a asp-area=""
+                           asp-controller="Tags"
+                           asp-action="Details"
+                           asp-route-id="@tag.Id">
+                            Avaliable in  @tag.PostsCount posts
+                        </a>
+                    </h6>
+                     
+                    <div class="delete-section">
+                       
+                        <form asp-area="Administration"
+                              asp-controller="Tags"
+                              asp-action="Delete"
+                              asp-route-id="@tag.Id"
+                              method="post"
+                              class="btn">
+                            <button type="submit" class="btn btn-secondary">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+         
+        }
+    </div>
+</body>
