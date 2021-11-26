@@ -7,34 +7,38 @@
 
 
 <link href="~/css/allTags.css" rel="stylesheet" />
-<link href="~/lib/fontawesome/css/all.min.css" rel="stylesheet" asp-append-version="true" />
+<link href="~/css/pagination.css" rel="stylesheet" type="text/css" />
 
 
 <body>
+    <form method="get" class="d-flex">
+        <div class="form-group col-md-4">
+            <div class="d-flex">
+                <input asp-for="SearchTerm" class="form-control" placeholder="Search...">
+                <button id="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </form>
     <div class="items">
         @foreach (var tag in Model.Tags)
         {
             <div class="current-item">
                 <div>
                     <div class="tag-class">
-                        <a asp-area=""
-                           asp-controller="Tags"
+                        <a asp-controller="Tags"
                            asp-action="Details"
                            asp-route-id="@tag.Id">
                             <h4 class="tag-Name">@tag.Name</h4>
                         </a>
                     </div>
                     <h6>
-                        <a asp-area=""
-                           asp-controller="Tags"
+                        <a asp-controller="Tags"
                            asp-action="Details"
                            asp-route-id="@tag.Id">
                             Avaliable in  @tag.PostsCount posts
                         </a>
                     </h6>
-                     
                     <div class="delete-section">
-                       
                         <form asp-area="Administration"
                               asp-controller="Tags"
                               asp-action="Delete"
@@ -48,7 +52,45 @@
                     </div>
                 </div>
             </div>
-         
         }
     </div>
+        <nav>
+            <ul class="pagination">
+                <li>
+                    <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                       asp-controller="Tags"
+                       asp-action="All"
+                       asp-route-search="@Model.SearchTerm"
+                       asp-route-page="@Model.PreviousPage">
+                        Previous
+                    </a>
+                </li>
+
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    var active = i == Model.CurrentPage ? "active" : string.Empty;
+                    <li class="active-pages">
+                        <a class="@active"
+                           asp-controller="Tags"
+                           asp-action="All"
+                           asp-route-search="@Model.SearchTerm"
+                           asp-route-page="@i">
+                            @i
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages ?
+                           "disabled" : string.Empty)"
+                       asp-controller="Tags"
+                       asp-action="All"
+                       asp-route-search="@Model.SearchTerm"
+                       asp-route-page="@Model.NextPage">
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </nav>
 </body>
+
+

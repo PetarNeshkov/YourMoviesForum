@@ -5,13 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section Scripts
-{
-    <link href="~/css/homePage.css" rel="stylesheet" runat="server" type="text/css" />
-    <link href="~/lib/fontawesome/css/all.min.css" rel="stylesheet" asp-append-version="true" />
-}
-
-
+<link href="~/css/homePage.css" rel="stylesheet" runat="server" type="text/css" />
+<link href="~/css/pagination.css" rel="stylesheet" type="text/css" />
 
 <body>
     @if (!Model.Posts.Any())
@@ -82,7 +77,6 @@
                     <div class="topic-section">
                         <h5>@post.Title</h5>
                         <div class="tags">
-
                             @foreach (var tag in post.Tags)
                             {
                                 <span class="tagElement">
@@ -90,7 +84,6 @@
                                     @tag.Name
                                 </span>
                             }
-
                         </div>
                     </div>
                     <div class="category">
@@ -102,7 +95,47 @@
                 </div>
             }
         </div>
+        <nav>
+            <ul class="pagination">
+                <li>
+                    <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                       asp-controller="Home"
+                       asp-action="Index"
+                       asp-route-search="@Model.SearchTerm"
+                       asp-route-page="@Model.PreviousPage"
+                       asp-route-sorting="@((int)Model.Sorting)">
+                        Previous
+                    </a>
+                </li>
+
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    var active = i == Model.CurrentPage ? "active" : string.Empty;
+                    <li class="active-pages">
+                        <a class="@active"
+                           asp-controller="Home"
+                           asp-action="Index"
+                           asp-route-search="@Model.SearchTerm"
+                           asp-route-page="@i"
+                           asp-route-sorting="@((int)Model.Sorting)">
+                            @i
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages ?
+                           "disabled" : string.Empty)"
+                       asp-controller="Home"
+                       asp-action="Index"
+                       asp-route-search="@Model.SearchTerm"
+                       asp-route-page="@Model.NextPage"
+                       asp-route-sorting="@((int)Model.Sorting)">
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </nav>
     }
 </body>
-        <partial name="_PaginationPartial" />
+
 

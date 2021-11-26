@@ -32,6 +32,7 @@ namespace YourMoviesForum.Services.Data.Tags
             queryableTags = SortingBySearch(searchFilter, queryableTags);
 
             var tags = await queryableTags
+                .Skip(skip).Take(take)
                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
                 .ToListAsync();
 

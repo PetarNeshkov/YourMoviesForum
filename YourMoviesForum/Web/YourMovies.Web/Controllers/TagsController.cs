@@ -26,11 +26,12 @@ namespace YourMovies.Web.Controllers
         
         public async Task<IActionResult> All([FromQuery]AllTagsQueryModel query,int page = 1)
         {
+            query.CurrentPage = page;
             var skip = (page - 1) * TagsPerPage;
             var count = await tagService.GetPostsSearchCountAsync(query.SearchTerm);
             var tags = await tagService.GetAllTagsAsync<TagsListingViewModel>(query.SearchTerm,skip,TagsPerPage);
 
-            query.TotalPages= (int)Math.Ceiling(count / (decimal)PostPerPage);
+            query.TotalPages= (int)Math.Ceiling(count / (decimal)TagsPerPage);
             query.Tags = tags;
 
             return View(query);

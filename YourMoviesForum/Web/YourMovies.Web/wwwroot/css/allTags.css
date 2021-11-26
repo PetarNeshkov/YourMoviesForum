@@ -1,8 +1,5 @@
 ﻿body {
     text-align: center;
-    justify-content: flex-start;
-    align-content: center;
-    align-items: center;
 }
 
 .items {
@@ -28,9 +25,6 @@
 .tag-class {
     width:100%;
     border-radius: 3px;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
 }
 
 
@@ -44,6 +38,7 @@
     color: white;
 }
 
-.items a{
+/*.items a{
     text-decoration:none;
 }
+*/
