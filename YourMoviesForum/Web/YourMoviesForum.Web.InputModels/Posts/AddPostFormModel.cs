@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using YourMoviesForum.Web.InputModels.Posts;
 using YourMoviesForum.Web.InputModels.Tags;
 
-using static YourMoviesForum.Common.ErrorMessages;
-using static YourMoviesForum.Common.GlobalConstants;
+using static YourMoviesForum.Common.ErrorMessages.Post;
+using static YourMoviesForum.Common.GlobalConstants.Post;
 
 namespace YourMoviesForum.Web.InputModels
 {

@@ -8,10 +8,20 @@
         public const int TagsPerPage = 8;
 
         //Posts
-        public const int PostTitleMinLength = 3;
-        public const int PostTitleMaxLength = 50;
-        public const int PostContentMinLength = 10;
-        public const int PostContentMaxLength = 500;
+        public static class Post
+        {
+            public const int PostTitleMinLength = 3;
+            public const int PostTitleMaxLength = 50;
+            public const int PostContentMinLength = 10;
+            public const int PostContentMaxLength = 500;
+        }
+
+        //Tags
+        public static class Tags
+        {
+            public const int TagNameMaxLength = 20;
+            public const int TagNameMinLength = 5;
+        }
 
     }
 }

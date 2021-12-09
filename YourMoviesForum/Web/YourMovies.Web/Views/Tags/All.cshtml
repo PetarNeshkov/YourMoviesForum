@@ -19,6 +19,12 @@
             </div>
         </div>
     </form>
+    <a id="createTag" asp-area="Administration"
+       asp-controller="Tags"
+       asp-action="Create"
+       class="btn btn-secondary ml-auto">
+        Create Tag
+    </a>
     <div class="items">
         @foreach (var tag in Model.Tags)
         {
@@ -39,8 +45,7 @@
                         </a>
                     </h6>
                     <div class="delete-section">
-                        <form asp-area="Administration"
-                              asp-controller="Tags"
+                        <form asp-controller="Tags"
                               asp-action="Delete"
                               asp-route-id="@tag.Id"
                               method="post"
@@ -54,42 +59,42 @@
             </div>
         }
     </div>
-        <nav>
-            <ul class="pagination">
-                <li>
-                    <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
-                       asp-controller="Tags"
-                       asp-action="All"
-                       asp-route-search="@Model.SearchTerm"
-                       asp-route-page="@Model.PreviousPage">
-                        Previous
-                    </a>
-                </li>
+    <nav>
+        <ul class="pagination">
+            <li>
+                <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                   asp-controller="Tags"
+                   asp-action="All"
+                   asp-route-search="@Model.SearchTerm"
+                   asp-route-page="@Model.PreviousPage">
+                    Previous
+                </a>
+            </li>
 
-                @for (int i = 1; i <= Model.TotalPages; i++)
-                {
-                    var active = i == Model.CurrentPage ? "active" : string.Empty;
-                    <li class="active-pages">
-                        <a class="@active"
-                           asp-controller="Tags"
-                           asp-action="All"
-                           asp-route-search="@Model.SearchTerm"
-                           asp-route-page="@i">
-                            @i
-                        </a>
-                    </li>
-                }
-                <li>
-                    <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages || Model.TotalPages==0 ?"disabled" : string.Empty)"
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                var active = i == Model.CurrentPage ? "active" : string.Empty;
+                <li class="active-pages">
+                    <a class="@active"
                        asp-controller="Tags"
                        asp-action="All"
                        asp-route-search="@Model.SearchTerm"
-                       asp-route-page="@Model.NextPage">
-                        Next
+                       asp-route-page="@i">
+                        @i
                     </a>
                 </li>
-            </ul>
-        </nav>
+            }
+            <li>
+                <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages || Model.TotalPages==0 ?"disabled" : string.Empty)"
+                   asp-controller="Tags"
+                   asp-action="All"
+                   asp-route-search="@Model.SearchTerm"
+                   asp-route-page="@Model.NextPage">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </nav>
 </body>
 
 

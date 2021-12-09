@@ -36,5 +36,37 @@ namespace YourMovies.Web.Controllers
 
             return View(query);
         }
+
+        public IActionResult Create() => this.View();
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateTagInputModel input)
+        {
+            var isExisting = await this.tagService.IsExistingAsync(input.Name);
+
+            if (!this.ModelState.IsValid || isExisting)
+            {
+                return this.View(input);
+            }
+
+            await this.tagService.CreateAsync(input.Name);
+
+            return this.RedirectToAction(nameof(All));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var isExisting = await this.tagService.IsExistingAsync(id);
+            if (!isExisting)
+            {
+                return this.NotFound();
+            }
+
+            await this.tagService.DeleteAsync(id);
+
+            return this.RedirectToAction(nameof(All));
+        }
+
     }
 }

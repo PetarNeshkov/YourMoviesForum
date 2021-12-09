@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -55,8 +56,11 @@ namespace YourMoviesForum.Services.Data.Tags
             return null;
         }
       
+        public async Task<bool> IsExistingAsync(string name)
+            => await data.Tags.AnyAsync(t => t.Name == name && !t.IsDeleted);
+
         public async Task<bool> IsExistingAsync(int id)
-            => await data.Tags.AnyAsync(t => t.Id == id && !t.IsDeleted);
+           => await data.Tags.AnyAsync(t => t.Id == id && !t.IsDeleted);
 
         public async Task<int> GetPostsSearchCountAsync(string searchFilter = null)
         {
@@ -73,6 +77,25 @@ namespace YourMoviesForum.Services.Data.Tags
             return count;
         }
 
-       
+        public async Task CreateAsync(string name)
+        {
+            var tag = new Tag
+            {
+                Name = name
+            };
+
+            await data.Tags.AddAsync(tag);
+            await data.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var tag = await data.Tags.FirstOrDefaultAsync(t => t.Id == id && !t.IsDeleted);
+
+            tag.IsDeleted = true;
+            tag.DeletedOn = DateTime.UtcNow;
+
+            await data.SaveChangesAsync();
+        }
     }
 }

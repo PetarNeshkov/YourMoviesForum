@@ -42,3 +42,9 @@
     text-decoration:none;
 }
 */
+
+#createTag {
+    margin-top:10px;
+    margin-left:15px;
+    display:flex
+}
