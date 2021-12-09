@@ -31,7 +31,7 @@ namespace YourMoviesForum.Web.InputModels.Posts
         {
             get
             {
-                if (CurrentPage == 1)
+                if (CurrentPage == 0)
                 {
                     return this.TotalPages;
                 }

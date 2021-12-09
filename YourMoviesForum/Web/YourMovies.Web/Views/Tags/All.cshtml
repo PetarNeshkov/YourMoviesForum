@@ -80,8 +80,7 @@
                     </li>
                 }
                 <li>
-                    <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages ?
-                           "disabled" : string.Empty)"
+                    <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages || Model.TotalPages==0 ?"disabled" : string.Empty)"
                        asp-controller="Tags"
                        asp-action="All"
                        asp-route-search="@Model.SearchTerm"

@@ -9,7 +9,7 @@
 <link href="~/css/pagination.css" rel="stylesheet" type="text/css" />
 
 <body>
-    @if (!Model.Posts.Any())
+    @if (!Model.Posts.Any() && Model.SearchTerm==null)
     {
         <div class="text-center">
             <div class="jumbotron">
@@ -123,8 +123,7 @@
                     </li>
                 }
                 <li>
-                    <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages ?
-                           "disabled" : string.Empty)"
+                    <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages || Model.TotalPages==0 ? "disabled" : string.Empty)"
                        asp-controller="Home"
                        asp-action="Index"
                        asp-route-search="@Model.SearchTerm"
