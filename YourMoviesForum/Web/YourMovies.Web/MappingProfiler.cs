@@ -15,13 +15,14 @@ namespace YourMovies.Web
             //Posts
             CreateMap<Post, PostListingViewModel>();
             CreateMap<Post, AllPostsQueryModel>();
+            CreateMap<Post, PostTagViewModel>();
 
             //Categories
             CreateMap<Category, PostCategoryViewModel>();
 
 
             //Tags
-            CreateMap<Tag, PostsTagViewModel>();
+            CreateMap<Tag, PostTagViewModel>();
             CreateMap<Tag, TagsListingViewModel>();
         }
     }

@@ -23,7 +23,7 @@ namespace YourMoviesForum.Services.Data.Posts
             this.data = data;
             this.mapper = mapper;
         }
-        public async Task<int> CreatePostAsync(string title, string content,int categoryId, IEnumerable<int> tagIds)
+        public async Task<int> CreatePostAsync(string title, string content, int categoryId, IEnumerable<int> tagIds)
         {
             var post = new Post
             {
@@ -132,5 +132,35 @@ namespace YourMoviesForum.Services.Data.Posts
 
             return countOfPosts;
         }
+
+        public async Task<IEnumerable<TModel>> GetAllPostsByTagIdAsync<TModel>(int tagId, string search = null)
+        {
+            var queryable = data.Posts
+                .AsNoTracking()
+                .Where(p => !p.IsDeleted &&
+                    p.Tags.Select(t => t.Id).Contains(tagId));
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                queryable = queryable.Where(p => p.Title.Contains(search));
+            }
+
+            var posts = await queryable
+                    .OrderByDescending(x => x.CreatedOn)
+                    .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                    .ToListAsync();
+
+            return posts;
+        }
+
+        public async Task<IEnumerable<TModel>> GetAllPostsByTagIdAsync<TModel>(int tagId, int skip = 0, int take = 0)
+            => await data.Posts
+                .AsNoTracking()
+                .Where(p => !p.IsDeleted &&
+                    p.Tags.Select(t => t.Id).Contains(tagId))
+                .Skip(skip).Take(take)
+                .OrderByDescending(x => x.CreatedOn)
+                .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                .ToListAsync();
     }
 }

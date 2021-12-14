@@ -91,4 +91,7 @@
     text-align: center
 }
 
-
+.no-posts {
+    flex-direction: column;
+    text-align: center;
+}

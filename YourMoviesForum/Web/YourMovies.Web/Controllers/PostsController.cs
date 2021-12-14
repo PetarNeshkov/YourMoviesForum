@@ -36,7 +36,7 @@ namespace YourMovies.Web.Controllers
 
         public async Task<IActionResult> Add() => View(new AddPostFormModel
         {
-            Tags = await tagService.GetAllTagsAsync<PostsTagViewModel>(),
+            Tags = await tagService.GetAllTagsAsync<PostTagViewModel>(),
             Categories = await categoryService.GetAllCategoriesAsync<PostCategoryViewModel>()
         });
        
@@ -46,13 +46,13 @@ namespace YourMovies.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                input.Tags = await tagService.GetAllTagsAsync<PostsTagViewModel>();
+                input.Tags = await tagService.GetAllTagsAsync<PostTagViewModel>();
                 input.Categories = await categoryService.GetAllCategoriesAsync<PostCategoryViewModel>();
 
                 return View(input);
             }
 
-            var post = await postService.CreatePostAsync(
+                 await postService.CreatePostAsync(
                 input.Title,
                 input.Content,
                 input.CategoryId,

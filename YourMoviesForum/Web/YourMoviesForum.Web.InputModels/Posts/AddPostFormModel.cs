@@ -35,6 +35,6 @@ namespace YourMoviesForum.Web.InputModels
         public IEnumerable<int> TagIds { get; init; }
 
         public IEnumerable<PostCategoryViewModel> Categories { get; set; }
-        public IEnumerable<PostsTagViewModel> Tags { get; set; }
+        public IEnumerable<PostTagViewModel> Tags { get; set; }
     }
 }

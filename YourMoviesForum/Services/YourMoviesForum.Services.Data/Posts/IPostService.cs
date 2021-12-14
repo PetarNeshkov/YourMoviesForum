@@ -15,5 +15,10 @@ namespace YourMoviesForum.Services.Data
         Task<IEnumerable<TModel>> GetThreeRandomPosts<TModel>();
 
         Task<int> GetPostsSearchCountAsync(string searchFilter = null);
+
+        Task<IEnumerable<TModel>> GetAllPostsByTagIdAsync<TModel>(int tagId, string search = null);
+
+        Task<IEnumerable<TModel>> GetAllPostsByTagIdAsync<TModel>(int tagId, int skip = 0,
+            int take = 0);
     }
 }

@@ -38,13 +38,13 @@
     color: white;
 }
 
+
+#createTag {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
 /*.items a{
     text-decoration:none;
 }
 */
-
-#createTag {
-    margin-top:10px;
-    margin-left:15px;
-    display:flex
-}

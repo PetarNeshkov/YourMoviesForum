@@ -19,12 +19,16 @@
             </div>
         </div>
     </form>
-    <a id="createTag" asp-area="Administration"
-       asp-controller="Tags"
-       asp-action="Create"
-       class="btn btn-secondary ml-auto">
-        Create Tag
-    </a>
+
+    <div id="createTag">
+        <a id="" asp-area="Administration"
+           asp-controller="Tags"
+           asp-action="Create"
+           class="btn btn-secondary ml-auto">
+            Create Tag
+        </a>
+    </div>
+
     <div class="items">
         @foreach (var tag in Model.Tags)
         {

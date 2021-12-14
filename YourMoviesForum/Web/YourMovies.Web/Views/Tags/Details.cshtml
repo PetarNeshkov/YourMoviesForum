@@ -1,0 +1,103 @@
+﻿@model YourMoviesForum.Web.InputModels.Tags.TagDetailsViewModel
+
+@{ ViewData["Title"] = Model.Tag.Name; }
+
+<link href="~/css/homePage.css" rel="stylesheet" runat="server" type="text/css" />
+<link href="~/css/pagination.css" rel="stylesheet" type="text/css" />
+
+
+@if (Model.Posts.Any())
+{
+  <div class="tt-innerwrapper">
+      All posts which contains <span class="tagElement">@Model.Tag.Name</span> tag.
+  </div>
+
+  <div class="header">
+    <h3 id="topic">Topic</h3>
+    <h3 id="category">Category</h3>
+    <h3 id="rating">Rating</h3>
+    <h3 id="replies">Replies</h3>
+    <h3 id="activity">Activity</h3>
+  </div>
+
+  <div class="items">
+    @foreach (var post in Model.Posts)
+      {
+      <div class="current-item">
+        <div class="topic-section">
+            <h5>@post.Title</h5>
+            <div class="tags">
+                @foreach (var tag in post.Tags)
+                {
+                  <span class="tagElement">
+                  <i class="fas fa-tags"></i>
+                  @tag.Name
+                  </span>
+                }
+            </div>
+        </div>
+        <div class="category">
+            <h5 class="category-name">@post.Category.Name</h5>
+        </div>
+        <div class="rating-section">2</div>
+        <div class="replies-section">4</div>
+        <div class="activity-section">3 days</div>
+    </div>
+     }
+   </div>
+    <nav>
+        <ul class="pagination">
+            <li>
+                <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                   asp-controller="Tags"
+                   asp-action="Details"
+                   asp-route-page="@Model.PreviousPage">
+                    Previous
+                </a>
+            </li>
+
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                var active = i == Model.CurrentPage ? "active" : string.Empty;
+                        <li class="active-pages">
+                            <a class="@active"
+                               asp-controller="Tags"
+                               asp-action="Details"
+                               asp-route-page="@i">
+                                @i
+                            </a>
+                        </li>
+             }
+            <li>
+                <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages || Model.TotalPages==0 ? "disabled" : string.Empty)"
+                   asp-controller="Tags"
+                   asp-action="Details"
+                   asp-route-page="/Tags/Details/@Model.Id">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </nav> 
+    }
+    else
+    {
+       @*if (Model.SearchTerm != null)
+       {
+         <div class="tt-layout-404">
+             <h6 class="tt-title">No posts found.</h6>
+         </div> 
+       }*@
+     
+         <div class="no-posts">
+           <h4>Sorry, nothing here.</h4>
+           <p>
+               But you can create new post about @Model.Tag.Name.<br>
+               <a asp-controller="Posts"
+                  asp-action="Add"
+                  class="tt-color-dark tt-underline-02">
+                  Create New Post
+               </a>
+           </p>
+         </div>
+    }
+

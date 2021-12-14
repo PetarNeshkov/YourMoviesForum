@@ -1,6 +1,6 @@
-﻿namespace YourMoviesForum.Web.InputModels.Tags
+﻿namespace YourMoviesForum.Web.InputModels.Posts
 {
-    public class PostsTagViewModel
+    public class PostTagViewModel
     {
         public int Id { get; init; }
 

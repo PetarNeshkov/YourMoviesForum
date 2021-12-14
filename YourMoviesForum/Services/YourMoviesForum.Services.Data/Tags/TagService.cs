@@ -40,6 +40,13 @@ namespace YourMoviesForum.Services.Data.Tags
             return tags;
         }
 
+        public async Task<IEnumerable<TModel>> GetAllTagsAsync<TModel>()
+                =>await data.Tags
+                 .Where(t => !t.IsDeleted)
+                 .AsNoTracking()
+                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                 .ToListAsync();
+
         private static IQueryable<Tag> SortingBySearch(string searchFilter, IQueryable<Tag> queryableTags)
         {
             if (!string.IsNullOrWhiteSpace(searchFilter))
@@ -51,10 +58,6 @@ namespace YourMoviesForum.Services.Data.Tags
             return queryableTags;
         }
 
-        public Task<IEnumerable<TModel>> GetAllPostTagsAsync<TModel>(int postId)
-        {
-            return null;
-        }
       
         public async Task<bool> IsExistingAsync(string name)
             => await data.Tags.AnyAsync(t => t.Name == name && !t.IsDeleted);
@@ -97,5 +100,12 @@ namespace YourMoviesForum.Services.Data.Tags
 
             await data.SaveChangesAsync();
         }
+
+        public async Task<TModel> GetTagByIdAsync<TModel>(int id)
+            => await data.Tags
+                .AsNoTracking()
+                .Where(t => t.Id == id && !t.IsDeleted)
+                .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
     }
 }
