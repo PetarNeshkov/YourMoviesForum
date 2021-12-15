@@ -8,8 +8,8 @@
 
 @if (Model.Posts.Any())
 {
-  <div class="tt-innerwrapper">
-      All posts which contains <span class="tagElement">@Model.Tag.Name</span> tag.
+  <div class="main-text">
+      All posts containing <span class="tagElement">@Model.Tag.Name</span> tag.
   </div>
 
   <div class="header">
@@ -51,6 +51,7 @@
                 <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
                    asp-controller="Tags"
                    asp-action="Details"
+                   asp-route-id="@Model.Id"
                    asp-route-page="@Model.PreviousPage">
                     Previous
                 </a>
@@ -63,6 +64,7 @@
                             <a class="@active"
                                asp-controller="Tags"
                                asp-action="Details"
+                               asp-route-id="@Model.Id"
                                asp-route-page="@i">
                                 @i
                             </a>
@@ -72,7 +74,8 @@
                 <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages || Model.TotalPages==0 ? "disabled" : string.Empty)"
                    asp-controller="Tags"
                    asp-action="Details"
-                   asp-route-page="/Tags/Details/@Model.Id">
+                   asp-route-id="@Model.Id"
+                   asp-route-page="@Model.NextPage">
                     Next
                 </a>
             </li>

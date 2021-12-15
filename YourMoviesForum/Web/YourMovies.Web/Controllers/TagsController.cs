@@ -59,6 +59,7 @@ namespace YourMovies.Web.Controllers
 
             var viewModel = new TagDetailsViewModel
             {
+                Id=tag.Id,
                 Tag = tag,
                 Posts = posts,
                 CurrentPage=page,
