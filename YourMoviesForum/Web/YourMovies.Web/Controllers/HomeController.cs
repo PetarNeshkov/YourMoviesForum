@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using YourMovies.Web.Models;
+using YourMovies.Web.Views.Pagination;
 using YourMoviesForum;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Web.InputModels.Home;
@@ -31,14 +32,19 @@ namespace YourMovies.Web.Controllers
             //                .Count();
 
             if (!User.Identity.IsAuthenticated)
-            {
-                query.CurrentPage = page;
-                var skip = (query.CurrentPage - 1) * PostPerPage;
+            { 
+                var skip = (page - 1) * PostPerPage;
                 var count = await postservice.GetPostsSearchCountAsync(query.SearchTerm);
                 var posts = await postservice
                         .GetAllPostsAsync<PostListingViewModel>(query.Sorting,query.SearchTerm,skip,PostPerPage);
 
-                query.TotalPages=(int) Math.Ceiling(count /(decimal) PostPerPage);
+                var pagination = new PaginationViewModel
+                {
+                    CurrentPage = page,
+                    TotalPages = (int)Math.Ceiling(count / (decimal)PostPerPage)
+                };
+
+                query.Pagination = pagination;
                 query.Posts = posts;
             }
             else

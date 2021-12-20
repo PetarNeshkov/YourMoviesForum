@@ -40,6 +40,13 @@
                     </h2>
                 </div>
             </div>*@
+
+    @if (Model.Posts.Count() == 0)
+    {
+        <h1 class="text-center">No posts found.</h1>
+    }
+    else
+	{
         <form method="get" class="d-flex">
             <div class="form-group col-md-4">
                 <label asp-for="SearchTerm"></label>
@@ -48,7 +55,6 @@
                     <button id="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
             </div>
-
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label asp-for="Sorting"></label>
@@ -98,19 +104,19 @@
         <nav>
             <ul class="pagination">
                 <li>
-                    <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                    <a class="btn btn-primary @(Model.Pagination.CurrentPage == 1 ? "disabled" : string.Empty)"
                        asp-controller="Home"
                        asp-action="Index"
                        asp-route-search="@Model.SearchTerm"
-                       asp-route-page="@Model.PreviousPage"
+                       asp-route-page="@Model.Pagination.PreviousPage"
                        asp-route-sorting="@((int)Model.Sorting)">
                         Previous
                     </a>
                 </li>
 
-                @for (int i = 1; i <= Model.TotalPages; i++)
+                @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
                 {
-                    var active = i == Model.CurrentPage ? "active" : string.Empty;
+                    var active = i == Model.Pagination.CurrentPage ? "active" : string.Empty;
                     <li class="active-pages">
                         <a class="@active"
                            asp-controller="Home"
@@ -123,18 +129,20 @@
                     </li>
                 }
                 <li>
-                    <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages || Model.TotalPages==0 ? "disabled" : string.Empty)"
+                    <a class="btn btn-primary
+                       @(Model.Pagination.CurrentPage == Model.Pagination.TotalPages || Model.Pagination.TotalPages==0 ? "disabled" : string.Empty)"
                        asp-controller="Home"
                        asp-action="Index"
                        asp-route-search="@Model.SearchTerm"
-                       asp-route-page="@Model.NextPage"
+                       asp-route-page="@Model.Pagination.NextPage"
                        asp-route-sorting="@((int)Model.Sorting)">
                         Next
                     </a>
                 </li>
             </ul>
         </nav>
-    }
+	}
+}
 </body>
 
 

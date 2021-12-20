@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using YourMovies.Web.Views.Pagination;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Tags;
 using YourMoviesForum.Web.InputModels.Home;
@@ -24,15 +24,22 @@ namespace YourMovies.Web.Controllers
             this.postService = postService;
         }
 
-        
+        //[Authorize]
         public async Task<IActionResult> All([FromQuery]AllTagsQueryModel query,int page = 1)
         {
-            query.CurrentPage = page;
+          
             var skip = (page - 1) * TagsPerPage;
             var count = await tagService.GetPostsSearchCountAsync(query.SearchTerm);
             var tags = await tagService.GetAllTagsAsync<TagsListingViewModel>(query.SearchTerm,skip,TagsPerPage);
 
-            query.TotalPages= (int)Math.Ceiling(count / (decimal)TagsPerPage);
+           
+            var pagination = new PaginationViewModel
+            {
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling(count / (decimal)TagsPerPage)
+            };
+
+            query.Pagination = pagination;
             query.Tags = tags;
 
             return View(query);
@@ -57,13 +64,18 @@ namespace YourMovies.Web.Controllers
 
             var count = await postService.GetPostsSearchCountAsync();
 
+            var pagination = new PaginationViewModel
+            {
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling(count / (decimal)PostPerPage)
+            };
+
             var viewModel = new TagDetailsViewModel
             {
                 Id=tag.Id,
                 Tag = tag,
                 Posts = posts,
-                CurrentPage=page,
-                TotalPages = (int)Math.Ceiling(count / (decimal)PostPerPage)
+                Pagination=pagination
             };
 
             return View(viewModel);
@@ -71,6 +83,7 @@ namespace YourMovies.Web.Controllers
 
         public IActionResult Create() => this.View();
 
+        //[Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(CreateTagInputModel input)
         {
@@ -86,6 +99,7 @@ namespace YourMovies.Web.Controllers
             return this.RedirectToAction(nameof(All));
         }
 
+        //[Authorize]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

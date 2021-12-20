@@ -48,18 +48,18 @@
     <nav>
         <ul class="pagination">
             <li>
-                <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                <a class="btn btn-primary @(Model.Pagination.CurrentPage == 1 ? "disabled" : string.Empty)"
                    asp-controller="Tags"
                    asp-action="Details"
                    asp-route-id="@Model.Id"
-                   asp-route-page="@Model.PreviousPage">
+                   asp-route-page="@Model.Pagination.PreviousPage">
                     Previous
                 </a>
             </li>
 
-            @for (int i = 1; i <= Model.TotalPages; i++)
+            @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
             {
-                var active = i == Model.CurrentPage ? "active" : string.Empty;
+                var active = i == Model.Pagination.CurrentPage ? "active" : string.Empty;
                         <li class="active-pages">
                             <a class="@active"
                                asp-controller="Tags"
@@ -71,26 +71,20 @@
                         </li>
              }
             <li>
-                <a class="btn btn-primary @(Model.CurrentPage == Model.TotalPages || Model.TotalPages==0 ? "disabled" : string.Empty)"
+                <a class="btn btn-primary 
+                   @(Model.Pagination.CurrentPage == Model.Pagination.TotalPages || Model.Pagination.TotalPages==0 ? "disabled" : string.Empty)"
                    asp-controller="Tags"
                    asp-action="Details"
                    asp-route-id="@Model.Id"
-                   asp-route-page="@Model.NextPage">
+                   asp-route-page="@Model.Pagination.NextPage">
                     Next
                 </a>
             </li>
         </ul>
-    </nav> 
+    </nav>
     }
     else
-    {
-       @*if (Model.SearchTerm != null)
-       {
-         <div class="tt-layout-404">
-             <h6 class="tt-title">No posts found.</h6>
-         </div> 
-       }*@
-     
+    { 
          <div class="no-posts">
            <h4>Sorry, nothing here.</h4>
            <p>
