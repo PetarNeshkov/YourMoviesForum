@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\YourMoviesForum.Data\YourMoviesForum.Data.csproj" />
     <ProjectReference Include="..\..\Web\YourMoviesForum.Web.InputModels\YourMoviesForum.Web.InputModels.csproj" />
+    <ProjectReference Include="..\YourMoviesForum.Services.Providers\YourMoviesForum.Services.Providers.csproj" />
   </ItemGroup>
 
   <ItemGroup>

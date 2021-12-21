@@ -12,6 +12,11 @@ using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Posts;
 using YourMoviesForum.Services.Data.Categories;
 using YourMoviesForum.Services.Data.Tags;
+using YourMoviesForum.Data.Models;
+using Microsoft.AspNetCore.Mvc;
+using YourMoviesForum.Services.Providers.DateTime;
+using ForumNet.Services.Providers.DateTime;
+using YourMoviesForum.Services.Data.Users;
 
 namespace YourMovies.Web
 {
@@ -32,13 +37,14 @@ namespace YourMovies.Web
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services
-                .AddDefaultIdentity<IdentityUser>(options =>
+                .AddDefaultIdentity<ApplicationUser>(options =>
                 {
                     options.Password.RequireDigit = false;
                     options.Password.RequireLowercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
                 })
+                .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<YourMoviesDbContext>();
 
             services.AddControllersWithViews();
@@ -46,10 +52,18 @@ namespace YourMovies.Web
             services.AddAutoMapper(typeof(MappingProfiler));
 
 
+            services.AddControllersWithViews(
+                options =>
+                {
+                    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                }).AddRazorRuntimeCompilation();
+
             //Application services
             services.AddTransient<IPostService, PostService>()
                     .AddTransient<ICategoryService, CategoryService>()
-                    .AddTransient<ITagService, TagService>();
+                    .AddTransient<ITagService, TagService>()
+                    .AddTransient<IDateTimeProvider,DateTimeProvider>()
+                    .AddTransient<IUserService,User>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

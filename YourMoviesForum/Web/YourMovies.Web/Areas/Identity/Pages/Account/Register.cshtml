@@ -1,0 +1,114 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Create a new account.";
+}
+
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2 class="text-center">@ViewData["Title"]</h2>
+
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Username"></label>
+                <input asp-for="Input.Username" class="form-control" placeholder="Enter your Username" />
+                <span asp-validation-for="Input.Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" placeholder="Enter your Email" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" placeholder="Enter your Password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirm your Password" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
+            <div class="form-group">
+                <button type="submit" class="btn btn-secondary btn-block bg-primary text-white">Sign up</button>
+            </div>
+            <p>Or sign up with social network</p>
+
+            <div class="col">
+                <div class="form-group">
+                    <a id="facebook-button" href="#" class="btn  btn-secondary btn-block" style="background-color: #3b5998;">
+                        <i class="fab fa-facebook-square"></i>
+                        Facebook
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <a id="google-button" href="#" class="btn bg-danger text-white btn-block">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </a>
+                </div>
+            </div>
+
+            <p>Already have an account? <a asp-area="Identity" asp-page="/Account/Login">Login here</a></p>
+            @*<div class="tt-notes">
+                    By signing up, signing in or continuing, I agree to
+                    Forum.NET’s <a asp-area="" asp-controller="Home" asp-action="Guidelines" class="tt-underline">Terms of Use</a> and <a asp-area="" asp-controller="Home" asp-action="Privacy" class="tt-underline">Privacy Policy.</a>
+                </div>*@
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h4>Use another service to register.</h4>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            for details on setting up this ASP.NET application to support logging in via external services.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @*@section Scripts {
+        <script>$("#facebook-button").on("click", function () {
+            document.getElementById('fb-form-button').click();
+        });
+        $("#google-button").on("click", function () {
+            document.getElementById('google-form-button').click();
+        });</script>
+        <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+        <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: '/Identity/Account/Register' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+        </script>*@
+        <partial name="_ValidationScriptsPartial" />
+    }

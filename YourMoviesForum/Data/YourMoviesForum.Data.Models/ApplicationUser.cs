@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 using Microsoft.AspNetCore.Identity;
 
 using YourMoviesForum.Data.Common.Models;
-using static YourMoviesForum.Data.Common.DataValidation.User;
 
 namespace YourMoviesForum.Data.Models
 {
@@ -16,16 +14,11 @@ namespace YourMoviesForum.Data.Models
             Id = Guid.NewGuid().ToString();
             Posts = new HashSet<Post>();
             Replies = new HashSet<Reply>();
-            //Roles = new HashSet<IdentityUserRole<string>>();
+
+            Roles = new HashSet<IdentityUserRole<string>>();
+            Claims = new HashSet<IdentityUserClaim<string>>();
+            Logins = new HashSet<IdentityUserLogin<string>>();
         }
-
-        [Required]
-        [MaxLength(FirstNameMaxLength)]
-        public string FirstName { get; set; }
-
-        [Required]
-        [MaxLength(LastNameMaxLength)]
-        public string LastName { get; set; }
 
         //Audit Info
         public DateTime CreatedOn { get; set; }
@@ -38,6 +31,10 @@ namespace YourMoviesForum.Data.Models
         public ICollection<Post> Posts { get; init; }
         public ICollection<Reply> Replies { get; init; }
 
-        //public virtual ICollection<IdentityUserRole<string>> Roles { get; init; }
+        public virtual ICollection<IdentityUserRole<string>> Roles { get; init; }
+
+        public virtual ICollection<IdentityUserClaim<string>> Claims { get; init; }
+
+        public virtual ICollection<IdentityUserLogin<string>> Logins { get; init; }
     }
 }

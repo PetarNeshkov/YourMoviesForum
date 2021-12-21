@@ -1,20 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
 using YourMoviesForum.Data.Common.Models;
 using YourMoviesForum.Data.Models;
 
 namespace YourMoviesForum
 {
-    public class YourMoviesDbContext:DbContext
+    public class YourMoviesDbContext:IdentityDbContext<ApplicationUser,ApplicationRole,string>
     {
-        public YourMoviesDbContext()
-        {
-        }
-
-        public YourMoviesDbContext(DbContextOptions options) 
+     
+        public YourMoviesDbContext(DbContextOptions<YourMoviesDbContext> options) 
             : base(options)
         {
         }
@@ -50,6 +50,8 @@ namespace YourMoviesForum
         //Disable cascade delete
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             var entityTypes = builder.Model.GetEntityTypes().ToList();
           
             var foreignKeys = entityTypes

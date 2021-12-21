@@ -17,8 +17,7 @@
 
         public static class User
         {
-            public const int FirstNameMaxLength = 20;
-            public const int LastNameMaxLength = 20;
+            public const int UsernameMaxLength = 20;
         }
 
         public static class Tag
