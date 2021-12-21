@@ -36,7 +36,7 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-secondary btn-block bg-primary text-white">Sign up</button>
             </div>
-            <p>Or sign up with social network</p>
+            <p class="text-center">Or sign up with social network</p>
 
             <div class="col">
                 <div class="form-group">
@@ -55,42 +55,26 @@
                 </div>
             </div>
 
-            <p>Already have an account? <a asp-area="Identity" asp-page="/Account/Login">Login here</a></p>
+            <p class="text-center">Already have an account? <a asp-area="Identity" asp-page="/Account/Login">Login here</a></p>
             @*<div class="tt-notes">
-                    By signing up, signing in or continuing, I agree to
-                    Forum.NET’s <a asp-area="" asp-controller="Home" asp-action="Guidelines" class="tt-underline">Terms of Use</a> and <a asp-area="" asp-controller="Home" asp-action="Privacy" class="tt-underline">Privacy Policy.</a>
-                </div>*@
+                By signing up, signing in or continuing, I agree to
+                Forum.NET’s <a asp-area="" asp-controller="Home" asp-action="Guidelines" class="tt-underline">Terms of Use</a> and <a asp-area="" asp-controller="Home" asp-action="Privacy" class="tt-underline">Privacy Policy.</a>
+            </div>*@
         </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to register.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+
+        <form style="display: none" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div>
+                @{
+                    var fbProvider = Model.ExternalLogins?.FirstOrDefault(l => l.DisplayName == "Facebook");
+                    var googleProvider = Model.ExternalLogins?.FirstOrDefault(l => l.DisplayName == "Google");
+                 }
+                @if (fbProvider != null && googleProvider != null)
                 {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
+                    <button id="fb-form-button" type="submit" name="provider" value="@fbProvider.Name"></button>
+                    <button id="google-form-button" type="submit" name="provider" value="@googleProvider.Name"></button>
                 }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
+            </div>
+        </form>
     </div>
 </div>
 
