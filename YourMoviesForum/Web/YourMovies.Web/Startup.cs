@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 using YourMoviesForum.Services.Providers.DateTime;
 using ForumNet.Services.Providers.DateTime;
 using YourMoviesForum.Services.Data.Users;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace YourMovies.Web
 {
@@ -57,6 +58,20 @@ namespace YourMovies.Web
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 }).AddRazorRuntimeCompilation();
+
+            services
+                .AddAuthentication()
+                .AddFacebook(facebookOptions =>
+                {
+                    facebookOptions.AppId = "1783636958512807";
+                    facebookOptions.AppSecret = "efc019684fc813e58f7876b71b481a1f";
+                })
+                .AddGoogle(googleOptions=> 
+                {
+                    googleOptions.ClientId = "779344758677-r21jbfm05ehpbg198eglbi8sstegh6mq.apps.googleusercontent.com";
+                    googleOptions.ClientSecret = "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";
+                })
+                .AddCookie();
 
             //Application services
             services.AddTransient<IPostService, PostService>()

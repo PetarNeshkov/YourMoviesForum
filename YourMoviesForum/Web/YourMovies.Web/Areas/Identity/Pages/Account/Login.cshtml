@@ -8,10 +8,9 @@
 
 <div class="row">
     <div class="col-md-4 offset-md-4">
-        <h1>@ViewData["Title"]</h1>
+        <h1 class="text-center">@ViewData["Title"]</h1>
         <section>
             <form id="account" method="post">
-                <h4>Use a local account to log in.</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
@@ -82,19 +81,6 @@
 </div>
 
 @section Scripts {
-    @*<script>$("#facebook-button").on("click", function () {
-            document.getElementById('fb-form-button').click();
-        });
-        $("#google-button").on("click", function () {
-            document.getElementById('google-form-button').click();
-        });</script>
-    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
-    <script>
-        grecaptcha.ready(function () {
-            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: '/Identity/Account/Login' }).then(function (token) {
-                document.getElementById("RecaptchaValue").value = token;
-            });
-        });
-    </script>*@
+    <script src="~/js/SubmitButtons.js"></script>
     <partial name="_ValidationScriptsPartial" />
 }

@@ -1,4 +1,5 @@
 ﻿@page
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @model RegisterModel
 @{
     ViewData["Title"] = "Create a new account.";
@@ -57,9 +58,9 @@
 
             <p class="text-center">Already have an account? <a asp-area="Identity" asp-page="/Account/Login">Login here</a></p>
             @*<div class="tt-notes">
-                By signing up, signing in or continuing, I agree to
-                Forum.NET’s <a asp-area="" asp-controller="Home" asp-action="Guidelines" class="tt-underline">Terms of Use</a> and <a asp-area="" asp-controller="Home" asp-action="Privacy" class="tt-underline">Privacy Policy.</a>
-            </div>*@
+                    By signing up, signing in or continuing, I agree to
+                    Forum.NET’s <a asp-area="" asp-controller="Home" asp-action="Guidelines" class="tt-underline">Terms of Use</a> and <a asp-area="" asp-controller="Home" asp-action="Privacy" class="tt-underline">Privacy Policy.</a>
+                </div>*@
         </form>
 
         <form style="display: none" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
@@ -67,7 +68,7 @@
                 @{
                     var fbProvider = Model.ExternalLogins?.FirstOrDefault(l => l.DisplayName == "Facebook");
                     var googleProvider = Model.ExternalLogins?.FirstOrDefault(l => l.DisplayName == "Google");
-                 }
+                }
                 @if (fbProvider != null && googleProvider != null)
                 {
                     <button id="fb-form-button" type="submit" name="provider" value="@fbProvider.Name"></button>
@@ -79,20 +80,6 @@
 </div>
 
 @section Scripts {
-    @*@section Scripts {
-        <script>$("#facebook-button").on("click", function () {
-            document.getElementById('fb-form-button').click();
-        });
-        $("#google-button").on("click", function () {
-            document.getElementById('google-form-button').click();
-        });</script>
-        <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
-        <script>
-        grecaptcha.ready(function () {
-            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: '/Identity/Account/Register' }).then(function (token) {
-                document.getElementById("RecaptchaValue").value = token;
-            });
-        });
-        </script>*@
-        <partial name="_ValidationScriptsPartial" />
-    }
+    <script src="~/js/SubmitButtons.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}
