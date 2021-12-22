@@ -57,10 +57,6 @@
             </div>
 
             <p class="text-center">Already have an account? <a asp-area="Identity" asp-page="/Account/Login">Login here</a></p>
-            @*<div class="tt-notes">
-                    By signing up, signing in or continuing, I agree to
-                    Forum.NET’s <a asp-area="" asp-controller="Home" asp-action="Guidelines" class="tt-underline">Terms of Use</a> and <a asp-area="" asp-controller="Home" asp-action="Privacy" class="tt-underline">Privacy Policy.</a>
-                </div>*@
         </form>
 
         <form style="display: none" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
