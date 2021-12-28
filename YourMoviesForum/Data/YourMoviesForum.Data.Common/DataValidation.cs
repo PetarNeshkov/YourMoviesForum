@@ -7,7 +7,7 @@
         public static class Post
         {
             public const int TitleMaxLength = 20;
-            public const int ContentMaxLength = 400;
+            //public const int ContentMaxLength = 1000;
         }
 
         public static class Reply

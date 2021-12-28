@@ -19,10 +19,11 @@ namespace YourMoviesForum.Web.InputModels
         public string Title { get; init; }
 
         [Required]
-        [StringLength(
-            PostContentMaxLength,
-            ErrorMessage =ContentLengthErrorMessage,
-            MinimumLength =PostContentMinLength)]
+        //[StringLength(
+        //    PostContentMaxLength,
+        //    ErrorMessage =ContentLengthErrorMessage,
+        //    MinimumLength =PostContentMinLength)]
+        [MinLength(PostContentMinLength,ErrorMessage = ContentMinLengthErrorMessage)]
         [DataType(DataType.MultilineText)]
         public string Content { get; init; }
 

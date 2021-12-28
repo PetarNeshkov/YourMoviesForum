@@ -1,5 +1,4 @@
-﻿using System.Linq;
-
+﻿
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +16,7 @@ namespace YourMovies.Web.Infrastructure
             //Creating a scope where the code will exist
             using var scopedServices = app.ApplicationServices.CreateScope();
 
-            var data = scopedServices.ServiceProvider.GetService<YourMoviesDbContext>();
+            var data = scopedServices.ServiceProvider.GetRequiredService<YourMoviesDbContext>();
 
             data.Database.Migrate();
 
@@ -30,7 +29,7 @@ namespace YourMovies.Web.Infrastructure
         {
             using var scopedServices = app.ApplicationServices.CreateScope();
 
-            using var dbContext = scopedServices.ServiceProvider.GetService<YourMoviesDbContext>();
+            using var dbContext = scopedServices.ServiceProvider.GetRequiredService<YourMoviesDbContext>();
 
             new YourMoviesDbContextSeeder()
                  .SeedAsync(dbContext, scopedServices.ServiceProvider)

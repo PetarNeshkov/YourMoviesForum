@@ -20,8 +20,9 @@ namespace YourMoviesForum.Data.Seeding
 
             var seeders = new List<ISeeder>
             {
+                new AdministratorSeeder(),
                 new CategoriesSeeder(),
-                new TagSeeder()
+                new TagSeeder(),
             };
 
             foreach (var seeder in seeders)

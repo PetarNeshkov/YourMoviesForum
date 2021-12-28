@@ -31,5 +31,13 @@
             public const int UserPasswordMinLength = 6;
         }
 
+        public static class Administrator
+        {
+            public const string AdministratorRoleName = "Administrator";
+            public const string AdministratorUsername = "Admin";
+            public const string AdministratorEmail = "admin@yourmoviesforum.net";
+            public const string AdministratorPassword = "admin567";
+        }
+
     }
 }

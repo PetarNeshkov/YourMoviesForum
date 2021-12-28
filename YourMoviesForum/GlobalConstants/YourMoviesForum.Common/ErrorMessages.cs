@@ -6,6 +6,7 @@
         {
             public const string TitleLengthErrorMessage = "The {0} must be at least {2} and at max {1} characters long.";
             public const string ContentLengthErrorMessage = "The {0} must be at least {2} and at max {1} characters long.";
+            public const string ContentMinLengthErrorMessage = "The {0} must be at least {1} characters long.";
         }
 
         public static class Tags

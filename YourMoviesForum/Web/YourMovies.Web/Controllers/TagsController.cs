@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 using YourMovies.Web.Views.Pagination;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Tags;
@@ -83,7 +84,7 @@ namespace YourMovies.Web.Controllers
 
         public IActionResult Create() => this.View();
 
-        //[Authorize]
+        [Authorize("Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(CreateTagInputModel input)
         {
@@ -99,7 +100,7 @@ namespace YourMovies.Web.Controllers
             return this.RedirectToAction(nameof(All));
         }
 
-        //[Authorize]
+        [Authorize("Admin")]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
