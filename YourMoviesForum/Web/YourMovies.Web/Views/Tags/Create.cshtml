@@ -1,9 +1,10 @@
 ﻿@model YourMoviesForum.Web.InputModels.Tags.CreateTagInputModel
 
+
 @{
     ViewData["Title"] = "Create New Tag"; 
- }
 
+}
 <div class="container">
         <h1>@ViewData["Title"]</h1>
         <div class="row">
@@ -16,6 +17,7 @@
                         <div class="tt-value-wrapper">
                             <input asp-for="Name" class="form-control" />
                             <span asp-validation-for="Name" class="text-danger"></span>
+                            <span class="text-danger">@Html.ValidationSummary()</span>
                         </div>
                     </div>
                     <div>
@@ -30,3 +32,4 @@
             </div>
         </div>
     </div>
+

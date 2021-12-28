@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 using YourMoviesForum;
@@ -9,9 +7,7 @@ using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Categories;
 using YourMoviesForum.Services.Data.Tags;
 using YourMoviesForum.Web.InputModels;
-using YourMoviesForum.Web.InputModels.Home;
 using YourMoviesForum.Web.InputModels.Posts;
-using YourMoviesForum.Web.InputModels.Tags;
 
 namespace YourMovies.Web.Controllers
 {
@@ -34,6 +30,7 @@ namespace YourMovies.Web.Controllers
             this.tagService = tagService;
         }
 
+        [Authorize]
         public async Task<IActionResult> Add() => View(new AddPostFormModel
         {
             Tags = await tagService.GetAllTagsAsync<PostTagViewModel>(),
@@ -42,6 +39,7 @@ namespace YourMovies.Web.Controllers
        
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Add(AddPostFormModel input)
         {
             if (!ModelState.IsValid)

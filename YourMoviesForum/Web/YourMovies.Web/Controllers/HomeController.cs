@@ -31,7 +31,7 @@ namespace YourMovies.Web.Controllers
             //                .Where(x => !x.IsDeleted)
             //                .Count();
 
-            if (!User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             { 
                 var skip = (page - 1) * PostPerPage;
                 var count = await postservice.GetPostsSearchCountAsync(query.SearchTerm);

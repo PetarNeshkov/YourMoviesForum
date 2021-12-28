@@ -11,7 +11,7 @@
             <div class="form-group">
                 <label asp-for="Title"></label>
                 <input asp-for="Title" class="form-control" placeholder="Enter a Title">
-                <span asp-validation-for="Title"></span>
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId">Category</label>
@@ -30,12 +30,12 @@
                         <option value="@tag.Id">@tag.Name</option>
                     }
                 </select>
-                <span asp-validation-for="TagIds"></span>
+                <span asp-validation-for="TagIds" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Content"></label>
                 <textarea id="tinymceInput" asp-for="Content" placeholder="Description"></textarea>
-                <span asp-validation-for="Content"></span>
+                <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div>
                 <div class="heading-margin text-center">

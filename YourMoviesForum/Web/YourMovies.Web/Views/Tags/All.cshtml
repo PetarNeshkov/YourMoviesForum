@@ -1,5 +1,5 @@
 ﻿@model AllTagsQueryModel
-
+@using static YourMoviesForum.Common.GlobalConstants.Administrator;
 
 @{
     ViewData["Title"] = "Tags";
@@ -26,14 +26,17 @@
     }
     else
     {
-        <div id="createTag">
-            <a id="" asp-area="Administration"
-               asp-controller="Tags"
-               asp-action="Create"
-               class="btn btn-secondary ml-auto">
-                Create Tag
-            </a>
-        </div>
+        @if(User.IsInRole(AdministratorUsername))
+         {
+            <div id="createTag">
+                <a id="" asp-area="Administration"
+                   asp-controller="Tags"
+                   asp-action="Create"
+                   class="btn btn-secondary ml-auto">
+                    Create Tag
+                </a>
+            </div>
+         }
 
         <div class="items">
             @foreach (var tag in Model.Tags)
@@ -54,17 +57,20 @@
                                 Avaliable in  @tag.PostsCount posts
                             </a>
                         </h6>
-                        <div class="delete-section">
-                            <form asp-controller="Tags"
-                                  asp-action="Delete"
-                                  asp-route-id="@tag.Id"
-                                  method="post"
-                                  class="btn">
-                                <button type="submit" class="btn btn-secondary">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </div>
+                        @if(User.IsInRole(AdministratorUsername))
+                         {
+                            <div class="delete-section">
+                                <form asp-controller="Tags"
+                                      asp-action="Delete"
+                                      asp-route-id="@tag.Id"
+                                      method="post"
+                                      class="btn">
+                                    <button type="submit" class="btn btn-secondary">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                         }
                     </div>
                 </div>
             }

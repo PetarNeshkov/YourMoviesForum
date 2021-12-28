@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using YourMovies.Web.Views.Pagination;
+using YourMoviesForum.Common;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Tags;
 using YourMoviesForum.Web.InputModels.Home;
 using YourMoviesForum.Web.InputModels.Tags;
 
 using static YourMoviesForum.Common.GlobalConstants;
+using static YourMoviesForum.Common.ErrorMessages.Tags;
 
 namespace YourMovies.Web.Controllers
 {
@@ -25,7 +27,6 @@ namespace YourMovies.Web.Controllers
             this.postService = postService;
         }
 
-        //[Authorize]
         public async Task<IActionResult> All([FromQuery]AllTagsQueryModel query,int page = 1)
         {
           
@@ -46,7 +47,7 @@ namespace YourMovies.Web.Controllers
             return View(query);
         }
 
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Details(int id,int page=1)
         {
 
@@ -82,16 +83,23 @@ namespace YourMovies.Web.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles =Administrator.AdministratorUsername)]
         public IActionResult Create() => this.View();
 
-        [Authorize("Admin")]
+        [Authorize(Roles = Administrator.AdministratorUsername)]
         [HttpPost]
         public async Task<IActionResult> Create(CreateTagInputModel input)
         {
             var isExisting = await this.tagService.IsExistingAsync(input.Name);
 
-            if (!this.ModelState.IsValid || isExisting)
+            if (!this.ModelState.IsValid)
             {
+                return this.View(input);
+            }
+
+            if (isExisting)
+            {
+                ModelState.AddModelError(input.Name,TagExistingNameErrorMessage);
                 return this.View(input);
             }
 
@@ -100,7 +108,7 @@ namespace YourMovies.Web.Controllers
             return this.RedirectToAction(nameof(All));
         }
 
-        [Authorize("Admin")]
+        [Authorize(Roles = Administrator.AdministratorUsername)]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
