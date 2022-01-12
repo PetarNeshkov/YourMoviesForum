@@ -1,35 +1,35 @@
 ﻿@model YourMoviesForum.Web.InputModels.Tags.CreateTagInputModel
 
 
-@{
-    ViewData["Title"] = "Create New Tag"; 
-
-}
+@{ ViewData["Title"] = "Create New Tag"; }
 <div class="container">
-        <h1>@ViewData["Title"]</h1>
-        <div class="row">
-            <div class="col-md-4">
-                <form
-                      asp-controller="Tags"
-                      asp-action="Create">
-                    <div class="form-group">
-                        <label asp-for="Name"></label>
-                        <div class="tt-value-wrapper">
-                            <input asp-for="Name" class="form-control" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                            <span class="text-danger">@Html.ValidationSummary()</span>
-                        </div>
+    <h1>@ViewData["Title"]</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-controller="Tags"
+                  asp-action="Create">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <div class="tt-value-wrapper">
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <span class="text-danger">@Html.ValidationSummary()</span>
                     </div>
-                    <div>
-                        <a asp-controller="Tags"
-                           asp-action="All"
-                           class="btn btn-primary btn-width-lg">
-                            Back
-                        </a>
-                        <button type="submit" class="btn btn-secondary btn-width-lg">Create</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div>
+                    <a asp-controller="Tags"
+                       asp-action="All"
+                       class="btn btn-primary btn-width-lg">
+                        Back
+                    </a>
+                    <button type="submit" class="btn btn-secondary btn-width-lg">Create</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
