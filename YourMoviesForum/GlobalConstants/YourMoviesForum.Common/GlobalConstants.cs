@@ -3,11 +3,11 @@
     public static class GlobalConstants
     {
         //Global
-        public const string SystemName = "Your Movies";
+        public const string SystemName = "Your Movies Forum";
+        public const string SystemEmail = "yourmoviesforum@gmail.com";
         public const int PostPerPage = 3;
         public const int TagsPerPage = 8;
 
-        //Posts
         public static class Post
         {
             public const int PostTitleMinLength = 3;
@@ -16,7 +16,6 @@
             public const int PostContentMaxLength = 500;
         }
 
-        //Tags
         public static class Tags
         {
             public const int TagNameMaxLength = 20;

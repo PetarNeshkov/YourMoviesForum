@@ -36,8 +36,8 @@ namespace YourMoviesForum
             return base.SaveChanges(acceptAllChangesOnSuccess);
         }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
-            SaveChangesAsync(true, cancellationToken);
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+            =>SaveChangesAsync(true, cancellationToken);
 
         public override Task<int> SaveChangesAsync(
             bool acceptAllChangesOnSuccess,

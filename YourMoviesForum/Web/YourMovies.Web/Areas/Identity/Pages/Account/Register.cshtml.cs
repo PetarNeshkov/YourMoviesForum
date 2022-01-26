@@ -87,10 +87,17 @@ namespace YourMovies.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var isUsernameUsed = await this.userService.IsUsernameUsedAsync(Input.Username);
+                var isUsernameUsed = await userService.IsUsernameUsedAsync(Input.Username);
                 if (isUsernameUsed)
                 {
                     this.ModelState.AddModelError(nameof(Input.Username), "There is already user with that username.");
+                    return this.Page();
+                }
+
+                var isEmailUsed=await userService.IsEmailUsedAsync(Input.Email);
+                if (isEmailUsed)
+                {
+                    ModelState.AddModelError(nameof(Input.Email), "There is already user with that email.");
                     return this.Page();
                 }
 

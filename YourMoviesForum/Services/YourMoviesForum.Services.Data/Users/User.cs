@@ -21,5 +21,7 @@ namespace YourMoviesForum.Services.Data.Users
 
         public async Task<bool> IsUsernameUsedAsync(string username)
              => await data.Users.AnyAsync(u => u.UserName == username && !u.IsDeleted);
+        public async Task<bool> IsEmailUsedAsync(string email)
+            => await data.Users.AnyAsync(u=>u.Email==email && !u.IsDeleted);
     }
 }

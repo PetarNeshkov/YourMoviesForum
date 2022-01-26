@@ -1,0 +1,51 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f3f01a87-3ec5-4bdc-8d1e-936e96d5f132": {
+      "ProjectGuid": "f3f01a87-3ec5-4bdc-8d1e-936e96d5f132",
+      "DisplayName": "YourMovies.Web",
+      "ColorIndex": 0
+    },
+    "26e35824-4579-4401-8d0a-cae01f60e0ad": {
+      "ProjectGuid": "26e35824-4579-4401-8d0a-cae01f60e0ad",
+      "DisplayName": "YourMoviesForum.Web.InputModels",
+      "ColorIndex": 1
+    },
+    "63255ba7-003a-4dd4-959b-853fa03c16b2": {
+      "ProjectGuid": "63255ba7-003a-4dd4-959b-853fa03c16b2",
+      "DisplayName": "YourMoviesForum.Data",
+      "ColorIndex": 2
+    },
+    "606581f5-c4ae-4ff3-b579-1d73a9348bdd": {
+      "ProjectGuid": "606581f5-c4ae-4ff3-b579-1d73a9348bdd",
+      "DisplayName": "YourMoviesForum.Services.Data",
+      "ColorIndex": 3
+    },
+    "87f4d428-bf8c-4a44-b54e-1484a0cb5d0f": {
+      "ProjectGuid": "87f4d428-bf8c-4a44-b54e-1484a0cb5d0f",
+      "DisplayName": "YourMoviesForum.Data.Models",
+      "ColorIndex": 4
+    },
+    "ff269a8e-17c8-4ecd-86d8-280e61bd70e9": {
+      "ProjectGuid": "ff269a8e-17c8-4ecd-86d8-280e61bd70e9",
+      "DisplayName": "YourMoviesForum.Services.Providers",
+      "ColorIndex": 5
+    },
+    "f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae": {
+      "ProjectGuid": "f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae",
+      "DisplayName": "YourMoviesForum.Data.Common",
+      "ColorIndex": 6
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "5fb6b810-5e4f-46cb-9188-dd1c053f8d57": {
+      "ProjectGuid": "5fb6b810-5e4f-46cb-9188-dd1c053f8d57",
+      "DisplayName": "YourMoviesForum.Common",
+      "ColorIndex": 7
+    }
+  },
+  "NextColorIndex": 8
+}

@@ -18,6 +18,8 @@ using YourMoviesForum.Services.Providers.DateTime;
 using ForumNet.Services.Providers.DateTime;
 using YourMoviesForum.Services.Data.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using YourMoviesForum.Services.Providers.Email;
 
 namespace YourMovies.Web
 {
@@ -74,7 +76,8 @@ namespace YourMovies.Web
                 .AddCookie();
 
             //Application services
-            services.AddTransient<IPostService, PostService>()
+            services.AddTransient<IEmailSender,SendGridEmailSender>()
+                    .AddTransient<IPostService, PostService>()
                     .AddTransient<ICategoryService, CategoryService>()
                     .AddTransient<ITagService, TagService>()
                     .AddTransient<IDateTimeProvider,DateTimeProvider>()
