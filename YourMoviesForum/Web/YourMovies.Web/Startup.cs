@@ -61,19 +61,37 @@ namespace YourMovies.Web
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 }).AddRazorRuntimeCompilation();
 
-            services
-                .AddAuthentication()
-                .AddFacebook(facebookOptions =>
-                {
-                    facebookOptions.AppId = "1783636958512807";
-                    facebookOptions.AppSecret = "efc019684fc813e58f7876b71b481a1f";
-                })
-                .AddGoogle(googleOptions=> 
-                {
-                    googleOptions.ClientId = "779344758677-r21jbfm05ehpbg198eglbi8sstegh6mq.apps.googleusercontent.com";
-                    googleOptions.ClientSecret = "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";
-                })
-                .AddCookie();
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            });
+
+            services.AddAuthentication()
+              .AddFacebook(facebookOptions =>
+              {
+                  facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
+                  facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
+              })
+              .AddGoogle(googleOptions =>
+              {
+                  googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+                  googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+              })
+              .AddCookie();
+
+            //services
+            //    .AddAuthentication()
+            //    .AddFacebook(facebookOptions =>
+            //    {
+            //        facebookOptions.AppId = "1783636958512807";
+            //        facebookOptions.AppSecret = "efc019684fc813e58f7876b71b481a1f";
+            //    })
+            //    .AddGoogle(googleOptions=> 
+            //    {
+            //        googleOptions.ClientId = "779344758677-r21jbfm05ehpbg198eglbi8sstegh6mq.apps.googleusercontent.com";
+            //        googleOptions.ClientSecret = "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";
+            //    })
+            //    .AddCookie();
 
             //Application services
             services.AddTransient<IEmailSender,SendGridEmailSender>()

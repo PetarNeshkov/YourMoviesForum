@@ -7,7 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+
 using YourMoviesForum.Data.Models;
+using ForumNet.Services.Providers.DateTime;
 
 namespace YourMoviesForum.Services.Data.Tags
 {
@@ -15,11 +17,13 @@ namespace YourMoviesForum.Services.Data.Tags
     {
         private readonly YourMoviesDbContext data;
         private readonly IMapper mapper;
+        private readonly IDateTimeProvider dateTimeProvider;
 
-        public TagService(YourMoviesDbContext data,IMapper mapper)
+        public TagService(YourMoviesDbContext data,IMapper mapper, IDateTimeProvider dateTimeProvider)
         {
             this.data = data;
             this.mapper = mapper;
+            this.dateTimeProvider=dateTimeProvider;
         }
 
 
@@ -96,7 +100,7 @@ namespace YourMoviesForum.Services.Data.Tags
             var tag = await data.Tags.FirstOrDefaultAsync(t => t.Id == id && !t.IsDeleted);
 
             tag.IsDeleted = true;
-            tag.DeletedOn = DateTime.UtcNow;
+            tag.DeletedOn = dateTimeProvider.Now();
 
             await data.SaveChangesAsync();
         }
@@ -107,5 +111,14 @@ namespace YourMoviesForum.Services.Data.Tags
                 .Where(t => t.Id == id && !t.IsDeleted)
                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
+
+        public async Task<IEnumerable<TModel>> GetAllPostsByIdAsync<TModel>(int postId)
+            => await data.Posts
+                .AsNoTracking()
+                .Where(p=>p.Id== postId && !p.IsDeleted)
+                .SelectMany(t=>t.Tags)
+                .Where(t=>!t.IsDeleted)
+                .ProjectTo<TModel>(this.mapper.ConfigurationProvider)
+                .ToListAsync();
     }
 }

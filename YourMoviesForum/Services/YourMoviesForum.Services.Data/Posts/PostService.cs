@@ -162,5 +162,13 @@ namespace YourMoviesForum.Services.Data.Posts
                 .OrderByDescending(x => x.CreatedOn)
                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
                 .ToListAsync();
+
+        public async Task<TModel> GetByIdAsync<TModel>(int id)
+            => await data.Posts
+                .AsNoTracking()
+                .Where(p => p.Id == id && !p.IsDeleted)
+                .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+       
     }
 }

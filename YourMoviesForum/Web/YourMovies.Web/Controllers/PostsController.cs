@@ -59,5 +59,19 @@ namespace YourMovies.Web.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var post=await postService.GetByIdAsync<PostDetailsViewModel>(id);
+
+            if (post==null)
+            {
+                return NotFound();
+            }
+
+            post.Tags = await tagService.GetAllPostsByIdAsync<PostTagViewModel>(id);
+
+            return View(post);
+        }
     }
 }

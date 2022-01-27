@@ -21,8 +21,11 @@ namespace YourMoviesForum.Services.Providers.Email
         }
 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
-             =>this.Execute(this.configuration.GetSection("SendGrid:ApiKey").Value, email, subject, htmlMessage);
-     
+        {
+            var response= this.Execute(this.configuration.GetSection("SendGrid:ApiKey").Value, email, subject, htmlMessage);
+            System.Console.WriteLine(response.Status);
+            return response;
+        }
 
         private Task Execute(string apiKey, string email, string subject, string htmlMessage)
         {

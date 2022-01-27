@@ -8,6 +8,7 @@ namespace YourMoviesForum.Services.Data.Tags
         Task<IEnumerable<TModel>> GetAllTagsAsync<TModel>(string searchFilter=null,int skip=0,int take=0);
 
         Task<IEnumerable<TModel>> GetAllTagsAsync<TModel>();
+        Task<IEnumerable<TModel>> GetAllPostsByIdAsync<TModel>(int postId);
 
         Task<bool> IsExistingAsync(string name);
 
@@ -20,6 +21,7 @@ namespace YourMoviesForum.Services.Data.Tags
         Task<TModel> GetTagByIdAsync<TModel>(int id);
 
         Task<int> GetPostsSearchCountAsync(string searchFilter = null);
+
 
     }
 }

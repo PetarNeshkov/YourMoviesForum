@@ -20,5 +20,7 @@ namespace YourMoviesForum.Services.Data
 
         Task<IEnumerable<TModel>> GetAllPostsByTagIdAsync<TModel>(int tagId, int skip = 0,
             int take = 0);
+
+        Task<TModel> GetByIdAsync<TModel>(int id);
     }
 }
