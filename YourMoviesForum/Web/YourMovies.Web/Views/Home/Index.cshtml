@@ -81,19 +81,33 @@
             {
                 <div class="current-item">
                     <div class="topic-section">
-                        <h5>@post.Title</h5>
+                             <a 
+                                asp-controller="Posts"
+                                   asp-action="Details"
+                                   asp-route-id="@post.Id">
+                                  <h5 id="title">@post.Title</h5>
+                                </a> 
                         <div class="tags">
                             @foreach (var tag in post.Tags)
                             {
-                                <span class="tagElement">
+                                <a id="anchor"
+                                asp-controller="Tags"
+                                   asp-action="Details"
+                                   asp-route-id="@tag.Id">
+                                      <span class="tagElement">
                                     <i class="fas fa-tags"></i>
-                                    @tag.Name
-                                </span>
+                                    @tag.Name</span>
+                                </a>                       
                             }
                         </div>
                     </div>
                     <div class="category">
-                        <h5 class="category-name">@post.Category.Name</h5>
+                        <a id="anchor"
+                            asp-controller="Categories"
+                            asp-action="Details"
+                            asp-route-id="@post.Category.Id">
+                            <h5 class="category-name">@post.Category.Name</h5>
+                        </a>
                     </div>
                     <div class="rating-section">2</div>
                     <div class="replies-section">4</div>

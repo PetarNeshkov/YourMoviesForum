@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\GlobalConstants\YourMoviesForum.Common\YourMoviesForum.Common.csproj" />
+    <ProjectReference Include="..\..\Web\YourMoviesForum.Web.InputModels\YourMoviesForum.Web.InputModels.csproj" />
   </ItemGroup>
 
 </Project>

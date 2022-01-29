@@ -1,18 +1,16 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using YourMovies.Web.Views.Pagination;
-using YourMoviesForum.Common;
+using System.Threading.Tasks;
+
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Tags;
+using YourMoviesForum.Services.Providers.Pagination;
 using YourMoviesForum.Web.InputModels.Home;
 using YourMoviesForum.Web.InputModels.Tags;
 
-using static YourMoviesForum.Common.GlobalConstants;
 using static YourMoviesForum.Common.ErrorMessages.Tags;
+using static YourMoviesForum.Common.GlobalConstants;
 
 namespace YourMovies.Web.Controllers
 {
@@ -34,14 +32,7 @@ namespace YourMovies.Web.Controllers
             var count = await tagService.GetPostsSearchCountAsync(query.SearchTerm);
             var tags = await tagService.GetAllTagsAsync<TagsListingViewModel>(query.SearchTerm,skip,TagsPerPage);
 
-           
-            var pagination = new PaginationViewModel
-            {
-                CurrentPage = page,
-                TotalPages = (int)Math.Ceiling(count / (decimal)TagsPerPage)
-            };
-
-            query.Pagination = pagination;
+            query.Pagination = PaginationProvider.PaginationHelper(page,count,TagsPerPage);
             query.Tags = tags;
 
             return View(query);
@@ -62,18 +53,12 @@ namespace YourMovies.Web.Controllers
           
             var count = await postService.GetPostsSearchCountAsync();
 
-            var pagination = new PaginationViewModel
-            {
-                CurrentPage = page,
-                TotalPages = (int)Math.Ceiling(count / (decimal)PostPerPage)
-            };
-
             var viewModel = new TagDetailsViewModel
             {
                 Id=tag.Id,
                 Tag = tag,
                 Posts = posts,
-                Pagination=pagination
+                Pagination= PaginationProvider.PaginationHelper(page, count,TagsPerPage)
             };
 
             return View(viewModel);

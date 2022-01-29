@@ -31,6 +31,10 @@ namespace YourMoviesForum.Data.Models
 
         public int Views { get; set; }
 
+        public string AuthorId { get; set; }
+
+        public ApplicationUser Author { get; set; }
+
         public ICollection<Reply> Replies { get; set; }
         public ICollection<Tag> Tags { get; set; }
      

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-
+using YourMovies.Web.Infrastructure;
 using YourMoviesForum;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Categories;
@@ -50,12 +50,12 @@ namespace YourMovies.Web.Controllers
                 return View(input);
             }
 
-                 await postService.CreatePostAsync(
+            await postService.CreatePostAsync(
                 input.Title,
                 input.Content,
                 input.CategoryId,
-                input.TagIds);
-
+                input.TagIds,
+                this.User.Id());
 
             return RedirectToAction("Index", "Home");
         }

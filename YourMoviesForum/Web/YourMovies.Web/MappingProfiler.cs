@@ -4,7 +4,7 @@ using YourMoviesForum.Web.InputModels.Tags;
 using YourMoviesForum.Data.Models;
 
 using AutoMapper;
-
+using System.Globalization;
 
 namespace YourMovies.Web
 {
@@ -16,6 +16,8 @@ namespace YourMovies.Web
             CreateMap<Post, PostListingViewModel>();
             CreateMap<Post, AllPostsQueryModel>();
             CreateMap<Post, PostTagViewModel>();
+            CreateMap<Post, PostDetailsViewModel>();
+     
 
             //Categories
             CreateMap<Category, PostCategoryViewModel>();
@@ -24,6 +26,10 @@ namespace YourMovies.Web
             //Tags
             CreateMap<Tag, PostTagViewModel>();
             CreateMap<Tag, TagsListingViewModel>();
+
+
+            //User
+            CreateMap<ApplicationUser,PostAuthorDetailsViewModel>();
         }
     }
 }

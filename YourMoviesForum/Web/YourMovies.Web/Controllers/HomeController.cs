@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
-using YourMovies.Web.Models;
-using YourMovies.Web.Views.Pagination;
+
+using Microsoft.AspNetCore.Mvc;
+
 using YourMoviesForum;
 using YourMoviesForum.Services.Data;
+using YourMoviesForum.Services.Providers.Pagination;
+using YourMovies.Web.Models;
 using YourMoviesForum.Web.InputModels.Home;
 using YourMoviesForum.Web.InputModels.Posts;
 
@@ -31,20 +32,13 @@ namespace YourMovies.Web.Controllers
             //                .Where(x => !x.IsDeleted)
             //                .Count();
 
+            var count = await postservice.GetPostsSearchCountAsync(query.SearchTerm);
+
             if (User.Identity.IsAuthenticated)
-            { 
+            {
                 var skip = (page - 1) * PostPerPage;
-                var count = await postservice.GetPostsSearchCountAsync(query.SearchTerm);
                 var posts = await postservice
-                        .GetAllPostsAsync<PostListingViewModel>(query.Sorting,query.SearchTerm,skip,PostPerPage);
-
-                var pagination = new PaginationViewModel
-                {
-                    CurrentPage = page,
-                    TotalPages = (int)Math.Ceiling(count / (decimal)PostPerPage)
-                };
-
-                query.Pagination = pagination;
+                        .GetAllPostsAsync<PostListingViewModel>(query.Sorting, query.SearchTerm, skip, PostPerPage);
                 query.Posts = posts;
             }
             else
@@ -52,6 +46,9 @@ namespace YourMovies.Web.Controllers
                 var posts = await postservice.GetThreeRandomPosts<PostListingViewModel>();
                 query.Posts = posts;
             }
+
+            query.Pagination = PaginationProvider.PaginationHelper(page, count,TagsPerPage);
+
             return View(query);
         }
 

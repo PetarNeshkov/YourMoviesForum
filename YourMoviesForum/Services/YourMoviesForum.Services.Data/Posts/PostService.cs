@@ -23,13 +23,19 @@ namespace YourMoviesForum.Services.Data.Posts
             this.data = data;
             this.mapper = mapper;
         }
-        public async Task<int> CreatePostAsync(string title, string content, int categoryId, IEnumerable<int> tagIds)
+        public async Task<int> CreatePostAsync(
+            string title, 
+            string content, 
+            int categoryId,
+            IEnumerable<int> tagIds,
+            string authorId)
         {
             var post = new Post
             {
                 Title = title,
                 Content = content,
                 CategoryId = categoryId,
+                AuthorId = authorId
             };
 
             await data.Posts.AddAsync(post);
@@ -169,6 +175,6 @@ namespace YourMoviesForum.Services.Data.Posts
                 .Where(p => p.Id == id && !p.IsDeleted)
                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
-       
+
     }
 }

@@ -6,7 +6,7 @@ namespace YourMoviesForum.Services.Data
 {
     public interface IPostService
     {
-        Task<int> CreatePostAsync(string title, string content,int categoryId,IEnumerable<int> tagIds);
+        Task<int> CreatePostAsync(string title, string content,int categoryId,IEnumerable<int> tagIds,string authorId);
 
         Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>(PostSorting query, 
             string searchFilter = null, int skip = 0,
