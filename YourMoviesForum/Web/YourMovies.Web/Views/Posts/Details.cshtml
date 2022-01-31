@@ -4,8 +4,39 @@
 
 @model PostDetailsViewModel
 
+<link href="~/css/detailsPost.css" rel="stylesheet" type="text/css" />
+
 <body>
-    <div id="header">
-        @Model.Author.UserName
-    </div>
+    <section class="main">
+       <div id="header">
+           <div class="top-header">
+              @Model.Author.UserName
+               <div>
+                <i id="calendar-icon" class="calendar-icon fas fa-calendar-alt"></i>@Model.CreatedOn.ToString("g")
+               </div>
+            </div>
+            <h2 class="mt-3">@Model.Title</h2>
+            <div class="tags">
+             @foreach (var tag in Model.Tags)
+              {
+                 <a id="anchor"
+                  asp-controller="Tags"
+                     asp-action="Details"
+                     asp-route-id="@tag.Id">
+                        <span class="tagElement">
+                      <i id="tag-icon" class="fas fa-tags"></i>
+                      @tag.Name</span>
+                  </a>                   
+              }
+              </div>
+       </div>
+       
+       <div id="content">
+           <p>@Html.Raw(Model.SanitizedContent)</p>
+       </div>
+    </section>
 </body>
+
+@section Scripts{
+     <partial name="_ValidationScriptsPartial" />
+}

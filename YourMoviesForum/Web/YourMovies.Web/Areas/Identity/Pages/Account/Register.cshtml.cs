@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using YourMoviesForum.Data.Models;
 using YourMoviesForum.Services.Data.Users;
+using YourMoviesForum.Services.Providers.Email;
 using static YourMoviesForum.Common.ErrorMessages.User;
 using static YourMoviesForum.Common.GlobalConstants.User;
 
@@ -121,8 +122,10 @@ namespace YourMovies.Web.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await this.emailSender.SendEmailAsync(
+                        this.Input.Email,
+                        "Confirm your email",
+                        EmailHtmlMessages.GetEmailConfirmationHtml(this.Input.Username, HtmlEncoder.Default.Encode(callbackUrl)));
 
                     if (userManager.Options.SignIn.RequireConfirmedAccount)
                     {

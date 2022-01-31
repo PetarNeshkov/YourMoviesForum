@@ -37,6 +37,9 @@
                 <textarea id="tinymceInput" asp-for="Content" placeholder="Description"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
+
+             <iframe id="form_target" name="form_target" style="display:none"></iframe>
+
             <div>
                 <div class="heading-margin text-center">
                     <button type="submit" class="btn btn-secondary btn-width-lg">Create Post</button>
@@ -46,6 +49,9 @@
     </div>
 </div>
 
+
+
+ 
 @section Scripts
 {
     <partial name="_ValidationScriptsPartial" />
@@ -53,7 +59,6 @@
     <script>
         tinymce.init({
             selector: 'textarea#tinymceInput',
-            branding: false,
             height: 450,
             plugins: [
                 'advlist autolink link image imagetools lists charmap preview hr anchor pagebreak',

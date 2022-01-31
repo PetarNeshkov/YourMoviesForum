@@ -7,18 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.1" />
   </ItemGroup>
 
@@ -26,6 +17,10 @@
     <ProjectReference Include="..\..\Data\YourMoviesForum.Data\YourMoviesForum.Data.csproj" />
     <ProjectReference Include="..\..\Services\YourMoviesForum.Services.Data\YourMoviesForum.Services.Data.csproj" />
     <ProjectReference Include="..\YourMoviesForum.Web.InputModels\YourMoviesForum.Web.InputModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>

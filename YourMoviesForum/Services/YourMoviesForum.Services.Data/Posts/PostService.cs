@@ -46,7 +46,7 @@ namespace YourMoviesForum.Services.Data.Posts
         }
 
         private async Task<Post> GetByIdAsync(int id)
-            => await data.Posts.FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
+            => await data.Posts.FirstOrDefaultAsync(p => p.Id == id);
 
         private async Task AddTagsAsync(int id, IEnumerable<int> tagIds)
         {

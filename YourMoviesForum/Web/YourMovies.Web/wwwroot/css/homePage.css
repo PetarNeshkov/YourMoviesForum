@@ -65,9 +65,13 @@ body {
     cursor: pointer;
     border-radius: 3px;
     background-color: whitesmoke;
-    color: black;
-  
+    color: cadetblue;
 }
+
+i#tag-icon {
+    margin-right: 4px;
+}
+
 
 .category {
     width: 10%;

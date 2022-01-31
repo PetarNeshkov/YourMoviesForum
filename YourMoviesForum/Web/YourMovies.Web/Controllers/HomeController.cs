@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 
-using YourMoviesForum;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Providers.Pagination;
 using YourMovies.Web.Models;
@@ -17,21 +16,14 @@ namespace YourMovies.Web.Controllers
     public class HomeController : Controller
     {
 
-        private readonly YourMoviesDbContext data;
         private readonly IPostService postservice;
-        public HomeController(YourMoviesDbContext data, IPostService postservice)
+        public HomeController(IPostService postservice)
         {
-            this.data = data;
             this.postservice = postservice;
         }
 
         public async Task<IActionResult> Index([FromQuery] AllPostsQueryModel query,int page=1)
         {
-
-            //var totalPosts = data.Posts
-            //                .Where(x => !x.IsDeleted)
-            //                .Count();
-
             var count = await postservice.GetPostsSearchCountAsync(query.SearchTerm);
 
             if (User.Identity.IsAuthenticated)

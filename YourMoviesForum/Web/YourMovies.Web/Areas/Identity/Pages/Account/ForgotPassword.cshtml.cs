@@ -11,8 +11,7 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
 using YourMoviesForum.Data.Models;
-
-
+using YourMoviesForum.Services.Providers.Email;
 using static YourMoviesForum.Common.GlobalConstants;
 
 namespace YourMovies.Web.Areas.Identity.Pages.Account
@@ -62,7 +61,7 @@ namespace YourMovies.Web.Areas.Identity.Pages.Account
                 await emailSender.SendEmailAsync(
                     Input.Email,
                     "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    EmailHtmlMessages.GetResetPasswordHtml(user.UserName, HtmlEncoder.Default.Encode(callbackUrl)));
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

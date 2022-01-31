@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Ganss.XSS;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 using YourMoviesForum.Web.InputModels.Posts;
@@ -26,6 +27,9 @@ namespace YourMoviesForum.Web.InputModels
         [MinLength(PostContentMinLength,ErrorMessage = ContentMinLengthErrorMessage)]
         [DataType(DataType.MultilineText)]
         public string Content { get; init; }
+
+        public string SanitizedContent
+           => new HtmlSanitizer().Sanitize(Content);
 
         [Required]
         [Display(Name ="Categories")]
