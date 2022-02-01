@@ -9,6 +9,9 @@ using YourMoviesForum.Services.Data.Tags;
 using YourMoviesForum.Web.InputModels;
 using YourMoviesForum.Web.InputModels.Posts;
 
+using static YourMoviesForum.Common.GlobalConstants.Administrator;
+
+
 namespace YourMovies.Web.Controllers
 {
     public class PostsController : Controller
@@ -67,6 +70,11 @@ namespace YourMovies.Web.Controllers
             {
                 return NotFound();
             }
+
+            //if (post.Author.Id != this.User.Id() || User.IsInRole(AdministratorUsername))
+            //{
+            //    return this.Unauthorized();
+            //}
 
             post.Tags = await tagService.GetAllPostsByIdAsync<PostTagViewModel>(id);
 

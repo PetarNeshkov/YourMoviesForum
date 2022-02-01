@@ -1,6 +1,12 @@
-﻿@model AddPostFormModel
+﻿@using Microsoft.Extensions.Options
+@using YourMoviesForum.Services.Providers.Security_Models
+@model AddPostFormModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@inject IOptions<ReCaptchSettings> GoogleReCaptcha
+
 @{
     ViewData["Title"] = "Add Post";
+    var configKey = GoogleReCaptcha.Value.Key;
 }
 
 <div class="row">
@@ -60,6 +66,7 @@
         tinymce.init({
             selector: 'textarea#tinymceInput',
             height: 450,
+            resize: 'both',
             plugins: [
                 'advlist autolink link image imagetools lists charmap preview hr anchor pagebreak',
                 'searchreplace wordcount visualblocks visualchars code fullscreen  media nonbreaking',
@@ -94,5 +101,20 @@
             menubar: false,
             branding: false
         });
+
+  </script>
+
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCaptcha.Value.Key"></script>
+    <script>
+      function onClick(e) {
+        e.preventDefault();
+        grecaptcha.ready(function() {
+          grecaptcha.execute(@configKey, {action: 'login'}).then(function(token) {
+               document.getElementById("RecaptchaValue").value = token;
+              console.log(token);
+          });
+        });
+      }
     </script>
 }

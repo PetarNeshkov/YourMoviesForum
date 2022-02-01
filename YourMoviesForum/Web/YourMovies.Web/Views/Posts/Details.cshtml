@@ -1,8 +1,10 @@
-﻿@{
+﻿@model PostDetailsViewModel
+@using static YourMoviesForum.Common.GlobalConstants.Administrator;
+
+@{
     ViewData["Title"] = "Details";
 }
 
-@model PostDetailsViewModel
 
 <link href="~/css/detailsPost.css" rel="stylesheet" type="text/css" />
 
@@ -34,6 +36,26 @@
        <div id="content">
            <p>@Html.Raw(Model.SanitizedContent)</p>
        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            @if (this.Model.Author.Id == this.User.Id() || User.IsInRole(AdministratorUsername))
+                  {
+                      <a asp-area="" 
+                         asp-controller="Posts" 
+                         asp-action="Edit" 
+                         asp-route-id="@Model.Id" 
+                         style="color: #666f74">
+                          <i class="fas fa-edit"></i>
+                      </a>
+                      <a asp-area="" 
+                         asp-controller="Posts" 
+                         asp-action="Delete" 
+                         asp-route-id="@Model.Id" 
+                         style="color: #666f74">
+                          <i class="fas fa-trash"></i>
+                      </a>
+                  }
+        }
     </section>
 </body>
 

@@ -1,8 +1,10 @@
 ﻿@page
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@inject IOptions<ReCaptchSettings> GoogleReCaptcha
 @model RegisterModel
 @{
     ViewData["Title"] = "Create a new account.";
+    var configKey = GoogleReCaptcha.Value.Key;
 }
 
 
@@ -78,4 +80,17 @@
 @section Scripts {
     <script src="~/js/SubmitButtons.js"></script>
     <partial name="_ValidationScriptsPartial" />
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCaptcha.Value.Key"></script>
+    <script>
+      function onClick(e) {
+        e.preventDefault();
+        grecaptcha.ready(function() {
+          grecaptcha.execute(@configKey, {action: 'login'}).then(function(token) {
+               document.getElementById("RecaptchaValue").value = token;
+              console.log(token);
+          });
+        });
+      }
+    </script>
 }

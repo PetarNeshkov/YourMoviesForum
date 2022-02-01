@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 using YourMoviesForum;
 using YourMovies.Web.Infrastructure;
@@ -13,13 +14,11 @@ using YourMoviesForum.Services.Data.Posts;
 using YourMoviesForum.Services.Data.Categories;
 using YourMoviesForum.Services.Data.Tags;
 using YourMoviesForum.Data.Models;
-using Microsoft.AspNetCore.Mvc;
+using YourMoviesForum.Services.Data.Users;
 using YourMoviesForum.Services.Providers.DateTime;
 using ForumNet.Services.Providers.DateTime;
-using YourMoviesForum.Services.Data.Users;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using YourMoviesForum.Services.Providers.Email;
+using YourMoviesForum.Services.Providers.Security_Models;
 
 namespace YourMovies.Web
 {
@@ -79,20 +78,6 @@ namespace YourMovies.Web
               })
               .AddCookie();
 
-            //services
-            //    .AddAuthentication()
-            //    .AddFacebook(facebookOptions =>
-            //    {
-            //        facebookOptions.AppId = "1783636958512807";
-            //        facebookOptions.AppSecret = "efc019684fc813e58f7876b71b481a1f";
-            //    })
-            //    .AddGoogle(googleOptions=> 
-            //    {
-            //        googleOptions.ClientId = "779344758677-r21jbfm05ehpbg198eglbi8sstegh6mq.apps.googleusercontent.com";
-            //        googleOptions.ClientSecret = "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";
-            //    })
-            //    .AddCookie();
-
             //Application services
             services.AddTransient<IEmailSender,SendGridEmailSender>()
                     .AddTransient<IPostService, PostService>()
@@ -100,6 +85,8 @@ namespace YourMovies.Web
                     .AddTransient<ITagService, TagService>()
                     .AddTransient<IDateTimeProvider,DateTimeProvider>()
                     .AddTransient<IUserService,User>();
+
+            services.Configure<ReCaptchSettings>(this.configuration.GetSection("GoogleReCaptcha"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
