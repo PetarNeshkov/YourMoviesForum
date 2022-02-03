@@ -71,14 +71,57 @@ namespace YourMovies.Web.Controllers
                 return NotFound();
             }
 
-            //if (post.Author.Id != this.User.Id() || User.IsInRole(AdministratorUsername))
-            //{
-            //    return this.Unauthorized();
-            //}
-
             post.Tags = await tagService.GetAllPostsByIdAsync<PostTagViewModel>(id);
 
             return View(post);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var post = await postService.GetByIdAsync<EditPostFormModel>(id);
+
+            if (post==null)
+            {
+                return NotFound();
+            }
+
+            if (post.AuthorId!= User.Id() && !User.IsAdministrator())
+            {
+               return Unauthorized();
+            }
+
+            post.Tags = await tagService.GetAllTagsAsync<PostTagViewModel>();
+            post.Categories = await categoryService.GetAllCategoriesAsync<PostCategoryViewModel>();
+
+            return View(post);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditPostFormModel input)
+        {
+            if (!ModelState.IsValid)
+            {
+                input.Tags=await tagService.GetAllTagsAsync<PostTagViewModel>();
+                input.Categories=await categoryService.GetAllCategoriesAsync<PostCategoryViewModel>();
+
+                return View(input);
+            }
+
+            var postAuthorId = await postService.GetPostAuthorIdAsync<PostDetailsViewModel>(input.Id);
+
+            if (postAuthorId!=User.Id() && !User.IsAdministrator())
+            {
+                return Unauthorized();
+            }
+
+            await postService.EditPostAsync(
+                input.Id,
+                input.Title,
+                input.SanitizedContent,
+                input.CategoryId,
+                input.TagIds);
+
+            return RedirectToAction(nameof(Details),new { id = input.Id });
         }
     }
 }
