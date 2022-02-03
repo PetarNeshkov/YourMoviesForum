@@ -40,7 +40,7 @@ namespace YourMoviesForum.Services.Data.Posts
 
             await data.Posts.AddAsync(post);
             await data.SaveChangesAsync();
-            await AddTagsAsync(post.Id, tagIds);
+            await AddTagsAsync(post, tagIds);
 
             return post.Id;
         }
@@ -48,10 +48,8 @@ namespace YourMoviesForum.Services.Data.Posts
         private async Task<Post> GetByIdAsync(int id)
             => await data.Posts.FirstOrDefaultAsync(p => p.Id == id);
 
-        private async Task AddTagsAsync(int id, IEnumerable<int> tagIds)
+        private async Task AddTagsAsync(Post post,IEnumerable<int> tagIds)
         {
-            var post = await GetByIdAsync(id);
-
             foreach (var tagId in tagIds)
             {
                 var currentName = data.Tags
@@ -176,5 +174,40 @@ namespace YourMoviesForum.Services.Data.Posts
                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
 
+        public async Task<string> GetPostAuthorIdAsync<TModel>(int id)
+            => await data.Posts
+                 .AsNoTracking()
+                 .Where(p => p.Id == id && !p.IsDeleted)
+                 .Select(p => p.AuthorId)
+                 .FirstOrDefaultAsync();
+
+        public async Task EditPostAsync(
+            int id, 
+            string title,
+            string content,
+            int categoryId, 
+            IEnumerable<int> tagIds)
+        {
+            var post=await GetByIdAsync(id);
+
+            await RemoveOldTagsAsync(post);
+
+            post.Title = title;
+            post.Content = content;
+            post.CategoryId = categoryId;
+
+            await AddTagsAsync(post,tagIds);
+            await data.SaveChangesAsync();
+        }
+
+        private async Task RemoveOldTagsAsync(Post post)
+        {
+            foreach (var tag in post.Tags)
+            {
+                post.Tags.Remove(tag);
+            }
+
+            await data.SaveChangesAsync();
+        }
     }
 }

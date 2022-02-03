@@ -22,5 +22,9 @@ namespace YourMoviesForum.Services.Data
             int take = 0);
 
         Task<TModel> GetByIdAsync<TModel>(int id);
+
+        Task<string> GetPostAuthorIdAsync<TModel>(int id);
+
+        Task EditPostAsync(int id, string title, string content, int categoryId, IEnumerable<int> tagIds);
     }
 }
