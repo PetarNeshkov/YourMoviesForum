@@ -1,21 +1,22 @@
-﻿using Ganss.XSS;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-using YourMoviesForum.Web.InputModels.Posts;
+using Ganss.XSS;
 
-using static YourMoviesForum.Common.ErrorMessages.Post;
 using static YourMoviesForum.Common.GlobalConstants;
+using static YourMoviesForum.Common.ErrorMessages.Post;
+using System.Collections.Generic;
 
-namespace YourMoviesForum.Web.InputModels
+namespace YourMoviesForum.Web.InputModels.Posts
 {
-    public class AddPostFormModel
+    public class EditPostFormModel
     {
+        public int Id { get; init; }
+
         [Required]
         [StringLength(
             Post.PostTitleMaxLength,
-            ErrorMessage = TitleLengthErrorMessage, 
-            MinimumLength =Post.PostTitleMinLength)]
+            ErrorMessage = TitleLengthErrorMessage,
+            MinimumLength = Post.PostTitleMinLength)]
         public string Title { get; init; }
 
         [Required]
@@ -23,22 +24,24 @@ namespace YourMoviesForum.Web.InputModels
         //    PostContentMaxLength,
         //    ErrorMessage =ContentLengthErrorMessage,
         //    MinimumLength =PostContentMinLength)]
-        [MinLength(Post.PostContentMinLength,ErrorMessage = ContentMinLengthErrorMessage)]
+        [MinLength(Post.PostContentMinLength, ErrorMessage = ContentMinLengthErrorMessage)]
         [DataType(DataType.MultilineText)]
         public string Content { get; init; }
 
         public string SanitizedContent
-           => new HtmlSanitizer().Sanitize(Content);
+          => new HtmlSanitizer().Sanitize(Content);
 
         [Required]
-        [Display(Name =Category.CategoryDisplayName)]
         public int CategoryId { get; init; }
 
         [Required]
-        [Display(Name = Tag.TagDisplayName)]
+        [Display(Name =Tag.TagDisplayName)]
         public IEnumerable<int> TagIds { get; init; }
 
-        public IEnumerable<PostCategoryViewModel> Categories { get; set; }
+        public string AuthorId { get; init; }
+
         public IEnumerable<PostTagViewModel> Tags { get; set; }
+
+        public IEnumerable<PostCategoryViewModel> Categories { get; set; }
     }
 }
