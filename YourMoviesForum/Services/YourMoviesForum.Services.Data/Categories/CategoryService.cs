@@ -21,16 +21,10 @@ namespace YourMoviesForum.Services.Data.Categories
         }
 
         public async Task<IEnumerable<TModel>> GetAllCategoriesAsync<TModel>()
-        {
-            var queryableCategories = data.Categories
+            => await data.Categories
+                 .AsNoTracking()
                  .Where(c => !c.IsDeleted)
-                 .AsNoTracking();
-
-            var categories = await queryableCategories
-                .ProjectTo<TModel>(mapper.ConfigurationProvider)
-                .ToListAsync();
-
-            return categories;
-        }
+                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                 .ToListAsync();
     }
 }

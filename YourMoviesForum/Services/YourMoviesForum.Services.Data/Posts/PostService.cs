@@ -46,24 +46,17 @@ namespace YourMoviesForum.Services.Data.Posts
         }
 
         private async Task<Post> GetByIdAsync(int id)
-            => await data.Posts.FirstOrDefaultAsync(p => p.Id == id);
+            => await data.Posts.Include(t=>t.Tags).FirstOrDefaultAsync(p => p.Id == id);
 
         private async Task AddTagsAsync(Post post,IEnumerable<int> tagIds)
         {
             foreach (var tagId in tagIds)
             {
-                var currentName = data.Tags
-                    .Where(x => x.Id == tagId)
-                    .Select(t => t.Name)
-                    .FirstOrDefault();
-                post.Tags.Add(new Tag
-                {
-                    Id = tagId,
-                    Name = currentName
-                });
-            }
+                var tagToFind = data.Tags.FirstOrDefault(x=>x.Id==tagId);
 
-            await data.SaveChangesAsync();
+                post.Tags.Add(tagToFind);   
+            }
+               await data.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>(PostSorting query,
@@ -112,6 +105,7 @@ namespace YourMoviesForum.Services.Data.Posts
         {
 
             var totalPosts = await data.Posts
+                            .AsNoTracking()
                             .Where(x => !x.IsDeleted)
                             .OrderBy(x => Guid.NewGuid())
                             .Take(3)
@@ -190,23 +184,13 @@ namespace YourMoviesForum.Services.Data.Posts
         {
             var post=await GetByIdAsync(id);
 
-            await RemoveOldTagsAsync(post);
+            post.Tags.Clear();
 
             post.Title = title;
             post.Content = content;
             post.CategoryId = categoryId;
 
             await AddTagsAsync(post,tagIds);
-            await data.SaveChangesAsync();
-        }
-
-        private async Task RemoveOldTagsAsync(Post post)
-        {
-            foreach (var tag in post.Tags)
-            {
-                post.Tags.Remove(tag);
-            }
-
             await data.SaveChangesAsync();
         }
     }
