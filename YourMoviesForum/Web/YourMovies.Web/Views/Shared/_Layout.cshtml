@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="~/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     @*<link href="tail.select-bootstrap4.css" rel="stylesheet" />*@
-    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/selectize.min.js" asp-append-version="true" />*@
     <link rel="stylesheet" href="~/lib/selectize/dist/css/selectize.default.css" asp-append-version="true" />
     <link href="~/lib/fontawesome/css/all.min.css" rel="stylesheet" asp-append-version="true" />
 </head>
@@ -17,6 +16,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
+                <a class="mr-3" asp-controller="Home" asp-action="Index"><img src="/images/favicon.png" alt="logo"></a>
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">YourMovies Forum</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">

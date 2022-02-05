@@ -31,10 +31,9 @@
 .tag-Name {
     width: 100%;
     border-radius: 4px;
-    background-color: #f5f5f5;
     text-align: center;
     cursor: pointer;
-    background-color: #A96067;
+    background-color: cadetblue;
     color: white;
 }
 

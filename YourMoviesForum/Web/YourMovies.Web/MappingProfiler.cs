@@ -22,7 +22,8 @@ namespace YourMovies.Web
               .ForMember(
                   x=>x.TagIds,
                   x=>x.MapFrom(src=>src.Tags.Select(t=>t.Id)));
-     
+            CreateMap<Post,PostDeleteViewModel>();
+            CreateMap<Post,PostDeleteAuthorViewModel>();
 
             //Categories
             CreateMap<Category, PostCategoryViewModel>();

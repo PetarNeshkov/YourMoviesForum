@@ -32,11 +32,25 @@
     gap: 10px;
 }
 
+.category-section{
+    margin-top:15px;
+    margin-bottom:5px;
+}
+
+#category {
+    font-size: 20px;
+    padding: 10px 12px 7px;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: #A96067;
+    color: #f5f5f5;
+}
+
 .tagElement {
     display: block;
     font-size: 14px;
     margin-top: 10px;
-    padding: 10px 10px 2px;
+    padding: 6px 10px 2px;
     cursor: pointer;
     border-radius: 3px;
     background-color: #d7dadc;
