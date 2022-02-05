@@ -87,8 +87,5 @@ namespace YourMoviesForum
                 }
             }
         }
-
-        //protected override void OnModelCreating(ModelBuilder builder)
-        //     => builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
     }
 }

@@ -36,7 +36,7 @@ namespace YourMoviesForum.Web.InputModels.Posts
 
         [Required]
         [Display(Name =Tag.TagDisplayName)]
-        public IEnumerable<int> TagIds { get; init; }
+        public ICollection<int> TagIds { get; init; }
 
         public string AuthorId { get; init; }
 

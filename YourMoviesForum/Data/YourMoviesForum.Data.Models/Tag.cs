@@ -18,5 +18,6 @@ namespace YourMoviesForum.Data.Models
         public string Name { get; set; }
 
         public ICollection<Post> Posts { get; init; }
+
     }
 }

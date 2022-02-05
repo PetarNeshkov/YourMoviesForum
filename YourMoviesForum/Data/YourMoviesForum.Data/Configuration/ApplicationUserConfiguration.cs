@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using YourMoviesForum.Data.Models;
-
+﻿
 namespace YourMoviesForum.Data.Configuration
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+    using YourMoviesForum.Data.Models;
     public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> appUser)

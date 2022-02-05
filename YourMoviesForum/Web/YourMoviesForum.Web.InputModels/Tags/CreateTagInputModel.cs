@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 using static YourMoviesForum.Common.ErrorMessages.Tags;
-using static YourMoviesForum.Common.GlobalConstants.Tags;
+using static YourMoviesForum.Common.GlobalConstants.Tag;
 
 namespace YourMoviesForum.Web.InputModels.Tags
 {

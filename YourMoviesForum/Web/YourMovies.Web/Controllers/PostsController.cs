@@ -9,8 +9,6 @@ using YourMoviesForum.Services.Data.Tags;
 using YourMoviesForum.Web.InputModels;
 using YourMoviesForum.Web.InputModels.Posts;
 
-using static YourMoviesForum.Common.GlobalConstants.Administrator;
-
 
 namespace YourMovies.Web.Controllers
 {
@@ -89,7 +87,7 @@ namespace YourMovies.Web.Controllers
             {
                return Unauthorized();
             }
-
+           
             post.Tags = await tagService.GetAllTagsAsync<PostTagViewModel>();
             post.Categories = await categoryService.GetAllCategoriesAsync<PostCategoryViewModel>();
 

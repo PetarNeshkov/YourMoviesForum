@@ -16,10 +16,16 @@
             public const int PostContentMaxLength = 500;
         }
 
-        public static class Tags
+        public static class Tag
         {
             public const int TagNameMaxLength = 20;
             public const int TagNameMinLength = 5;
+            public const string TagDisplayName = "Tags";
+        }
+
+        public static class Category
+        {
+            public const string CategoryDisplayName = "Categories";
         }
 
         public static class User

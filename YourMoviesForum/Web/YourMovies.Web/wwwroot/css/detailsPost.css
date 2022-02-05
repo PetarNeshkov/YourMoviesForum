@@ -51,3 +51,14 @@ i#tag-icon{
     margin-right:5px;
 }
 
+#options {
+    display: flex;
+    float: right;
+    justify-content: space-between;
+    column-gap: 20px;
+}
+
+#options a {
+   font-size: 20px;
+}
+

@@ -11,6 +11,8 @@ using YourMoviesForum.Web.InputModels.Posts;
 
 using static YourMoviesForum.Common.GlobalConstants;
 
+using YourMovies.Web.Infrastructure;
+
 namespace YourMovies.Web.Controllers
 {
     public class HomeController : Controller
@@ -39,7 +41,7 @@ namespace YourMovies.Web.Controllers
                 query.Posts = posts;
             }
 
-            query.Pagination = PaginationProvider.PaginationHelper(page, count,TagsPerPage);
+            query.Pagination = PaginationProvider.PaginationHelper(page, count,PostPerPage);
 
             return View(query);
         }
