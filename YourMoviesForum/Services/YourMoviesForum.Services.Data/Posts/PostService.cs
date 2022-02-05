@@ -10,6 +10,7 @@ using YourMoviesForum.Web.InputModels.Posts;
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using ForumNet.Services.Providers.DateTime;
 
 namespace YourMoviesForum.Services.Data.Posts
 {
@@ -17,11 +18,13 @@ namespace YourMoviesForum.Services.Data.Posts
     {
         private readonly YourMoviesDbContext data;
         private readonly IMapper mapper;
+        private readonly IDateTimeProvider dateTimeProvider;
 
-        public PostService(YourMoviesDbContext data, IMapper mapper)
+        public PostService(YourMoviesDbContext data, IMapper mapper,IDateTimeProvider dateTimeProvider)
         {
             this.data = data;
             this.mapper = mapper;
+            this.dateTimeProvider = dateTimeProvider;
         }
         public async Task<int> CreatePostAsync(
             string title, 
@@ -95,7 +98,7 @@ namespace YourMoviesForum.Services.Data.Posts
         {
             queryablePosts = query switch
             {
-                PostSorting.TagsCount => queryablePosts.OrderByDescending(t => t.Tags.Count()),
+                PostSorting.TagsCount => queryablePosts.OrderByDescending(t => t.Tags.Count),
                 PostSorting.DateCreated or _ => queryablePosts.OrderByDescending(c => c.Id)
             };
             return queryablePosts;
@@ -192,6 +195,17 @@ namespace YourMoviesForum.Services.Data.Posts
 
             await AddTagsAsync(post,tagIds);
             await data.SaveChangesAsync();
+        }
+
+        public async Task DeletePostAsync(int id)
+        {
+            var post= await GetByIdAsync(id);
+
+            post.IsDeleted= true;
+            post.DeletedOn = dateTimeProvider.Now();
+
+            await data.SaveChangesAsync();
+
         }
     }
 }

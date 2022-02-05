@@ -26,5 +26,7 @@ namespace YourMoviesForum.Services.Data
         Task<string> GetPostAuthorIdAsync<TModel>(int id);
 
         Task EditPostAsync(int id, string title, string content, int categoryId, IEnumerable<int> tagIds);
+
+        Task DeletePostAsync(int id);
     }
 }
