@@ -121,5 +121,44 @@ namespace YourMovies.Web.Controllers
 
             return RedirectToAction(nameof(Details),new { id = input.Id });
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var post=await postService.GetByIdAsync<PostDeleteViewModel>(id);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            if (post.Author.Id!=User.Id() && User.IsAdministrator())
+            {
+                return Unauthorized();
+            }
+
+            post.Tags = await tagService.GetAllPostsByIdAsync<PostTagViewModel>(id);
+
+            return View(post);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmDelete(int id)
+        {
+            var post=await this.postService.GetByIdAsync<PostDeleteAuthorViewModel>(id);
+
+            if (post==null)
+            {
+                return NotFound();
+            }
+
+            if (post.AuthorId!=User.Id() && User.IsAdministrator())
+            {
+                return Unauthorized();
+            }
+
+            await postService.DeletePostAsync(id);
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
