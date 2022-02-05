@@ -4,7 +4,8 @@ using YourMoviesForum.Web.InputModels.Tags;
 using YourMoviesForum.Data.Models;
 
 using AutoMapper;
-using System.Globalization;
+
+using System.Linq;
 
 namespace YourMovies.Web
 {
@@ -17,6 +18,10 @@ namespace YourMovies.Web
             CreateMap<Post, AllPostsQueryModel>();
             CreateMap<Post, PostTagViewModel>();
             CreateMap<Post, PostDetailsViewModel>();
+            CreateMap<Post, EditPostFormModel>()
+              .ForMember(
+                  x=>x.TagIds,
+                  x=>x.MapFrom(src=>src.Tags.Select(t=>t.Id)));
      
 
             //Categories
