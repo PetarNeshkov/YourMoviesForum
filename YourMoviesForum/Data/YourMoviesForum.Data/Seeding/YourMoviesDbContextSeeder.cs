@@ -22,7 +22,8 @@ namespace YourMoviesForum.Data.Seeding
             {
                 new AdministratorSeeder(),
                 new CategoriesSeeder(),
-                new TagSeeder(),
+                new TagsSeeder(),
+                new PostsSeeder()
             };
 
             foreach (var seeder in seeders)

@@ -5,13 +5,14 @@
         //Global
         public const string SystemName = "Your Movies Forum";
         public const string SystemEmail = "yourmoviesforum@gmail.com";
-        public const int PostPerPage = 3;
+        public const int PostPerPage = 5;
         public const int TagsPerPage = 8;
+        public const string IFrameTag = "iframe";
 
         public static class Post
         {
             public const int PostTitleMinLength = 3;
-            public const int PostTitleMaxLength = 50;
+            public const int PostTitleMaxLength = 70;
             public const int PostContentMinLength = 10;
             public const int PostContentMaxLength = 500;
         }
@@ -42,6 +43,13 @@
             public const string AdministratorUsername = "Admin";
             public const string AdministratorEmail = "admin@yourmoviesforum.net";
             public const string AdministratorPassword = "admin567";
+        }
+
+        public static class TestUser
+        {
+            public const string UserUserName = "testuser";
+            public const string UserEmail = "testuser@forum.net";
+            public const string UserPassword = "user567";
         }
 
     }

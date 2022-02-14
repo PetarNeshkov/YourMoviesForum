@@ -12,7 +12,7 @@ namespace YourMoviesForum.Services.Data
             string searchFilter = null, int skip = 0,
             int take = 0);
 
-        Task<IEnumerable<TModel>> GetThreeRandomPosts<TModel>();
+        Task<IEnumerable<TModel>> GetFourRandomPosts<TModel>();
 
         Task<int> GetPostsSearchCountAsync(string searchFilter = null);
 

@@ -1,6 +1,6 @@
 ﻿tinymce.init({
     selector: 'textarea#tinymceInput',
-    height: 450,
+    height: 550,
     resize: 'both',
     plugins: [
         'advlist autolink link image imagetools lists charmap preview hr anchor pagebreak',
@@ -33,6 +33,7 @@
         };
         input.click();
     },
+    link_default_protocol: "https",
     menubar: false,
     branding: false
 });

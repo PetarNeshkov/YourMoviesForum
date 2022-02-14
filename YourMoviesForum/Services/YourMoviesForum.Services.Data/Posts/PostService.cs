@@ -104,14 +104,14 @@ namespace YourMoviesForum.Services.Data.Posts
             return queryablePosts;
         }
 
-        public async Task<IEnumerable<TModel>> GetThreeRandomPosts<TModel>()
+        public async Task<IEnumerable<TModel>> GetFourRandomPosts<TModel>()
         {
 
             var totalPosts = await data.Posts
                             .AsNoTracking()
                             .Where(x => !x.IsDeleted)
                             .OrderBy(x => Guid.NewGuid())
-                            .Take(3)
+                            .Take(4)
                             .ProjectTo<TModel>(mapper.ConfigurationProvider)
                             .ToListAsync();
 

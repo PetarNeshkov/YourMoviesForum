@@ -11,8 +11,6 @@ using YourMoviesForum.Web.InputModels.Posts;
 
 using static YourMoviesForum.Common.GlobalConstants;
 
-using YourMovies.Web.Infrastructure;
-
 namespace YourMovies.Web.Controllers
 {
     public class HomeController : Controller
@@ -34,14 +32,15 @@ namespace YourMovies.Web.Controllers
                 var posts = await postservice
                         .GetAllPostsAsync<PostListingViewModel>(query.Sorting, query.SearchTerm, skip, PostPerPage);
                 query.Posts = posts;
+                query.Pagination = PaginationProvider.PaginationHelper(page, count,PostPerPage);
             }
             else
             {
-                var posts = await postservice.GetThreeRandomPosts<PostListingViewModel>();
+                var posts = await postservice.GetFourRandomPosts<PostListingViewModel>();
                 query.Posts = posts;
+                query.Pagination = PaginationProvider.PaginationHelper(page, 3, PostPerPage);
             }
 
-            query.Pagination = PaginationProvider.PaginationHelper(page, count,PostPerPage);
 
             return View(query);
         }

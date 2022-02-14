@@ -7,7 +7,7 @@ using YourMoviesForum.Data.Models;
 
 namespace YourMoviesForum.Data.Seeding
 {
-    public class TagSeeder : ISeeder
+    public class TagsSeeder : ISeeder
     {
         public async Task SeedAsync(YourMoviesDbContext dbContext, IServiceProvider serviceProvider)
         {

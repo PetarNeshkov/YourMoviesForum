@@ -18,12 +18,14 @@ namespace YourMoviesForum.Data.Seeding
 
            await dbContext.Categories.AddRangeAsync(new[]
             {
-                new Category { Name = "Sci-Fi" },
-                new Category { Name = "Action" },
-                new Category { Name = "Horror" },
-                new Category { Name = "Romantic" },
-                new Category { Name = "Cartoon" },
-                new Category { Name = "Adventure" }
+                new Category { Name = "Sci-Fi", CreatedOn=DateTime.UtcNow },
+                new Category { Name = "Action", CreatedOn=DateTime.UtcNow  },
+                new Category { Name = "Horror", CreatedOn=DateTime.UtcNow  },
+                new Category { Name = "Romantic", CreatedOn=DateTime.UtcNow  },
+                new Category { Name = "Cartoon", CreatedOn=DateTime.UtcNow  },
+                new Category { Name = "Adventure", CreatedOn=DateTime.UtcNow  },
+                new Category { Name = "Actors", CreatedOn=DateTime.UtcNow  },
+                new Category { Name = "Tragedy", CreatedOn=DateTime.UtcNow  }
             });
 
             await dbContext.SaveChangesAsync();

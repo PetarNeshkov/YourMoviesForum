@@ -5,15 +5,13 @@
 
 <link href="~/css/editPost.css" rel="stylesheet" type="text/css" />
 
-
-
 <body>
         <h1 id="title">@ViewData["Title"]</h1>
         <form class="edit font-weight-bold" asp-action="Edit">
                <label asp-for="Title">Title</label>
                <input asp-for="Title" class="form-control" placeholder="Edit your Title">
                <span asp-validation-for="Title" class="text-danger"></span>
-            <div class="row">
+            <div class="row mt-3">
                   <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="CategoryId">Category</label>
@@ -39,11 +37,11 @@
                         </div>
                     </div>
               </div>
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <textarea id="tinymceInput" asp-for="Content"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
-            <div class="row">
+            <div class="row mt-4">
                <div class="col-auto ml-md-auto">
                    <button type="submit" class="btn btn-primary">Edit Post</button>
                    <a asp-controller="Posts"

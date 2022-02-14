@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 
 using Ganss.XSS;
+using YourMoviesForum.Common;
 
 namespace YourMoviesForum.Web.InputModels.Posts
 {
     public class PostDetailsViewModel
     {
+        private readonly IHtmlSanitizer sanitizer;
+        public PostDetailsViewModel()
+        {
+            this.sanitizer = new HtmlSanitizer();
+            this.sanitizer.AllowedTags.Add(GlobalConstants.IFrameTag);
+        }
 
         public int Id { get; init; }
         public string Title { get; init; }
@@ -14,7 +21,7 @@ namespace YourMoviesForum.Web.InputModels.Posts
         public string Content { get; init; }
 
         public string SanitizedContent
-            =>new HtmlSanitizer().Sanitize(Content);
+            => this.sanitizer.Sanitize(Content);
 
         public PostAuthorDetailsViewModel Author { get; init; }
 
