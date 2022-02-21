@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using YourMoviesForum.Data.Models;
 
 using static YourMoviesForum.Common.GlobalConstants.Administrator;
-using static YourMoviesForum.Common.GlobalConstants.TestUser;
 
 namespace YourMoviesForum.Data.Seeding
 {

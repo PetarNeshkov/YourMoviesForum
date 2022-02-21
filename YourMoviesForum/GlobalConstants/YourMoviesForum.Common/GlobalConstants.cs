@@ -8,6 +8,7 @@
         public const int PostPerPage = 5;
         public const int TagsPerPage = 8;
         public const string IFrameTag = "iframe";
+        public const string GlobalMessageKey = "GlobalMessage";
 
         public static class Post
         {
@@ -26,6 +27,8 @@
 
         public static class Category
         {
+            public const int CategoryNameMaxLength = 50;
+            public const int CategoryNameMinLength = 3;
             public const string CategoryDisplayName = "Categories";
         }
 
@@ -45,11 +48,9 @@
             public const string AdministratorPassword = "admin567";
         }
 
-        public static class TestUser
+        public static class Cache
         {
-            public const string UserUserName = "testuser";
-            public const string UserEmail = "testuser@forum.net";
-            public const string UserPassword = "user567";
+            public const string LatestPostsCacheKey = nameof(LatestPostsCacheKey);
         }
 
     }

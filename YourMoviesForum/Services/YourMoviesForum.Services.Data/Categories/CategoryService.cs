@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using YourMoviesForum.Data.Models;
 
 namespace YourMoviesForum.Services.Data.Categories
 {
@@ -26,5 +27,47 @@ namespace YourMoviesForum.Services.Data.Categories
                  .Where(c => !c.IsDeleted)
                  .ProjectTo<TModel>(mapper.ConfigurationProvider)
                  .ToListAsync();
+
+        public async Task<IEnumerable<TModel>> GetAllCategoriesAsync<TModel>(string searchFilter = null, int skip = 0, int take = 0)
+        {
+            var queryableCategories = data.Categories
+                  .Where(t => !t.IsDeleted)
+                  .AsNoTracking();
+
+            queryableCategories = SortingBySearch(searchFilter, queryableCategories);
+
+            var categories = await queryableCategories
+                .Skip(skip).Take(take)
+                .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                .ToListAsync();
+
+            return categories;
+        }
+
+        private static IQueryable<Category> SortingBySearch(string searchFilter, IQueryable<Category> queryableCategories)
+        {
+            if (!string.IsNullOrWhiteSpace(searchFilter))
+            {
+                queryableCategories = queryableCategories
+                    .Where(t => t.Name.ToLower().Contains(searchFilter.ToLower()));
+            }
+
+            return queryableCategories;
+        }
+
+        public async Task<int> GetPostsSearchCountAsync(string searchFilter = null)
+        {
+            var queryableCategories = data.Tags.Where(t => !t.IsDeleted);
+
+            if (!string.IsNullOrWhiteSpace(searchFilter))
+            {
+                queryableCategories = queryableCategories
+                     .Where(t => t.Name.ToLower().Contains(searchFilter.ToLower()));
+            }
+
+            var count = await queryableCategories.CountAsync();
+
+            return count;
+        }
     }
 }
