@@ -109,6 +109,7 @@ namespace YourMovies.Web
 
             app
                 .UseHttpsRedirection()
+                .UseResponseCaching()
                 .UseStaticFiles()
                 .UseRouting()
                 .UseAuthentication()

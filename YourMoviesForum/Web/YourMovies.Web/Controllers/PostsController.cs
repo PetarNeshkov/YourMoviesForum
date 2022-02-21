@@ -9,6 +9,7 @@ using YourMoviesForum.Services.Data.Tags;
 using YourMoviesForum.Web.InputModels;
 using YourMoviesForum.Web.InputModels.Posts;
 
+using static YourMoviesForum.Common.GlobalConstants;
 
 namespace YourMovies.Web.Controllers
 {
@@ -119,6 +120,8 @@ namespace YourMovies.Web.Controllers
                 input.CategoryId,
                 input.TagIds);
 
+            TempData[GlobalMessageKey] = $"Your post was successfully edited!";
+
             return RedirectToAction(nameof(Details),new { id = input.Id });
         }
 
@@ -157,6 +160,8 @@ namespace YourMovies.Web.Controllers
             }
 
             await postService.DeletePostAsync(id);
+
+            TempData[GlobalMessageKey] = $"Your post was successfully deleted!";
 
             return RedirectToAction("Index", "Home");
         }
