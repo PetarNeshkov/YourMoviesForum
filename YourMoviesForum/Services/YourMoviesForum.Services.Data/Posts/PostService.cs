@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 using YourMoviesForum.Data.Models;
 using YourMoviesForum.Web.InputModels.Posts;
+using YourMoviesForum.Services.Providers.DateTime;
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using ForumNet.Services.Providers.DateTime;
 
 namespace YourMoviesForum.Services.Data.Posts
 {
@@ -207,5 +207,14 @@ namespace YourMoviesForum.Services.Data.Posts
             await data.SaveChangesAsync();
 
         }
+
+        public async Task<IEnumerable<TModel>> GetAllPostsByCategoryIdAsync<TModel>(int categoryId, int skip = 0, int take = 0)
+          => await data.Posts
+                .AsNoTracking()
+                .Where(p => !p.IsDeleted && p.Category.Id==categoryId)
+                .Skip(skip).Take(take)
+                .OrderByDescending(x => x.CreatedOn)
+                .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                .ToListAsync();
     }
 }

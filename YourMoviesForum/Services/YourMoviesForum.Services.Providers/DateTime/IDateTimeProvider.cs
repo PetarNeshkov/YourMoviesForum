@@ -1,4 +1,4 @@
-﻿namespace ForumNet.Services.Providers.DateTime
+﻿namespace YourMoviesForum.Services.Providers.DateTime
 {
     using System;
 

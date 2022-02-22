@@ -9,7 +9,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 
 using YourMoviesForum.Data.Models;
-using ForumNet.Services.Providers.DateTime;
+using YourMoviesForum.Services.Providers.DateTime;
 
 namespace YourMoviesForum.Services.Data.Tags
 {

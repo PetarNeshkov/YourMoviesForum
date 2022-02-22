@@ -69,5 +69,12 @@ namespace YourMoviesForum.Services.Data.Categories
 
             return count;
         }
+
+        public async Task<TModel> GetCategoryByIdAsync<TModel>(int id)
+            => await data.Categories
+                   .AsNoTracking()
+                   .Where(c => c.Id == id && !c.IsDeleted)
+                   .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                   .FirstOrDefaultAsync();
     }
 }

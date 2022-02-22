@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 
 using YourMovies.Web.Views.Categories;
@@ -10,6 +11,8 @@ using YourMoviesForum.Services.Providers.Pagination;
 
 using static YourMoviesForum.Common.ErrorMessages.Categories;
 using static YourMoviesForum.Common.GlobalConstants.Category;
+using static YourMoviesForum.Common.GlobalConstants.Post;
+using YourMoviesForum.Web.InputModels.Home;
 
 namespace YourMovies.Web.Controllers
 {
@@ -34,6 +37,31 @@ namespace YourMovies.Web.Controllers
             query.Categories = categories;
 
             return View(query);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Details(int id,int page=1)
+        {
+            var category = await categoryService.GetCategoryByIdAsync<CategoryListingViewModel>(id);
+
+            if (category==null)
+            {
+                return NotFound();
+            }
+
+            var skip=(page - 1) * PostPerPage;
+            var posts = await postService.GetAllPostsByCategoryIdAsync<PostListingViewModel>(id, skip, PostPerPage);
+            var count = await postService.GetPostsSearchCountAsync();
+
+            var viewModel = new CategoryDetailsViewModel
+            {
+                Id = category.Id,
+                Category = category,
+                Posts = posts,
+                Pagination = PaginationProvider.PaginationHelper(page, count, CategoriesPerPage, null)
+            };
+
+            return View(viewModel);
         }
     }
 }
