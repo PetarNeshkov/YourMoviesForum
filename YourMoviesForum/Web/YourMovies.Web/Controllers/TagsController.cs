@@ -11,6 +11,8 @@ using YourMoviesForum.Web.InputModels.Tags;
 
 using static YourMoviesForum.Common.ErrorMessages.Tags;
 using static YourMoviesForum.Common.GlobalConstants;
+using static YourMoviesForum.Common.GlobalConstants.Post;
+using static YourMoviesForum.Common.GlobalConstants.Tag;
 
 namespace YourMovies.Web.Controllers
 {
@@ -32,7 +34,7 @@ namespace YourMovies.Web.Controllers
             var count = await tagService.GetPostsSearchCountAsync(query.SearchTerm);
             var tags = await tagService.GetAllTagsAsync<TagsListingViewModel>(query.SearchTerm,skip,TagsPerPage);
 
-            query.Pagination = PaginationProvider.PaginationHelper(page,count,TagsPerPage);
+            query.Pagination = PaginationProvider.PaginationHelper(page,count,TagsPerPage,query.SearchTerm);
             query.Tags = tags;
 
             return View(query);
@@ -55,10 +57,10 @@ namespace YourMovies.Web.Controllers
 
             var viewModel = new TagDetailsViewModel
             {
-                Id=tag.Id,
+                Id = tag.Id,
                 Tag = tag,
                 Posts = posts,
-                Pagination= PaginationProvider.PaginationHelper(page, count,TagsPerPage)
+                Pagination = PaginationProvider.PaginationHelper(page, count, TagsPerPage, null)
             };
 
             return View(viewModel);

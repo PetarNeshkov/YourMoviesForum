@@ -6,6 +6,7 @@ using YourMoviesForum.Data.Models;
 using AutoMapper;
 
 using System.Linq;
+using YourMoviesForum.Web.InputModels.Categories;
 
 namespace YourMovies.Web
 {
@@ -27,6 +28,7 @@ namespace YourMovies.Web
 
             //Categories
             CreateMap<Category, PostCategoryViewModel>();
+            CreateMap<Category, CategoryListingViewModel>();
 
 
             //Tags

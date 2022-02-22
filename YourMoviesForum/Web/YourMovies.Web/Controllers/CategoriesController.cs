@@ -9,7 +9,7 @@ using YourMoviesForum.Services.Providers.Pagination;
 
 
 using static YourMoviesForum.Common.ErrorMessages.Categories;
-using static YourMoviesForum.Common.GlobalConstants;
+using static YourMoviesForum.Common.GlobalConstants.Category;
 
 namespace YourMovies.Web.Controllers
 {
@@ -26,11 +26,11 @@ namespace YourMovies.Web.Controllers
 
         public async Task<IActionResult> All([FromQuery] AllCategoriesQueryModel query,int page=1)
         {
-            var skip = (page - 1) * TagsPerPage;
+            var skip = (page - 1) * CategoriesPerPage;
             var count = await categoryService.GetPostsSearchCountAsync(query.SearchTerm);
-            var categories = await categoryService.GetAllCategoriesAsync<CategoriesListingViewModel>(query.SearchTerm, skip, TagsPerPage);
+            var categories = await categoryService.GetAllCategoriesAsync<CategoryListingViewModel>(query.SearchTerm, skip, CategoriesPerPage);
 
-            query.Pagination = PaginationProvider.PaginationHelper(page, count, TagsPerPage);
+            query.Pagination = PaginationProvider.PaginationHelper(page, count, CategoriesPerPage, query.SearchTerm);
             query.Categories = categories;
 
             return View(query);

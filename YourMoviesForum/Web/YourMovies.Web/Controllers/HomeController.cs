@@ -10,7 +10,7 @@ using YourMovies.Web.Models;
 using YourMoviesForum.Web.InputModels.Home;
 using YourMoviesForum.Web.InputModels.Posts;
 
-using static YourMoviesForum.Common.GlobalConstants;
+using static YourMoviesForum.Common.GlobalConstants.Post;
 using System.Collections.Generic;
 using System;
 
@@ -40,13 +40,13 @@ namespace YourMovies.Web.Controllers
                     var posts = await postservice
                             .GetAllPostsAsync<PostListingViewModel>(query.Sorting, query.SearchTerm, skip, PostPerPage);
                     query.Posts = posts;
-                    query.Pagination = PaginationProvider.PaginationHelper(page, count,PostPerPage);
+                    query.Pagination = PaginationProvider.PaginationHelper(page, count,PostPerPage,query.SearchTerm);
                 }
                 else
                 {
                     var posts = await postservice.GetFourRandomPosts<PostListingViewModel>();
                     query.Posts = posts;
-                    query.Pagination = PaginationProvider.PaginationHelper(page, 3, PostPerPage);
+                    query.Pagination = PaginationProvider.PaginationHelper(page, 3, PostPerPage,query.SearchTerm);
                 }
 
             return View(query);

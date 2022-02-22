@@ -1,17 +1,20 @@
-﻿@model AllTagsQueryModel
+﻿@model AllCategoriesQueryModel
 @using static YourMoviesForum.Common.GlobalConstants.Administrator;
 
 @{
-    ViewData["Title"] = "Tags";
+    ViewData["Title"] = "Categories";
 }
-
 
 <link href="~/css/allTags.css" rel="stylesheet" />
 <link href="~/css/pagination.css" rel="stylesheet" type="text/css" />
 
-
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>All</title>
+</head>
 <body>
-    <form method="get" class="d-flex">
+     <form method="get" class="d-flex">
         <div class="form-group col-md-4">
             <div class="d-flex">
                 <input asp-for="SearchTerm" class="form-control" placeholder="Search...">
@@ -19,10 +22,9 @@
             </div>
         </div>
     </form>
-
-    @if (Model.Tags.Count() ==0)
+     @if (Model.Categories.Count() ==0)
     {
-            <h1 class="text-center">No tags found.</h1>
+            <h1 class="text-center">No categories found.</h1>
     }
     else
     {
@@ -39,22 +41,22 @@
          }
 
         <div class="items">
-            @foreach (var tag in Model.Tags)
+            @foreach (var category in Model.Categories)
             {
                 <div class="current-item">
                     <div>
                         <div class="tag-class">
-                            <a asp-controller="Tags"
+                            <a asp-controller="Categories"
                                asp-action="Details"
-                               asp-route-id="@tag.Id">
-                                <h4 class="tag-Name">@tag.Name</h4>
+                               asp-route-id="@category.Id">
+                                <h4 style="background-color:#A96067" class="tag-Name">@category.Name</h4>
                             </a>
                         </div>
                         <h6>
-                            <a asp-controller="Tags"
+                            <a asp-controller="Categories"
                                asp-action="Details"
-                               asp-route-id="@tag.Id">
-                                Avaliable in  @tag.PostsCount posts
+                               asp-route-id="@category.Id">
+                                Avaliable in  @category.PostsCount posts
                             </a>
                         </h6>
                         @if(User.IsInRole(AdministratorUsername))
@@ -62,7 +64,7 @@
                             <div class="delete-section">
                                 <form asp-controller="Tags"
                                       asp-action="Delete"
-                                      asp-route-id="@tag.Id"
+                                      asp-route-id="@category.Id"
                                       method="post"
                                       class="btn">
                                     <button type="submit" class="btn btn-secondary">
@@ -75,9 +77,7 @@
                 </div>
             }
         </div>
-        <partial name="_PaginationPartial" model="@Model.Pagination" />
+      <partial name="_PaginationPartial" model="@Model.Pagination" />
     }
-
 </body>
-
-
+</html>

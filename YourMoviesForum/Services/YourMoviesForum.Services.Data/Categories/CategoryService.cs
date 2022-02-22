@@ -57,12 +57,12 @@ namespace YourMoviesForum.Services.Data.Categories
 
         public async Task<int> GetPostsSearchCountAsync(string searchFilter = null)
         {
-            var queryableCategories = data.Tags.Where(t => !t.IsDeleted);
+            var queryableCategories = data.Categories.Where(c => !c.IsDeleted);
 
             if (!string.IsNullOrWhiteSpace(searchFilter))
             {
                 queryableCategories = queryableCategories
-                     .Where(t => t.Name.ToLower().Contains(searchFilter.ToLower()));
+                     .Where(c => c.Name.ToLower().Contains(searchFilter.ToLower()));
             }
 
             var count = await queryableCategories.CountAsync();

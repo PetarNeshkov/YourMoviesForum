@@ -1,0 +1,37 @@
+﻿@model PaginationViewModel
+
+<nav>
+    <ul class="pagination">
+        <li>
+            <a class="btn btn-primary
+              @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+               asp-action="All"
+               asp-route-search="@Model.SearchTerm"
+               asp-route-page="@Model.PreviousPage">
+                Previous
+            </a>
+        </li>
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            var active = i == Model.CurrentPage ? "active" : string.Empty;
+            <li class="active-pages">
+               <a class="@active"
+               asp-action="All"
+               asp-route-search="@Model.SearchTerm"
+               asp-route-page="@i">
+                    @i
+                </a>
+            </li>
+        }
+        <li>
+            <a class="btn btn-primary
+               @(Model.CurrentPage == Model.TotalPages || Model.TotalPages==0 ?"disabled" : string.Empty)"
+               asp-action="All"
+               asp-route-search="@Model.SearchTerm"
+               asp-route-page="@Model.NextPage">
+                Next
+            </a>
+        </li>
+    </ul>
+</nav>

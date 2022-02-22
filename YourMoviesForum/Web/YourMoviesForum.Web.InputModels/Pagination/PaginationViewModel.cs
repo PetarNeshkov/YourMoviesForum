@@ -30,6 +30,8 @@
                 return CurrentPage - 1;
             }
         }
+
+        public string SearchTerm { get; set; }
     }
 }
 

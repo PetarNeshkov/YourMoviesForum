@@ -5,13 +5,15 @@
         //Global
         public const string SystemName = "Your Movies Forum";
         public const string SystemEmail = "yourmoviesforum@gmail.com";
-        public const int PostPerPage = 5;
-        public const int TagsPerPage = 8;
+        
+        
+        
         public const string IFrameTag = "iframe";
         public const string GlobalMessageKey = "GlobalMessage";
 
         public static class Post
         {
+            public const int PostPerPage = 5;
             public const int PostTitleMinLength = 3;
             public const int PostTitleMaxLength = 70;
             public const int PostContentMinLength = 10;
@@ -20,6 +22,7 @@
 
         public static class Tag
         {
+            public const int TagsPerPage = 8;
             public const int TagNameMaxLength = 20;
             public const int TagNameMinLength = 5;
             public const string TagDisplayName = "Tags";
@@ -27,6 +30,7 @@
 
         public static class Category
         {
+            public const int CategoriesPerPage = 6;
             public const int CategoryNameMaxLength = 50;
             public const int CategoryNameMinLength = 3;
             public const string CategoryDisplayName = "Categories";

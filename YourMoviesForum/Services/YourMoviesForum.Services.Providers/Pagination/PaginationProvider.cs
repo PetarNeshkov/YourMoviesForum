@@ -5,12 +5,13 @@ namespace YourMoviesForum.Services.Providers.Pagination
 {
     public static class PaginationProvider 
     {
-       public static PaginationViewModel PaginationHelper(int page, int count,int itemsPerPage)
+       public static PaginationViewModel PaginationHelper(int page, int count,int itemsPerPage,string searchTerm)
         {
             return new PaginationViewModel
             {
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling(count / (decimal)itemsPerPage)
+                TotalPages = (int)Math.Ceiling(count / (decimal)itemsPerPage),
+                SearchTerm = searchTerm
             };
         }
     }

@@ -12,6 +12,6 @@ namespace YourMovies.Web.Views.Categories
 
         public PaginationViewModel Pagination { get; set; }
 
-        public IEnumerable<CategoriesListingViewModel> Categories { get; set; }
+        public IEnumerable<CategoryListingViewModel> Categories { get; set; }
     }
 }
