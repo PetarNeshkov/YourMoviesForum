@@ -68,6 +68,19 @@ body {
     color: cadetblue;
 }
 
+.categoryElement {
+    display: block;
+    font-size: 17px;
+    padding: 10px 7px 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: #A96067;
+    color: white;
+}
+
 i#tag-icon {
     margin-right: 4px;
 }

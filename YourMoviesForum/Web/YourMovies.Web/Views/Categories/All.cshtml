@@ -32,10 +32,10 @@
          {
             <div id="createTag">
                 <a id="" asp-area="Administration"
-                   asp-controller="Tags"
+                   asp-controller="Categories"
                    asp-action="Create"
                    class="btn btn-primary btn-lg btn-block">
-                    Create Tag
+                    Create Category
                 </a>
             </div>
          }
@@ -62,7 +62,7 @@
                         @if(User.IsInRole(AdministratorUsername))
                          {
                             <div class="delete-section">
-                                <form asp-controller="Tags"
+                                <form asp-controller="Categories"
                                       asp-action="Delete"
                                       asp-route-id="@category.Id"
                                       method="post"

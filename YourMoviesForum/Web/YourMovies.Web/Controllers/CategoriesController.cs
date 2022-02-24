@@ -33,7 +33,7 @@ namespace YourMovies.Web.Controllers
             var count = await categoryService.GetPostsSearchCountAsync(query.SearchTerm);
             var categories = await categoryService.GetAllCategoriesAsync<CategoryListingViewModel>(query.SearchTerm, skip, CategoriesPerPage);
 
-            query.Pagination = PaginationProvider.PaginationHelper(page, count, CategoriesPerPage, query.SearchTerm);
+            query.Pagination = PaginationProvider.PaginationHelper(page, count, CategoriesPerPage, query.SearchTerm);      
             query.Categories = categories;
 
             return View(query);
@@ -51,14 +51,13 @@ namespace YourMovies.Web.Controllers
 
             var skip=(page - 1) * PostPerPage;
             var posts = await postService.GetAllPostsByCategoryIdAsync<PostListingViewModel>(id, skip, PostPerPage);
-            var count = await postService.GetPostsSearchCountAsync();
 
             var viewModel = new CategoryDetailsViewModel
             {
                 Id = category.Id,
                 Category = category,
                 Posts = posts,
-                Pagination = PaginationProvider.PaginationHelper(page, count, CategoriesPerPage, null)
+                Pagination = PaginationProvider.PaginationHelper(page, posts.Count, PostPerPage, null)
             };
 
             return View(viewModel);

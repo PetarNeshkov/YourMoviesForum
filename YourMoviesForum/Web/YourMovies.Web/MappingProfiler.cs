@@ -28,12 +28,18 @@ namespace YourMovies.Web
 
             //Categories
             CreateMap<Category, PostCategoryViewModel>();
-            CreateMap<Category, CategoryListingViewModel>();
+            CreateMap<Category, CategoryListingViewModel>()
+                 .ForMember(
+                    dest => dest.PostsCount,
+                    dest => dest.MapFrom(src => src.Posts.Count(p => !p.IsDeleted)));
 
 
             //Tags
             CreateMap<Tag, PostTagViewModel>();
-            CreateMap<Tag, TagsListingViewModel>();
+            CreateMap<Tag, TagsListingViewModel>()
+                 .ForMember(
+                    dest => dest.PostsCount,
+                    dest => dest.MapFrom(src => src.Posts.Count(p => !p.IsDeleted)));
 
 
             //User

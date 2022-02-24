@@ -154,7 +154,7 @@ namespace YourMoviesForum.Services.Data.Posts
             return posts;
         }
 
-        public async Task<IEnumerable<TModel>> GetAllPostsByTagIdAsync<TModel>(int tagId, int skip = 0, int take = 0)
+        public async Task<IList<TModel>> GetAllPostsByTagIdAsync<TModel>(int tagId, int skip = 0, int take = 0)
             => await data.Posts
                 .AsNoTracking()
                 .Where(p => !p.IsDeleted &&
@@ -208,10 +208,10 @@ namespace YourMoviesForum.Services.Data.Posts
 
         }
 
-        public async Task<IEnumerable<TModel>> GetAllPostsByCategoryIdAsync<TModel>(int categoryId, int skip = 0, int take = 0)
+        public async Task<IList<TModel>> GetAllPostsByCategoryIdAsync<TModel>(int categoryId, int skip = 0, int take = 0)
           => await data.Posts
                 .AsNoTracking()
-                .Where(p => !p.IsDeleted && p.Category.Id==categoryId)
+                .Where(p => !p.IsDeleted && p.CategoryId==categoryId)
                 .Skip(skip).Take(take)
                 .OrderByDescending(x => x.CreatedOn)
                 .ProjectTo<TModel>(mapper.ConfigurationProvider)

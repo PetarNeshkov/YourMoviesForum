@@ -7,5 +7,6 @@
         public string Name { get; init; }
 
         public int PostsCount { get; init; }
+
     }
 }

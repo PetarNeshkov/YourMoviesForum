@@ -1,22 +1,24 @@
-﻿@model YourMoviesForum.Web.InputModels.Tags.TagDetailsViewModel
+﻿@model CategoryDetailsViewModel
 
 @{
-    ViewData["Title"] = Model.Tag.Name;
+    ViewData["Title"] = Model.Category.Name;
 }
 
 <link href="~/css/homePage.css" rel="stylesheet" runat="server" type="text/css" />
 <link href="~/css/pagination.css" rel="stylesheet" type="text/css" />
 
+<!DOCTYPE html>
+
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>@ViewBag.Title</title>
-    </head>
-    <body>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
     @if (Model.Posts.Any())
     {
         <div class="main-text text-center" style="font-size:30px">
-            All posts containing <span class="tagElement">@Model.Tag.Name</span> tag:
+            All posts containing <span class="categoryElement">@Model.Category.Name</span> category:
         </div>
 
         <div class="header">
@@ -52,14 +54,14 @@
                 </div>
             }
         </div>
-      <partial name="_PaginationPartial" model="@Model.Pagination" />
+         <partial name="_PaginationPartial" model="@Model.Pagination" />
     }
     else
     {
         <div class="no-posts">
             <h4>Sorry, nothing here.</h4>
             <p>
-                But you can create new post about @Model.Tag.Name.<br>
+                But you can create new post about @Model.Category.Name.<br>
                 <a asp-controller="Posts"
                asp-action="Add"
                class="tt-color-dark tt-underline-02">
@@ -68,7 +70,5 @@
             </p>
         </div>
     }
-    </body>
+</body>
 </html>
-
-

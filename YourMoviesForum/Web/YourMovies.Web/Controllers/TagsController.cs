@@ -52,15 +52,13 @@ namespace YourMovies.Web.Controllers
 
             var skip = (page - 1) * PostPerPage;
             var posts = await postService.GetAllPostsByTagIdAsync<PostListingViewModel>(id, skip,PostPerPage);
-          
-            var count = await postService.GetPostsSearchCountAsync();
 
             var viewModel = new TagDetailsViewModel
             {
                 Id = tag.Id,
                 Tag = tag,
                 Posts = posts,
-                Pagination = PaginationProvider.PaginationHelper(page, count, TagsPerPage, null)
+                Pagination = PaginationProvider.PaginationHelper(page, posts.Count, TagsPerPage, null)
             };
 
             return View(viewModel);

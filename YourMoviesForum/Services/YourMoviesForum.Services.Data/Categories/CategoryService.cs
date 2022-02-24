@@ -31,7 +31,7 @@ namespace YourMoviesForum.Services.Data.Categories
         public async Task<IEnumerable<TModel>> GetAllCategoriesAsync<TModel>(string searchFilter = null, int skip = 0, int take = 0)
         {
             var queryableCategories = data.Categories
-                  .Where(t => !t.IsDeleted)
+                  .Where(c => !c.IsDeleted)
                   .AsNoTracking();
 
             queryableCategories = SortingBySearch(searchFilter, queryableCategories);
