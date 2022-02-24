@@ -76,5 +76,19 @@ namespace YourMoviesForum.Services.Data.Categories
                    .Where(c => c.Id == id && !c.IsDeleted)
                    .ProjectTo<TModel>(mapper.ConfigurationProvider)
                    .FirstOrDefaultAsync();
+
+        public async Task<bool> IsExistingAsync(string name)
+          => await data.Categories.AnyAsync(c => c.Name == name && !c.IsDeleted);
+
+        public async Task CreateAsync(string name)
+        {
+            var category = new Category
+            {
+                Name = name
+            };
+
+            await data.Categories.AddAsync(category);
+            await data.SaveChangesAsync();
+        }
     }
 }

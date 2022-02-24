@@ -11,8 +11,7 @@ using YourMoviesForum.Web.InputModels.Home;
 using YourMoviesForum.Web.InputModels.Posts;
 
 using static YourMoviesForum.Common.GlobalConstants.Post;
-using System.Collections.Generic;
-using System;
+
 
 namespace YourMovies.Web.Controllers
 {

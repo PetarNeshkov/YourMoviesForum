@@ -12,5 +12,9 @@ namespace YourMoviesForum.Services.Data.Categories
         Task<int> GetPostsSearchCountAsync(string searchFilter = null);
 
         Task<TModel> GetCategoryByIdAsync<TModel>(int id);
+
+        Task<bool> IsExistingAsync(string name);
+
+        Task CreateAsync(string name);
     }
 }

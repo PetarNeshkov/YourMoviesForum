@@ -10,6 +10,7 @@ using YourMoviesForum.Services.Providers.Pagination;
 
 
 using static YourMoviesForum.Common.ErrorMessages.Categories;
+using static YourMoviesForum.Common.GlobalConstants;
 using static YourMoviesForum.Common.GlobalConstants.Category;
 using static YourMoviesForum.Common.GlobalConstants.Post;
 using YourMoviesForum.Web.InputModels.Home;
@@ -61,6 +62,31 @@ namespace YourMovies.Web.Controllers
             };
 
             return View(viewModel);
+        }
+
+        [Authorize(Roles = Administrator.AdministratorUsername)]
+        public IActionResult Create() => this.View();
+
+        [Authorize(Roles = Administrator.AdministratorUsername)]
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateCategoryInputModel input)
+        {
+            var isExisting = await this.categoryService.IsExistingAsync(input.Name);
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            if (isExisting)
+            {
+                ModelState.AddModelError(input.Name, CategoryExistingNameErrorMessage);
+                return this.View(input);
+            }
+
+            await this.categoryService.CreateAsync(input.Name);
+
+            return this.RedirectToAction(nameof(All));
         }
     }
 }
