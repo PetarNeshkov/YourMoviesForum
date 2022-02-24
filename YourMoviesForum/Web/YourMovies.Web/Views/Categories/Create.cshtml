@@ -1,7 +1,7 @@
-﻿@model YourMoviesForum.Web.InputModels.Tags.CreateTagInputModel
+﻿@model CreateCategoryInputModel
 
 @{ 
-    ViewData["Title"] = "Create New Tag"; 
+    ViewData["Title"] = "Create New Category"; 
 }
 
 <!DOCTYPE html>
@@ -12,22 +12,23 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-<div class="container">
+   <div class="container">
     <h1>@ViewData["Title"]</h1>
     <div class="row">
         <div class="col-md-4">
-            <form asp-controller="Tags"
+            <form asp-controller="Categories"
                   asp-action="Create">
                 <div class="form-group">
                     <label asp-for="Name"></label>
                     <div class="tt-value-wrapper">
                         <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
+                        
                     </div>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-secondary btn-width-lg">Create</button>
-                    <a asp-controller="Tags"
+                    <a asp-controller="Categories"
                        asp-action="All"
                        class="btn btn-primary btn-width-lg">
                         Back
