@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using YourMoviesForum.Data.Models;
+using YourMoviesForum.Services.Providers.DateTime;
 
 namespace YourMoviesForum.Services.Data.Categories
 {
@@ -14,11 +15,13 @@ namespace YourMoviesForum.Services.Data.Categories
     {
         private readonly YourMoviesDbContext data;
         private readonly IMapper mapper;
+        private readonly IDateTimeProvider dateTimeProvider;
 
-        public CategoryService(YourMoviesDbContext data,IMapper mapper)
+        public CategoryService(YourMoviesDbContext data,IMapper mapper, IDateTimeProvider dateTimeProvider)
         {
             this.data = data;
             this.mapper = mapper;
+            this.dateTimeProvider = dateTimeProvider;
         }
 
         public async Task<IEnumerable<TModel>> GetAllCategoriesAsync<TModel>()
@@ -79,7 +82,8 @@ namespace YourMoviesForum.Services.Data.Categories
 
         public async Task<bool> IsExistingAsync(string name)
           => await data.Categories.AnyAsync(c => c.Name == name && !c.IsDeleted);
-
+        public async Task<bool> IsExistingAsync(int id)
+            =>await data.Categories.AnyAsync(c => c.Id == id && !c.IsDeleted);
         public async Task CreateAsync(string name)
         {
             var category = new Category
@@ -88,6 +92,16 @@ namespace YourMoviesForum.Services.Data.Categories
             };
 
             await data.Categories.AddAsync(category);
+            await data.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var category = await data.Categories.FirstOrDefaultAsync(t => t.Id == id && !t.IsDeleted);
+
+            category.IsDeleted = true;
+            category.DeletedOn = dateTimeProvider.Now();
+
             await data.SaveChangesAsync();
         }
     }

@@ -88,5 +88,20 @@ namespace YourMovies.Web.Controllers
 
             return this.RedirectToAction(nameof(All));
         }
+
+        [Authorize(Roles = Administrator.AdministratorUsername)]
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var isExisting = await this.categoryService.IsExistingAsync(id);
+            if (!isExisting)
+            {
+                return this.NotFound();
+            }
+
+            await this.categoryService.DeleteAsync(id);
+
+            return this.RedirectToAction(nameof(All));
+        }
     }
 }

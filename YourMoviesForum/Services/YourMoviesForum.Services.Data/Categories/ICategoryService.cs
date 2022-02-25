@@ -15,6 +15,10 @@ namespace YourMoviesForum.Services.Data.Categories
 
         Task<bool> IsExistingAsync(string name);
 
+        Task<bool> IsExistingAsync(int id);
+
         Task CreateAsync(string name);
+
+        Task DeleteAsync(int id);
     }
 }
