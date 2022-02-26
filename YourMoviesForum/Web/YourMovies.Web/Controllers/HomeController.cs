@@ -27,12 +27,12 @@ namespace YourMovies.Web.Controllers
             this.postservice = postservice;
             this.cache = cache;
         }
-       
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(int page = 1)
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("All", "Posts");
+                return RedirectToAction("All", "Posts",new {page=page});
             }
 
             var randomPosts = cache.Get<IEnumerable<PostListingViewModel>>(Cache.LatestPostsCacheKey);

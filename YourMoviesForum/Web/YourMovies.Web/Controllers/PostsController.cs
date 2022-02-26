@@ -6,10 +6,13 @@ using YourMoviesForum;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Categories;
 using YourMoviesForum.Services.Data.Tags;
+using YourMoviesForum.Services.Providers.Pagination;
 using YourMoviesForum.Web.InputModels;
+using YourMoviesForum.Web.InputModels.Home;
 using YourMoviesForum.Web.InputModels.Posts;
 
 using static YourMoviesForum.Common.GlobalConstants;
+using static YourMoviesForum.Common.GlobalConstants.Post;
 
 namespace YourMovies.Web.Controllers
 {
@@ -33,12 +36,36 @@ namespace YourMovies.Web.Controllers
         }
 
         [Authorize]
+        public async Task<IActionResult> All([FromQuery] AllPostsQueryModel query, int page = 1)
+        {
+
+            var count = await postService.GetPostsSearchCountAsync(query.SearchTerm);
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var skip = (page - 1) * PostPerPage;
+                var posts = await postService
+                        .GetAllPostsAsync<PostListingViewModel>(query.Sorting, query.SearchTerm, skip, PostPerPage);
+                query.Posts = posts;
+                query.Pagination = PaginationProvider.PaginationHelper(page, count, PostPerPage, query.SearchTerm);
+            }
+            else
+            {
+                var posts = await postService.GetFourRandomPosts<PostListingViewModel>();
+                query.Posts = posts;
+                query.Pagination = PaginationProvider.PaginationHelper(page, 3, PostPerPage, query.SearchTerm);
+            }
+
+            return View(query);
+        }
+
+        [Authorize]
         public async Task<IActionResult> Add() => View(new AddPostFormModel
         {
             Tags = await tagService.GetAllTagsAsync<PostTagViewModel>(),
             Categories = await categoryService.GetAllCategoriesAsync<PostCategoryViewModel>()
         });
-       
+
 
         [HttpPost]
         [Authorize]
@@ -60,12 +87,12 @@ namespace YourMovies.Web.Controllers
                 this.User.Id());
             return RedirectToAction("Index", "Home");
         }
-        
+
         public async Task<IActionResult> Details(int id)
         {
-            var post=await postService.GetByIdAsync<PostDetailsViewModel>(id);
+            var post = await postService.GetByIdAsync<PostDetailsViewModel>(id);
 
-            if (post==null)
+            if (post == null)
             {
                 return NotFound();
             }
@@ -79,16 +106,16 @@ namespace YourMovies.Web.Controllers
         {
             var post = await postService.GetByIdAsync<EditPostFormModel>(id);
 
-            if (post==null)
+            if (post == null)
             {
                 return NotFound();
             }
 
-            if (post.AuthorId!= User.Id() && !User.IsAdministrator())
+            if (post.AuthorId != User.Id() && !User.IsAdministrator())
             {
-               return Unauthorized();
+                return Unauthorized();
             }
-           
+
             post.Tags = await tagService.GetAllTagsAsync<PostTagViewModel>();
             post.Categories = await categoryService.GetAllCategoriesAsync<PostCategoryViewModel>();
 
@@ -100,15 +127,15 @@ namespace YourMovies.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                input.Tags=await tagService.GetAllTagsAsync<PostTagViewModel>();
-                input.Categories=await categoryService.GetAllCategoriesAsync<PostCategoryViewModel>();
+                input.Tags = await tagService.GetAllTagsAsync<PostTagViewModel>();
+                input.Categories = await categoryService.GetAllCategoriesAsync<PostCategoryViewModel>();
 
                 return View(input);
             }
 
             var postAuthorId = await postService.GetPostAuthorIdAsync<PostDetailsViewModel>(input.Id);
 
-            if (postAuthorId!=User.Id() && !User.IsAdministrator())
+            if (postAuthorId != User.Id() && !User.IsAdministrator())
             {
                 return Unauthorized();
             }
@@ -122,19 +149,19 @@ namespace YourMovies.Web.Controllers
 
             TempData[GlobalMessageKey] = $"Your post was successfully edited!";
 
-            return RedirectToAction(nameof(Details),new { id = input.Id });
+            return RedirectToAction(nameof(Details), new { id = input.Id });
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            var post=await postService.GetByIdAsync<PostDeleteViewModel>(id);
+            var post = await postService.GetByIdAsync<PostDeleteViewModel>(id);
 
             if (post == null)
             {
                 return NotFound();
             }
 
-            if (post.Author.Id!=User.Id() && User.IsAdministrator())
+            if (post.Author.Id != User.Id() && User.IsAdministrator())
             {
                 return Unauthorized();
             }
@@ -147,14 +174,14 @@ namespace YourMovies.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
-            var post=await this.postService.GetByIdAsync<PostDeleteAuthorViewModel>(id);
+            var post = await this.postService.GetByIdAsync<PostDeleteAuthorViewModel>(id);
 
-            if (post==null)
+            if (post == null)
             {
                 return NotFound();
             }
 
-            if (post.AuthorId!=User.Id() && User.IsAdministrator())
+            if (post.AuthorId != User.Id() && User.IsAdministrator())
             {
                 return Unauthorized();
             }
