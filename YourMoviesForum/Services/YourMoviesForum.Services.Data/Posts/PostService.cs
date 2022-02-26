@@ -11,6 +11,7 @@ using YourMoviesForum.Services.Providers.DateTime;
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using YourMoviesForum.Services.Data.Users;
 
 namespace YourMoviesForum.Services.Data.Posts
 {
@@ -19,12 +20,18 @@ namespace YourMoviesForum.Services.Data.Posts
         private readonly YourMoviesDbContext data;
         private readonly IMapper mapper;
         private readonly IDateTimeProvider dateTimeProvider;
+        private readonly IUserService userService;
 
-        public PostService(YourMoviesDbContext data, IMapper mapper,IDateTimeProvider dateTimeProvider)
+        public PostService(
+            YourMoviesDbContext data, 
+            IMapper mapper,
+            IDateTimeProvider dateTimeProvider,
+            IUserService userService)
         {
             this.data = data;
             this.mapper = mapper;
             this.dateTimeProvider = dateTimeProvider;
+            this.userService = userService;
         }
         public async Task<int> CreatePostAsync(
             string title, 
@@ -40,6 +47,8 @@ namespace YourMoviesForum.Services.Data.Posts
                 CategoryId = categoryId,
                 AuthorId = authorId
             };
+
+            await userService.AddRatingToUserAsync(authorId);
 
             await data.Posts.AddAsync(post);
             await data.SaveChangesAsync();
@@ -216,5 +225,14 @@ namespace YourMoviesForum.Services.Data.Posts
                 .OrderByDescending(x => x.CreatedOn)
                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
                 .ToListAsync();
+
+        public async Task ViewAsync(int id)
+        {
+            var post = await GetByIdAsync(id);
+
+            post.Rating++;
+
+            await data.SaveChangesAsync();
+        }
     }
 }

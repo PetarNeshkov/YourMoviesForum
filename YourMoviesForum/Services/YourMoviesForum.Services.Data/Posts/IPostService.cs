@@ -31,5 +31,7 @@ namespace YourMoviesForum.Services.Data
         Task EditPostAsync(int id, string title, string content, int categoryId, IEnumerable<int> tagIds);
 
         Task DeletePostAsync(int id);
+
+        Task ViewAsync(int id);
     }
 }

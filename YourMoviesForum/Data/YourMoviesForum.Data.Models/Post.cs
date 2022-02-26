@@ -29,7 +29,7 @@ namespace YourMoviesForum.Data.Models
 
         public Category Category { get; set; }
 
-        public int Views { get; set; }
+        public int Rating { get; set; }
 
         public string AuthorId { get; set; }
 
