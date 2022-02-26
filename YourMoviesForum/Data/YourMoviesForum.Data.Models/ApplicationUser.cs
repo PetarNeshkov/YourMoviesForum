@@ -20,6 +20,8 @@ namespace YourMoviesForum.Data.Models
             Logins = new HashSet<IdentityUserLogin<string>>();
         }
 
+        public int Rating { get; set; }
+
         //Audit Info
         public DateTime CreatedOn { get; set; }
         public DateTime? ModifiedOn { get; set; }

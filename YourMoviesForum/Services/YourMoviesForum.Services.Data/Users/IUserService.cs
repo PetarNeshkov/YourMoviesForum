@@ -7,5 +7,7 @@ namespace YourMoviesForum.Services.Data.Users
         Task<bool> IsUsernameUsedAsync(string username);
 
         Task<bool> IsEmailUsedAsync(string email);
+
+        Task<int> AddRatingToUserAsync(string id, int points = 1);
     }
 }

@@ -1,8 +1,9 @@
-﻿using AutoMapper;
-using YourMoviesForum.Services.Providers.DateTime;
+﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Threading.Tasks;
+
+using AutoMapper;
+
+using YourMoviesForum.Services.Providers.DateTime;
 
 namespace YourMoviesForum.Services.Data.Users
 {
@@ -23,5 +24,16 @@ namespace YourMoviesForum.Services.Data.Users
              => await data.Users.AnyAsync(u => u.UserName == username && !u.IsDeleted);
         public async Task<bool> IsEmailUsedAsync(string email)
             => await data.Users.AnyAsync(u=>u.Email==email && !u.IsDeleted);
+
+        public async Task<int> AddRatingToUserAsync(string id, int points = 1)
+        {
+           var user= await data.Users.FirstOrDefaultAsync(u => u.Id == id && !u.IsDeleted);
+
+           user.Rating += points;
+
+           await data.SaveChangesAsync();
+
+            return user.Rating;
+        }
     }
 }
