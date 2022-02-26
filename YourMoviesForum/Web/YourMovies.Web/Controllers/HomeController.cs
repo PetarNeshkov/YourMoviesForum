@@ -11,7 +11,9 @@ using YourMoviesForum.Web.InputModels.Home;
 using YourMoviesForum.Web.InputModels.Posts;
 
 using static YourMoviesForum.Common.GlobalConstants.Post;
-
+using static YourMoviesForum.Common.GlobalConstants;
+using System.Collections.Generic;
+using System;
 
 namespace YourMovies.Web.Controllers
 {
@@ -25,30 +27,28 @@ namespace YourMovies.Web.Controllers
             this.postservice = postservice;
             this.cache = cache;
         }
-
-        
-        [ResponseCache(Duration =700)]
-        public async Task<IActionResult> Index([FromQuery] AllPostsQueryModel query,int page=1)
+       
+        public async Task<IActionResult> Index()
         {
-      
-                var count = await postservice.GetPostsSearchCountAsync(query.SearchTerm);
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("All", "Posts");
+            }
 
-                if (User.Identity.IsAuthenticated)
-                {
-                    var skip = (page - 1) * PostPerPage;
-                    var posts = await postservice
-                            .GetAllPostsAsync<PostListingViewModel>(query.Sorting, query.SearchTerm, skip, PostPerPage);
-                    query.Posts = posts;
-                    query.Pagination = PaginationProvider.PaginationHelper(page, count,PostPerPage,query.SearchTerm);
-                }
-                else
-                {
-                    var posts = await postservice.GetFourRandomPosts<PostListingViewModel>();
-                    query.Posts = posts;
-                    query.Pagination = PaginationProvider.PaginationHelper(page, 3, PostPerPage,query.SearchTerm);
-                }
+            var randomPosts = cache.Get<IEnumerable<PostListingViewModel>>(Cache.LatestPostsCacheKey);
 
-            return View(query);
+            if (randomPosts==null)
+            {
+                 randomPosts = await postservice
+                    .GetFourRandomPosts<PostListingViewModel>();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                   .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
+
+                this.cache.Set(Cache.LatestPostsCacheKey, randomPosts, cacheOptions);
+            }
+
+            return View(randomPosts);
         }
 
         public IActionResult Privacy()
