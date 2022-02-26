@@ -4,5 +4,6 @@
     {
         DateCreated=0,
         TagsCount=1,
+        RatingCount=2
     }
 }
