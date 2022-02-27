@@ -42,8 +42,12 @@ namespace YourMovies.Web
                     dest => dest.MapFrom(src => src.Posts.Count(p => !p.IsDeleted)));
 
 
+            //Replies
+            CreateMap<Reply, PostRepliesDetailsViewModel>();
+
             //User
             CreateMap<ApplicationUser,PostAuthorDetailsViewModel>();
+
         }
     }
 }

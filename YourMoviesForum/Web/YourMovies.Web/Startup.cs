@@ -18,6 +18,7 @@ using YourMoviesForum.Services.Data.Users;
 using YourMoviesForum.Services.Providers.DateTime;
 using YourMoviesForum.Services.Providers.Email;
 using YourMoviesForum.Services.Providers.Security_Models;
+using YourMoviesForum.Services.Data.Replies;
 
 namespace YourMovies.Web
 {
@@ -78,12 +79,14 @@ namespace YourMovies.Web
               .AddCookie();
 
             //Application services
-            services.AddTransient<IEmailSender,SendGridEmailSender>()
+            services.AddTransient<IEmailSender, SendGridEmailSender>()
                     .AddTransient<IPostService, PostService>()
                     .AddTransient<ICategoryService, CategoryService>()
                     .AddTransient<ITagService, TagService>()
-                    .AddTransient<IDateTimeProvider,DateTimeProvider>()
-                    .AddTransient<IUserService,User>();
+                    .AddTransient<IDateTimeProvider, DateTimeProvider>()
+                    .AddTransient<IUserService, User>()
+                    .AddTransient<IReplyService, ReplyService>();
+                    
 
             services.Configure<ReCaptchSettings>(this.configuration.GetSection("GoogleReCaptcha"));
         }

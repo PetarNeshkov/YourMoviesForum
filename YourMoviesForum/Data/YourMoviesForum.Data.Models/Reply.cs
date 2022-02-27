@@ -18,5 +18,8 @@ namespace YourMoviesForum.Data.Models
         public string AuthorId { get; set; }
         public ApplicationUser Author { get; set; }
 
+        public int? ParentId { get; set; }
+
+        public Reply Parent { get; set; }
     }
 }

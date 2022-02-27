@@ -29,6 +29,6 @@ namespace YourMoviesForum.Web.InputModels.Posts
 
         public IEnumerable<PostTagViewModel> Tags { get; set; }
 
-        //public IEnumerable<PostRepliesDetailsViewModel> Replies { get; set; }
+        public IEnumerable<PostRepliesDetailsViewModel> Replies { get; set; }
     }
 }
