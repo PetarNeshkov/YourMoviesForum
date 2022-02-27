@@ -1,0 +1,31 @@
+﻿@model YourMoviesForum.Web.InputModels.Replies.ReplyCreateInputModel
+
+<div>
+    <div class="mt-5">
+        <h5 class="text-center">Reply to this Post</h5>
+        <form class="form-default form-create-topic" 
+              asp-area="" 
+              asp-controller="Replies" 
+              asp-action="Create" 
+              method="post">
+            <div asp-validation-summary="All"></div>
+            <div class="form-group">
+                <input asp-for="ParentId" value="@Model.ParentId" hidden />
+                <input asp-for="PostId" value="@Model.PostId" hidden />
+            </div>
+            <div class="form-group">
+                <textarea id="tinymceInput" asp-for="Content" placeholder="Lets get started"></textarea>
+                <span asp-validation-for="Content"></span>
+            </div>
+            <div class="pt-row">
+                <div class="col-auto ml-md-auto">
+                    <input type="submit" value="Reply" class="btn btn-secondary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
