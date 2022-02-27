@@ -1,0 +1,40 @@
+﻿@model EditReplyFormModel
+
+@{
+    ViewData["Title"] = "Edit your Reply";
+}
+
+<link href="~/css/editPost.css" rel="stylesheet" type="text/css" />
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+     <h1 id="title">@ViewData["Title"]</h1>
+        <form class="edit font-weight-bold" asp-action="Edit">
+            <div class="form-group mt-3">
+                <textarea id="tinymceInput" asp-for="Content"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="row mt-4">
+               <div class="col-auto ml-md-auto">
+                   <button type="submit" class="btn btn-primary">Edit Reply</button>
+                   <a asp-controller="Reply"
+                      asp-action="Details"
+                      asp-route-id="@Model.Id"
+                      class="btn btn- btn-secondary">
+                       Cancel
+                   </a>
+               </div>
+            </div>
+       </form>
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
