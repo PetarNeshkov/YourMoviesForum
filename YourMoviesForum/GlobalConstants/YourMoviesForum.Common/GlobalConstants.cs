@@ -17,7 +17,7 @@
             public const int PostTitleMinLength = 3;
             public const int PostTitleMaxLength = 70;
             public const int PostContentMinLength = 10;
-            public const int PostContentMaxLength = 500;
+            public const int PostContentMaxLength = 2000;
         }
 
         public static class Tag
@@ -57,5 +57,9 @@
             public const string LatestPostsCacheKey = nameof(LatestPostsCacheKey);
         }
 
+        public static class Reply
+        {
+            public const int ReplyContentMaxLength = 2000;
+        }
     }
 }
