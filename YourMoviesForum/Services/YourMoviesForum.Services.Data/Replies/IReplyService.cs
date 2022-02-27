@@ -5,5 +5,7 @@ namespace YourMoviesForum.Services.Data.Replies
     public interface IReplyService
     {
         Task CreateReplyAsync(string content, int? parentId, int postId, string authorId);
+
+        Task<TModel> GetByIdAsync<TModel>(int id);
     }
 }

@@ -71,7 +71,7 @@
         }
          </div>
     </section>
-    <h3 class="text-center mt-4">Comment section:</h3>
+    <h3 class="text-center mt-4">Comments section:</h3>
     <section>
         @foreach(var reply in Model.Replies.Where(r=>r.ParentId==null))
         {

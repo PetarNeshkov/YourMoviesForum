@@ -1,12 +1,13 @@
 ﻿using YourMoviesForum.Web.InputModels.Home;
 using YourMoviesForum.Web.InputModels.Posts;
 using YourMoviesForum.Web.InputModels.Tags;
+using YourMoviesForum.Web.InputModels.Categories;
+using YourMoviesForum.Web.InputModels.Replies;
 using YourMoviesForum.Data.Models;
 
 using AutoMapper;
 
 using System.Linq;
-using YourMoviesForum.Web.InputModels.Categories;
 
 namespace YourMovies.Web
 {
@@ -44,6 +45,7 @@ namespace YourMovies.Web
 
             //Replies
             CreateMap<Reply, PostRepliesDetailsViewModel>();
+            CreateMap<Reply, EditReplyFormModel>();
 
             //User
             CreateMap<ApplicationUser,PostAuthorDetailsViewModel>();
