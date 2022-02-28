@@ -64,7 +64,21 @@ namespace YourMovies.Web.Controllers
 
             await replyService.EditAsync(input.Id, input.SanitizedContent);
 
-            return RedirectToAction("Details", "Posts", new { id = input.Id});
+            return RedirectToAction(nameof(Details), new { id = input.Id});
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var reply=await replyService.GetByIdAsync<ReplyDetailsViewModel>(id);
+
+            if (reply==null)
+            {
+                return NotFound();
+            }
+
+            reply.Replies = await replyService.GetAllRepliesByPostIdAsync<ReplyDetailsViewModel>(reply.PostId);
+
+            return View(reply);
         }
     }
 }

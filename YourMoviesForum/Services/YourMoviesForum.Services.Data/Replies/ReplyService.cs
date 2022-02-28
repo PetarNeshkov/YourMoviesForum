@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -53,6 +54,13 @@ namespace YourMoviesForum.Services.Data.Replies
 
             await data.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<TModel>> GetAllRepliesByPostIdAsync<TModel>(int postId)
+            => await data.Replies
+                  .AsNoTracking()
+                  .Where(r => r.PostId == postId && !r.IsDeleted)
+                  .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                  .ToListAsync();
 
         public async Task<TModel> GetByIdAsync<TModel>(int id)
            => await data.Replies

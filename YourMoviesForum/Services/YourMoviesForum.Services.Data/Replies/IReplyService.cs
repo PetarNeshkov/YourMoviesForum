@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace YourMoviesForum.Services.Data.Replies
 {
@@ -11,5 +12,7 @@ namespace YourMoviesForum.Services.Data.Replies
         Task<string> GetReplyAuthorIdAsync<TModel>(int id);
 
         Task EditAsync(int id, string content);
+
+        Task<IEnumerable<TModel>> GetAllRepliesByPostIdAsync<TModel>(int postId);
     }
 }
