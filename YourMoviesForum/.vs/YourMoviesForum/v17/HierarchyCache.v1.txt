@@ -4,18 +4,18 @@ i:{00000000-0000-0000-0000-000000000000}:YourMoviesForum.sln
 i:{00000000-0000-0000-0000-000000000000}:GlobalConstants
 ++YourMoviesForum.Common
 i:{a03a3eb8-ccfb-46dc-8149-4e586e6673fe}:YourMoviesForum.Common
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\globalconstants\yourmoviesforum.common\yourmoviesforum.common.csproj
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\globalconstants\yourmoviesforum.common\yourmoviesforum.common.csproj
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\globalconstants\yourmoviesforum.common\yourmoviesforum.common.csproj
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\globalconstants\yourmoviesforum.common\bin\debug\net5.0\yourmoviesforum.common.dll
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\globalconstants\yourmoviesforum.common\bin\debug\net5.0\yourmoviesforum.common.dll
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\globalconstants\yourmoviesforum.common\bin\debug\net5.0\yourmoviesforum.common.dll
 ++Dependencies
-i:{5fb6b810-5e4f-46cb-9188-dd1c053f8d57}:>17616
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>15180
-i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>15265
-i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>15186
-i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:>19295
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>17976
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>17237
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>22390
+i:{5fb6b810-5e4f-46cb-9188-dd1c053f8d57}:>6695
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>6699
+i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>6697
+i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>6694
+i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:>8024
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>6696
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>6698
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>11131
 ++ErrorMessages.cs
 i:{5fb6b810-5e4f-46cb-9188-dd1c053f8d57}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\globalconstants\yourmoviesforum.common\errormessages.cs
 ++GlobalConstants.cs
@@ -75,20 +75,20 @@ i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:c:\users\user\desktop\my project\yourmo
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\microsoft.netcore.app
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\microsoft.netcore.app
 ++AutoMapper.Extensions.Microsoft.DependencyInjection (11.0.0)
-i:{5fb6b810-5e4f-46cb-9188-dd1c053f8d57}:>22536
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>22448
-i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>22513
-i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>22514
-i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:>22469
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>22440
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>22429
+i:{5fb6b810-5e4f-46cb-9188-dd1c053f8d57}:>11202
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>11232
+i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>11243
+i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>11222
+i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:>11277
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>11218
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>11235
 ++Data
 i:{00000000-0000-0000-0000-000000000000}:Data
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\data\
 ++YourMoviesForum.Data
 i:{ced7bf50-5d66-4363-a63e-583f66cfe18f}:YourMoviesForum.Data
-i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\yourmoviesforum.data.csproj
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\yourmoviesforum.data.csproj
+i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\bin\debug\net6.0\yourmoviesforum.data.dll
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\bin\debug\net6.0\yourmoviesforum.data.dll
 ++Configuration
 i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\configuration\
 ++Migrations
@@ -126,6 +126,8 @@ i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmo
 i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\migrations\20220225170226_addedratingtousers.cs
 ++20220225203711_ChangedViewsToRatingInPost.cs
 i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\migrations\20220225203711_changedviewstoratinginpost.cs
+++20220226140842_AddedParentIdToReply.cs
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\migrations\20220226140842_addedparentidtoreply.cs
 ++YourMoviesDbContextModelSnapshot.cs
 i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\migrations\yourmoviesdbcontextmodelsnapshot.cs
 ++AdministratorSeeder.cs
@@ -197,60 +199,60 @@ i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:c:\program files\dotnet\packs\microsoft
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.2\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.2\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 ++Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore (6.0.1)
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>22461
-i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>22517
-i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>22518
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>22453
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>22442
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>11245
+i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>11257
+i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>11230
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>11233
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>11250
 ++Microsoft.AspNetCore.Identity.EntityFrameworkCore (6.0.1)
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>22467
-i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>22519
-i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>22520
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>22459
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>22446
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>11253
+i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>11262
+i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>11236
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>11238
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>11258
 ++Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation (6.0.1)
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>22421
-i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>22505
-i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>22506
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>22426
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>22420
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>11211
+i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>11214
+i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>11201
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>11205
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>11213
 ++Microsoft.EntityFrameworkCore (6.0.1)
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>22436
-i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>22510
-i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>22509
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>22434
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>22425
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>11221
+i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>11228
+i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>11212
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>11215
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>11227
 ++Microsoft.EntityFrameworkCore.Design (6.0.1)
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>22454
-i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>22515
-i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>22516
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>22445
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>22433
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>22441
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>11240
+i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>11251
+i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>11225
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>11224
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>11242
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>11305
 ++Microsoft.EntityFrameworkCore.SqlServer (6.0.1)
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>22443
-i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>22512
-i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>22511
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>11226
+i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>11234
+i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>11217
 ++Microsoft.EntityFrameworkCore.Tools (6.0.1)
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>22473
-i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>22521
-i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>22522
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>22464
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>22451
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>11256
+i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>11267
+i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>11241
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>11244
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>11264
 ++Microsoft.Extensions.Configuration.UserSecrets (6.0.0)
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>22432
-i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>22507
-i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>22508
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>22431
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>22422
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>11216
+i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>11219
+i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>11208
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>11210
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>11220
 ++Microsoft.Extensions.Identity.Stores (6.0.1)
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>22480
-i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>22523
-i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>22524
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>22475
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>22458
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:>11261
+i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:>11272
+i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:>11248
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>11254
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>11268
 ++YourMoviesForum.Data.Models
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data.models\yourmoviesforum.data.models.csproj
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data.models\bin\debug\net6.0\yourmoviesforum.data.models.dll
 i:{ced7bf50-5d66-4363-a63e-583f66cfe18f}:YourMoviesForum.Data.Models
 ++20211221002909_Initial.Designer.cs
 i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\migrations\20211221002909_initial.designer.cs
@@ -264,6 +266,8 @@ i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmo
 i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\migrations\20220225170226_addedratingtousers.designer.cs
 ++20220225203711_ChangedViewsToRatingInPost.Designer.cs
 i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\migrations\20220225203711_changedviewstoratinginpost.designer.cs
+++20220226140842_AddedParentIdToReply.Designer.cs
+i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\migrations\20220226140842_addedparentidtoreply.designer.cs
 ++ApplicationRole.cs
 i:{87f4d428-bf8c-4a44-b54e-1484a0cb5d0f}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data.models\applicationrole.cs
 ++ApplicationUser.cs
@@ -296,7 +300,7 @@ i:{f0e3caa8-f81d-4a45-ab6e-8175c7cf4eae}:c:\users\user\desktop\my project\yourmo
 i:{00000000-0000-0000-0000-000000000000}:Services
 ++YourMoviesForum.Services.Data
 i:{a1a2da33-652c-40dd-b25e-8c7cacf5c354}:YourMoviesForum.Services.Data
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\yourmoviesforum.services.data.csproj
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\bin\debug\net6.0\yourmoviesforum.services.data.dll
 ++Categories
 i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\categories\
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\categories\
@@ -312,6 +316,7 @@ i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmo
 ++Replies
 i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\replies\
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\replies\
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\replies\
 ++IReplyService.cs
 i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\replies\ireplyservice.cs
 ++ReplyService.cs
@@ -322,10 +327,6 @@ i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmo
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\tags\
 ++Users
 i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\users\
-++IUserService.cs
-i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\users\iuserservice.cs
-++User.cs
-i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\users\user.cs
 ++CategoryService.cs
 i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\categories\categoryservice.cs
 ++ICategoryService.cs
@@ -334,14 +335,18 @@ i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmo
 i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\tags\itagservice.cs
 ++TagService.cs
 i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\tags\tagservice.cs
+++IUserService.cs
+i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\users\iuserservice.cs
+++User.cs
+i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.data\users\user.cs
 ++YourMoviesForum.Services.Providers
-i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.providers\yourmoviesforum.services.providers.csproj
+i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.providers\bin\debug\net6.0\yourmoviesforum.services.providers.dll
 i:{a1a2da33-652c-40dd-b25e-8c7cacf5c354}:YourMoviesForum.Services.Providers
 ++YourMoviesForum.Web.InputModels
-i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\yourmoviesforum.web.inputmodels.csproj
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\yourmoviesforum.web.inputmodels.csproj
+i:{606581f5-c4ae-4ff3-b579-1d73a9348bdd}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\bin\debug\net6.0\yourmoviesforum.web.inputmodels.dll
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\bin\debug\net6.0\yourmoviesforum.web.inputmodels.dll
 i:{465278a6-daa6-4830-8b88-494e16f55801}:YourMoviesForum.Web.InputModels
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\yourmoviesforum.web.inputmodels.csproj
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\bin\debug\net6.0\yourmoviesforum.web.inputmodels.dll
 ++DateTime
 i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.providers\datetime\
 ++Email
@@ -364,9 +369,9 @@ i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:c:\users\user\desktop\my project\yourmo
 ++ReCaptchSettings.cs
 i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\services\yourmoviesforum.services.providers\securitymodels\recaptchsettings.cs
 ++Microsoft.AspNetCore.Identity.UI (6.0.1)
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>22470
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>11249
 ++SendGrid (9.25.2)
-i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>22450
+i:{ff269a8e-17c8-4ecd-86d8-280e61bd70e9}:>11229
 ++Web
 i:{00000000-0000-0000-0000-000000000000}:Web
 ++Home
@@ -374,8 +379,6 @@ i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmo
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\home\
 ++enums
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\posts\enums\
-++PostSorting.cs
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\posts\enums\postsorting.cs
 ++AddPostFormModel.cs
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\posts\addpostformmodel.cs
 ++AllPostsQueryModel.cs
@@ -394,6 +397,8 @@ i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmo
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\posts\postdetailsviewmodel.cs
 ++PostListingViewModel.cs
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\posts\postlistingviewmodel.cs
+++PostRepliesDetailsViewModel.cs
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\posts\postrepliesdetailsviewmodel.cs
 ++PostTagViewModel.cs
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\posts\posttagviewmodel.cs
 ++ReplyCreateInputModel.cs
@@ -410,6 +415,8 @@ i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmo
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\home\indexviewmodel.cs
 ++PaginationViewModel.cs
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\pagination\paginationviewmodel.cs
+++PostSorting.cs
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\posts\enums\postsorting.cs
 ++AllTagsQueryModel.cs
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\tags\alltagsquerymodel.cs
 ++CreateTagInputModel.cs
@@ -419,32 +426,54 @@ i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmo
 ++TagsListingViewModel.cs
 i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\tags\tagslistingviewmodel.cs
 ++HtmlSanitizer (7.1.475)
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>22463
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:>11274
 ++YourMovies.Web
 i:{465278a6-daa6-4830-8b88-494e16f55801}:YourMovies.Web
 ++Connected Services 
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>22391
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>11132
 ++Properties
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\properties\
 ++wwwroot
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\
+++bootstrap
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\bootstrap\
+++css
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\bootstrap\dist\css\
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\fontawesome\css\
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\selectize\dist\css\
+++allTags.css
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\alltags.css
+++detailsPost.css
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\detailspost.css
+++editPost.css
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\editpost.css
+++homePage.css
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\homepage.css
+++pagination.css
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\pagination.css
+++site.css
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\site.css
+++images
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\images\
+++js
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\js\
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\bootstrap\dist\js\
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\selectize\dist\js\
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\plugins\emoticons\js\
+++lib
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\
+++favicon.ico
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\favicon.ico
+++postAcceptor.php
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\postacceptor.php
 ++Areas
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\
-++Identity
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\
-++Pages
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\
-++Account
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\
-++_ValidationScriptsPartial.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\_validationscriptspartial.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\_validationscriptspartial.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\_validationscriptspartial.cshtml
-++_ViewStart.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\_viewstart.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\_viewstart.cshtml
-++IdentityHostingStartup.cs
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\identityhostingstartup.cs
+++Components
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\components\
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\components\
+++ReplyCreateViewComponent.cs
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\components\replycreateviewcomponent.cs
 ++Controllers
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\controllers\
 ++CategoriesController.cs
@@ -465,6 +494,10 @@ i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmo
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\infrastructure\claimsprincipalextensions.cs
 ++Views
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\
+++Index.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\home\index.cshtml
+++Privacy.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\home\privacy.cshtml
 ++Add.cshtml
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\posts\add.cshtml
 ++All.cshtml
@@ -479,12 +512,32 @@ i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmo
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\tags\details.cshtml
 ++Edit.cshtml
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\posts\edit.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\replies\edit.cshtml
 ++Shared
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\
+++CreateReply
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\components\createreply\
+++Default.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\components\createreply\default.cshtml
+++_Layout.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\_layout.cshtml
+++_LoginPartial.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\_loginpartial.cshtml
+++_PaginationPartial.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\_paginationpartial.cshtml
+++_ValidationScriptsPartial.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\_validationscriptspartial.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\_validationscriptspartial.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\_validationscriptspartial.cshtml
+++Error.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\error.cshtml
 ++_ViewImports.cshtml
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\_viewimports.cshtml
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\_viewimports.cshtml
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\manage\_viewimports.cshtml
+++_ViewStart.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\_viewstart.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\_viewstart.cshtml
 ++appsettings.json
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\appsettings.json
 ++libman.json
@@ -496,101 +549,20 @@ i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmo
 ++Startup.cs
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\startup.cs
 ++SQL Server Express LocalDB (Local) (ConnectionStrings:DataConnection)
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>22529
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>11315
 ++SQL Server Express LocalDB (Local) (ConnectionStrings:YourMoviesDbContextConnection)
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>22527
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>11313
 ++SQL Server Express LocalDB (Local) (ConnectionStrings:YourMoviesWebContextConnection)
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>22528
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>11314
 ++launchSettings.json
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\properties\launchsettings.json
 ++serviceDependencies.json
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\properties\servicedependencies.json
-++bootstrap
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\bootstrap\
-++css
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\bootstrap\dist\css\
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\fontawesome\css\
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\selectize\dist\css\
-++images
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\images\
-++js
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\js\
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\bootstrap\dist\js\
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\selectize\dist\js\
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\plugins\emoticons\js\
-++lib
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\
-++favicon.ico
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\favicon.ico
-++postAcceptor.php
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\postacceptor.php
-++Manage
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\manage\
-++ForgotPassword.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\forgotpassword.cshtml
-++Login.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\login.cshtml
-++Register.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\register.cshtml
-++ErrorViewModel.cs
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\models\errorviewmodel.cs
-++Create.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\categories\create.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\tags\create.cshtml
-++Index.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\home\index.cshtml
-++Privacy.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\home\privacy.cshtml
-++_Layout.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\_layout.cshtml
-++_LoginPartial.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\_loginpartial.cshtml
-++_PaginationPartial.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\_paginationpartial.cshtml
-++Error.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\error.cshtml
-++appsettings.Development.json
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\appsettings.development.json
-++MessagePackAnalyzer
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\.nuget\packages\messagepackanalyzer\2.1.152\analyzers\dotnet\messagepackanalyzer.dll
-++Microsoft.AspNetCore.Analyzers
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
-++Microsoft.AspNetCore.Components.Analyzers
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
-++Microsoft.AspNetCore.Mvc.Analyzers
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
-++Microsoft.AspNetCore.Razor.SourceGenerator.Tooling.Internal
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.sourcegenerator.tooling.internal.dll
-++Microsoft.NET.Sdk.Razor.SourceGenerators
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
-++Microsoft.AspNetCore.App
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\microsoft.aspnetcore.app
-++Microsoft.AspNetCore.Authentication.Facebook (6.0.1)
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>22444
-++Microsoft.AspNetCore.Authentication.Google (6.0.1)
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>22447
-++Microsoft.VisualStudio.Web.CodeGeneration.Design (6.0.2)
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>22452
-++serviceDependencies.local.json
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\properties\servicedependencies.local.json
 ++dist
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\bootstrap\dist\
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\jquery\dist\
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\jquery-validation\dist\
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\selectize\dist\
-++allTags.css
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\alltags.css
-++detailsPost.css
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\detailspost.css
-++editPost.css
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\editpost.css
-++homePage.css
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\homepage.css
-++pagination.css
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\pagination.css
-++site.css
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\css\site.css
 ++favicon.png
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\images\favicon.png
 ++site.js
@@ -613,18 +585,37 @@ i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmo
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\selectize\
 ++tinymce
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\
-++_ManageNav.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\manage\_managenav.cshtml
-++EnableAuthenticator.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\manage\enableauthenticator.cshtml
-++ManageNavPages.cs
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\manage\managenavpages.cs
-++ForgotPassword.cshtml.cs
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\forgotpassword.cshtml.cs
-++Login.cshtml.cs
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\login.cshtml.cs
-++Register.cshtml.cs
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\register.cshtml.cs
+++Identity
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\
+++ErrorViewModel.cs
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\models\errorviewmodel.cs
+++Create.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\categories\create.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\tags\create.cshtml
+++appsettings.Development.json
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\appsettings.development.json
+++MessagePackAnalyzer
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\.nuget\packages\messagepackanalyzer\2.1.152\analyzers\dotnet\messagepackanalyzer.dll
+++Microsoft.AspNetCore.Analyzers
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.AspNetCore.Razor.SourceGenerator.Tooling.Internal
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.sourcegenerator.tooling.internal.dll
+++Microsoft.NET.Sdk.Razor.SourceGenerators
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
+++Microsoft.AspNetCore.App
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\microsoft.aspnetcore.app
+++Microsoft.AspNetCore.Authentication.Facebook (6.0.1)
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>11306
+++Microsoft.AspNetCore.Authentication.Google (6.0.1)
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>11307
+++Microsoft.VisualStudio.Web.CodeGeneration.Design (6.0.2)
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:>11308
+++serviceDependencies.local.json
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\properties\servicedependencies.local.json
 ++webfonts
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\fontawesome\webfonts\
 ++LICENSE.txt
@@ -655,8 +646,10 @@ i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmo
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\jquery.tinymce.min.js
 ++tinymce.min.js
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\tinymce.min.js
-++EnableAuthenticator.cshtml.cs
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\manage\enableauthenticator.cshtml.cs
+++Pages
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\
+++IdentityHostingStartup.cs
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\identityhostingstartup.cs
 ++bootstrap.css
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\bootstrap\dist\css\bootstrap.css
 ++bootstrap-grid.css
@@ -831,6 +824,8 @@ i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmo
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\themes\mobile\
 ++silver
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\themes\silver\
+++Account
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\
 ++bootstrap.css.map
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\bootstrap\dist\css\bootstrap.css.map
 ++bootstrap.min.css
@@ -967,6 +962,14 @@ i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmo
 ++theme.min.js
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\themes\mobile\theme.min.js
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\themes\silver\theme.min.js
+++Manage
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\manage\
+++ForgotPassword.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\forgotpassword.cshtml
+++Login.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\login.cshtml
+++Register.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\register.cshtml
 ++bootstrap.min.css.map
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\bootstrap\dist\css\bootstrap.min.css.map
 ++bootstrap-grid.min.css.map
@@ -1078,6 +1081,18 @@ i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmo
 ++skin.mobile.min.css
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\skins\ui\oxide\skin.mobile.min.css
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\skins\ui\oxide-dark\skin.mobile.min.css
+++_ManageNav.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\manage\_managenav.cshtml
+++EnableAuthenticator.cshtml
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\manage\enableauthenticator.cshtml
+++ManageNavPages.cs
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\manage\managenavpages.cs
+++ForgotPassword.cshtml.cs
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\forgotpassword.cshtml.cs
+++Login.cshtml.cs
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\login.cshtml.cs
+++Register.cshtml.cs
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\register.cshtml.cs
 ++bootstrap.bundle.min.js.map
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\bootstrap\dist\js\bootstrap.bundle.min.js.map
 ++selectize.min.js
@@ -1087,22 +1102,8 @@ i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmo
 ++tinymce-mobile.woff
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\skins\ui\oxide\fonts\tinymce-mobile.woff
 i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\wwwroot\lib\tinymce\skins\ui\oxide-dark\fonts\tinymce-mobile.woff
+++EnableAuthenticator.cshtml.cs
+i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\areas\identity\pages\account\manage\enableauthenticator.cshtml.cs
+++EditReplyFormModel.cs
+i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\replies\editreplyformmodel.cs
 ++NewFolder
-++Components
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\components\
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\components\
-++ReplyCreateViewComponent.cs
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\components\replycreateviewcomponent.cs
-++CreateReply.cs
-++CreateReply.cshtml
-++20220226140842_AddedParentIdToReply.cs
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\migrations\20220226140842_addedparentidtoreply.cs
-++20220226140842_AddedParentIdToReply.Designer.cs
-i:{63255ba7-003a-4dd4-959b-853fa03c16b2}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\data\yourmoviesforum.data\migrations\20220226140842_addedparentidtoreply.designer.cs
-++CreateReply
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\components\createreply\
-++Default.cshtml
-i:{f3f01a87-3ec5-4bdc-8d1e-936e96d5f132}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmovies.web\views\shared\components\createreply\default.cshtml
-++PostRepliesDetailsViewModel.cs
-i:{26e35824-4579-4401-8d0a-cae01f60e0ad}:c:\users\user\desktop\my project\yourmoviesforum\yourmoviesforum\web\yourmoviesforum.web.inputmodels\posts\postrepliesdetailsviewmodel.cs
-++PostsAuthorDetailsViewModel.cs

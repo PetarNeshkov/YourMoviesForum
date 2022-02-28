@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 using System.Threading.Tasks;
+
 using YourMovies.Web.Infrastructure;
 using YourMoviesForum.Services.Data.Replies;
 using YourMoviesForum.Web.InputModels.Replies;
@@ -44,6 +46,25 @@ namespace YourMovies.Web.Controllers
             }
 
             return View(reply);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditReplyFormModel input)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(input);
+            }
+
+            var replyAuthorId = await replyService.GetReplyAuthorIdAsync<EditReplyFormModel>(input.Id);
+            if (replyAuthorId!=User.Id() && User.IsAdministrator())
+            {
+                return Unauthorized();
+            }
+
+            await replyService.EditAsync(input.Id, input.SanitizedContent);
+
+            return RedirectToAction("Details", "Posts", new { id = input.Id});
         }
     }
 }
