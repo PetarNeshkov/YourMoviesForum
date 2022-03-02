@@ -46,6 +46,7 @@ namespace YourMovies.Web
             //Replies
             CreateMap<Reply, PostRepliesDetailsViewModel>();
             CreateMap<Reply, EditReplyFormModel>();
+            CreateMap<Reply, ReplyDetailsViewModel>();
 
             //User
             CreateMap<ApplicationUser,PostAuthorDetailsViewModel>();

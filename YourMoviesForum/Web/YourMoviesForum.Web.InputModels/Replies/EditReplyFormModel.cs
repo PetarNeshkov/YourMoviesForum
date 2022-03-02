@@ -16,6 +16,8 @@ namespace YourMoviesForum.Web.InputModels.Replies
         }
         public int Id { get; init; }
 
+        public int PostId { get; init; }
+
         [Required]
         [MaxLength(ReplyContentMaxLength)]
         public string Content { get; init; }

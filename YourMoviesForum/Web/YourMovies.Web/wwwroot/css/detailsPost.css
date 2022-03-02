@@ -84,3 +84,9 @@ i#tag-icon{
     display:block;
 }
 
+.nested {
+    background-color: #f7f8fa;
+    border: 2px solid; 
+    padding: 30px 43px 42px 28px;
+}
+

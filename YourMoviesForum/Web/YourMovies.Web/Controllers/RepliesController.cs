@@ -7,6 +7,8 @@ using YourMovies.Web.Infrastructure;
 using YourMoviesForum.Services.Data.Replies;
 using YourMoviesForum.Web.InputModels.Replies;
 
+using static YourMoviesForum.Common.GlobalConstants;
+
 namespace YourMovies.Web.Controllers
 {
     [Authorize]
@@ -63,6 +65,8 @@ namespace YourMovies.Web.Controllers
             }
 
             await replyService.EditAsync(input.Id, input.SanitizedContent);
+
+            TempData[GlobalMessageKey] = $"Your reply was successfully edited!";
 
             return RedirectToAction(nameof(Details), new { id = input.Id});
         }
