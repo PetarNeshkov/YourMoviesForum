@@ -1,0 +1,54 @@
+﻿@model NestedReplies
+
+<link href="~/css/detailsPost.css" rel="stylesheet" type="text/css" />
+
+@{
+    var replies = Model.Replies.Where(r => r.ParentId == Model.ParentId);
+}
+
+ <section class="main">
+           @foreach(var reply in replies)
+           {
+              <div class="current-element">
+                <div class="nested">
+                 <div id="header">
+                   <div class="top-header">
+                      @reply.Author.UserName
+                       <div>
+                          <i id="calendar-icon" class="calendar-icon fas fa-calendar-alt"></i>@reply.CreatedOn.ToLocalTime().ToString("g")
+                       </div>
+                   </div>
+                  </div>      
+                   <div id="content">
+                       <p>@Html.Raw(@reply.SanitizedContent)</p>
+                   </div>
+                  <div id="options">
+                     @if (User.Identity.IsAuthenticated)
+                     {
+                         @if (@reply.Author.Id == this.User.Id() || User.IsAdministrator())
+                         {
+                             <a asp-controller="Replies" 
+                                asp-action="Edit" 
+                                asp-route-id="@reply.Id" 
+                                style="color: #666f74">
+                                 <i class="fas fa-edit"></i>
+                             </a>
+                             <a asp-controller="Replies" 
+                                asp-action="Delete" 
+                                asp-route-id="@reply.Id" 
+                                style="color: #666f74">
+                                 <i class="fas fa-trash"></i>
+                             </a>
+                         }
+                             <a asp-controller="Replies" 
+                              asp-action="Details"
+                              asp-route-id="@reply.Id" 
+                              style="color: #666f74">
+                              <i class="fas fa-comment-dots"><use xlink:href="#icon-reply"></use></i>
+                             </a>  
+                     }
+                  </div>
+               </div>
+              </div>
+           }
+       </section>
