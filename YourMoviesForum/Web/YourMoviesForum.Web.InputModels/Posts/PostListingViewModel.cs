@@ -13,6 +13,8 @@ namespace YourMoviesForum.Web.InputModels.Home
 
         public int Rating { get; init; }
 
+        public int RepliesCount { get; init; }
+
         public PostCategoryViewModel Category { get; init; }
         public  IEnumerable<PostTagViewModel> Tags { get; set; }
     }

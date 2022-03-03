@@ -16,7 +16,10 @@ namespace YourMovies.Web
         public MappingProfiler()
         {
             //Posts
-            CreateMap<Post, PostListingViewModel>();
+            CreateMap<Post, PostListingViewModel>()
+                .ForMember(
+                    x => x.RepliesCount,
+                    x => x.MapFrom(src => src.Replies.Count(r => !r.IsDeleted)));
             CreateMap<Post, AllPostsQueryModel>();
             CreateMap<Post, PostTagViewModel>();
             CreateMap<Post, PostDetailsViewModel>();
@@ -31,16 +34,16 @@ namespace YourMovies.Web
             CreateMap<Category, PostCategoryViewModel>();
             CreateMap<Category, CategoryListingViewModel>()
                  .ForMember(
-                    dest => dest.PostsCount,
-                    dest => dest.MapFrom(src => src.Posts.Count(p => !p.IsDeleted)));
+                    x => x.PostsCount,
+                    x => x.MapFrom(src => src.Posts.Count(p => !p.IsDeleted)));
 
 
             //Tags
             CreateMap<Tag, PostTagViewModel>();
             CreateMap<Tag, TagsListingViewModel>()
                  .ForMember(
-                    dest => dest.PostsCount,
-                    dest => dest.MapFrom(src => src.Posts.Count(p => !p.IsDeleted)));
+                    x => x.PostsCount,
+                    x => x.MapFrom(src => src.Posts.Count(p => !p.IsDeleted)));
 
 
             //Replies

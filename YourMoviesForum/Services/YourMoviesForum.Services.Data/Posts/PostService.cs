@@ -108,8 +108,9 @@ namespace YourMoviesForum.Services.Data.Posts
             queryablePosts = query switch
             {
                 PostSorting.TagsCount => queryablePosts.OrderByDescending(t => t.Tags.Count),
-                PostSorting.RatingCount => queryablePosts.OrderByDescending(t => t.Rating),
-                PostSorting.DateCreated or _ => queryablePosts.OrderByDescending(c => c.Id)
+                PostSorting.RatingCount => queryablePosts.OrderByDescending(r => r.Rating),
+                PostSorting.ReplyCount=>queryablePosts.OrderByDescending(r=>r.Replies.Count),
+                PostSorting.DateCreated or _ => queryablePosts.OrderByDescending(d => d.Id)
             };
             return queryablePosts;
         }
