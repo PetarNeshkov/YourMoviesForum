@@ -5,6 +5,7 @@ using YourMovies.Web.Infrastructure;
 using YourMoviesForum;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Categories;
+using YourMoviesForum.Services.Data.Replies;
 using YourMoviesForum.Services.Data.Tags;
 using YourMoviesForum.Services.Providers.Pagination;
 using YourMoviesForum.Web.InputModels;
@@ -22,17 +23,20 @@ namespace YourMovies.Web.Controllers
         private readonly IPostService postService;
         private readonly ICategoryService categoryService;
         private readonly ITagService tagService;
+        private readonly IReplyService replyService;
 
         public PostsController(
             YourMoviesDbContext data,
             IPostService postService,
             ICategoryService categoryService,
-            ITagService tagService)
+            ITagService tagService,
+            IReplyService replyService)
         {
             this.data = data;
             this.postService = postService;
             this.categoryService = categoryService;
             this.tagService = tagService;
+            this.replyService = replyService;
         }
 
         [Authorize]
@@ -98,6 +102,7 @@ namespace YourMovies.Web.Controllers
             }
 
             post.Tags = await tagService.GetAllPostsByIdAsync<PostTagViewModel>(id);
+            post.Replies = await replyService.GetAllRepliesByPostIdAsync<PostRepliesDetailsViewModel>(id);
 
             return View(post);
         }

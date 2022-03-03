@@ -84,5 +84,44 @@ namespace YourMovies.Web.Controllers
 
             return View(reply);
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var reply = await replyService.GetByIdAsync<ReplyDeleteViewModel>(id);
+
+            if (reply == null)
+            {
+                return NotFound();
+            }
+
+            if (reply.Author.Id != User.Id() && User.IsAdministrator())
+            {
+                return Unauthorized();
+            }
+
+            return View(reply);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmDelete(int id)
+        {
+            var reply = await replyService.GetByIdAsync<ReplyDeleteAuthorViewModel>(id);
+
+            if (reply == null)
+            {
+                return NotFound();
+            }
+
+            if (reply.AuthorId != User.Id() && User.IsAdministrator())
+            {
+                return Unauthorized();
+            }
+
+            await replyService.DeleteAsync(id);
+
+            TempData[GlobalMessageKey] = $"Your reply was successfully deleted!";
+
+            return RedirectToAction("Details", "Posts", new { id = reply.PostId });
+        }
     }
 }
