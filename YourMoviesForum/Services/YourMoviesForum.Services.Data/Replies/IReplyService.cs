@@ -14,5 +14,7 @@ namespace YourMoviesForum.Services.Data.Replies
         Task EditAsync(int id, string content);
 
         Task<IEnumerable<TModel>> GetAllRepliesByPostIdAsync<TModel>(int postId);
+
+        Task DeleteAsync(int id);
     }
 }

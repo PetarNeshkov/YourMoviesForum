@@ -45,6 +45,18 @@ namespace YourMoviesForum.Services.Data.Replies
             await data.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(int id)
+        {
+           var reply= data.Replies.FirstOrDefault(r => r.Id == id && !r.IsDeleted);
+
+            reply.IsDeleted = true;
+            reply.DeletedOn=dateTimeProvider.Now();
+
+
+            await DeleteNestedRepliesAsync(id);
+            await data.SaveChangesAsync();
+        }
+
         public async Task EditAsync(int id, string content)
         {
             var reply= data.Replies.FirstOrDefault(r => r.Id == id && !r.IsDeleted);
@@ -75,5 +87,21 @@ namespace YourMoviesForum.Services.Data.Replies
                    .Where(r => r.Id == id && !r.IsDeleted)
                    .Select(r => r.AuthorId)
                    .FirstOrDefaultAsync();
+
+        private async Task DeleteNestedRepliesAsync(int id)
+        {
+            var nestedReply=await data.Replies.FirstOrDefaultAsync(r=>r.ParentId==id && !r.IsDeleted);
+
+            if (nestedReply==null)
+            {
+                return;
+            }
+
+            nestedReply.IsDeleted=true;
+            nestedReply.DeletedOn = dateTimeProvider.Now();
+
+            await data.SaveChangesAsync();
+            await DeleteNestedRepliesAsync(nestedReply.Id);
+        }
     }
 }
