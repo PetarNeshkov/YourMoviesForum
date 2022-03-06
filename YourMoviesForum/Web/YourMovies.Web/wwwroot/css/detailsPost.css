@@ -66,6 +66,14 @@ i#tag-icon{
     margin-right:5px;
 }
 
+#reactions {
+    display: flex;
+    float: left;
+    justify-content: space-between;
+    column-gap: 20px;
+    font-size:20px;
+}
+
 #options {
     display: flex;
     float: right;
@@ -89,4 +97,13 @@ i#tag-icon{
     border: 2px solid; 
     padding: 30px 43px 42px 28px;
 }
+
+.reactions {
+    clear: both;
+    display: flex;
+    padding-top: 45px;
+    column-gap: 23px;
+    font-size: 20px;
+}
+
 
