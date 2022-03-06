@@ -19,6 +19,7 @@ using YourMoviesForum.Services.Providers.DateTime;
 using YourMoviesForum.Services.Providers.Email;
 using YourMoviesForum.Services.Providers.Security_Models;
 using YourMoviesForum.Services.Data.Replies;
+using YourMoviesForum.Services.Data.PostReactions;
 
 namespace YourMovies.Web
 {
@@ -53,18 +54,14 @@ namespace YourMovies.Web
 
             services.AddAutoMapper(typeof(MappingProfiler));
 
-
+            services.AddAntiforgery(o => o.HeaderName = "X-CSRF-TOKEN");
             services.AddControllersWithViews(
                 options =>
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 }).AddRazorRuntimeCompilation();
 
-            services.AddAntiforgery(options =>
-            {
-                options.HeaderName = "X-CSRF-TOKEN";
-            });
-
+            
             services.AddAuthentication()
               .AddFacebook(facebookOptions =>
               {
@@ -85,7 +82,8 @@ namespace YourMovies.Web
                     .AddTransient<ITagService, TagService>()
                     .AddTransient<IDateTimeProvider, DateTimeProvider>()
                     .AddTransient<IUserService, User>()
-                    .AddTransient<IReplyService, ReplyService>();
+                    .AddTransient<IReplyService, ReplyService>()
+                    .AddTransient<IPostReactionService,PostReactionService>();
                     
 
             services.Configure<ReCaptchSettings>(this.configuration.GetSection("GoogleReCaptcha"));

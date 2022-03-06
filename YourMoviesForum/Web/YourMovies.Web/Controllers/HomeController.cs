@@ -5,12 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
 using YourMoviesForum.Services.Data;
-using YourMoviesForum.Services.Providers.Pagination;
 using YourMovies.Web.Models;
 using YourMoviesForum.Web.InputModels.Home;
-using YourMoviesForum.Web.InputModels.Posts;
 
-using static YourMoviesForum.Common.GlobalConstants.Post;
+
+
 using static YourMoviesForum.Common.GlobalConstants;
 using System.Collections.Generic;
 using System;

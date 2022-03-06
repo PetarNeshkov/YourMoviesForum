@@ -14,6 +14,7 @@ namespace YourMoviesForum.Data.Models
         {
             Replies = new HashSet<Reply>();
             Tags = new HashSet<Tag>();
+            Reactions = new HashSet<PostReaction>(); 
         }
 
         [Required]
@@ -37,6 +38,7 @@ namespace YourMoviesForum.Data.Models
 
         public ICollection<Reply> Replies { get; set; }
         public ICollection<Tag> Tags { get; set; }
-     
+        public ICollection<PostReaction> Reactions { get; set; }
+
     }
 }

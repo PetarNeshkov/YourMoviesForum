@@ -567,7 +567,7 @@ namespace YourMoviesForum.Data.Migrations
                         .HasForeignKey("AuthorId");
 
                     b.HasOne("YourMoviesForum.Data.Models.Post", "Post")
-                        .WithMany()
+                        .WithMany("Reactions")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -620,6 +620,8 @@ namespace YourMoviesForum.Data.Migrations
 
             modelBuilder.Entity("YourMoviesForum.Data.Models.Post", b =>
                 {
+                    b.Navigation("Reactions");
+
                     b.Navigation("Replies");
                 });
 #pragma warning restore 612, 618
