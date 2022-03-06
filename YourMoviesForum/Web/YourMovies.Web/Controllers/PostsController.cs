@@ -101,6 +101,8 @@ namespace YourMovies.Web.Controllers
                 return NotFound();
             }
 
+            await this.postService.ViewAsync(id);
+
             post.Tags = await tagService.GetAllPostsByIdAsync<PostTagViewModel>(id);
             post.Replies = await replyService.GetAllRepliesByPostIdAsync<PostRepliesDetailsViewModel>(id);
 

@@ -8,6 +8,7 @@ using YourMoviesForum.Data.Models;
 using AutoMapper;
 
 using System.Linq;
+using YourMoviesForum.Web.InputModels.Reactions.enums;
 
 namespace YourMovies.Web
 {
@@ -22,7 +23,16 @@ namespace YourMovies.Web
                     x => x.MapFrom(src => src.Replies.Count(r => !r.IsDeleted)));
             CreateMap<Post, AllPostsQueryModel>();
             CreateMap<Post, PostTagViewModel>();
-            CreateMap<Post, PostDetailsViewModel>();
+            CreateMap<Post, PostDetailsViewModel>()
+                .ForMember(
+                  x => x.RepliesCount,
+                  x => x.MapFrom(src => src.Replies.Count(r => !r.IsDeleted)))
+                .ForMember(
+                  x => x.LikesCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Like)))
+                .ForMember(
+                  x => x.DislikesCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Dislike)));
             CreateMap<Post, EditPostFormModel>()
               .ForMember(
                   x=>x.TagIds,
