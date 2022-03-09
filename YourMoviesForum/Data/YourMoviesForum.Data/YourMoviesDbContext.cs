@@ -29,6 +29,7 @@ namespace YourMoviesForum
 
         public DbSet<PostReaction> PostReactions { get; init; }
 
+        public DbSet<ReplyReaction> ReplyReactions { get; init; }
 
         public override int SaveChanges() => SaveChanges(true);
 
