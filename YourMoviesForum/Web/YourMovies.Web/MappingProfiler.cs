@@ -45,14 +45,12 @@ namespace YourMovies.Web
                   x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Sad)))
                 .ForMember(
                   x => x.AngryReactionsCount,
-                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Angry))); 
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Angry)));
             CreateMap<Post, EditPostFormModel>()
               .ForMember(
                   x=>x.TagIds,
                   x=>x.MapFrom(src=>src.Tags.Select(t=>t.Id)));
-            CreateMap<Post,PostDeleteViewModel>();
-            CreateMap<Post,PostDeleteAuthorViewModel>();
-            CreateMap<Post, PostReactionsViewModel>()
+            CreateMap<Post,PostDeleteViewModel>()
                 .ForMember(
                   x => x.LikesCount,
                   x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Like)))
@@ -71,6 +69,8 @@ namespace YourMovies.Web
                 .ForMember(
                   x => x.AngryReactionsCount,
                   x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Angry)));
+            CreateMap<Post,PostDeleteAuthorViewModel>();
+           
 
             //Categories
             CreateMap<Category, PostCategoryViewModel>();

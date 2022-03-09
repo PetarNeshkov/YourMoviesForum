@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 
 using YourMoviesForum.Common;
+using YourMoviesForum.Web.InputModels.Reactions;
 
 namespace YourMoviesForum.Web.InputModels.Posts
 {
-    public class PostDeleteViewModel
+    public class PostDeleteViewModel: PostReactionsViewModel
     {
         private readonly IHtmlSanitizer sanitizer;
         public PostDeleteViewModel()

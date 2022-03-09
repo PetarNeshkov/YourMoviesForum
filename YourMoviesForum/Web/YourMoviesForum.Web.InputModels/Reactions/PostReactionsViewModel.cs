@@ -2,6 +2,8 @@
 {
     public class PostReactionsViewModel
     {
+        public int RepliesCount { get; init; }
+        public int Rating { get; init; }
         public int LikesCount { get; init; }
         public int HeartReactionsCount { get; init; }
         public int HahaReactionsCount { get; init; }

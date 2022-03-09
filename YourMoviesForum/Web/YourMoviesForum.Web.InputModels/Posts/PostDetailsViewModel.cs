@@ -24,10 +24,6 @@ namespace YourMoviesForum.Web.InputModels.Posts
         public string SanitizedContent
             => this.sanitizer.Sanitize(Content);
 
-        public int RepliesCount { get; init; }
-
-        public int Rating { get; init; }
-
         public PostAuthorDetailsViewModel Author { get; init; }
 
         public PostCategoryViewModel Category { get; init; }
