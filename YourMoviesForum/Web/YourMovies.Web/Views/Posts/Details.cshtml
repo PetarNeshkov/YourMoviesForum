@@ -5,9 +5,8 @@
 
 }
 
-
 <link href="~/css/detailsPost.css" rel="stylesheet" type="text/css" />
-
+<link  href="~/css/a.css" rel="stylesheet" type="text/css" />
 
 
 <body>
@@ -49,12 +48,24 @@
         </div>
         <form id="reactions-form" method="post"></form>
         <div id="reactions">
-            <button type="button" style="padding: 0; border:none; background:none; outline: none; color: #666f74" onclick="likeReaction(@Model.Id, 'post-reactions')">
+            <button class="button" type="button"  onclick="likeReaction(@Model.Id, 'post-reactions')">
                 <i class='fa fa-thumbs-up' style='color:#35c4f3'></i>
             </button>
-            <button type="button" style="padding: 0; border:none; background:none; outline: none; color: #666f74" onclick="dislikeReaction(@Model.Id, 'post-reactions')">
-                <i class='fa fa-thumbs-down' style='color:#35c4f3'></i>
+             <button class="button" type="button" onclick="heartReaction(@Model.Id, 'post-reactions')">
+                  <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png" alt="heart"/>
             </button>
+            <button class="button" type="button" onclick="hahaReaction(@Model.Id, 'post-reactions')">
+                  <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png" alt="haha"/>
+            </button>
+            <button class="button" type="button" onclick="wowReaction(@Model.Id, 'post-reactions')">
+                  <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png" alt="wow"/>
+            </button>
+            <button class="button" type="button" onclick="sadReaction(@Model.Id, 'post-reactions')">
+                  <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/JJuD9qb_a7gkmu.png" alt="sad"/>
+            </button>
+            <button class="button" type="button" onclick="angryReaction(@Model.Id, 'post-reactions')">
+                  <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png" alt="angry"/>
+            </button>     
         </div>
         <div id="options">
             @if (User.Identity.IsAuthenticated)
@@ -95,8 +106,24 @@
                 <span id="post-likes">@Model.LikesCount</span>
             </div>
             <div>
-                <i class='fa fa-thumbs-down' style='color:#35c4f3'></i>
-                <span id="post-dislikes">@Model.DislikesCount</span>
+                <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png" alt="heart"/>
+                <span id="post-hearts">@Model.HeartReactionsCount</span>
+            </div>
+             <div>
+                <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png" alt="haha"/>
+                <span id="post-hahas">@Model.HahaReactionsCount</span>
+            </div>
+              <div>
+                <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png" alt="wow"/>
+                <span id="post-wows">@Model.WowReactionsCount</span>
+            </div>
+              <div>
+                <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/JJuD9qb_a7gkmu.png" alt="sad"/>
+                <span id="post-sads">@Model.SadReactionsCount</span>
+            </div>
+              <div>
+                <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png" alt="angry"/>
+                <span id="post-angries">@Model.AngryReactionsCount</span>
             </div>
 
         </div>
@@ -157,45 +184,111 @@
 
 @section Scripts{
 <partial name="_ValidationScriptsPartial" />
-<script>
 
+<script>
+    
     function animateButton() {
           $('html, body').animate({
               scrollTop: $("#reply-box").offset().top
           }, 1500);
     }
+    var token = $("#reactions-form input[name=__RequestVerificationToken]").val();
+     
+    function likeReaction(id, controller) {
+       $.ajax({
+           type: "POST",
+           url: "/api/" + controller + "/like/" + id,
+           headers: { 'X-CSRF-TOKEN': token },
+           success: function (json) {
+              $("#post-likes").html(json.likes);
+              $("#post-hearts").html(json.heartReactionsCount);
+              $("#post-hahas").html(json.hahaReactionsCount);
+              $("#post-wows").html(json.wowReactionsCount);
+              $("#post-sads").html(json.sadReactionsCount);
+              $("#post-angries").html(json.angryReactionsCount);                    
+           }
+       });
+    }
 
+    function heartReaction(id, controller) {
+       $.ajax({
+           type: "POST",
+           url: "/api/" + controller + "/heart/" + id,
+           headers: { 'X-CSRF-TOKEN': token },
+           success: function (json) {
+              $("#post-likes").html(json.likes);
+              $("#post-hearts").html(json.heartReactionsCount);
+              $("#post-hahas").html(json.hahaReactionsCount);
+              $("#post-wows").html(json.wowReactionsCount);
+              $("#post-sads").html(json.sadReactionsCount);
+              $("#post-angries").html(json.angryReactionsCount);                    
+           }
+       });
+    }
 
+    function hahaReaction(id, controller) {
+      $.ajax({
+          type: "POST",
+          url: "/api/" + controller + "/haha/" + id,
+          headers: { 'X-CSRF-TOKEN': token },
+          success: function (json) {
+             $("#post-likes").html(json.likes);
+             $("#post-hearts").html(json.heartReactionsCount);
+             $("#post-hahas").html(json.hahaReactionsCount);
+             $("#post-wows").html(json.wowReactionsCount);
+             $("#post-sads").html(json.sadReactionsCount);
+             $("#post-angries").html(json.angryReactionsCount);                    
+          }
+      });
+   }
 
-      var token = $("#reactions-form input[name=__RequestVerificationToken]").val();
+   function wowReaction(id, controller) {
+      $.ajax({
+          type: "POST",
+          url: "/api/" + controller + "/wow/" + id,
+          headers: { 'X-CSRF-TOKEN': token },
+          success: function (json) {
+             $("#post-likes").html(json.likes);
+             $("#post-hearts").html(json.heartReactionsCount);
+             $("#post-hahas").html(json.hahaReactionsCount);
+             $("#post-wows").html(json.wowReactionsCount);
+             $("#post-sads").html(json.sadReactionsCount);
+             $("#post-angries").html(json.angryReactionsCount);                    
+          }
+      });
+   }
 
+   function sadReaction(id, controller) {
+      $.ajax({
+          type: "POST",
+          url: "/api/" + controller + "/sad/" + id,
+          headers: { 'X-CSRF-TOKEN': token },
+          success: function (json) {
+             $("#post-likes").html(json.likes);
+             $("#post-hearts").html(json.heartReactionsCount);
+             $("#post-hahas").html(json.hahaReactionsCount);
+             $("#post-wows").html(json.wowReactionsCount);
+             $("#post-sads").html(json.sadReactionsCount);
+             $("#post-angries").html(json.angryReactionsCount);                    
+          }
+      });
+   }
+   
+   function angryReaction(id, controller) {
+      $.ajax({
+          type: "POST",
+          url: "/api/" + controller + "/angry/" + id,
+          headers: { 'X-CSRF-TOKEN': token },
+          success: function (json) {
+             $("#post-likes").html(json.likes);
+             $("#post-hearts").html(json.heartReactionsCount);
+             $("#post-hahas").html(json.hahaReactionsCount);
+             $("#post-wows").html(json.wowReactionsCount);
+             $("#post-sads").html(json.sadReactionsCount);
+             $("#post-angries").html(json.angryReactionsCount);                    
+          }
+      });
+   }
 
-      function likeReaction(id, controller) {
-          $.ajax({
-              type: "POST",
-              url: "/api/" + controller + "/like/" + id,
-              headers: { 'X-CSRF-TOKEN': token },
-              success: function (json) {
-
-                      $("#post-likes").html(json.likes);
-                      $("#post-dislikes").html(json.dislikes);
-                  
-              }
-          });      
-      }
-
-       function dislikeReaction(id, controller) {
-          $.ajax({
-              type: "POST",
-              url: "/api/" + controller + "/dislike/" + id,
-              headers: { 'X-CSRF-TOKEN': token },
-              success: function (json) {
-
-                      $("#post-likes").html(json.likes);
-                      $("#post-dislikes").html(json.dislikes);
-                    
-              }
-          });
-       }
 </script>
 }

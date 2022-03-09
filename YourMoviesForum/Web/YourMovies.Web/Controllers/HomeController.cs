@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
@@ -11,8 +13,6 @@ using YourMoviesForum.Web.InputModels.Home;
 
 
 using static YourMoviesForum.Common.GlobalConstants;
-using System.Collections.Generic;
-using System;
 
 namespace YourMovies.Web.Controllers
 {

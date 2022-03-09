@@ -1,8 +1,8 @@
 ﻿namespace YourMoviesForum.Web.InputModels.Reactions
 {
-    public class ReactionCountServiceModel
+    public class PostReactionsViewModel
     {
-        public int Likes { get; init; }
+        public int LikesCount { get; init; }
         public int HeartReactionsCount { get; init; }
         public int HahaReactionsCount { get; init; }
         public int WowReactionsCount { get; init; }

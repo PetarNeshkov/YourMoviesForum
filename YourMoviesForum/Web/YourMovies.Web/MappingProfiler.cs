@@ -9,6 +9,7 @@ using AutoMapper;
 
 using System.Linq;
 using YourMoviesForum.Web.InputModels.Reactions.enums;
+using YourMoviesForum.Web.InputModels.Reactions;
 
 namespace YourMovies.Web
 {
@@ -31,14 +32,45 @@ namespace YourMovies.Web
                   x => x.LikesCount,
                   x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Like)))
                 .ForMember(
-                  x => x.DislikesCount,
-                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Dislike)));
+                  x => x.HeartReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Heart)))
+                .ForMember(
+                  x => x.HahaReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Haha)))
+                .ForMember(
+                  x => x.WowReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Wow)))
+                .ForMember(
+                  x => x.SadReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Sad)))
+                .ForMember(
+                  x => x.AngryReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Angry))); 
             CreateMap<Post, EditPostFormModel>()
               .ForMember(
                   x=>x.TagIds,
                   x=>x.MapFrom(src=>src.Tags.Select(t=>t.Id)));
             CreateMap<Post,PostDeleteViewModel>();
             CreateMap<Post,PostDeleteAuthorViewModel>();
+            CreateMap<Post, PostReactionsViewModel>()
+                .ForMember(
+                  x => x.LikesCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Like)))
+                .ForMember(
+                  x => x.HeartReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Heart)))
+                .ForMember(
+                  x => x.HahaReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Haha)))
+                .ForMember(
+                  x => x.WowReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Wow)))
+                .ForMember(
+                  x => x.SadReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Sad)))
+                .ForMember(
+                  x => x.AngryReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Angry)));
 
             //Categories
             CreateMap<Category, PostCategoryViewModel>();

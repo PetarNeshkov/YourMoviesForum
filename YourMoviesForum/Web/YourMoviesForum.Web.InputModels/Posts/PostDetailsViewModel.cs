@@ -3,10 +3,11 @@ using System.Collections.Generic;
 
 using Ganss.XSS;
 using YourMoviesForum.Common;
+using YourMoviesForum.Web.InputModels.Reactions;
 
 namespace YourMoviesForum.Web.InputModels.Posts
 {
-    public class PostDetailsViewModel
+    public class PostDetailsViewModel:PostReactionsViewModel
     {
         private readonly IHtmlSanitizer sanitizer;
         public PostDetailsViewModel()
@@ -22,6 +23,10 @@ namespace YourMoviesForum.Web.InputModels.Posts
 
         public string SanitizedContent
             => this.sanitizer.Sanitize(Content);
+
+        public int RepliesCount { get; init; }
+
+        public int Rating { get; init; }
 
         public PostAuthorDetailsViewModel Author { get; init; }
 

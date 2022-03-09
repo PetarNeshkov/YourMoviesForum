@@ -61,7 +61,7 @@ namespace YourMovies.Web
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 }).AddRazorRuntimeCompilation();
 
-            
+
             services.AddAuthentication()
               .AddFacebook(facebookOptions =>
               {
@@ -87,6 +87,7 @@ namespace YourMovies.Web
                     
 
             services.Configure<ReCaptchSettings>(this.configuration.GetSection("GoogleReCaptcha"));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

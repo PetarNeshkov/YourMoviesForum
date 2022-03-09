@@ -48,7 +48,11 @@ namespace YourMoviesForum.Services.Data.PostReactions
             => new ReactionCountServiceModel
             {
                 Likes=await GetCountByPostTypeAndIdAsync(ReactionType.Like, postId),
-                Dislikes=await GetCountByPostTypeAndIdAsync(ReactionType.Dislike, postId),
+                HeartReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Heart, postId),
+                HahaReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Haha, postId),
+                WowReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Wow, postId),
+                SadReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Sad, postId),
+                AngryReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Angry, postId)
             };
 
         private async Task<int> GetCountByPostTypeAndIdAsync(ReactionType reactionType,int postId)

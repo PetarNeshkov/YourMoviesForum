@@ -1,0 +1,10 @@
+﻿.button {
+    padding: 0;
+    border:none; 
+    background:none; 
+    outline: none; 
+}
+
+.picture {
+    width: 30px;
+}
