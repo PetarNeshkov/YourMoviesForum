@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 using YourMoviesForum.Data.Common.Models;
 
@@ -8,6 +10,11 @@ namespace YourMoviesForum.Data.Models
 {
     public class Reply:BaseDeletetableModel<int>
     {
+        public Reply()
+        {
+            Reactions = new HashSet<ReplyReaction>();
+        }
+
         [Required]
         [MaxLength(ContentMaxLength)]
         public string Content { get; set; }
@@ -21,5 +28,7 @@ namespace YourMoviesForum.Data.Models
         public int? ParentId { get; set; }
 
         public Reply Parent { get; set; }
+
+        public ICollection<ReplyReaction> Reactions { get; set; }
     }
 }

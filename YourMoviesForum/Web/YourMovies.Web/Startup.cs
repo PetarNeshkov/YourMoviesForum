@@ -20,6 +20,7 @@ using YourMoviesForum.Services.Providers.Email;
 using YourMoviesForum.Services.Providers.Security_Models;
 using YourMoviesForum.Services.Data.Replies;
 using YourMoviesForum.Services.Data.PostReactions;
+using YourMoviesForum.Services.Data.ReplyReactions;
 
 namespace YourMovies.Web
 {
@@ -83,7 +84,8 @@ namespace YourMovies.Web
                     .AddTransient<IDateTimeProvider, DateTimeProvider>()
                     .AddTransient<IUserService, User>()
                     .AddTransient<IReplyService, ReplyService>()
-                    .AddTransient<IPostReactionService,PostReactionService>();
+                    .AddTransient<IPostReactionService,PostReactionService>()
+                    .AddTransient<IReplyReactionService,ReplyReactionService>();
                     
 
             services.Configure<ReCaptchSettings>(this.configuration.GetSection("GoogleReCaptcha"));
