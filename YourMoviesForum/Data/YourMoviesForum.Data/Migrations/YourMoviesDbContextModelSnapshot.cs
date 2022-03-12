@@ -17,7 +17,7 @@ namespace YourMoviesForum.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -435,38 +435,6 @@ namespace YourMoviesForum.Data.Migrations
                     b.ToTable("Replies");
                 });
 
-            modelBuilder.Entity("YourMoviesForum.Data.Models.ReplyReaction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ReactionType")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReplyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("ReplyId");
-
-                    b.ToTable("ReplyReactions");
-                });
-
             modelBuilder.Entity("YourMoviesForum.Data.Models.Tag", b =>
                 {
                     b.Property<int>("Id")
@@ -632,23 +600,6 @@ namespace YourMoviesForum.Data.Migrations
                     b.Navigation("Post");
                 });
 
-            modelBuilder.Entity("YourMoviesForum.Data.Models.ReplyReaction", b =>
-                {
-                    b.HasOne("YourMoviesForum.Data.Models.ApplicationUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("YourMoviesForum.Data.Models.Reply", "Reply")
-                        .WithMany("Reactions")
-                        .HasForeignKey("ReplyId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Reply");
-                });
-
             modelBuilder.Entity("YourMoviesForum.Data.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Claims");
@@ -672,11 +623,6 @@ namespace YourMoviesForum.Data.Migrations
                     b.Navigation("Reactions");
 
                     b.Navigation("Replies");
-                });
-
-            modelBuilder.Entity("YourMoviesForum.Data.Models.Reply", b =>
-                {
-                    b.Navigation("Reactions");
                 });
 #pragma warning restore 612, 618
         }

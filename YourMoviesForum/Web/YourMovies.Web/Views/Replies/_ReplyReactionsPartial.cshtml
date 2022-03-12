@@ -1,0 +1,39 @@
+﻿
+
+<!DOCTYPE html>
+
+<link  href="~/css/a.css" rel="stylesheet" type="text/css" />
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+         <div class="reactions">
+            <div>
+                <i class='fa fa-thumbs-up' style='color:#35c4f3'></i>
+                <span id="post-likes">@Model.LikesCount</span>
+            </div>
+            <div>
+                <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png" alt="heart"/>
+                <span id="post-hearts">@Model.HeartReactionsCount</span>
+            </div>
+            <div>
+                <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png" alt="haha"/>
+                <span id="post-hahas">@Model.HahaReactionsCount</span>
+            </div>
+            <div>
+                <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png" alt="wow"/>
+                <span id="post-wows">@Model.WowReactionsCount</span>
+            </div>
+            <div>
+                <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/JJuD9qb_a7gkmu.png" alt="sad"/>
+                <span id="post-sads">@Model.SadReactionsCount</span>
+            </div>
+            <div>
+                <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png" alt="angry"/>
+                <span id="post-angries">@Model.AngryReactionsCount</span>
+            </div>
+         </div>
+</body>
+</html>

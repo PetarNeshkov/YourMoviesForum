@@ -2,10 +2,12 @@
 
 using Ganss.XSS;
 
+using YourMoviesForum.Web.InputModels.Reactions;
+
 using static YourMoviesForum.Common.GlobalConstants;
 namespace YourMoviesForum.Web.InputModels.Replies
 {
-    public class ReplyDeleteViewModel
+    public class ReplyDeleteViewModel:ReactionsViewModel
     {
       private readonly IHtmlSanitizer sanitizer;
         public ReplyDeleteViewModel()

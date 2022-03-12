@@ -1,6 +1,6 @@
 ﻿namespace YourMoviesForum.Web.InputModels.Reactions
 {
-    public class PostReactionsViewModel
+    public class ReactionsViewModel
     {
         public int RepliesCount { get; init; }
         public int Rating { get; init; }

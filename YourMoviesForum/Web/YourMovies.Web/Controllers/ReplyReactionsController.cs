@@ -13,7 +13,7 @@ namespace YourMovies.Web.Controllers.API
     [Authorize]
     [ApiController]
     [Route("/api/reply-reactions")]
-    public class ReplyReactionsController:ControllerBase
+    public class ReplyReactionsController : ControllerBase
     {
         private readonly IReplyReactionService replyReactionService;
 
@@ -29,39 +29,39 @@ namespace YourMovies.Web.Controllers.API
                replyId,
                User.Id());
 
-        [HttpPost("love/{replyId}")]
+        [HttpPost("heart/{replyId}")]
         public async Task<ActionResult<ReactionCountServiceModel>> Love(int replyId)
             => await replyReactionService.ReactAsync(
                 ReactionType.Heart,
                 replyId,
-                this.User.Id());
+                User.Id());
 
-        [HttpPost("heart/{replyId}")]
+        [HttpPost("haha/{replyId}")]
         public async Task<ActionResult<ReactionCountServiceModel>> Haha(int replyId)
             => await replyReactionService.ReactAsync(
                 ReactionType.Haha,
                 replyId,
-                this.User.Id());
+                User.Id());
 
         [HttpPost("wow/{replyId}")]
         public async Task<ActionResult<ReactionCountServiceModel>> Wow(int replyId)
             => await replyReactionService.ReactAsync(
                 ReactionType.Wow,
                 replyId,
-                this.User.Id());
+                User.Id());
 
         [HttpPost("sad/{replyId}")]
         public async Task<ActionResult<ReactionCountServiceModel>> Sad(int replyId)
             => await replyReactionService.ReactAsync(
                 ReactionType.Sad,
                 replyId,
-                this.User.Id());
+                User.Id());
 
         [HttpPost("angry/{replyId}")]
         public async Task<ActionResult<ReactionCountServiceModel>> Angry(int replyId)
-            => await this.replyReactionsService.ReactAsync(
+            => await replyReactionService.ReactAsync(
                 ReactionType.Angry,
                 replyId,
-                this.User.Id());
+                User.Id());
     }
 }

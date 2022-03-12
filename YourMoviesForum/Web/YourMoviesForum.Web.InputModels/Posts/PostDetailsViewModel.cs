@@ -7,7 +7,7 @@ using YourMoviesForum.Web.InputModels.Reactions;
 
 namespace YourMoviesForum.Web.InputModels.Posts
 {
-    public class PostDetailsViewModel:PostReactionsViewModel
+    public class PostDetailsViewModel:ReactionsViewModel
     {
         private readonly IHtmlSanitizer sanitizer;
         public PostDetailsViewModel()

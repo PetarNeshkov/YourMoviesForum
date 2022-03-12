@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using YourMoviesForum.Web.InputModels.Posts;
-
+using YourMoviesForum.Web.InputModels.Reactions;
 using static YourMoviesForum.Common.GlobalConstants;
 
 namespace YourMoviesForum.Web.InputModels.Replies
 {
-    public class ReplyDetailsViewModel
+    public class ReplyDetailsViewModel:ReactionsViewModel
     {
         private readonly IHtmlSanitizer sanitizer;
 

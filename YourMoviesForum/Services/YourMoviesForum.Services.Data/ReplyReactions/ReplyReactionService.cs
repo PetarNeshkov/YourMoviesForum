@@ -42,20 +42,20 @@ namespace YourMoviesForum.Services.Data.ReplyReactions
             return await GetReactionsCountByPostIdAsync(replyId);
         }
 
-        private async Task<ReactionCountServiceModel> GetReactionsCountByPostIdAsync(int postId)
+        private async Task<ReactionCountServiceModel> GetReactionsCountByPostIdAsync(int replyId)
            => new ReactionCountServiceModel
            {
-               Likes = await GetCountByPostTypeAndIdAsync(ReactionType.Like, postId),
-               HeartReactionsCount = await GetCountByPostTypeAndIdAsync(ReactionType.Heart, postId),
-               HahaReactionsCount = await GetCountByPostTypeAndIdAsync(ReactionType.Haha, postId),
-               WowReactionsCount = await GetCountByPostTypeAndIdAsync(ReactionType.Wow, postId),
-               SadReactionsCount = await GetCountByPostTypeAndIdAsync(ReactionType.Sad, postId),
-               AngryReactionsCount = await GetCountByPostTypeAndIdAsync(ReactionType.Angry, postId)
+               Likes = await GetCountByReplyTypeAndIdAsync(ReactionType.Like, replyId),
+               HeartReactionsCount = await GetCountByReplyTypeAndIdAsync(ReactionType.Heart, replyId),
+               HahaReactionsCount = await GetCountByReplyTypeAndIdAsync(ReactionType.Haha, replyId),
+               WowReactionsCount = await GetCountByReplyTypeAndIdAsync(ReactionType.Wow, replyId),
+               SadReactionsCount = await GetCountByReplyTypeAndIdAsync(ReactionType.Sad, replyId),
+               AngryReactionsCount = await GetCountByReplyTypeAndIdAsync(ReactionType.Angry, replyId)
            };
 
-        private async Task<int> GetCountByPostTypeAndIdAsync(ReactionType reactionType, int postId)
-            => await data.PostReactions
-                .Where(r => r.PostId == postId && !r.Post.IsDeleted)
+        private async Task<int> GetCountByReplyTypeAndIdAsync(ReactionType reactionType, int replyId)
+            => await data.ReplyReactions
+                .Where(r => r.ReplyId == replyId && !r.Reply.IsDeleted)
                 .CountAsync(pr => pr.ReactionType == reactionType);
     }
 }

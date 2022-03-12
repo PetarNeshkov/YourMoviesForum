@@ -44,20 +44,20 @@ namespace YourMoviesForum.Services.Data.PostReactions
             return await GetReactionsCountByPostIdAsync(postId);
         }
 
-        private async Task<ReactionCountServiceModel> GetReactionsCountByPostIdAsync(int replyId)
+        private async Task<ReactionCountServiceModel> GetReactionsCountByPostIdAsync(int postId)
             => new ReactionCountServiceModel
             {
-                Likes=await GetCountByPostTypeAndIdAsync(ReactionType.Like, replyId),
-                HeartReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Heart, replyId),
-                HahaReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Haha, replyId),
-                WowReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Wow, replyId),
-                SadReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Sad, replyId),
-                AngryReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Angry, replyId)
+                Likes=await GetCountByPostTypeAndIdAsync(ReactionType.Like, postId),
+                HeartReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Heart, postId),
+                HahaReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Haha, postId),
+                WowReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Wow, postId),
+                SadReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Sad, postId),
+                AngryReactionsCount=await GetCountByPostTypeAndIdAsync(ReactionType.Angry, postId)
             };
 
-        private async Task<int> GetCountByPostTypeAndIdAsync(ReactionType reactionType,int replyId)
-            =>await data.ReplyReactions
-                .Where(r=>r.Reply.Id== replyId && !r.Reply.IsDeleted)
+        private async Task<int> GetCountByPostTypeAndIdAsync(ReactionType reactionType,int postId)
+            =>await data.PostReactions
+                .Where(r=>r.PostId==postId && !r.Post.IsDeleted)
                 .CountAsync(pr => pr.ReactionType == reactionType);
     }
 }
