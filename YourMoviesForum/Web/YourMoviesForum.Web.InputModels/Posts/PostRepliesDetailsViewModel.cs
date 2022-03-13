@@ -1,10 +1,11 @@
 ﻿using Ganss.XSS;
 using System;
+using YourMoviesForum.Web.InputModels.Reactions;
 using static YourMoviesForum.Common.GlobalConstants;
 
 namespace YourMoviesForum.Web.InputModels.Posts
 {
-    public class PostRepliesDetailsViewModel
+    public class PostRepliesDetailsViewModel:ReactionsViewModel
     {
         private readonly IHtmlSanitizer sanitizer;
 

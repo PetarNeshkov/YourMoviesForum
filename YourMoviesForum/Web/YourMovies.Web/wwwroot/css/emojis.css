@@ -8,3 +8,12 @@
 .picture {
     width: 30px;
 }
+
+.picture:hover {
+    transform: scale(1.5);
+}
+
+.fa-thumbs-up:hover{
+    transform:scale(1.5);
+}
+

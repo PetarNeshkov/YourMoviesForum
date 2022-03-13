@@ -39,7 +39,9 @@ namespace YourMoviesForum.Services.Data.ReplyReactions
 
             await data.SaveChangesAsync();
 
-            return await GetReactionsCountByPostIdAsync(replyId);
+            var a = await GetReactionsCountByPostIdAsync(replyId);
+
+            return a;
         }
 
         private async Task<ReactionCountServiceModel> GetReactionsCountByPostIdAsync(int replyId)

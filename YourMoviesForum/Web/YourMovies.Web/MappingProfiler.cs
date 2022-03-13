@@ -89,7 +89,25 @@ namespace YourMovies.Web
 
 
             //Replies
-            CreateMap<Reply, PostRepliesDetailsViewModel>();
+            CreateMap<Reply, PostRepliesDetailsViewModel>()
+                 .ForMember(
+                  x => x.LikesCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Like)))
+                .ForMember(
+                  x => x.HeartReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Heart)))
+                .ForMember(
+                  x => x.HahaReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Haha)))
+                .ForMember(
+                  x => x.WowReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Wow)))
+                .ForMember(
+                  x => x.SadReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Sad)))
+                .ForMember(
+                  x => x.AngryReactionsCount,
+                  x => x.MapFrom(src => src.Reactions.Count(r => r.ReactionType == ReactionType.Angry))); ;
             CreateMap<Reply, EditReplyFormModel>();
             CreateMap<Reply, ReplyDetailsViewModel>()
                 .ForMember(
