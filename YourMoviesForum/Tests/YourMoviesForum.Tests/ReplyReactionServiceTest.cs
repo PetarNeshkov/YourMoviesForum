@@ -1,57 +1,51 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
-
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+
 using Xunit;
 
-using FluentAssertions;
-
 using YourMoviesForum.Data.Models;
-using YourMoviesForum.Services.Data.PostReactions;
-using YourMoviesForum.Web.InputModels.Reactions.enums;
-using YourMoviesForum.Web.InputModels.Reactions;
 using YourMoviesForum.Services.Data.ReplyReactions;
+using YourMoviesForum.Web.InputModels.Reactions;
+using YourMoviesForum.Web.InputModels.Reactions.enums;
 
 namespace YourMoviesForum.Tests
 {
-    public class PostReactionsServiceTests
+    public class ReplyReactionServiceTest
     {
-
         [Theory]
-        [InlineData("Comedy", "Best one yet!", ReactionType.Like)]
-        public async Task ReactAsyncShouldAddReaction(string title, string content, ReactionType type)
+        [InlineData("Best one yet!", ReactionType.Like)]
+        public async Task ReactAsyncShouldAddReaction(string content, ReactionType type)
         {
-            var guid=new Guid().ToString();
+            var guid= Guid.NewGuid().ToString();
 
             var options = DatabaseConfigOptions(guid);
-
             var db = new YourMoviesDbContext(options);
 
-            var post = new Post
+            var reply = new Reply
             {
                 Id = 1,
-                Title = title,
                 Content = content,
-                CategoryId = 1,
                 AuthorId = guid,
+                CreatedOn = DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm")
             };
 
-            await db.Posts.AddAsync(post);
+            await db.Replies.AddAsync(reply);
             await db.SaveChangesAsync();
 
-            var postReactionsService = new PostReactionService(db);
-            var result = await postReactionsService.ReactAsync(type, 1, guid);
+            var replyReactionService = new ReplyReactionService(db);
+            var result= await replyReactionService.ReactAsync(type,1,guid);
 
-            var actual = await db.PostReactions.FirstOrDefaultAsync();
-
-            var expected = new PostReaction
+            var actual = await db.ReplyReactions.FirstOrDefaultAsync();
+            var expected = new ReplyReaction
             {
-                Id = 1,
-                PostId = 1,
-                Post = post,
-                AuthorId = guid,
-                ReactionType = type,
-                CreatedOn = DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm")
+                Id=1,
+                ReplyId=1,
+                Reply=reply,
+                AuthorId=guid,
+                ReactionType=type,
+                CreatedOn= DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm")
             };
 
             actual.Should().BeEquivalentTo(expected);
@@ -68,30 +62,32 @@ namespace YourMoviesForum.Tests
         {
             var guid = Guid.NewGuid().ToString();
 
-            var options = DatabaseConfigOptions(guid);
+            var options= DatabaseConfigOptions(guid);
 
-            var db = new YourMoviesDbContext(options);
+            var db=new YourMoviesDbContext(options);
 
-            var postReaction = new PostReaction
+            var replyReacton = new ReplyReaction
             {
                 Id = 1,
-                PostId = 1,
-                AuthorId = guid,
-                ReactionType = ReactionType.Like,
+                ReplyId = 1,
+                AuthorId=guid,
+                ReactionType= ReactionType.Like,
+                CreatedOn = DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm"),
+                ModifiedOn = DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm")
             };
 
-            await db.PostReactions.AddAsync(postReaction);
+            await db.ReplyReactions.AddAsync(replyReacton);
             await db.SaveChangesAsync();
 
-            var postReactionsService = new PostReactionService(db);
-            var result = await postReactionsService.ReactAsync(type, 1, guid);
+            var replyReactionService=new ReplyReactionService(db);
+            var result=await replyReactionService.ReactAsync(type,1,guid);
 
-            var actual = await db.PostReactions.FirstOrDefaultAsync();
-            var expected = new PostReaction
+            var actual = await db.ReplyReactions.FirstOrDefaultAsync();
+            var expected = new ReplyReaction
             {
-                Id = 1,
-                PostId = 1,
-                AuthorId = guid,
+                Id=1,
+                ReplyId=1,
+                AuthorId= guid,
                 ReactionType = type,
                 CreatedOn = DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm"),
                 ModifiedOn = DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm")
@@ -108,33 +104,33 @@ namespace YourMoviesForum.Tests
         [InlineData(ReactionType.Wow)]
         [InlineData(ReactionType.Sad)]
         [InlineData(ReactionType.Angry)]
-        public async Task ReactMethodShouldChangeReactionToNeutralIfReactionIsClickedTwice(ReactionType type)
+        public async Task ReactMethodShouldChangeReactionToNone(ReactionType type)
         {
             var guid = Guid.NewGuid().ToString();
 
             var options = DatabaseConfigOptions(guid);
             var db = new YourMoviesDbContext(options);
 
-            var postReaction = new PostReaction
+            var replyReaction = new ReplyReaction
             {
                 Id = 1,
-                PostId = 1,
+                ReplyId = 1,
                 AuthorId = guid,
                 ReactionType = type,
                 CreatedOn = DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm")
             };
 
-            await db.PostReactions.AddAsync(postReaction);
+            await db.ReplyReactions.AddAsync(replyReaction);
             await db.SaveChangesAsync();
 
-            var postReactionsService = new PostReactionService(db);
-            var result = await postReactionsService.ReactAsync(type, 1, guid);
+            var replyReactionsService = new ReplyReactionService(db);
+            var result = await replyReactionsService.ReactAsync(type, 1, guid);
 
-            var actual = await db.PostReactions.FirstOrDefaultAsync();
-            var expected = new PostReaction
+            var actual = await db.ReplyReactions.FirstOrDefaultAsync();
+            var expected = new ReplyReaction
             {
                 Id = 1,
-                PostId = 1,
+                ReplyId = 1,
                 AuthorId = guid,
                 ReactionType = ReactionType.None,
                 CreatedOn = DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm"),
@@ -145,10 +141,10 @@ namespace YourMoviesForum.Tests
             result.Should().BeOfType<ReactionCountServiceModel>();
         }
 
-
         private static DbContextOptions<YourMoviesDbContext> DatabaseConfigOptions(string guid)
-           =>new DbContextOptionsBuilder<YourMoviesDbContext>()
+           => new DbContextOptionsBuilder<YourMoviesDbContext>()
                             .UseInMemoryDatabase(guid)
                             .Options;
+
     }
 }
