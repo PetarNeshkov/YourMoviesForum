@@ -3,11 +3,12 @@ namespace YourMoviesForum.Web.InputModels.Reactions.enums
 {
     public enum ReactionType
     {
-        Like=0,
-        Heart=1,
-        Haha=2,
-        Wow=3,
-        Sad=4,
-        Angry=5
+        None=0,
+        Like=1,
+        Heart=2,
+        Haha=3,
+        Wow=4,
+        Sad=5,
+        Angry=6
     }
 }

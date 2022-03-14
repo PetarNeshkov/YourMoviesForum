@@ -34,7 +34,9 @@ namespace YourMoviesForum.Services.Data.ReplyReactions
             }
             else
             {
-                reaction.ReactionType = reactionType;
+                reaction.ReactionType = reaction.ReactionType == reactionType
+                    ? ReactionType.None
+                    : reactionType;
             }
 
             await data.SaveChangesAsync();
