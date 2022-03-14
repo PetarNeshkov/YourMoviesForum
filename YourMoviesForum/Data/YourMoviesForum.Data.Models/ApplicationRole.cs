@@ -22,11 +22,11 @@ namespace YourMoviesForum.Data.Models
         }
 
         //Audit Info
-        public DateTime CreatedOn { get ; set; }
-        public DateTime? ModifiedOn { get; set ; }
+        public string CreatedOn { get ; set; }
+        public string ModifiedOn { get; set ; }
 
         //Deletable Entity
         public bool IsDeleted { get; set; }
-        public DateTime? DeletedOn { get; set; }
+        public string DeletedOn { get; set; }
     }
 }

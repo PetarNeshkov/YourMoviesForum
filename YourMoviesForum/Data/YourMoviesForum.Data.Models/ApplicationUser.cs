@@ -23,20 +23,20 @@ namespace YourMoviesForum.Data.Models
         public int Rating { get; set; }
 
         //Audit Info
-        public DateTime CreatedOn { get; set; }
-        public DateTime? ModifiedOn { get; set; }
+        public string CreatedOn { get; set; }
+        public string ModifiedOn { get; set; }
 
         //Deletable entity
         public bool IsDeleted { get; set; }
-        public DateTime? DeletedOn { get; set; }
+        public string DeletedOn { get; set; }
 
         public ICollection<Post> Posts { get; init; }
         public ICollection<Reply> Replies { get; init; }
 
-        public virtual ICollection<IdentityUserRole<string>> Roles { get; init; }
+        public  ICollection<IdentityUserRole<string>> Roles { get; init; }
 
-        public virtual ICollection<IdentityUserClaim<string>> Claims { get; init; }
+        public  ICollection<IdentityUserClaim<string>> Claims { get; init; }
 
-        public virtual ICollection<IdentityUserLogin<string>> Logins { get; init; }
+        public  ICollection<IdentityUserLogin<string>> Logins { get; init; }
     }
 }

@@ -7,7 +7,7 @@ namespace YourMoviesForum.Data.Common.Models
     {
         [Key]
         public TKey Id { get; init; }
-        public  DateTime CreatedOn { get; set; }
-        public  DateTime? ModifiedOn { get; set; }
+        public  string CreatedOn { get; set; }
+        public  string ModifiedOn { get; set; }
     }
 }

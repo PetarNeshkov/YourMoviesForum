@@ -25,6 +25,8 @@ namespace YourMoviesForum.Data.Seeding
                               .Select(u => u.Id)
                               .FirstOrDefaultAsync();
 
+            var createdOn= DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm");
+
             var posts = new List<Post>
             {
                 new Post
@@ -43,7 +45,7 @@ namespace YourMoviesForum.Data.Seeding
                                .Where(c => c.Name =="Action")
                                .Select(c => c.Id)
                                .FirstOrDefaultAsync(),
-                    CreatedOn =DateTime.Now,
+                    CreatedOn =createdOn,
                     Tags= await dbContext.Tags.Where(t=>t.Name=="Performance" || t.Name=="Success").ToListAsync()
 
                 },
@@ -71,7 +73,7 @@ namespace YourMoviesForum.Data.Seeding
                                .Where(c => c.Name =="Tragedy")
                                .Select(c => c.Id)
                                .FirstOrDefaultAsync(),
-                    CreatedOn=DateTime.Now,
+                    CreatedOn=createdOn,
                     Tags= await dbContext.Tags.Where(t=>t.Name=="Actors").ToListAsync()
                 },
                 new Post
@@ -94,7 +96,7 @@ namespace YourMoviesForum.Data.Seeding
                              .Where(c=>c.Name=="Action")
                              .Select(c=>c.Id)
                              .FirstOrDefaultAsync(),
-                    CreatedOn=DateTime.UtcNow,
+                    CreatedOn=createdOn,
                     Tags= await dbContext.Tags.Where(t=>t.Name=="Cinema" || t.Name=="Performance").ToListAsync()
                 }
             };

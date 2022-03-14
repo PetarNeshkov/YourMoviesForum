@@ -4,7 +4,7 @@
 
     public class DateTimeProvider : IDateTimeProvider
     {
-        public DateTime Now() => DateTime.UtcNow;
+        public string Now() => DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm");
 
     }
 }

@@ -73,8 +73,7 @@ namespace YourMovies.Web
               {
                   googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
                   googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-              })
-              .AddCookie();
+              });
 
             //Application services
             services.AddTransient<IEmailSender, SendGridEmailSender>()

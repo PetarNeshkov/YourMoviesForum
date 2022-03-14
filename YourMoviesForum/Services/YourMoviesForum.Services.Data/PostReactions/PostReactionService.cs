@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 using YourMoviesForum.Data.Models;
+using YourMoviesForum.Services.Providers.DateTime;
 using YourMoviesForum.Web.InputModels.Reactions;
 using YourMoviesForum.Web.InputModels.Reactions.enums;
 
@@ -12,10 +13,12 @@ namespace YourMoviesForum.Services.Data.PostReactions
     public class PostReactionService : IPostReactionService
     {
         private readonly YourMoviesDbContext data;
+        private readonly IDateTimeProvider dateTimeProvider;
 
-        public PostReactionService(YourMoviesDbContext data)
-        { 
-            this.data = data;           
+        public PostReactionService(YourMoviesDbContext data,IDateTimeProvider dateTimeProvider)
+        {
+            this.data = data;
+            this.dateTimeProvider = dateTimeProvider;
         }
 
         public async Task<ReactionCountServiceModel> ReactAsync(ReactionType reactionType, int postId, string authorId)
@@ -30,12 +33,14 @@ namespace YourMoviesForum.Services.Data.PostReactions
                     ReactionType = reactionType,
                     PostId = postId,
                     AuthorId = authorId,
+                    CreatedOn=dateTimeProvider.Now().ToString(),
                 };
 
                 await data.PostReactions.AddAsync(reaction);
             }
             else
             {
+                reaction.ModifiedOn = dateTimeProvider.Now().ToString();
                 reaction.ReactionType = reactionType;
             }
 

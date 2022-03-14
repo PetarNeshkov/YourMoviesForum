@@ -6,6 +6,6 @@ namespace YourMoviesForum.Data.Common.Models
     {
         bool IsDeleted { get; set; }
 
-        DateTime? DeletedOn { get; set; }
+        string DeletedOn { get; set; }
     }
 }
