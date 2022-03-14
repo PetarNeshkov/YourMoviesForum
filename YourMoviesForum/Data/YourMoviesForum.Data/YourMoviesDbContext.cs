@@ -82,11 +82,11 @@ namespace YourMoviesForum
 
                 if (entry.State==EntityState.Added && entity.CreatedOn==default)
                 {
-                    entity.CreatedOn = DateTime.UtcNow.ToLocalTime().ToString();
+                    entity.CreatedOn = DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm");
                 }
                 else
                 {
-                    entity.ModifiedOn = DateTime.UtcNow.ToLocalTime().ToString();
+                    entity.ModifiedOn = DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm");
                 }
             }
         }

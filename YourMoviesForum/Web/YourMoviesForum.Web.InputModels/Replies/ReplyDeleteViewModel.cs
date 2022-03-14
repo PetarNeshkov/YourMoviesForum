@@ -23,7 +23,7 @@ namespace YourMoviesForum.Web.InputModels.Replies
         public string SanitizedContent
             => sanitizer.Sanitize(Content);
 
-        public DateTime CreatedOn { get; init; }
+        public string CreatedOn { get; init; }
 
         public ReplyAuthorDetailsViewModel Author { get; set; }
     }

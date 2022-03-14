@@ -12,7 +12,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "ModifiedOn",
                 table: "Tags",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -21,7 +21,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "DeletedOn",
                 table: "Tags",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -30,7 +30,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "CreatedOn",
                 table: "Tags",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2");
@@ -38,7 +38,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "ModifiedOn",
                 table: "Replies",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -47,7 +47,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "DeletedOn",
                 table: "Replies",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -56,7 +56,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "CreatedOn",
                 table: "Replies",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2");
@@ -64,7 +64,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "ModifiedOn",
                 table: "Posts",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -73,7 +73,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "DeletedOn",
                 table: "Posts",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -82,7 +82,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "CreatedOn",
                 table: "Posts",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2");
@@ -90,7 +90,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "ModifiedOn",
                 table: "PostReactions",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -99,7 +99,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "CreatedOn",
                 table: "PostReactions",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2");
@@ -107,7 +107,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "ModifiedOn",
                 table: "Categories",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -116,7 +116,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "DeletedOn",
                 table: "Categories",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -125,7 +125,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "CreatedOn",
                 table: "Categories",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2");
@@ -133,7 +133,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "ModifiedOn",
                 table: "AspNetUsers",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -142,7 +142,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "DeletedOn",
                 table: "AspNetUsers",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -151,7 +151,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "CreatedOn",
                 table: "AspNetUsers",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2");
@@ -159,7 +159,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "ModifiedOn",
                 table: "AspNetRoles",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -168,7 +168,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "DeletedOn",
                 table: "AspNetRoles",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -177,7 +177,7 @@ namespace YourMoviesForum.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "CreatedOn",
                 table: "AspNetRoles",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2");
@@ -191,8 +191,8 @@ namespace YourMoviesForum.Data.Migrations
                     ReactionType = table.Column<int>(type: "int", nullable: false),
                     ReplyId = table.Column<int>(type: "int", nullable: false),
                     AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CreatedOn = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ModifiedOn = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CreatedOn = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    ModifiedOn = table.Column<string>(type: "nvarchar(30)", nullable: true)
                 },
                 constraints: table =>
                 {

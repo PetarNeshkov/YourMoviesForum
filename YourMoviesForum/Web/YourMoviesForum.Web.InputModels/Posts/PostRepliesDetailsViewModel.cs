@@ -1,6 +1,9 @@
-﻿using Ganss.XSS;
-using System;
+﻿using System;
+
+using Ganss.XSS;
+
 using YourMoviesForum.Web.InputModels.Reactions;
+
 using static YourMoviesForum.Common.GlobalConstants;
 
 namespace YourMoviesForum.Web.InputModels.Posts
@@ -24,7 +27,7 @@ namespace YourMoviesForum.Web.InputModels.Posts
 
         public int Likes { get; init; }
 
-        public DateTime CreatedOn { get; init; }
+        public string CreatedOn { get; init; }
 
         public int? ParentId { get; init; }
 
