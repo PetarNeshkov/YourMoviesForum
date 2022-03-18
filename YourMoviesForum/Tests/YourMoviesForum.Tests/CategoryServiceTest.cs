@@ -1,20 +1,22 @@
-﻿using AutoMapper;
-using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+
+using AutoMapper;
+using FluentAssertions;
+
+using Microsoft.EntityFrameworkCore;
+
+using Moq;
 using Xunit;
+
 using YourMoviesForum.Data.Models;
 using YourMoviesForum.Services.Data.Categories;
 using YourMoviesForum.Services.Providers.DateTime;
 
 namespace YourMoviesForum.Tests
 {
-    public class CategoryServiceTests
+    public class CategoryServiceTest
     {
         [Fact]
         public async Task GetAllCategoriesAsyncShouldReturnAllCategoriesAndCorrectType()
@@ -48,7 +50,7 @@ namespace YourMoviesForum.Tests
         }
 
         [Fact]
-        public async Task GetAllMethodShouldNotReturnDeletedCategoriesAndShouldReturnZero()
+        public async Task GetAllCategoriesAsyncShouldNotReturnDeletedCategoriesAndShouldReturnZero()
         {
             var options = DatabaseConfigOptions(Guid.NewGuid().ToString());
             var db = new YourMoviesDbContext(options);
@@ -79,7 +81,7 @@ namespace YourMoviesForum.Tests
         }
 
         [Fact]
-        public async Task GetAllMethodShouldZeroCategories()
+        public async Task GetAllCategoriesAsyncShouldReturnZeroCategories()
         {
             var options = DatabaseConfigOptions(Guid.NewGuid().ToString());
             var db = new YourMoviesDbContext(options);
@@ -379,7 +381,6 @@ namespace YourMoviesForum.Tests
             actual.DeletedOn.Should().BeSameAs(dateTimeProvider.Object.Now());
         }
 
-
         private static MapperConfiguration MappingConfiguration()
         {
             return new MapperConfiguration(cfg =>
@@ -387,7 +388,6 @@ namespace YourMoviesForum.Tests
                 cfg.CreateMap<Category, Category>();
             });
         }
-
 
         private static DbContextOptions<YourMoviesDbContext> DatabaseConfigOptions(string guid)
           => new DbContextOptionsBuilder<YourMoviesDbContext>()
