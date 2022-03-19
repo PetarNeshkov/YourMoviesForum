@@ -14,7 +14,7 @@ using YourMoviesForum.Services.Data.ReplyReactions;
 
 namespace YourMoviesForum.Tests
 {
-    public class PostReactionsServiceTest
+    public class PostReactionServiceTest
     {
 
         [Theory]

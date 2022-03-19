@@ -179,15 +179,15 @@ namespace YourMoviesForum.Tests
             });
             await db.SaveChangesAsync();
 
-            var categoriesService = new TagService(db, mapper, dateTimeProvider.Object);
-            var expected = await categoriesService.GetTagByIdAsync<Tag>(1);
+            var tagService = new TagService(db, mapper, dateTimeProvider.Object);
+            var expected = await tagService.GetTagByIdAsync<Tag>(1);
             var actual = await db.Tags.FirstAsync();
 
             actual.IsDeleted.Should().Be(expected.IsDeleted);
         }
 
         [Fact]
-        public async Task GetTagByIdMethodShouldReturnNullWhenCategoryIsDeleted()
+        public async Task GetTagByIdMethodShouldReturnNullWhenTagIsDeleted()
         {
             var options = DatabaseConfigOptions(Guid.NewGuid().ToString());
             var db = new YourMoviesDbContext(options);
@@ -211,7 +211,7 @@ namespace YourMoviesForum.Tests
         }
 
         [Fact]
-        public async Task GetTagByIdMethodShouldReturnNullWhenCategoryIsNotFound()
+        public async Task GetTagByIdMethodShouldReturnNullWhenTagIsNotFound()
         {
             var options = DatabaseConfigOptions(Guid.NewGuid().ToString());
             var db = new YourMoviesDbContext(options);
