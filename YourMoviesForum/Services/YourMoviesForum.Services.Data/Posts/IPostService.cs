@@ -16,7 +16,6 @@ namespace YourMoviesForum.Services.Data
 
         Task<int> GetPostsSearchCountAsync(string searchFilter = null);
 
-        Task<IEnumerable<TModel>> GetAllPostsByTagIdAsync<TModel>(int tagId, string search = null);
 
         Task<IList<TModel>> GetAllPostsByTagIdAsync<TModel>(int tagId, int skip = 0,
             int take = 0);
