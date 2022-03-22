@@ -11,6 +11,8 @@ namespace YourMoviesForum.Web.InputModels.Home
         public string Title { get; init; }
         public bool IsDeleted { get; init; }
 
+        public string Activity { get; set; }
+
         public int Rating { get; init; }
 
         public int RepliesCount { get; init; }

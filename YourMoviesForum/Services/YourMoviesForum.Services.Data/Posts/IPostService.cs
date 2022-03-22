@@ -32,5 +32,7 @@ namespace YourMoviesForum.Services.Data
         Task DeletePostAsync(int id);
 
         Task ViewAsync(int id);
+
+        Task<string> GetLatestPostActivityAsync(int id);
     }
 }

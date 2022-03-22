@@ -36,133 +36,122 @@
 
     else
     {
-        @*<div class="jumbotron">
-                <h1 class="text-center">Currently our community has:</h1>
-                <div class="row">
-                    <h2 class="col-md-6 text-center">
-                        @Model.TotalPosts Posts
-                    </h2>
-                    <h2 class="col-md-6 text-center">
-                        @Model.TotalUsers Users
-                    </h2>
-                </div>
-            </div>*@
+  
+       @if (Model.Posts.Count() == 0)
+       {
+           <h1 class="text-center">No posts found.</h1>
+       }
+       else
+	   {
+           <form method="get" class="d-flex">
+               <div class="form-group col-md-4">
+                   <label asp-for="SearchTerm"></label>
+                   <div class="d-flex">
+                       <input asp-for="SearchTerm" class="form-control" placeholder="Search...">
+                       <button id="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                   </div>
+               </div>
+               <div class="form-group col-md-4">
+                   <div class="form-group">
+                       <label asp-for="Sorting"></label>
+                       <select asp-for="Sorting" class="form-control" onchange="this.form.submit()">
+                           <option value="0" selected>Date Created</option>
+                           <option value="1">Tags</option>
+                           <option value="2">Rating</option>
+                           <option value="3">Reply</option>
+                       </select>
+                   </div>
+               </div>
+           </form>
 
-    @if (Model.Posts.Count() == 0)
-    {
-        <h1 class="text-center">No posts found.</h1>
-    }
-    else
-	{
-        <form method="get" class="d-flex">
-            <div class="form-group col-md-4">
-                <label asp-for="SearchTerm"></label>
-                <div class="d-flex">
-                    <input asp-for="SearchTerm" class="form-control" placeholder="Search...">
-                    <button id="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </div>
-            </div>
-            <div class="form-group col-md-4">
-                <div class="form-group">
-                    <label asp-for="Sorting"></label>
-                    <select asp-for="Sorting" class="form-control" onchange="this.form.submit()">
-                        <option value="0" selected>Date Created</option>
-                        <option value="1">Tags</option>
-                        <option value="2">Rating</option>
-                        <option value="3">Reply</option>
-                    </select>
-                </div>
-            </div>
-        </form>
+           <div class="header">
+               <h3 id="topic">Topic</h3>
+               <h3 id="category">Category</h3>
+               <h3 id="rating">Rating</h3>
+               <h3 id="replies">Replies</h3>
+               <h3 id="activity">Activity</h3>
+           </div>
 
-        <div class="header">
-            <h3 id="topic">Topic</h3>
-            <h3 id="category">Category</h3>
-            <h3 id="rating">Rating</h3>
-            <h3 id="replies">Replies</h3>
-            <h3 id="activity">Activity</h3>
-        </div>
+           <div class="items">
+               @foreach (var post in Model.Posts)
+               {
+                   <div class="current-item">
+                       <div class="topic-section">
+                                <a 
+                                   asp-controller="Posts"
+                                      asp-action="Details"
+                                      asp-route-id="@post.Id">
+                                     <h5 id="title">@post.Title</h5>
+                                   </a> 
+                           <div class="tags">
+                               @foreach (var tag in post.Tags)
+                               {
+                                   <a id="anchor"
+                                   asp-controller="Tags"
+                                      asp-action="Details"
+                                      asp-route-id="@tag.Id">
+                                         <span class="tagElement">
+                                       <i id="tag-icon" class="fas fa-tags"></i>
+                                       @tag.Name</span>
+                                   </a>                       
+                               }
+                           </div>
+                       </div>
+                       <div class="category">
+                           <a id="anchor"
+                               asp-controller="Categories"
+                               asp-action="Details"
+                               asp-route-id="@post.Category.Id">
+                               <h5 class="category-name">@post.Category.Name</h5>
+                           </a>
+                       </div>
+                       <div class="rating-section">@post.Rating</div>
+                       <div class="replies-section">@post.RepliesCount</div>
+                       <div class="activity-section">@post.Activity</div>
+                   </div>
+               }
+           </div>
+           <nav>
+               <ul class="pagination">
+                   <li>
+                       <a class="btn btn-primary @(Model.Pagination.CurrentPage == 1 ? "disabled" : string.Empty)"
+                          asp-controller="Home"
+                          asp-action="Index"
+                          asp-route-search="@Model.SearchTerm"
+                          asp-route-page="@Model.Pagination.PreviousPage"
+                          asp-route-sorting="@((int)Model.Sorting)">
+                           Previous
+                       </a>
+                   </li>
 
-        <div class="items">
-            @foreach (var post in Model.Posts)
-            {
-                <div class="current-item">
-                    <div class="topic-section">
-                             <a 
-                                asp-controller="Posts"
-                                   asp-action="Details"
-                                   asp-route-id="@post.Id">
-                                  <h5 id="title">@post.Title</h5>
-                                </a> 
-                        <div class="tags">
-                            @foreach (var tag in post.Tags)
-                            {
-                                <a id="anchor"
-                                asp-controller="Tags"
-                                   asp-action="Details"
-                                   asp-route-id="@tag.Id">
-                                      <span class="tagElement">
-                                    <i id="tag-icon" class="fas fa-tags"></i>
-                                    @tag.Name</span>
-                                </a>                       
-                            }
-                        </div>
-                    </div>
-                    <div class="category">
-                        <a id="anchor"
-                            asp-controller="Categories"
-                            asp-action="Details"
-                            asp-route-id="@post.Category.Id">
-                            <h5 class="category-name">@post.Category.Name</h5>
-                        </a>
-                    </div>
-                    <div class="rating-section">@post.Rating</div>
-                    <div class="replies-section">@post.RepliesCount</div>
-                    <div class="activity-section">3 days</div>
-                </div>
-            }
-        </div>
-        <nav>
-            <ul class="pagination">
-                <li>
-                    <a class="btn btn-primary @(Model.Pagination.CurrentPage == 1 ? "disabled" : string.Empty)"
-                       asp-controller="Home"
-                       asp-action="Index"
-                       asp-route-search="@Model.SearchTerm"
-                       asp-route-page="@Model.Pagination.PreviousPage"
-                       asp-route-sorting="@((int)Model.Sorting)">
-                        Previous
-                    </a>
-                </li>
-
-                @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
-                {
-                    var active = i == Model.Pagination.CurrentPage ? "active" : string.Empty;
-                    <li class="active-pages">
-                        <a class="@active"
-                           asp-controller="Home"
-                           asp-action="Index"
-                           asp-route-search="@Model.SearchTerm"
-                           asp-route-page="@i"
-                           asp-route-sorting="@((int)Model.Sorting)">
-                            @i
-                        </a>
-                    </li>
-                }
-                <li>
-                    <a class="btn btn-primary
-                       @(Model.Pagination.CurrentPage == Model.Pagination.TotalPages || Model.Pagination.TotalPages==0 ? "disabled" : string.Empty)"
-                       asp-controller="Home"
-                       asp-action="Index"
-                       asp-route-search="@Model.SearchTerm"
-                       asp-route-page="@Model.Pagination.NextPage"
-                       asp-route-sorting="@((int)Model.Sorting)">
-                        Next
-                    </a>
-                </li>
-            </ul>
-        </nav>
-	}
+                   @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
+                   {
+                       var active = i == Model.Pagination.CurrentPage ? "active" : string.Empty;
+                       <li class="active-pages">
+                           <a class="@active"
+                              asp-controller="Home"
+                              asp-action="Index"
+                              asp-route-search="@Model.SearchTerm"
+                              asp-route-page="@i"
+                              asp-route-sorting="@((int)Model.Sorting)">
+                               @i
+                           </a>
+                       </li>
+                   }
+                   <li>
+                       <a class="btn btn-primary
+                          @(Model.Pagination.CurrentPage == Model.Pagination.TotalPages || Model.Pagination.TotalPages==0 ? "disabled" : string.Empty)"
+                          asp-controller="Home"
+                          asp-action="Index"
+                          asp-route-search="@Model.SearchTerm"
+                          asp-route-page="@Model.Pagination.NextPage"
+                          asp-route-sorting="@((int)Model.Sorting)">
+                           Next
+                       </a>
+                   </li>
+               </ul>
+           </nav>
+	   }
 }
 </body>
 </html>

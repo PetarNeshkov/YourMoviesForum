@@ -47,19 +47,16 @@ namespace YourMovies.Web.Controllers
 
             var count = await postService.GetPostsSearchCountAsync(query.SearchTerm);
 
-            if (User.Identity.IsAuthenticated)
+            var skip = (page - 1) * PostPerPage;
+            var posts = await postService
+                    .GetAllPostsAsync<PostListingViewModel>(query.Sorting, query.SearchTerm, skip, PostPerPage);
+            query.Posts = posts;
+            query.Pagination = PaginationProvider.PaginationHelper(page, count, PostPerPage, query.SearchTerm);
+
+
+            foreach (var post in query.Posts)
             {
-                var skip = (page - 1) * PostPerPage;
-                var posts = await postService
-                        .GetAllPostsAsync<PostListingViewModel>(query.Sorting, query.SearchTerm, skip, PostPerPage);
-                query.Posts = posts;
-                query.Pagination = PaginationProvider.PaginationHelper(page, count, PostPerPage, query.SearchTerm);
-            }
-            else
-            {
-                var posts = await postService.GetFourRandomPosts<PostListingViewModel>();
-                query.Posts = posts;
-                query.Pagination = PaginationProvider.PaginationHelper(page, 3, PostPerPage, query.SearchTerm);
+                post.Activity = await postService.GetLatestPostActivityAsync(post.Id);
             }
 
             return View(query);

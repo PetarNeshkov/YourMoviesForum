@@ -53,6 +53,11 @@ namespace YourMovies.Web.Controllers
             var skip=(page - 1) * PostPerPage;
             var posts = await postService.GetAllPostsByCategoryIdAsync<PostListingViewModel>(id, skip, PostPerPage);
 
+            foreach (var post in posts)
+            {
+                post.Activity = await postService.GetLatestPostActivityAsync(post.Id);
+            }
+
             var viewModel = new CategoryDetailsViewModel
             {
                 Id = category.Id,

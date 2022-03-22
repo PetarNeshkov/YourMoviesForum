@@ -114,6 +114,29 @@ namespace YourMoviesForum.Services.Data.Posts
             };
             return queryablePosts;
         }
+        private string LatestActivity(string currentTime, string postTime)
+        {
+            var currentTimeParsed=DateTime.Parse(currentTime);
+            var postTimeParsed=DateTime.Parse(postTime);
+
+            var activity = currentTimeParsed - postTimeParsed;
+            var daysFromNow = activity.Days;
+            var hoursFromNow = activity.Hours;
+            var minutesFromNow = activity.Minutes;
+
+            var result=String.Empty;
+
+            if (daysFromNow != 0)
+            {
+                result = $"{daysFromNow}d";
+            }
+            else
+            {
+                result = hoursFromNow == 0 ? $"{minutesFromNow}min" : $"{hoursFromNow}h";
+            }
+
+            return result;
+        }
 
         public async Task<IEnumerable<TModel>> GetFourRandomPosts<TModel>()
         {
@@ -215,6 +238,25 @@ namespace YourMoviesForum.Services.Data.Posts
             post.Rating++;
 
             await data.SaveChangesAsync();
+        }
+
+        public async Task<string> GetLatestPostActivityAsync(int id)
+        {
+            var latestReplyOfPost=await data.Posts
+                .Where(p=> p.Id==id && !p.IsDeleted)
+                .SelectMany(p=>p.Replies)
+                .Where(r=>!r.IsDeleted)
+                .OrderByDescending(r=>r.CreatedOn)
+                .FirstOrDefaultAsync(r=>r.PostId==id);
+
+            if (latestReplyOfPost!=null)
+            {
+                return LatestActivity(dateTimeProvider.Now(), latestReplyOfPost.CreatedOn);
+            }
+
+            var post=await GetByIdAsync(id);
+
+            return LatestActivity(dateTimeProvider.Now(), post.CreatedOn);
         }
     }
 }

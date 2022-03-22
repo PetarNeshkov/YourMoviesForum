@@ -41,6 +41,11 @@ namespace YourMovies.Web.Controllers
                  randomPosts = await postservice
                     .GetFourRandomPosts<PostListingViewModel>();
 
+                foreach (var post in randomPosts)
+                {
+                    post.Activity = await postservice.GetLatestPostActivityAsync(post.Id);
+                }
+
                 var cacheOptions = new MemoryCacheEntryOptions()
                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
 
