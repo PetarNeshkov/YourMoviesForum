@@ -352,7 +352,81 @@ namespace YourMoviesForum.Tests
             actual.Should().BeNull();
         }
 
-        private static MapperConfiguration MappingConfiguration()
+
+        [Fact]
+        public async Task GetLatestPostActivityAsyncShouldReturnPostLatestActivity()
+        {
+            var guid = Guid.NewGuid().ToString();
+
+            var options = DatabaseConfigOptions(guid);
+            var db = new YourMoviesDbContext(options);
+
+            var dateTimeProvider = new Mock<IDateTimeProvider>();
+            dateTimeProvider.Setup(dtp => dtp.Now())
+                  .Returns(DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm"));
+
+            var post = new Post
+            {
+                Title = "Latest news in movies branch!",
+                Content = "Listen up what I have to tell!",
+                CategoryId = 1,
+                AuthorId = guid
+            };
+
+            await db.Posts.AddAsync(post);
+            await db.SaveChangesAsync();
+
+            var postsService = new PostService(db, null, dateTimeProvider.Object,null);
+
+            var latestActivity = await postsService.GetLatestPostActivityAsync(1);
+
+            latestActivity.Should().Be("0min");
+        }
+
+
+        [Fact]
+        public async Task GetLatestPostActivityAsyncShouldReturnPostLatestActivityWithReply()
+        {
+            var guid = Guid.NewGuid().ToString();
+
+            var options = DatabaseConfigOptions(guid);
+            var db = new YourMoviesDbContext(options);
+
+            var dateTimeProvider = new Mock<IDateTimeProvider>();
+            dateTimeProvider.Setup(dtp => dtp.Now())
+                 .Returns(DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm"));
+
+            var post = new Post
+            {
+                Title = "Latest news in movies branch!",
+                Content = "Listen up what I have to tell!",
+                CategoryId = 1,
+                AuthorId = guid
+            };
+
+            await db.Posts.AddAsync(post);
+            await db.SaveChangesAsync();
+
+
+            var postsService = new PostService(db, null, dateTimeProvider.Object, null);
+            var postToFind = await db.Posts.FirstAsync(x => x.Id == 1);
+
+            var reply = new Reply
+            {
+                Id = 1,
+                Content = "Nice one!"
+            };
+            await db.Replies.AddAsync(reply);
+            postToFind.Replies=new List<Reply>() {reply};
+
+            await db.SaveChangesAsync();
+
+            var latestActivity = await postsService.GetLatestPostActivityAsync(1);
+
+            latestActivity.Should().Be("0min");
+        }
+
+            private static MapperConfiguration MappingConfiguration()
         {
             return new MapperConfiguration(cfg =>
             {
