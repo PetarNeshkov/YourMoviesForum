@@ -7,7 +7,6 @@
         public const string SystemEmail = "yourmoviesforum@gmail.com";
         
         
-        
         public const string IFrameTag = "iframe";
         public const string GlobalMessageKey = "GlobalMessage";
 
@@ -60,6 +59,11 @@
         public static class Reply
         {
             public const int ReplyContentMaxLength = 2000;
+        }
+
+        public static class Message
+        {
+            public const int MessageMaxLength = 500;
         }
     }
 }

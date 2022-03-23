@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace YourMoviesForum.Services.Data.Users
 {
@@ -9,5 +10,7 @@ namespace YourMoviesForum.Services.Data.Users
         Task<bool> IsEmailUsedAsync(string email);
 
         Task<int> AddRatingToUserAsync(string id, int points = 1);
+
+        Task<IEnumerable<TModel>> GetAllUsersAsync<TModel>();
     }
 }

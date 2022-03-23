@@ -1,9 +1,12 @@
-﻿using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
+using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
 using YourMoviesForum.Services.Providers.DateTime;
+using AutoMapper.QueryableExtensions;
 
 namespace YourMoviesForum.Services.Data.Users
 {
@@ -35,5 +38,12 @@ namespace YourMoviesForum.Services.Data.Users
 
             return user.Rating;
         }
+
+        public async Task<IEnumerable<TModel>> GetAllUsersAsync<TModel>()
+             => await data.Users
+                .AsNoTracking()
+                .Where(u => !u.IsDeleted)
+                .ProjectTo<TModel>(this.mapper.ConfigurationProvider)
+                .ToListAsync();
     }
 }

@@ -21,6 +21,7 @@ using YourMoviesForum.Services.Providers.Security_Models;
 using YourMoviesForum.Services.Data.Replies;
 using YourMoviesForum.Services.Data.PostReactions;
 using YourMoviesForum.Services.Data.ReplyReactions;
+using YourMoviesForum.Services.Data.Messages;
 
 namespace YourMovies.Web
 {
@@ -84,7 +85,8 @@ namespace YourMovies.Web
                     .AddTransient<IUserService, User>()
                     .AddTransient<IReplyService, ReplyService>()
                     .AddTransient<IPostReactionService,PostReactionService>()
-                    .AddTransient<IReplyReactionService,ReplyReactionService>();
+                    .AddTransient<IReplyReactionService,ReplyReactionService>()
+                    .AddTransient<IMessageService,MessageService>();
                     
 
             services.Configure<ReCaptchSettings>(this.configuration.GetSection("GoogleReCaptcha"));
