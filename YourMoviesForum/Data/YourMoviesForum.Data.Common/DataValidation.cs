@@ -30,5 +30,10 @@
             public const int NameMaxLength = 20;
         }
 
+        public static class Message
+        {
+            public const int ContentMaxLength = 500;
+        }
+
     }
 }

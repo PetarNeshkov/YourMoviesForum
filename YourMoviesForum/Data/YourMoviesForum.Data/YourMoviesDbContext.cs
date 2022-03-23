@@ -31,6 +31,8 @@ namespace YourMoviesForum
 
         public DbSet<ReplyReaction> ReplyReactions { get; init; }
 
+        public DbSet<Message> Messages { get; init; }
+
         public override int SaveChanges() => SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
