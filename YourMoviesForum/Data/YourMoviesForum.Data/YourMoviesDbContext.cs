@@ -57,6 +57,8 @@ namespace YourMoviesForum
         {
             base.OnModelCreating(builder);
 
+            builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+
             var entityTypes = builder.Model.GetEntityTypes().ToList();
           
             var foreignKeys = entityTypes

@@ -12,8 +12,8 @@ using YourMoviesForum;
 namespace YourMoviesForum.Data.Migrations
 {
     [DbContext(typeof(YourMoviesDbContext))]
-    [Migration("20220323173732_AddedMessageTable")]
-    partial class AddedMessageTable
+    [Migration("20220324183137_AddedMessages")]
+    partial class AddedMessages
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,9 +57,6 @@ namespace YourMoviesForum.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
 
@@ -71,8 +68,6 @@ namespace YourMoviesForum.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("UserId");
 
@@ -89,9 +84,6 @@ namespace YourMoviesForum.Data.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
@@ -100,8 +92,6 @@ namespace YourMoviesForum.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("UserId");
 
@@ -116,12 +106,7 @@ namespace YourMoviesForum.Data.Migrations
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("RoleId");
 
@@ -322,6 +307,7 @@ namespace YourMoviesForum.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AuthorId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Content")
@@ -336,6 +322,7 @@ namespace YourMoviesForum.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReceiverId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -546,10 +533,6 @@ namespace YourMoviesForum.Data.Migrations
                 {
                     b.HasOne("YourMoviesForum.Data.Models.ApplicationUser", null)
                         .WithMany("Claims")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("YourMoviesForum.Data.Models.ApplicationUser", null)
-                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -559,10 +542,6 @@ namespace YourMoviesForum.Data.Migrations
                 {
                     b.HasOne("YourMoviesForum.Data.Models.ApplicationUser", null)
                         .WithMany("Logins")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("YourMoviesForum.Data.Models.ApplicationUser", null)
-                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -570,10 +549,6 @@ namespace YourMoviesForum.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("YourMoviesForum.Data.Models.ApplicationUser", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("YourMoviesForum.Data.Models.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
@@ -581,7 +556,7 @@ namespace YourMoviesForum.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("YourMoviesForum.Data.Models.ApplicationUser", null)
-                        .WithMany()
+                        .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -614,12 +589,16 @@ namespace YourMoviesForum.Data.Migrations
             modelBuilder.Entity("YourMoviesForum.Data.Models.Message", b =>
                 {
                     b.HasOne("YourMoviesForum.Data.Models.ApplicationUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
+                        .WithMany("SentMessages")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("YourMoviesForum.Data.Models.ApplicationUser", "Receiver")
-                        .WithMany()
-                        .HasForeignKey("ReceiverId");
+                        .WithMany("ReceivedMessages")
+                        .HasForeignKey("ReceiverId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Author");
 
@@ -708,9 +687,13 @@ namespace YourMoviesForum.Data.Migrations
 
                     b.Navigation("Posts");
 
+                    b.Navigation("ReceivedMessages");
+
                     b.Navigation("Replies");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("SentMessages");
                 });
 
             modelBuilder.Entity("YourMoviesForum.Data.Models.Category", b =>

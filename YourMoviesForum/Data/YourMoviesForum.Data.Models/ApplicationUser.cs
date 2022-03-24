@@ -14,6 +14,8 @@ namespace YourMoviesForum.Data.Models
             Id = Guid.NewGuid().ToString();
             Posts = new HashSet<Post>();
             Replies = new HashSet<Reply>();
+            SentMessages=new HashSet<Message>();
+            ReceivedMessages=new HashSet<Message>();
 
             Roles = new HashSet<IdentityUserRole<string>>();
             Claims = new HashSet<IdentityUserClaim<string>>();
@@ -32,6 +34,10 @@ namespace YourMoviesForum.Data.Models
 
         public ICollection<Post> Posts { get; init; }
         public ICollection<Reply> Replies { get; init; }
+
+        public ICollection<Message> SentMessages { get; init; } 
+
+        public ICollection<Message> ReceivedMessages { get; init; } 
 
         public  ICollection<IdentityUserRole<string>> Roles { get; init; }
 
