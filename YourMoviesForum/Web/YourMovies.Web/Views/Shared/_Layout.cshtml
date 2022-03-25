@@ -26,11 +26,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">All Posts</a>
                         </li>
-                        @if(User.Identity.IsAuthenticated)
+                        @if (User.Identity.IsAuthenticated)
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Posts" asp-action="Add">Add Post</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Posts" asp-action="Add">Add Post</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Chat" 
+                                asp-action="Message" >Chat</a>
+                            </li>
                         }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Categories" asp-action="All">Categories</a>
@@ -48,15 +52,15 @@
         </nav>
     </header>
     <div class="container">
-         @if (TempData.ContainsKey(GlobalConstants.GlobalMessageKey))
+        @if (TempData.ContainsKey(GlobalConstants.GlobalMessageKey))
         {
-          <div class="alert alert-success text-center" role="alert">
-             
-              @TempData[GlobalConstants.GlobalMessageKey]
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
+            <div class="alert alert-success text-center" role="alert">
+
+                @TempData[GlobalConstants.GlobalMessageKey]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         }
 
         <main role="main" class="pb-3">
@@ -66,7 +70,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.UtcNow.Year - Forum for Movies - <a asp-area="" asp-controller="Posts" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.UtcNow.Year - Forum for Movies - <a asp-controller="Posts" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>

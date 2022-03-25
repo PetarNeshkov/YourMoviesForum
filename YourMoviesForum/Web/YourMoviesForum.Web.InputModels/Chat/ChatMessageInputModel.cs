@@ -15,5 +15,7 @@ namespace YourMoviesForum.Web.InputModels.Chat
         public string ReceiverId { get; init; }
 
         public IEnumerable<ChatUserViewModel> Users { get; set; }
+
+        public IEnumerable<ChatConversationViewModel> RecievedMessages {get;set;}
     }
 }

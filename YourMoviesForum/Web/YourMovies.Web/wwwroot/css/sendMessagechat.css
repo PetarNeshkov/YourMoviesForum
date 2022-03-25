@@ -1,0 +1,67 @@
+﻿.main {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 9px 0 1px 30px;
+}
+
+.col-md-4{
+    padding-right:1px;
+}
+
+.col-md-8{
+    padding-left:1px;
+}
+
+.separator {
+    clear:both;
+    border-bottom: 1px solid black;
+}
+
+#message-element {
+    float:left
+}
+
+#element{
+    font-size:20px;
+    margin-top:10px;
+    margin-right:20px;
+    float:right;
+}
+
+.not-found {
+    margin-top:100px;
+    align-items: center;
+    text-align: center;
+    margin-right:20px;
+}
+
+.recieved-messages {
+  display:inline-block;
+}
+
+.not-found p{
+    font-size:20px;
+}
+
+.col-md-8 {
+    border-right: 1px solid black;
+}
+
+#underline{
+    text-decoration:underline;
+    color:black;
+}
+
+#messageBox {
+    font-family: "Krub",sans-serif;
+    background: #e2e7ea;
+    color: #666f74;
+    line-height: 25px;
+    border: none;
+    outline: none;
+    height: 230px;
+    font-weight: 500;
+    border-radius: 3px;
+    border: 1px solid #e2e7ea;
+}
