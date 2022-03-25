@@ -8,6 +8,7 @@ using YourMoviesForum.Web.InputModels.Tags;
 using YourMoviesForum.Web.InputModels.Categories;
 using YourMoviesForum.Web.InputModels.Replies;
 using YourMoviesForum.Web.InputModels.Reactions.enums;
+using YourMoviesForum.Web.InputModels.Chat;
 using YourMoviesForum.Data.Models;
 
 namespace YourMovies.Web
@@ -151,6 +152,9 @@ namespace YourMovies.Web
             //User
             CreateMap<ApplicationUser,PostAuthorDetailsViewModel>();
             CreateMap<ApplicationUser,ReplyAuthorDetailsViewModel>();
+            CreateMap<ApplicationUser,ChatUserViewModel>();
+            CreateMap<ApplicationUser,ChatMessageInputModel>();
+            CreateMap<ApplicationUser,ChatConversationViewModel>();
         }
     }
 }
