@@ -12,5 +12,7 @@ namespace YourMoviesForum.Services.Data.Users
         Task<int> AddRatingToUserAsync(string id, int points = 1);
 
         Task<IEnumerable<TModel>> GetAllUsersAsync<TModel>();
+
+        Task<TModel> GetUserByIdAsync<TModel>(string id);
     }
 }

@@ -45,5 +45,14 @@ namespace YourMoviesForum.Services.Data.Users
                 .Where(u => !u.IsDeleted)
                 .ProjectTo<TModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
+
+        public async Task<TModel> GetUserByIdAsync<TModel>(string id)
+            => await data.Users
+                .AsNoTracking()
+                .Where(u => u.Id == id && !u.IsDeleted)
+                .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+          
+        
     }
 }
