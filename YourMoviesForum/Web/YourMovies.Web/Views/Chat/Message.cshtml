@@ -14,11 +14,11 @@
 </head>
 <body>
     <div class="main">
-       <div class="col-md-8">
+       <div class="col-md-7">
             <div class="separator">
                 <h4 class="ml-3">@ViewData["Title"]</h4>
             </div>
-            <div class="tt-title-content">
+            <div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <h4 class="mt-2">To:</h4>
@@ -34,9 +34,9 @@
             </div>
             <div class="ml-4">
                 <div>
-                    <form id="addMessageForm"
+                    <form id="addMessage"
                           asp-controller="Chat"
-                          asp-action="SendMessage"
+                          asp-action="Message"
                           method="post">
                         <input value="@Model.ReceiverId" name="ReceiverId" hidden />
                         <div class="form-group">
@@ -53,29 +53,31 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-5">
             <h4 id="message-element">Messages</h4>
             <i id="element" class="fas fa-user-edit"></i>
             <div class="separator"></div>
             <div class="recieved-messages">
                 @if (Model.RecievedMessages.Any())
                 {
-                    foreach (var conversation in Model.RecievedMessages)
+                    foreach (var conversation in Model.RecievedMessages.OrderByDescending(x=>x.LastMessageActivity))
                     {
-                        <a onclick="location.href = '/Chat/WithUser/@conversation.Id';" href="#" class="tt-item">
-
-                            <div>
-                                <h4><span>@conversation.UserName</span>  <span class="time">@conversation.LastMessageActivity</span></h4>
-                                <div>@conversation.LastMessage</div>
-                            </div>
+                      <div class="message">
+                        <a onclick="location.href = '/Chat/WithUser/@conversation.Id';" href="#" class="current-item">
+                                <h4 class="user-section">
+                                    <span class="username hover-underline-animation">@conversation.UserName</span>
+                                    <span class="time">@conversation.LastMessageActivity</span>
+                                </h4>
+                                <div class="lastMessage">@conversation.LastMessage</div>
                         </a>
+                      </div>
                     }
                 }
                 else
                 {
                     <div class="not-found">
                         <p>You don't have any messages yet.</p>
-                        <p>But you can <a asp-controller="Chat" asp-action="SendMessage" id="underline">send</a> one now.</p>
+                        <p>But you can <a asp-controller="Chat" asp-action="Message" id="underline">send</a> one now.</p>
                     </div>
                 }
             </div>
@@ -86,7 +88,7 @@
 
 @section Scripts{
  <partial name="_ValidationScriptsPartial" />
- <script>
+<script>
         $('#input-users').on('change', function () {
             var valueSelected = this.value;
             $("#addMessageForm input[name='ReceiverId']").val(valueSelected);
@@ -99,5 +101,5 @@
         $select.each(function () {
             $(this)[0].selectize.clear(true);
         });
-    </script>
+</script>
 }
