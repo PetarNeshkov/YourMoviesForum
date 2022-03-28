@@ -18,7 +18,8 @@
 }
 
 #message-element {
-    float:left
+    float:left;
+    color:black;
 }
 
 #element{
@@ -67,6 +68,24 @@
     cursor: pointer;
 }
 
+#message {
+    padding: 24px 30px 4px 30px;
+    width: 26.6vw;
+    cursor: pointer;
+}
+
+#chat-message {
+    padding: 24px 30px 4px 30px;
+    width: 21vw;
+    cursor: pointer;
+}
+
+.current-message {
+    padding: 20px 30px 4px 30px;
+    width: 42.1vw;
+    cursor: pointer;
+}
+
 .user-section {
     display: flex;
     justify-content: space-between;
@@ -74,6 +93,14 @@
     margin: 0;
     width: 100%;
     line-height: 26px;
+}
+
+#messagesList {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 300px;
+    display: block;
+    word-break: break-word;
 }
 
 .username {
@@ -92,8 +119,7 @@
     text-decoration:none;
 }
 
-
-.message:nth-child(odd) {
+.message:nth-child(odd), #message:nth-child(odd), .current-message:nth-child(odd), #chat-message:nth-child(odd) {
     background-color: #f2f4f6;
 }
 
@@ -132,4 +158,12 @@
 
 .col-md-7 {
     border-right: 1px solid black; 
+}
+
+#username {
+    border-bottom: 1px solid #e2e7ea;
+}
+
+#content {
+    color: #666f74;
 }

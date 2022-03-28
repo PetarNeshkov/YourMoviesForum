@@ -12,3 +12,11 @@ $('#input-tags').selectize({
     persist: false
 });
 
+var $select = $('#input-users').selectize({
+    create: false,
+    sortField: 'text',
+    placeholder: 'Write a message to'
+});
+$select.each(function () {
+    $(this)[0].selectize.clear(true);
+});

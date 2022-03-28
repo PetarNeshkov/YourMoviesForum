@@ -1,0 +1,78 @@
+﻿@model ChatWithUserViewModel
+@{
+    ViewData["Title"] = "Private chat";
+}
+
+<link href="~/css/sendMessagechat.css" rel="stylesheet" type="text/css" />
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div class="main">
+        <div class="col-md-8">
+            <h4 id="username" class="ml-3 pb-2">@Model.User.UserName</h4>
+            <div id="messagesList"
+                 class="recieved-messages ml-3"
+                >
+                @foreach (var message in Model.MessagesWithCurrentUser)
+                {
+                    <div class="current-message">
+                        <h4 class="user-section">
+                            <span class="username hover-underline-animation">@message.AuthorUserName</span>
+                            <span class="time">@message.CreatedOn</span>
+                        </h4>
+                        <div id="content">@Html.Raw(message.SanitizedContent)</div>
+                    </div>
+                }
+            </div>
+            <div id="whoIsTyping"></div>
+            <div>
+                    <div id="addMessageForm">
+                        <div class="form-group mt-2">
+                            <textarea id="messageBox" class="form-control" placeholder="Enter what you think..."></textarea>
+                        </div>
+                            <div class="col-auto ml-auto">
+                                <button id="sendButton" class="btn btn-primary btn-lg pr-5 pl-5">Send</button>
+                            </div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <a asp-controller="Chat" asp-action="Message">
+                <h4 id="message-element">Messages</h4>
+                <i id="element" class="fas fa-user-edit"></i>
+            </a>
+            <div class="separator"></div>
+            <div class="recieved-messages">
+                @if (Model.RecievedMessages.Any())
+                {
+                    foreach (var conversation in Model.RecievedMessages.OrderByDescending(x => x.LastMessageActivity))
+                    {
+                        <div id="chat-message">
+                            <a asp-controller="Chat" asp-action="PrivateChat" asp-route-id="@conversation.Id" class="current-item">
+                                <h4 class="user-section">
+                                    <span class="username hover-underline-animation">@conversation.UserName</span>
+                                    <span class="time">@conversation.LastMessageActivity</span>
+                                </h4>
+                                <div class="lastMessage">@conversation.LastMessage</div>
+                            </a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="not-found">
+                        <p>You don't have any messages yet.</p>
+                        <p>But you can <a asp-controller="Chat" asp-action="Message" id="underline">send</a> one now.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

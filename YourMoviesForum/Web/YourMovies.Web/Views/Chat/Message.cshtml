@@ -38,15 +38,13 @@
                           asp-controller="Chat"
                           asp-action="Message"
                           method="post">
-                        <input value="@Model.ReceiverId" name="ReceiverId" hidden />
+                        <input value="@Model.ReceiverId" name="ReceiverId" id="receiverId" hidden />
                         <div class="form-group">
                             <textarea id="messageBox" asp-for="Message" class="form-control" placeholder="Enter what you think..."></textarea>
                             <span asp-validation-for="Message" class="text-danger"></span>
                         </div>
-                        <div class="pt-row">
-                            <div class="col-auto ml-auto">
-                                <button class="btn btn-primary btn-lg pr-5 pl-5" id="sendButton" type="submit">Send</button>
-                            </div>
+                        <div class="col-auto ml-auto">
+                            <button class="btn btn-primary btn-lg pr-5 pl-5" id="sendButton" type="submit">Send</button>
                         </div>
                     </form>
                 </div>
@@ -63,7 +61,7 @@
                     foreach (var conversation in Model.RecievedMessages.OrderByDescending(x=>x.LastMessageActivity))
                     {
                       <div class="message">
-                        <a onclick="location.href = '/Chat/WithUser/@conversation.Id';" href="#" class="current-item">
+                        <a asp-controller="Chat" asp-action="PrivateChat" asp-route-id="@conversation.Id" class="current-item">
                                 <h4 class="user-section">
                                     <span class="username hover-underline-animation">@conversation.UserName</span>
                                     <span class="time">@conversation.LastMessageActivity</span>
@@ -88,18 +86,11 @@
 
 @section Scripts{
  <partial name="_ValidationScriptsPartial" />
+<script src="/lib/selectize/selectize.js"></script>
 <script>
-        $('#input-users').on('change', function () {
-            var valueSelected = this.value;
-            $("#addMessageForm input[name='ReceiverId']").val(valueSelected);
-        });
-        var $select = $('#input-users').selectize({
-            create: false,
-            sortField: 'text',
-            placeholder: 'Write a message to'
-        });
-        $select.each(function () {
-            $(this)[0].selectize.clear(true);
-        });
+    $('#input-users').on('change', function () {
+    var valueSelected = this.value;
+    $("#addMessage input[name='ReceiverId']").val(valueSelected);
+    });
 </script>
 }
