@@ -56,6 +56,14 @@ namespace YourMoviesForum.Services.Data.Messages
             return concatenatedMessages;
         }
 
+        public async Task<IEnumerable<TModel>> GetAllUserMessagesAsync<TModel>(string currentUserId, string userId)
+                => await data.Messages
+                .Where(m=>(m.ReceiverId == currentUserId && m.AuthorId == userId) ||
+                      (m.ReceiverId == userId && m.AuthorId == currentUserId))
+                .OrderBy(m => m.CreatedOn)
+                .ProjectTo<TModel>(this.mapper.ConfigurationProvider)
+                .ToListAsync();
+
         public async Task<string> GetLastActivityAsync(string currentUserId, string userId)
            => await data.Messages
                  .Where(m => (m.ReceiverId == currentUserId && m.AuthorId == userId) ||

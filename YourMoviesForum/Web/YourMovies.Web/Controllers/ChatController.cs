@@ -51,6 +51,17 @@ namespace YourMovies.Web.Controllers
             return View(input);
         }
 
+        public async Task<IActionResult> PrivateChat(string id)
+        {
+            var viewModel = new ChatWithUserViewModel
+            {
+                User = await userService.GetUserByIdAsync<ChatUserViewModel>(id),
+                Messages = await messageService.GetAllUserMessagesAsync<ChatConversationWithUserInputModel>(User.Id(), id),
+            };
+
+            return View(viewModel);
+        }
+
         private async Task<IEnumerable<ChatConversationViewModel>> RecievedMessagesAndActivityAsync(ChatMessageInputModel input)
         {
             var recievedMessages = input.RecievedMessages = await messageService.GetAllMessagesAsync<ChatConversationViewModel>(User.Id());

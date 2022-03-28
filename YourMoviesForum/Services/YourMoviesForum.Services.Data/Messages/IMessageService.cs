@@ -12,5 +12,7 @@ namespace YourMoviesForum.Services.Data.Messages
         Task<string> GetLastActivityAsync(string currentUserId, string userId);
 
         Task<string> GetLastMessageAsync(string currentUserId, string userId);
+
+        Task<IEnumerable<TModel>> GetAllUserMessagesAsync<TModel>(string currentUserId, string userId);
     }
 }

@@ -3,11 +3,11 @@ using Ganss.XSS;
 
 namespace YourMoviesForum.Web.InputModels.Chat
 {
-    public class ChatConversationWithUserViewModel
+    public class ChatConversationWithUserInputModel
     {
         private readonly IHtmlSanitizer sanitizer;
 
-        public ChatConversationWithUserViewModel()
+        public ChatConversationWithUserInputModel()
         {
             sanitizer = new HtmlSanitizer();
         }

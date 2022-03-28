@@ -21,8 +21,8 @@
             <div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <h4 class="mt-2">To:</h4>
-                        <select asp-for="ReceiverId" id="input-users">
+                        <h4 class="mt-2 ml-2">To:</h4>
+                        <select asp-for="ReceiverId" id="input-users" class="ml-2">
                             @foreach (var user in Model.Users.Where(u => u.Id != User.Id()))
                             {
                                 <option value="@user.Id">@user.UserName</option>
@@ -45,7 +45,7 @@
                         </div>
                         <div class="pt-row">
                             <div class="col-auto ml-auto">
-                                <button class="btn btn-primary btn-lg" id="sendButton" type="submit">Send</button>
+                                <button class="btn btn-primary btn-lg pr-5 pl-5" id="sendButton" type="submit">Send</button>
                             </div>
                         </div>
                     </form>

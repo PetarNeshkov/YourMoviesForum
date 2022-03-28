@@ -63,8 +63,7 @@
 
 .message {
     padding: 24px 30px 4px 30px;
-    width: 31.4vw;
-    /*width:27.5vw;*/
+    width: 25.8vw;
     cursor: pointer;
 }
 
@@ -132,7 +131,5 @@
 }
 
 .col-md-7 {
-    border-right: 1px solid black;
-    
+    border-right: 1px solid black; 
 }
-
