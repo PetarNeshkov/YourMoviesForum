@@ -153,8 +153,11 @@ namespace YourMovies.Web
             CreateMap<ApplicationUser,PostAuthorDetailsViewModel>();
             CreateMap<ApplicationUser,ReplyAuthorDetailsViewModel>();
             CreateMap<ApplicationUser,ChatUserViewModel>();
-            CreateMap<ApplicationUser,ChatMessageInputModel>();
-            CreateMap<ApplicationUser,ChatConversationViewModel>();
+            CreateMap<ApplicationUser, ChatConversationViewModel>();
+              
+
+            //Message
+            CreateMap<Message, ChatConversationWithUserInputModel>();
         }
     }
 }

@@ -82,13 +82,13 @@ namespace YourMovies.Web.Controllers
                 return View(input);
             }
 
-            await postService.CreatePostAsync(
+            var post=await postService.CreatePostAsync(
                 input.Title,
                 input.SanitizedContent,
                 input.CategoryId,
                 input.TagIds,
-                this.User.Id());
-            return RedirectToAction("Index", "Home");
+                User.Id());
+            return RedirectToAction(nameof(Details), new {id=post});
         }
 
         public async Task<IActionResult> Details(int id)

@@ -24,13 +24,13 @@ namespace YourMovies.Web.Controllers
 
         public async Task<IActionResult> Message()
         {
-            var viewModel = new ChatMessageInputModel();
-            var recievedMessages = await RecievedMessagesAndActivityAsync(viewModel);
+            var viewModel = new ChatMessageInputModel()
+            {
+                Users = await userService.GetAllUsersAsync<ChatUserViewModel>(),
+                RecievedMessages = await RecievedMessagesAndActivityAsync()
+            };
 
-            viewModel.Users = await userService.GetAllUsersAsync<ChatUserViewModel>();
-            viewModel.RecievedMessages = recievedMessages;
-
-            return this.View(viewModel);
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -39,16 +39,13 @@ namespace YourMovies.Web.Controllers
             if (!ModelState.IsValid)
             {
                 input.Users = await userService.GetAllUsersAsync<ChatUserViewModel>();
-                input.RecievedMessages=await RecievedMessagesAndActivityAsync(input);
+                input.RecievedMessages=await RecievedMessagesAndActivityAsync();
                 return View(input);
             }
 
-            input.Users = await userService.GetAllUsersAsync<ChatUserViewModel>();
-            input.RecievedMessages=await RecievedMessagesAndActivityAsync(input);
-
             await messageService.CreateMessageAsync(input.Message, User.Id(), input.ReceiverId);
 
-            return View(input);
+            return RedirectToAction(nameof(PrivateChat),new { id = input.ReceiverId });
         }
 
         public async Task<IActionResult> PrivateChat(string id)
@@ -56,15 +53,16 @@ namespace YourMovies.Web.Controllers
             var viewModel = new ChatWithUserViewModel
             {
                 User = await userService.GetUserByIdAsync<ChatUserViewModel>(id),
-                Messages = await messageService.GetAllUserMessagesAsync<ChatConversationWithUserInputModel>(User.Id(), id),
+                MessagesWithCurrentUser = await messageService.GetAllUserMessagesAsync<ChatConversationWithUserInputModel>(User.Id(), id),
+                RecievedMessages = await RecievedMessagesAndActivityAsync()
             };
 
             return View(viewModel);
         }
 
-        private async Task<IEnumerable<ChatConversationViewModel>> RecievedMessagesAndActivityAsync(ChatMessageInputModel input)
+        private async Task<IEnumerable<ChatConversationViewModel>> RecievedMessagesAndActivityAsync()
         {
-            var recievedMessages = input.RecievedMessages = await messageService.GetAllMessagesAsync<ChatConversationViewModel>(User.Id());
+            var recievedMessages = await messageService.GetAllMessagesAsync<ChatConversationViewModel>(User.Id());
             foreach (var user in recievedMessages)
             {
                 user.LastMessage = await messageService.GetLastMessageAsync(User.Id(), user.Id);
