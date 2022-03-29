@@ -7,7 +7,7 @@ using YourMoviesForum.Services.Data.Users;
 using YourMoviesForum.Services.Providers.DateTime;
 using YourMoviesForum.Web.InputModels.Chat;
 
-namespace YourMovies.Web.ChatHub
+namespace YourMovies.Web.Chat
 {
     public class ChatHub:Hub
     {
@@ -38,7 +38,7 @@ namespace YourMovies.Web.ChatHub
             await this.messagesService.CreateMessageAsync(message, authorId, receiverId);
             await this.Clients.All.SendAsync(
                 "ReceiveMessageFromTheOtherUser",
-                new ChatConversationWithUserViewModel
+                new ChatConversationWithUserInputModel
                 {
                     AuthorId = authorId,
                     AuthorUserName = user.UserName,

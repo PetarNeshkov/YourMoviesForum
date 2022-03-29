@@ -22,6 +22,7 @@ using YourMoviesForum.Services.Data.Replies;
 using YourMoviesForum.Services.Data.PostReactions;
 using YourMoviesForum.Services.Data.ReplyReactions;
 using YourMoviesForum.Services.Data.Messages;
+using YourMovies.Web.Chat;
 
 namespace YourMovies.Web
 {
@@ -89,6 +90,8 @@ namespace YourMovies.Web
                     .AddTransient<IMessageService,MessageService>();
                     
 
+            services.AddSignalR();
+
             services.Configure<ReCaptchSettings>(this.configuration.GetSection("GoogleReCaptcha"));
 
         }
@@ -122,6 +125,8 @@ namespace YourMovies.Web
                 {
                     endpoints.MapDefaultControllerRoute();
                     endpoints.MapRazorPages();
+
+                    endpoints.MapHub<ChatHub>("/chat");
                 });
         }
     }
