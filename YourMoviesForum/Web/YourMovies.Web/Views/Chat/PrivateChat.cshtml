@@ -15,9 +15,7 @@
     <div class="main">
         <div class="col-md-8">
             <h4 id="username" class="ml-3 pb-2">@Model.User.UserName</h4>
-            <div id="messagesList"
-                 class="recieved-messages ml-3"
-                >
+            <div id="messages" class="recieved-messages ml-3">
                 @foreach (var message in Model.MessagesWithCurrentUser)
                 {
                     <div class="current-message">
@@ -31,14 +29,15 @@
             </div>
             <div id="whoIsTyping"></div>
             <div>
-                    <div id="addMessageForm">
-                        <div class="form-group mt-2">
-                            <textarea id="messageBox" class="form-control" placeholder="Enter what you think..."></textarea>
-                        </div>
-                            <div class="col-auto ml-auto">
-                                <button id="sendButton" class="btn btn-primary btn-lg pr-5 pl-5">Send</button>
-                            </div>
+                <div id="addMessageForm">
+                    <div class="form-group mt-2">
+                        <textarea id="messageBox" class="form-control" placeholder="Enter what you think..."></textarea>
                     </div>
+                    <div class="col-auto ml-auto">
+                        <button id="sendButton" class="btn btn-primary btn-lg pr-5 pl-5">Send</button>
+                       
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -76,3 +75,39 @@
     </div>
 </body>
 </html>
+
+@section Scripts{
+<partial name="_ValidationScriptsPartial" />
+@*<script src="./lib/signalr/dist/browser/signalr.min.js"></script>*@
+<script>
+    var connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chat")
+            .build();
+
+    connection.on("ReceiveMessageFromTheOtherUser",
+            function(message) {
+                  var content = `<div class="current-message">
+                        <h4 class="user-section">
+                            <span class="username hover-underline-animation">${message.authorUserName}</span>
+                            <span class="time">${message.createdOn}</span>
+                        </h4>
+                        <div id="content">${message.sanitizedContent}</div>
+                        </div>`;
+
+                $("#messages").append(content);
+                $('#messages')[0].scrollTop = $('#messages')[0].scrollHeight;
+            });
+
+        $("#sendButton").click(function() {
+            var message = $.trim($('#messageBox').val());
+            $('#messageBox').val('');
+            connection.invoke("SendMessageToUser",message,'@Model.User.Id');
+        });
+
+        connection.start().catch(function(err) {
+            return console.error(err.toString());
+        });
+
+     
+</script>
+}

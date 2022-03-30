@@ -17,6 +17,11 @@
     border-bottom: 1px solid black;
 }
 
+#messages{
+    height:400px;
+    overflow-x:hidden;
+}
+
 #message-element {
     float:left;
     color:black;

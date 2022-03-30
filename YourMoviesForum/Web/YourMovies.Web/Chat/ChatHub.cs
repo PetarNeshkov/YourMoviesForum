@@ -35,8 +35,8 @@ namespace YourMovies.Web.Chat
             var authorId = Context.User.Id();
             var user = await usersService.GetUserByIdAsync<ChatUserViewModel>(authorId);
 
-            await this.messagesService.CreateMessageAsync(message, authorId, receiverId);
-            await this.Clients.All.SendAsync(
+            await messagesService.CreateMessageAsync(message, authorId, receiverId);
+            await Clients.All.SendAsync(
                 "ReceiveMessageFromTheOtherUser",
                 new ChatConversationWithUserInputModel
                 {
