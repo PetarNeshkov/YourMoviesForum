@@ -172,3 +172,9 @@
 #content {
     color: #666f74;
 }
+
+.second-btn{
+    position: absolute;
+    top: 460px;
+    right: 10px;
+}
