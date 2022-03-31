@@ -11,6 +11,8 @@ using FluentAssertions;
 using YourMoviesForum.Data.Models;
 using YourMoviesForum.Services.Providers.DateTime;
 using YourMoviesForum.Services.Data.Users;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace YourMoviesForum.Tests
 {
@@ -143,9 +145,167 @@ namespace YourMoviesForum.Tests
             isEmailUsed.Should().BeFalse();
         }
 
+
+        [Theory]
+        [InlineData("user1", "user1@test.com")]
+        [InlineData("user2", "user2@test.com")]
+        [InlineData("user3", "user3@test.com")]
+        public async Task GetUserByIdAsyncShouldReturnCorrectModel(string userName, string email)
+        {
+            var guid = Guid.NewGuid().ToString();
+
+            var options = DatabaseConfigOptions(guid);
+            var db = new YourMoviesDbContext(options);
+
+            var config = MappingConfiguration();
+            var mapper = config.CreateMapper();
+
+            var dateTimeProvider = new Mock<IDateTimeProvider>();
+
+            var expected = new ApplicationUser
+            {
+                Id = guid,
+                UserName = userName,
+                Email = email
+            };
+
+            await db.Users.AddAsync(expected);
+            await db.SaveChangesAsync();
+
+            var usersService = new User(db, mapper, dateTimeProvider.Object);
+            var actual = await usersService.GetUserByIdAsync<ApplicationUser>(guid);
+
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Theory]
+        [InlineData("user1", "user1@test.com")]
+        [InlineData("user2", "user2@test.com")]
+        [InlineData("user3", "user3@test.com")]
+        public async Task GetUserByIdAsyncShouldReturnNullIfUserIsDeleted(string userName, string email)
+        {
+            var guid = Guid.NewGuid().ToString();
+
+            var options = DatabaseConfigOptions(guid);
+            var db = new YourMoviesDbContext(options);
+
+            var config = MappingConfiguration();
+            var mapper = config.CreateMapper();
+
+            var dateTimeProvider = new Mock<IDateTimeProvider>();
+
+            var expected = new ApplicationUser
+            {
+                Id = guid,
+                UserName = userName,
+                Email = email,
+                IsDeleted = true,
+                CreatedOn = dateTimeProvider.Object.Now(),
+                DeletedOn = dateTimeProvider.Object.Now()
+            };
+
+            await db.Users.AddAsync(expected);
+            await db.SaveChangesAsync();
+
+            var usersService = new User(db, mapper, dateTimeProvider.Object);
+            var actual = await usersService.GetUserByIdAsync<ApplicationUser>(guid);
+
+            actual.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task GetAllUsersAsyncShouldReturnCorrectModels()
+        {
+            var guid = Guid.NewGuid().ToString();
+
+            var options = DatabaseConfigOptions(guid);
+            var db = new YourMoviesDbContext(options);
+
+            var config = MappingConfiguration();
+            var mapper = config.CreateMapper();
+
+            var dateTimeProvider = new Mock<IDateTimeProvider>();
+
+            var expected = new List<ApplicationUser>
+            {
+                new ApplicationUser
+                {
+                    Id = "1",
+                    UserName = "user 1",
+                    Email = "user1@test.com",
+                },
+                new ApplicationUser
+                {
+                    Id = "2",
+                    UserName = "user 2",
+                    Email = "user2@test.com",
+                }
+            };
+
+            await db.Users.AddRangeAsync(expected);
+            await db.SaveChangesAsync();
+
+            var usersService = new User(db, mapper, dateTimeProvider.Object);
+            var actual = await usersService.GetAllUsersAsync<ApplicationUser>();
+
+            actual.Should().BeEquivalentTo(expected);
+            actual.Should().HaveCount(expected.Count);
+        }
+
+        [Fact]
+        public async Task GetAllUsersAsyncShouldNotReturnDeletedUsers()
+        {
+            var guid = Guid.NewGuid().ToString();
+
+            var options = DatabaseConfigOptions(guid);
+            var db = new YourMoviesDbContext(options);
+
+            var config = MappingConfiguration();
+            var mapper = config.CreateMapper();
+
+            var dateTimeProvider = new Mock<IDateTimeProvider>();
+
+            var users = new List<ApplicationUser>
+            {
+                new ApplicationUser
+                {
+                    Id = "1",
+                    UserName = "user 1",
+                    Email = "user1@test.com",
+                    IsDeleted = true,
+                    CreatedOn = dateTimeProvider.Object.Now(),
+                    DeletedOn = dateTimeProvider.Object.Now()
+                },
+                new ApplicationUser
+                {
+                    Id = "2",
+                    UserName = "user 2",
+                    Email = "user2@test.com",
+                    CreatedOn = dateTimeProvider.Object.Now()
+                }
+            };
+
+            await db.Users.AddRangeAsync(users);
+            await db.SaveChangesAsync();
+
+            var usersService = new User(db, mapper, dateTimeProvider.Object);
+            var actual = await usersService.GetAllUsersAsync<ApplicationUser>();
+
+            actual.Should().HaveCount(1);
+            actual.First().Should().BeEquivalentTo(users[1]);
+        }
+
         private static DbContextOptions<YourMoviesDbContext> DatabaseConfigOptions(string guid)
           => new DbContextOptionsBuilder<YourMoviesDbContext>()
                            .UseInMemoryDatabase(guid)
                            .Options;
+
+        private static MapperConfiguration MappingConfiguration()
+        {
+            return new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<ApplicationUser, ApplicationUser>();
+            });
+        }
     }
 }
