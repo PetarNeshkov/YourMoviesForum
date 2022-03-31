@@ -46,5 +46,8 @@ namespace YourMovies.Web.Chat
                     CreatedOn = dateTimeProvider.Now()
                 });
         }
+        public async Task Typing(string name)
+            => await Clients.Others.SendAsync("CurrentlyTyping", name);
+
     }
 }

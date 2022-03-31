@@ -27,6 +27,7 @@
                     </div>
                 }
             </div>
+            <div id="currentlyTyping"></div>
             <div id="whoIsTyping"></div>
             <div>
                 <div id="addMessageForm">
@@ -84,6 +85,10 @@
             .withUrl("/chat")
             .build();
 
+     connection.start().catch(function(err) {
+        return console.error(err.toString());
+    });
+
     connection.on("ReceiveMessageFromTheOtherUser",
             function(message) {
                   var content = `<div class="current-message">
@@ -104,9 +109,26 @@
             connection.invoke("SendMessageToUser",message,'@Model.User.Id');
         });
 
-        connection.start().catch(function(err) {
-            return console.error(err.toString());
-        });
+         connection.on("CurrentlyTyping",
+            function(name) {
+                if (name === null || name === "") {
+                    $("#currentlyTyping").html('');
+                } else {
+                     $('#currentlyTyping').html(`<em>&nbsp;&nbsp;${name} is typing...</em>`);
+                    setTimeout(function () {
+                    $('#currentlyTyping').html('&nbsp;');
+                    }, 10000);
+                }
+            });
+
+            $("#messageBox").on('change keyup copy paste cut',
+            function() {
+                if (!this.value) {
+                    connection.invoke("Typing", '');
+                } else {
+                    connection.invoke("Typing", '@User.Identity.Name');
+                }
+            });
 
          new EmojiPicker({
             trigger: [
@@ -115,8 +137,7 @@
                     insertInto: '#messageBox'
                 },
             ],
-            closeButton: true,
-            //specialButtons: green
+            closeButton: true
         });
 </script>
 }
