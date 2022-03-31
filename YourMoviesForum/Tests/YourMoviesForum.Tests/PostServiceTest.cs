@@ -21,7 +21,7 @@ namespace YourMoviesForum.Tests
     {
         [Theory]
         [InlineData("Star Wars", "Blockbuster!", 1)]
-        [InlineData("Ben 10","Best anime ever", 2)]
+        [InlineData("Ben 10", "Best anime ever", 2)]
         [InlineData("Generator Rex", "It was awsome one!", 3)]
         public async Task CreatePostAsyncShouldAddPostInDatabase(string title, string content, int categoryId)
         {
@@ -36,7 +36,7 @@ namespace YourMoviesForum.Tests
 
             for (int i = 0; i < 5; i++)
             {
-               await db.Tags.AddAsync(new Tag
+                await db.Tags.AddAsync(new Tag
                 {
                     Name = $"Tag: {i}",
                 });
@@ -46,7 +46,7 @@ namespace YourMoviesForum.Tests
             var expectedIds = new[] { 1, 2, 3 };
 
             var postsService = new PostService(db, null, dateTimeProvider.Object, usersServiceMock.Object);
-            var postId = await postsService.CreatePostAsync(title,content, categoryId, expectedIds,guid);
+            var postId = await postsService.CreatePostAsync(title, content, categoryId, expectedIds, guid);
 
             var actual = await db.Posts.FirstAsync();
             var actualTagIds = actual.Tags.Select(t => t.Id).ToArray();
@@ -78,7 +78,7 @@ namespace YourMoviesForum.Tests
             await db.Posts.AddRangeAsync(posts);
             await db.SaveChangesAsync();
 
-            var postService = new PostService(db, null, null,null);
+            var postService = new PostService(db, null, null, null);
             var actualPosts = await postService.GetPostsSearchCountAsync("Star Wars");
 
             Assert.Equal(2, actualPosts);
@@ -153,8 +153,8 @@ namespace YourMoviesForum.Tests
             await db.Posts.AddAsync(post);
             await db.SaveChangesAsync();
 
-            var postsService = new PostService(db, null, dateTimeProvider.Object,null);
-            await postsService.EditPostAsync(1, title, content, categoryId, new[] {1});
+            var postsService = new PostService(db, null, dateTimeProvider.Object, null);
+            await postsService.EditPostAsync(1, title, content, categoryId, new[] { 1 });
             var actual = await db.Posts.FirstOrDefaultAsync();
 
             var expected = new Post
@@ -250,7 +250,7 @@ namespace YourMoviesForum.Tests
             await db.Posts.AddAsync(post);
             await db.SaveChangesAsync();
 
-            var postsService = new PostService(db, null, dateTimeProvider.Object,null);
+            var postsService = new PostService(db, null, dateTimeProvider.Object, null);
             await postsService.ViewAsync(1);
 
             var actual = await db.Posts.FirstAsync();
@@ -273,7 +273,7 @@ namespace YourMoviesForum.Tests
             await db.Posts.AddAsync(post);
             await db.SaveChangesAsync();
 
-            var postsService = new PostService(db, null, null,null);
+            var postsService = new PostService(db, null, null, null);
 
             var authorId = await postsService.GetPostAuthorIdAsync<Post>(1);
 
@@ -302,7 +302,7 @@ namespace YourMoviesForum.Tests
             await db.Posts.AddAsync(post);
             await db.SaveChangesAsync();
 
-            var postsService = new PostService(db, null, null,null);
+            var postsService = new PostService(db, null, null, null);
 
             var authorId = await postsService.GetPostAuthorIdAsync<Post>(1);
 
@@ -328,7 +328,7 @@ namespace YourMoviesForum.Tests
             });
             await db.SaveChangesAsync();
 
-            var postService = new PostService(db, mapper, dateTimeProvider.Object,null);
+            var postService = new PostService(db, mapper, dateTimeProvider.Object, null);
             var actual = await postService.GetByIdAsync<Post>(1);
 
             actual.Should().BeNull();
@@ -346,7 +346,7 @@ namespace YourMoviesForum.Tests
 
             var dateTimeProvider = new Mock<IDateTimeProvider>();
 
-            var postService = new PostService(db, mapper, dateTimeProvider.Object,null);
+            var postService = new PostService(db, mapper, dateTimeProvider.Object, null);
             var actual = await postService.GetByIdAsync<Post>(1);
 
             actual.Should().BeNull();
@@ -376,7 +376,7 @@ namespace YourMoviesForum.Tests
             await db.Posts.AddAsync(post);
             await db.SaveChangesAsync();
 
-            var postsService = new PostService(db, null, dateTimeProvider.Object,null);
+            var postsService = new PostService(db, null, dateTimeProvider.Object, null);
 
             var latestActivity = await postsService.GetLatestPostActivityAsync(1);
 
@@ -417,7 +417,7 @@ namespace YourMoviesForum.Tests
                 Content = "Nice one!"
             };
             await db.Replies.AddAsync(reply);
-            postToFind.Replies=new List<Reply>() {reply};
+            postToFind.Replies = new List<Reply>() { reply };
 
             await db.SaveChangesAsync();
 
@@ -426,7 +426,7 @@ namespace YourMoviesForum.Tests
             latestActivity.Should().Be("0min");
         }
 
-            private static MapperConfiguration MappingConfiguration()
+        private static MapperConfiguration MappingConfiguration()
         {
             return new MapperConfiguration(cfg =>
             {
