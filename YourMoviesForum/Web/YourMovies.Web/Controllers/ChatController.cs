@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
-using YourMovies.Web.Infrastructure;
 using YourMoviesForum.Services.Data.Messages;
 using YourMoviesForum.Services.Data.Users;
 using YourMoviesForum.Web.InputModels.Chat;

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using YourMovies.Web.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 
 using YourMoviesForum.Services.Data.PostReactions;
 using YourMoviesForum.Web.InputModels.Reactions;

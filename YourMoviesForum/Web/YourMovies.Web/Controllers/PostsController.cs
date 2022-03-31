@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 using YourMoviesForum;
-using YourMovies.Web.Infrastructure;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Categories;
 using YourMoviesForum.Services.Data.Replies;

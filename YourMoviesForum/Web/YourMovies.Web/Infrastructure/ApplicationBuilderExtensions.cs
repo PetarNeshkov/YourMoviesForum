@@ -1,12 +1,11 @@
 ﻿
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 using YourMoviesForum;
 using YourMoviesForum.Data.Seeding;
 
-namespace YourMovies.Web.Infrastructure
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ApplicationBuilderExtensions
     {

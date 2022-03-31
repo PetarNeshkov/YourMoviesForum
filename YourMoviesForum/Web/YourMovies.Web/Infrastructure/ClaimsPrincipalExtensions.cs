@@ -2,7 +2,7 @@
 
 using static YourMoviesForum.Common.GlobalConstants.Administrator;
 
-namespace YourMovies.Web.Infrastructure
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ClaimsPrincipalExtensions
     {

@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
-using YourMovies.Web.Infrastructure;
 using YourMoviesForum.Services.Data.ReplyReactions;
 using YourMoviesForum.Web.InputModels.Reactions;
 using YourMoviesForum.Web.InputModels.Reactions.enums;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 
-using YourMovies.Web.Infrastructure;
 using YourMoviesForum.Services.Data.Messages;
 using YourMoviesForum.Services.Data.Users;
 using YourMoviesForum.Services.Providers.DateTime;
