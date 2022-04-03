@@ -45,6 +45,7 @@
                         </div>
                         <div class="col-auto ml-auto">
                             <button class="btn btn-primary btn-lg pr-5 pl-5" id="sendButton" type="submit">Send</button>
+                            <div class="second-btn btn btn-secondary btn-md"><i class="far fa-grin"></i></div>
                         </div>
                     </form>
                 </div>
@@ -87,10 +88,20 @@
 @section Scripts{
  <partial name="_ValidationScriptsPartial" />
 <script src="/lib/selectize/selectize.js"></script>
+<script src="~/lib/twemoji/vanillaEmojiPicker.js" type="text/javascript"></script>
 <script>
     $('#input-users').on('change', function () {
     var valueSelected = this.value;
     $("#addMessage input[name='ReceiverId']").val(valueSelected);
     });
+
+      new EmojiPicker({
+            trigger: [
+                {
+                    selector: '.second-btn',
+                    insertInto: '#messageBox'
+                },       
+            ] 
+        });
 </script>
 }

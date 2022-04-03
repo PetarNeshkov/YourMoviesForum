@@ -166,13 +166,13 @@
            type: "POST",
            url: "/api/" + controller + "/like/" + id,
            headers: { 'X-CSRF-TOKEN': token },
-           success: function (json) {
-              $("#reply-likes").html(json.likes);
-              $("#reply-hearts").html(json.heartReactionsCount);
-              $("#reply-hahas").html(json.hahaReactionsCount);
-              $("#reply-wows").html(json.wowReactionsCount);
-              $("#reply-sads").html(json.sadReactionsCount);
-              $("#reply-angries").html(json.angryReactionsCount);                    
+           success: function (html) {
+              $("#reply-likes").html(html.likes);
+              $("#reply-hearts").html(html.heartReactionsCount);
+              $("#reply-hahas").html(html.hahaReactionsCount);
+              $("#reply-wows").html(html.wowReactionsCount);
+              $("#reply-sads").html(html.sadReactionsCount);
+              $("#reply-angries").html(html.angryReactionsCount);                    
            }
        });
     }
@@ -182,13 +182,13 @@
            type: "POST",
            url: "/api/" + controller + "/heart/" + id,
            headers: { 'X-CSRF-TOKEN': token },
-           success: function (json) {
-              $("#reply-likes").html(json.likes);
-              $("#reply-hearts").html(json.heartReactionsCount);
-              $("#reply-hahas").html(json.hahaReactionsCount);
-              $("#reply-wows").html(json.wowReactionsCount);
-              $("#reply-sads").html(json.sadReactionsCount);
-              $("#reply-angries").html(json.angryReactionsCount);                    
+           success: function (html) {
+              $("#reply-likes").html(html.likes);
+              $("#reply-hearts").html(html.heartReactionsCount);
+              $("#reply-hahas").html(html.hahaReactionsCount);
+              $("#reply-wows").html(html.wowReactionsCount);
+              $("#reply-sads").html(html.sadReactionsCount);
+              $("#reply-angries").html(html.angryReactionsCount);                    
            }
        });
     }
@@ -198,13 +198,13 @@
           type: "POST",
           url: "/api/" + controller + "/haha/" + id,
           headers: { 'X-CSRF-TOKEN': token },
-          success: function (json) {
-             $("#reply-likes").html(json.likes);
-             $("#reply-hearts").html(json.heartReactionsCount);
-             $("#reply-hahas").html(json.hahaReactionsCount);
-             $("#reply-wows").html(json.wowReactionsCount);
-             $("#reply-sads").html(json.sadReactionsCount);
-             $("#reply-angries").html(json.angryReactionsCount);                    
+          success: function (html) {
+             $("#reply-likes").html(html.likes);
+             $("#reply-hearts").html(html.heartReactionsCount);
+             $("#reply-hahas").html(html.hahaReactionsCount);
+             $("#reply-wows").html(html.wowReactionsCount);
+             $("#reply-sads").html(html.sadReactionsCount);
+             $("#reply-angries").html(html.angryReactionsCount);                    
           }
       });
    }
@@ -214,13 +214,13 @@
           type: "POST",
           url: "/api/" + controller + "/wow/" + id,
           headers: { 'X-CSRF-TOKEN': token },
-          success: function (json) {
-             $("#reply-likes").html(json.likes);
-             $("#reply-hearts").html(json.heartReactionsCount);
-             $("#reply-hahas").html(json.hahaReactionsCount);
-             $("#reply-wows").html(json.wowReactionsCount);
-             $("#reply-sads").html(json.sadReactionsCount);
-             $("#reply-angries").html(json.angryReactionsCount);                    
+          success: function (html) {
+             $("#reply-likes").html(html.likes);
+             $("#reply-hearts").html(html.heartReactionsCount);
+             $("#reply-hahas").html(html.hahaReactionsCount);
+             $("#reply-wows").html(html.wowReactionsCount);
+             $("#reply-sads").html(html.sadReactionsCount);
+             $("#reply-angries").html(html.angryReactionsCount);                    
           }
       });
    }
@@ -230,13 +230,13 @@
           type: "POST",
           url: "/api/" + controller + "/sad/" + id,
           headers: { 'X-CSRF-TOKEN': token },
-          success: function (json) {
-             $("#reply-likes").html(json.likes);
-             $("#reply-hearts").html(json.heartReactionsCount);
-             $("#reply-hahas").html(json.hahaReactionsCount);
-             $("#reply-wows").html(json.wowReactionsCount);
-             $("#reply-sads").html(json.sadReactionsCount);
-             $("#reply-angries").html(json.angryReactionsCount);                    
+          success: function (html) {
+             $("#reply-likes").html(html.likes);
+             $("#reply-hearts").html(html.heartReactionsCount);
+             $("#reply-hahas").html(html.hahaReactionsCount);
+             $("#reply-wows").html(html.wowReactionsCount);
+             $("#reply-sads").html(html.sadReactionsCount);
+             $("#reply-angries").html(html.angryReactionsCount);                    
           }
       });
    }
@@ -246,13 +246,13 @@
           type: "POST",
           url: "/api/" + controller + "/angry/" + id,
           headers: { 'X-CSRF-TOKEN': token },
-          success: function (json) {
-             $("#reply-likes").html(json.likes);
-             $("#reply-hearts").html(json.heartReactionsCount);
-             $("#reply-hahas").html(json.hahaReactionsCount);
-             $("#reply-wows").html(json.wowReactionsCount);
-             $("#reply-sads").html(json.sadReactionsCount);
-             $("#reply-angries").html(json.angryReactionsCount);                    
+          success: function (html) {
+             $("#reply-likes").html(html.likes);
+             $("#reply-hearts").html(html.heartReactionsCount);
+             $("#reply-hahas").html(html.hahaReactionsCount);
+             $("#reply-wows").html(html.wowReactionsCount);
+             $("#reply-sads").html(html.sadReactionsCount);
+             $("#reply-angries").html(html.angryReactionsCount);                    
           }
       });
    }

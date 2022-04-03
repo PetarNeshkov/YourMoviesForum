@@ -28,15 +28,15 @@
                 }
             </div>
             <div id="currentlyTyping"></div>
-            <div id="whoIsTyping"></div>
             <div>
                 <div id="addMessageForm">
                     <div class="form-group mt-2">
-                        <button class="second-btn btn"><i class="far fa-grin"></i></button>
+                        
                         <textarea id="messageBox" class="form-control" placeholder="Enter what you think..."></textarea>
                     </div>
                     <div class="col-auto ml-auto">
                         <button id="sendButton" class="btn btn-primary btn-lg pr-5 pl-5">Send</button>
+                        <div class="second-btn btn btn-secondary btn-md"><i class="far fa-grin"></i></div>
                     </div>
                 </div>
             </div>
@@ -135,9 +135,8 @@
                 {
                     selector: '.second-btn',
                     insertInto: '#messageBox'
-                },
-            ],
-            closeButton: true
+                },       
+            ] 
         });
 </script>
 }
