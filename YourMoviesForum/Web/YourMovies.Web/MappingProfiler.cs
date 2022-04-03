@@ -150,7 +150,7 @@ namespace YourMovies.Web
             CreateMap<Reply,ReplyDeleteAuthorViewModel>();
 
             //User
-            CreateMap<ApplicationUser,PostAuthorDetailsViewModel>();
+            CreateMap<ApplicationUser, PostAuthorDetailsViewModel>();
             CreateMap<ApplicationUser,ReplyAuthorDetailsViewModel>();
             CreateMap<ApplicationUser,ChatUserViewModel>();
             CreateMap<ApplicationUser, ChatConversationViewModel>();

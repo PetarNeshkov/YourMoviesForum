@@ -194,6 +194,9 @@ namespace YourMoviesForum.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("BackgroundColor")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -210,6 +213,10 @@ namespace YourMoviesForum.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstLetter")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

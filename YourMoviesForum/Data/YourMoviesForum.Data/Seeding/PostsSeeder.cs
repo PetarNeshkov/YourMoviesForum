@@ -21,7 +21,7 @@ namespace YourMoviesForum.Data.Seeding
             }
 
             var adminId = await dbContext.Users
-                              .Where(u => u.UserName == AdministratorRoleName)
+                              .Where(u => u.UserName == AdministratorUsername)
                               .Select(u => u.Id)
                               .FirstOrDefaultAsync();
 

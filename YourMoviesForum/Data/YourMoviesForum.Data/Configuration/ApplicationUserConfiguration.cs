@@ -29,7 +29,7 @@ namespace YourMoviesForum.Data.Configuration
                 .HasForeignKey(e => e.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
-        
+
         }
     }
 }

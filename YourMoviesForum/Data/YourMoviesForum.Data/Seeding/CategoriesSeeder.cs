@@ -16,18 +16,16 @@ namespace YourMoviesForum.Data.Seeding
                 return;
             }
 
-            var createdOn = DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy H:mm");
-
            await dbContext.Categories.AddRangeAsync(new[]
             {
-                new Category { Name = "Sci-Fi", CreatedOn=createdOn},
-                new Category { Name = "Action", CreatedOn=createdOn},
-                new Category { Name = "Horror", CreatedOn=createdOn},
-                new Category { Name = "Romantic", CreatedOn=createdOn},
-                new Category { Name = "Cartoon", CreatedOn=createdOn},
-                new Category { Name = "Adventure", CreatedOn=createdOn},
-                new Category { Name = "Actors", CreatedOn=createdOn},
-                new Category { Name = "Tragedy", CreatedOn=createdOn}
+                new Category { Name = "Sci-Fi" },
+                new Category { Name = "Action"},
+                new Category { Name = "Horror"},
+                new Category { Name = "Romantic"},
+                new Category { Name = "Cartoon"},
+                new Category { Name = "Adventure"},
+                new Category { Name = "Actors"},
+                new Category { Name = "Tragedy"}
             });
 
             await dbContext.SaveChangesAsync();

@@ -22,6 +22,8 @@ namespace YourMoviesForum.Data.Models
             Logins = new HashSet<IdentityUserLogin<string>>();
         }
 
+        public char FirstLetter { get; set; }
+        public string BackgroundColor { get; set; }
         public int Rating { get; set; }
 
         //Audit Info
