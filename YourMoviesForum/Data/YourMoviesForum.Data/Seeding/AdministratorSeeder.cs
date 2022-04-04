@@ -30,14 +30,14 @@ namespace YourMoviesForum.Data.Seeding
                 await roleManager.CreateAsync(role);
 
                 var randomIndex = new Random().Next(0, BackgroundColors.Count - 1);
-                var bgColour = BackgroundColors[randomIndex];
+                var bgColor = BackgroundColors[randomIndex];
 
                 var admin = new ApplicationUser
                 {
                     UserName = AdministratorUsername,
                     Email = AdministratorEmail,
                     EmailConfirmed = true,
-                    BackgroundColor = bgColour
+                    BackgroundColor = bgColor
                 };
 
                 admin.FirstLetter = char.ToUpper(admin.UserName[0]);
