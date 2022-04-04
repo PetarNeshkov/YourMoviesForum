@@ -21,6 +21,9 @@ namespace YourMoviesForum.Web.InputModels.Posts
         public string CreatedOn { get; init; }
         public string Content { get; init; }
 
+        public char FirstLetter { get;set; }
+        public string BackgroundColor { get; set; }
+
         public string SanitizedContent
             => this.sanitizer.Sanitize(Content);
 

@@ -14,13 +14,11 @@ namespace YourMoviesForum.Services.Data.Users
     {
         private readonly YourMoviesDbContext data;
         private readonly IMapper mapper;
-        private readonly IDateTimeProvider dateTimeProvider;
 
-        public User(YourMoviesDbContext data, IMapper mapper, IDateTimeProvider dateTimeProvider)
+        public User(YourMoviesDbContext data, IMapper mapper)
         {
             this.data = data;
             this.mapper = mapper;
-            this.dateTimeProvider = dateTimeProvider;
         }
 
         public async Task<bool> IsUsernameUsedAsync(string username)
@@ -52,7 +50,19 @@ namespace YourMoviesForum.Services.Data.Users
                 .Where(u => u.Id == id && !u.IsDeleted)
                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
-          
-        
+
+        public async Task<string> GetUserBackGroundColorAsync(string id)
+            =>  await data.Users
+                  .AsNoTracking()
+                  .Where(u => u.Id == id)
+                  .Select(u => u.BackgroundColor)
+                  .FirstOrDefaultAsync();
+
+        public async Task<char> GetUserFirstLetterAsync(string id)
+            => await data.Users
+                   .AsNoTracking()
+                   .Where(x => x.Id == id)
+                   .Select(x => x.FirstLetter)
+                   .FirstOrDefaultAsync();
     }
 }

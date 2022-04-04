@@ -1,4 +1,5 @@
-﻿@model AllPostsQueryModel
+﻿@using Microsoft.AspNetCore.Identity
+@model AllPostsQueryModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -75,7 +76,12 @@
            <div class="items">
                @foreach (var post in Model.Posts)
                {
-                   <div class="current-item">
+                      <div class="current-item">
+                        <div>
+                          <i class="icon" style="background-color:@Model.BackgroundColor">       
+                                @Model.FirstLetter
+                          </i>
+                        </div>
                        <div class="topic-section">
                                 <a 
                                    asp-controller="Posts"

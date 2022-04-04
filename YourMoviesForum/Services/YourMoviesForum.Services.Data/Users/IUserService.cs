@@ -14,5 +14,10 @@ namespace YourMoviesForum.Services.Data.Users
         Task<IEnumerable<TModel>> GetAllUsersAsync<TModel>();
 
         Task<TModel> GetUserByIdAsync<TModel>(string id);
+
+        Task<string> GetUserBackGroundColorAsync(string id);
+
+        Task<char> GetUserFirstLetterAsync(string id);
+
     }
 }

@@ -3,7 +3,7 @@ namespace YourMoviesForum.Web.InputModels.User
 {
     public class UserBannerViewModel
     {
-        public char FirstLetter { get; init; }
-        public string BackgroundColor { get; init; }
+        public char FirstLetter { get; set; }
+        public string BackgroundColor { get; set; }
     }
 }

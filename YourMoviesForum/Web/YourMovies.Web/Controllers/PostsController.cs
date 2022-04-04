@@ -8,6 +8,7 @@ using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Categories;
 using YourMoviesForum.Services.Data.Replies;
 using YourMoviesForum.Services.Data.Tags;
+using YourMoviesForum.Services.Data.Users;
 using YourMoviesForum.Services.Providers.Pagination;
 using YourMoviesForum.Web.InputModels;
 using YourMoviesForum.Web.InputModels.Home;
@@ -25,19 +26,22 @@ namespace YourMovies.Web.Controllers
         private readonly ICategoryService categoryService;
         private readonly ITagService tagService;
         private readonly IReplyService replyService;
+        private readonly IUserService userService;
 
         public PostsController(
             YourMoviesDbContext data,
             IPostService postService,
             ICategoryService categoryService,
             ITagService tagService,
-            IReplyService replyService)
+            IReplyService replyService,
+            IUserService userService)
         {
             this.data = data;
             this.postService = postService;
             this.categoryService = categoryService;
             this.tagService = tagService;
             this.replyService = replyService;
+            this.userService = userService;
         }
 
         [Authorize]
@@ -51,7 +55,8 @@ namespace YourMovies.Web.Controllers
                     .GetAllPostsAsync<PostListingViewModel>(query.Sorting, query.SearchTerm, skip, PostPerPage);
             query.Posts = posts;
             query.Pagination = PaginationProvider.PaginationHelper(page, count, PostPerPage, query.SearchTerm);
-
+            query.FirstLetter = await userService.GetUserFirstLetterAsync(User.Id());
+            query.BackgroundColor = await userService.GetUserBackGroundColorAsync(User.Id());
 
             foreach (var post in query.Posts)
             {
@@ -101,6 +106,8 @@ namespace YourMovies.Web.Controllers
 
             await this.postService.ViewAsync(id);
 
+            post.FirstLetter = await userService.GetUserFirstLetterAsync(User.Id());
+            post.BackgroundColor= await userService.GetUserBackGroundColorAsync(User.Id());
             post.Tags = await tagService.GetAllPostsByIdAsync<PostTagViewModel>(id);
             post.Replies = await replyService.GetAllRepliesByPostIdAsync<PostRepliesDetailsViewModel>(id);
 

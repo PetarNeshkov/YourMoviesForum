@@ -11,7 +11,12 @@
     <section class="main">
         <div id="header">
             <div class="top-header">
-                @Model.Author.UserName
+            <div>
+               <i class="icon" style="background-color:@Model.BackgroundColor">       
+                     @Model.FirstLetter
+               </i>
+                <div class="d-inline p-2">@Model.Author.UserName</div>
+            </div>
                 <div>
                     <i id="calendar-icon" class="calendar-icon fas fa-calendar-alt"></i>@Model.CreatedOn
                 </div>

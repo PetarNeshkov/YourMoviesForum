@@ -27,7 +27,7 @@
         </div>
     }
     else
-	{
+    {
         <div class="header">
             <h3 id="topic">Topic</h3>
             <h3 id="category">Category</h3>
@@ -40,32 +40,37 @@
             @foreach (var post in Model)
             {
                 <div class="current-item">
+                    <div>
+                        <i class="icon" style="background-color:@post.BackgroundColor">
+                            @post.FirstLetter
+                        </i>
+                    </div>
                     <div class="topic-section">
-                             <a 
-                                asp-controller="Posts"
-                                   asp-action="Details"
-                                   asp-route-id="@post.Id">
-                                  <h5 id="title">@post.Title</h5>
-                                </a> 
+                        <a asp-controller="Posts"
+                          asp-action="Details"
+                          asp-route-id="@post.Id">
+                            <h5 id="title">@post.Title</h5>
+                        </a>
                         <div class="tags">
                             @foreach (var tag in post.Tags)
                             {
                                 <a id="anchor"
-                                asp-controller="Tags"
-                                   asp-action="Details"
-                                   asp-route-id="@tag.Id">
-                                      <span class="tagElement">
-                                    <i id="tag-icon" class="fas fa-tags"></i>
-                                    @tag.Name</span>
-                                </a>                       
+                                      asp-controller="Tags"
+                                      asp-action="Details"
+                                      asp-route-id="@tag.Id">
+                                    <span class="tagElement">
+                                        <i id="tag-icon" class="fas fa-tags"></i>
+                                        @tag.Name
+                                    </span>
+                                </a>
                             }
                         </div>
                     </div>
                     <div class="category">
                         <a id="anchor"
-                            asp-controller="Categories"
-                            asp-action="Details"
-                            asp-route-id="@post.Category.Id">
+                           asp-controller="Categories"
+                           asp-action="Details"
+                           asp-route-id="@post.Category.Id">
                             <h5 class="category-name">@post.Category.Name</h5>
                         </a>
                     </div>
@@ -75,7 +80,7 @@
                 </div>
             }
         </div>
-	}
+    }
 </body>
 
 
