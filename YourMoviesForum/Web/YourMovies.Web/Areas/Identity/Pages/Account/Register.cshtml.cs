@@ -117,6 +117,7 @@ namespace YourMovies.Web.Areas.Identity.Pages.Account
                     BackgroundColor = bgColor
                 };
 
+
                 var result = await userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

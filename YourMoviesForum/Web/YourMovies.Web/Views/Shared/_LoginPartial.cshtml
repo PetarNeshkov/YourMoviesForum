@@ -1,24 +1,19 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using YourMoviesForum.Data.Models
+@using YourMoviesForum.Web.InputModels.User
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li class="tt-avatar-icon tt-size-md">
-                <i class="icon" style="background-color:#1c87c9;">
-                   
-                      P
-                   
+         <li class="tt-size-md">
+                <i class="icon" style="background-color:@UserManager.GetUserAsync(User).Result.BackgroundColor">       
+                      @UserManager.GetUserAsync(User).Result.FirstLetter
                 </i>
         </li>
-        @* <li class="tt-avatar-icon tt-size-md">
-                <i class="icon" style="background-color:@Model.BackgroundColor">       
-                      @Model.FirstLetter
-                </i>
-        </li>*@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
         </li>

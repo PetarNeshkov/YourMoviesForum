@@ -10,7 +10,6 @@ using YourMoviesForum.Web.InputModels.Replies;
 using YourMoviesForum.Web.InputModels.Reactions.enums;
 using YourMoviesForum.Web.InputModels.Chat;
 using YourMoviesForum.Data.Models;
-
 namespace YourMovies.Web
 {
     public class MappingProfiler:Profile
@@ -154,7 +153,6 @@ namespace YourMovies.Web
             CreateMap<ApplicationUser,ReplyAuthorDetailsViewModel>();
             CreateMap<ApplicationUser,ChatUserViewModel>();
             CreateMap<ApplicationUser, ChatConversationViewModel>();
-              
 
             //Message
             CreateMap<Message, ChatConversationWithUserInputModel>();
