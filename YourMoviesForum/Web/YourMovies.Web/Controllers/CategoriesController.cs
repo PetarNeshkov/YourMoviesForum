@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 
 using YourMovies.Web.Views.Categories;
 using YourMoviesForum.Web.InputModels.Categories;
+using YourMoviesForum.Web.InputModels.Home;
+using YourMoviesForum.Services.Data.Users;
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Categories;
 using YourMoviesForum.Services.Providers.Pagination;
@@ -13,7 +15,7 @@ using static YourMoviesForum.Common.ErrorMessages.Categories;
 using static YourMoviesForum.Common.GlobalConstants;
 using static YourMoviesForum.Common.GlobalConstants.Category;
 using static YourMoviesForum.Common.GlobalConstants.Post;
-using YourMoviesForum.Web.InputModels.Home;
+
 
 namespace YourMovies.Web.Controllers
 {
@@ -21,11 +23,15 @@ namespace YourMovies.Web.Controllers
     {
         private readonly ICategoryService categoryService;
         private readonly IPostService postService;
+        private readonly IUserService userService;
 
-        public CategoriesController(ICategoryService categoryService, IPostService postService)
+        public CategoriesController(ICategoryService categoryService, 
+            IPostService postService,
+            IUserService userService)
         {
             this.categoryService = categoryService;
             this.postService = postService;
+            this.userService = userService;
         }
 
         public async Task<IActionResult> All([FromQuery] AllCategoriesQueryModel query,int page=1)
@@ -56,6 +62,8 @@ namespace YourMovies.Web.Controllers
             foreach (var post in posts)
             {
                 post.Activity = await postService.GetLatestPostActivityAsync(post.Id);
+                post.FirstLetter = await userService.GetUserFirstLetterAsync(post.AuthorId);
+                post.BackgroundColor = await userService.GetUserBackGroundColorAsync(post.AuthorId);
             }
 
             var viewModel = new CategoryDetailsViewModel

@@ -1,4 +1,4 @@
-﻿@model YourMoviesForum.Web.InputModels.Tags.TagDetailsViewModel
+﻿@model TagDetailsViewModel
 
 @{
     ViewData["Title"] = Model.Tag.Name;
@@ -31,6 +31,11 @@
             @foreach (var post in Model.Posts)
             {
                 <div class="current-item">
+                    <div>
+                        <i class="icon" style="background-color:@post.BackgroundColor">
+                            @post.FirstLetter
+                        </i>
+                    </div>
                     <div class="topic-section">
                         <h5>@post.Title</h5>
                         <div class="tags">

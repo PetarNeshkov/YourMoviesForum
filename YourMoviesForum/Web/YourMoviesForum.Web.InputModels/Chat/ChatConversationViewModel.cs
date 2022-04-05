@@ -1,8 +1,10 @@
 ﻿
 
+using YourMoviesForum.Web.InputModels.User;
+
 namespace YourMoviesForum.Web.InputModels.Chat
 {
-    public class ChatConversationViewModel
+    public class ChatConversationViewModel:UserBannerViewModel
     {
         public string Id { get; init; }
 

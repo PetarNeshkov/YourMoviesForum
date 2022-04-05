@@ -20,7 +20,10 @@
                 {
                     <div class="current-message">
                         <h4 class="user-section">
-                            <span class="username hover-underline-animation">@message.AuthorUserName</span>
+                               <i class="icon-user" style="background-color:@message.BackgroundColor">       
+                                   @message.FirstLetter
+                               </i>
+                            <span class="username hover-underline-animation p-2">@message.AuthorUserName</span>
                             <span class="time">@message.CreatedOn</span>
                         </h4>
                         <div id="content">@Html.Raw(message.SanitizedContent)</div>
@@ -56,7 +59,12 @@
                         <div id="chat-message">
                             <a asp-controller="Chat" asp-action="PrivateChat" asp-route-id="@conversation.Id" class="current-item">
                                 <h4 class="user-section">
-                                    <span class="username hover-underline-animation">@conversation.UserName</span>
+                                    <div>
+                                        <i class="icon" style="background-color:@conversation.BackgroundColor">       
+                                            @conversation.FirstLetter
+                                        </i>
+                                    </div>
+                                    <span class="username hover-underline-animation p-2">@conversation.UserName</span>
                                     <span class="time">@conversation.LastMessageActivity</span>
                                 </h4>
                                 <div class="lastMessage">@conversation.LastMessage</div>

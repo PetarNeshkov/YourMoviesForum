@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using YourMoviesForum.Services.Data;
 using YourMoviesForum.Services.Data.Tags;
+using YourMoviesForum.Services.Data.Users;
 using YourMoviesForum.Services.Providers.Pagination;
 using YourMoviesForum.Web.InputModels.Home;
 using YourMoviesForum.Web.InputModels.Tags;
@@ -20,11 +21,15 @@ namespace YourMovies.Web.Controllers
     {
         private readonly ITagService tagService;
         private readonly IPostService postService;
+        private readonly IUserService userService;
 
-        public TagsController(ITagService tagService,IPostService postService)
+        public TagsController(ITagService tagService,
+            IPostService postService,
+            IUserService userService)
         {
             this.tagService = tagService;
             this.postService = postService;
+            this.userService = userService;
         }
 
         public async Task<IActionResult> All([FromQuery]AllTagsQueryModel query,int page = 1)
@@ -56,6 +61,8 @@ namespace YourMovies.Web.Controllers
             foreach (var post in posts)
             {
                 post.Activity = await postService.GetLatestPostActivityAsync(post.Id);
+                post.FirstLetter=await userService.GetUserFirstLetterAsync(post.AuthorId);
+                post.BackgroundColor= await userService.GetUserBackGroundColorAsync(post.AuthorId);
             }
 
             var viewModel = new TagDetailsViewModel

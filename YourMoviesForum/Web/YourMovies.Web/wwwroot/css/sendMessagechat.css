@@ -97,7 +97,6 @@
     align-items: center;
     margin: 0;
     width: 100%;
-    line-height: 26px;
 }
 
 #messagesList {
@@ -181,4 +180,14 @@
 
 .second-btn{
     cursor:pointer;
+}
+
+.icon-user {
+    height: 40px;
+    width: 70px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    font-size: 28px;
+    color: white;
 }

@@ -55,11 +55,11 @@ namespace YourMovies.Web.Controllers
                     .GetAllPostsAsync<PostListingViewModel>(query.Sorting, query.SearchTerm, skip, PostPerPage);
             query.Posts = posts;
             query.Pagination = PaginationProvider.PaginationHelper(page, count, PostPerPage, query.SearchTerm);
-            query.FirstLetter = await userService.GetUserFirstLetterAsync(User.Id());
-            query.BackgroundColor = await userService.GetUserBackGroundColorAsync(User.Id());
 
             foreach (var post in query.Posts)
             {
+                post.FirstLetter = await userService.GetUserFirstLetterAsync(post.AuthorId);
+                post.BackgroundColor = await userService.GetUserBackGroundColorAsync(post.AuthorId);
                 post.Activity = await postService.GetLatestPostActivityAsync(post.Id);
             }
 

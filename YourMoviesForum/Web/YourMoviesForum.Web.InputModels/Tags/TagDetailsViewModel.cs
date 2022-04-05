@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using YourMovies.Web.Views.Pagination;
 using YourMoviesForum.Web.InputModels.Home;
-using YourMoviesForum.Web.InputModels.Posts;
+using YourMoviesForum.Web.InputModels.User;
 
 namespace YourMoviesForum.Web.InputModels.Tags
 {
-    public class TagDetailsViewModel
+    public class TagDetailsViewModel:UserBannerViewModel
     {
         public int Id { get; init; }
         public TagsListingViewModel Tag { get; init; }

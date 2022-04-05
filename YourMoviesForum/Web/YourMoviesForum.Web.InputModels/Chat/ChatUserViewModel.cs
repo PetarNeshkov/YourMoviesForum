@@ -1,4 +1,6 @@
 ﻿
+using YourMoviesForum.Web.InputModels.User;
+
 namespace YourMoviesForum.Web.InputModels.Chat
 {
     public class ChatUserViewModel

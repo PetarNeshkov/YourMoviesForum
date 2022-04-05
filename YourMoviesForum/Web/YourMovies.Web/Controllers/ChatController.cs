@@ -51,10 +51,18 @@ namespace YourMovies.Web.Controllers
 
         public async Task<IActionResult> PrivateChat(string id)
         {
+            var messagesWithCurrentUser = await messageService.GetAllUserMessagesAsync<ChatConversationWithUserInputModel>(User.Id(), id);
+
+            foreach (var message in messagesWithCurrentUser)
+            {
+                message.FirstLetter= await userService.GetUserFirstLetterAsync(message.AuthorId);
+                message.BackgroundColor=await userService.GetUserBackGroundColorAsync(message.AuthorId);
+            }
+
             var viewModel = new ChatWithUserViewModel
             {
                 User = await userService.GetUserByIdAsync<ChatUserViewModel>(id),
-                MessagesWithCurrentUser = await messageService.GetAllUserMessagesAsync<ChatConversationWithUserInputModel>(User.Id(), id),
+                MessagesWithCurrentUser =messagesWithCurrentUser,
                 RecievedMessages = await RecievedMessagesAndActivityAsync()
             };
 
@@ -66,6 +74,8 @@ namespace YourMovies.Web.Controllers
             var recievedMessages = await messageService.GetAllMessagesAsync<ChatConversationViewModel>(User.Id());
             foreach (var user in recievedMessages)
             {
+                user.FirstLetter=await userService.GetUserFirstLetterAsync(user.Id);
+                user.BackgroundColor=await userService.GetUserBackGroundColorAsync(user.Id);
                 user.LastMessage = await messageService.GetLastMessageAsync(User.Id(), user.Id);
                 user.LastMessageActivity = await messageService.GetLastActivityAsync(User.Id(), user.Id);
             }

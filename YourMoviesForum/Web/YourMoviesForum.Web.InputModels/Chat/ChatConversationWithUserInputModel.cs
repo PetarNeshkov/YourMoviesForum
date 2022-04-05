@@ -1,9 +1,10 @@
 ﻿
 using Ganss.XSS;
+using YourMoviesForum.Web.InputModels.User;
 
 namespace YourMoviesForum.Web.InputModels.Chat
 {
-    public class ChatConversationWithUserInputModel
+    public class ChatConversationWithUserInputModel:UserBannerViewModel
     {
         private readonly IHtmlSanitizer sanitizer;
 

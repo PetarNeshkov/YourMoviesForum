@@ -64,7 +64,12 @@
                       <div class="message">
                         <a asp-controller="Chat" asp-action="PrivateChat" asp-route-id="@conversation.Id" class="current-item">
                                 <h4 class="user-section">
-                                    <span class="username hover-underline-animation">@conversation.UserName</span>
+                                    <div>
+                                        <i class="icon" style="background-color:@conversation.BackgroundColor">       
+                                            @conversation.FirstLetter
+                                        </i>
+                                    </div>
+                                    <span class="username hover-underline-animation p-2">@conversation.UserName</span>
                                     <span class="time">@conversation.LastMessageActivity</span>
                                 </h4>
                                 <div class="lastMessage">@conversation.LastMessage</div>

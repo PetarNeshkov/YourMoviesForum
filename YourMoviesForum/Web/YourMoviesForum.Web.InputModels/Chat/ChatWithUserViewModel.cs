@@ -1,10 +1,9 @@
-﻿
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using YourMoviesForum.Web.InputModels.User;
 
 namespace YourMoviesForum.Web.InputModels.Chat
 {
-    public class ChatWithUserViewModel
+    public class ChatWithUserViewModel:UserBannerViewModel
     {
         public ChatUserViewModel User { get; init; }
 
