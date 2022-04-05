@@ -17,7 +17,9 @@ namespace YourMoviesForum.Web.InputModels.Posts
         }
         public int Id { get; init; }
         public string Title { get; init; }
-        public DateTime CreatedOn { get; init; }
+        public string CreatedOn { get; init; }
+        public char FirstLetter { get; set; }
+        public string BackgroundColor { get; set; }
         public string Content { get; init; }
 
         public string SanitizedContent

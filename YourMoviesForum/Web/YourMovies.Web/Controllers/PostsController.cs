@@ -108,8 +108,15 @@ namespace YourMovies.Web.Controllers
 
             post.FirstLetter = await userService.GetUserFirstLetterAsync(User.Id());
             post.BackgroundColor= await userService.GetUserBackGroundColorAsync(User.Id());
+
             post.Tags = await tagService.GetAllPostsByIdAsync<PostTagViewModel>(id);
             post.Replies = await replyService.GetAllRepliesByPostIdAsync<PostRepliesDetailsViewModel>(id);
+
+            foreach (var reply in post.Replies)
+            {
+                reply.FirstLetter = await userService.GetUserFirstLetterAsync(reply.Author.Id);
+                reply.BackgroundColor = await userService.GetUserBackGroundColorAsync(reply.Author.Id);
+            }
 
             return View(post);
         }
@@ -178,6 +185,8 @@ namespace YourMovies.Web.Controllers
                 return Unauthorized();
             }
 
+            post.FirstLetter = await userService.GetUserFirstLetterAsync(User.Id());
+            post.BackgroundColor = await userService.GetUserBackGroundColorAsync(User.Id());
             post.Tags = await tagService.GetAllPostsByIdAsync<PostTagViewModel>(id);
 
             return View(post);

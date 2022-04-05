@@ -1,8 +1,9 @@
 ﻿using Ganss.XSS;
-using System;
 using System.Collections.Generic;
+
 using YourMoviesForum.Web.InputModels.Posts;
 using YourMoviesForum.Web.InputModels.Reactions;
+
 using static YourMoviesForum.Common.GlobalConstants;
 
 namespace YourMoviesForum.Web.InputModels.Replies
@@ -18,6 +19,8 @@ namespace YourMoviesForum.Web.InputModels.Replies
         }
 
         public int Id { get; init; }
+        public char FirstLetter { get; set; }
+        public string BackgroundColor { get; set; }
 
         public string Content { get; init; }
 

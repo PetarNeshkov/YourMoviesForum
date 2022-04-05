@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 
 using YourMoviesForum.Services.Data.Replies;
+using YourMoviesForum.Services.Data.Users;
 using YourMoviesForum.Web.InputModels.Replies;
 
 using static YourMoviesForum.Common.GlobalConstants;
@@ -14,10 +15,12 @@ namespace YourMovies.Web.Controllers
     public class RepliesController : Controller
     {
         private readonly IReplyService replyService;
+        private readonly IUserService userService;
 
-        public RepliesController(IReplyService replyService)
+        public RepliesController(IReplyService replyService,IUserService userService)
         {
             this.replyService = replyService;
+            this.userService = userService;
         }
 
         public async Task<IActionResult> Create(ReplyCreateInputModel input)
@@ -79,7 +82,15 @@ namespace YourMovies.Web.Controllers
                 return NotFound();
             }
 
+            reply.FirstLetter = await userService.GetUserFirstLetterAsync(User.Id());
+            reply.BackgroundColor = await userService.GetUserBackGroundColorAsync(User.Id());
             reply.Replies = await replyService.GetAllRepliesByPostIdAsync<ReplyDetailsViewModel>(reply.PostId);
+
+            foreach (var item in reply.Replies)
+            {
+                item.BackgroundColor = await userService.GetUserBackGroundColorAsync(item.Author.Id);
+                item.FirstLetter=await userService.GetUserFirstLetterAsync(item.Author.Id);
+            }
 
             return View(reply);
         }
@@ -97,6 +108,9 @@ namespace YourMovies.Web.Controllers
             {
                 return Unauthorized();
             }
+
+            reply.FirstLetter = await userService.GetUserFirstLetterAsync(User.Id());
+            reply.BackgroundColor = await userService.GetUserBackGroundColorAsync(User.Id());
 
             return View(reply);
         }

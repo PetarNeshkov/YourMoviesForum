@@ -17,6 +17,8 @@ namespace YourMoviesForum.Web.InputModels.Replies
         }
 
         public int Id { get; init; }
+        public char FirstLetter { get; set; }
+        public string BackgroundColor { get; set; }
 
         public string Content { get; init; }
 

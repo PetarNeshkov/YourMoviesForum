@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-
-using YourMoviesForum.Services.Providers.DateTime;
 using AutoMapper.QueryableExtensions;
 
 namespace YourMoviesForum.Services.Data.Users

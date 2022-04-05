@@ -6,63 +6,68 @@
     var replies = Model.Replies.Where(r => r.ParentId == Model.ParentId);
 }
 
- <section class="main">
-           @foreach(var reply in replies)
-           {
-              <div class="current-element">
-                <div class="nested">
-                 <div id="header">
-                   <div class="top-header">
-                      @reply.Author.UserName
-                       <div>
-                          <i id="calendar-icon" class="calendar-icon fas fa-calendar-alt"></i>@reply.CreatedOn
-                       </div>
-                   </div>
-                  </div>      
-                   <div id="content">
-                       <p>@Html.Raw(@reply.SanitizedContent)</p>
-                   </div>
-                  <div id="options">
-                     @if (User.Identity.IsAuthenticated)
-                     {
-                         @if (@reply.Author.Id == this.User.Id() || User.IsAdministrator())
-                         {
-                             <a asp-controller="Replies" 
-                                asp-action="Edit" 
-                                asp-route-id="@reply.Id" 
-                                style="color: #666f74">
-                                 <i class="fas fa-edit"></i>
-                             </a>
-                             <a asp-controller="Replies" 
-                                asp-action="Delete" 
-                                asp-route-id="@reply.Id" 
-                                style="color: #666f74">
-                                 <i class="fas fa-trash"></i>
-                             </a>
-                         }
-                             <a asp-controller="Replies" 
-                              asp-action="Details"
-                              asp-route-id="@reply.Id" 
-                              style="color: #666f74">
-                              <i class="fas fa-comment-dots"><use xlink:href="#icon-reply"></use></i>
-                             </a>  
-                     }
-                  </div>
-                  <div id="reactions">
-                     <i class='fa fa-thumbs-up' style='color:#35c4f3'></i>
-                     <span id="post-likes">@reply.LikesCount</span>  
-                     <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png" alt="heart"/>
-                     <span id="post-hearts">@reply.HeartReactionsCount</span>
-                     <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png" alt="haha"/>
-                     <span id="post-hahas">@reply.HahaReactionsCount</span>
-                     <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png" alt="wow"/>
-                     <span id="post-wows">@reply.WowReactionsCount</span>
-                     <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/JJuD9qb_a7gkmu.png" alt="sad"/>
-                     <span id="post-sads">@reply.SadReactionsCount</span>
-                     <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png" alt="angry"/>
-                     <span id="post-angries">@reply.AngryReactionsCount</span>
-                 </div>
-               </div>
-              </div>
-           }
+<section class="main">
+    @foreach (var reply in replies)
+    {
+        <div class="current-element">
+            <div class="nested">
+                <div id="header">
+                    <div class="top-header">
+                        <div>
+                            <i class="icon" style="background-color:@reply.BackgroundColor">
+                                @reply.FirstLetter
+                            </i>
+                            <div class="d-inline p-2">@reply.Author.UserName</div>
+                        </div>
+                        <div>
+                            <i id="calendar-icon" class="calendar-icon fas fa-calendar-alt"></i>@reply.CreatedOn
+                        </div>
+                    </div>
+                </div>
+                <div id="content">
+                    <p>@Html.Raw(@reply.SanitizedContent)</p>
+                </div>
+                <div id="options">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (@reply.Author.Id == this.User.Id() || User.IsAdministrator())
+                        {
+                            <a asp-controller="Replies"
+                   asp-action="Edit"
+                   asp-route-id="@reply.Id"
+                   style="color: #666f74">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a asp-controller="Replies"
+                   asp-action="Delete"
+                   asp-route-id="@reply.Id"
+                   style="color: #666f74">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        }
+                        <a asp-controller="Replies"
+                   asp-action="Details"
+                   asp-route-id="@reply.Id"
+                   style="color: #666f74">
+                            <i class="fas fa-comment-dots"><use xlink:href="#icon-reply"></use></i>
+                        </a>
+                    }
+                </div>
+                <div id="reactions">
+                    <i class='fa fa-thumbs-up' style='color:#35c4f3'></i>
+                    <span id="post-likes">@reply.LikesCount</span>
+                    <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png" alt="heart" />
+                    <span id="post-hearts">@reply.HeartReactionsCount</span>
+                    <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png" alt="haha" />
+                    <span id="post-hahas">@reply.HahaReactionsCount</span>
+                    <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png" alt="wow" />
+                    <span id="post-wows">@reply.WowReactionsCount</span>
+                    <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/JJuD9qb_a7gkmu.png" alt="sad" />
+                    <span id="post-sads">@reply.SadReactionsCount</span>
+                    <img class="picture" src="https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png" alt="angry" />
+                    <span id="post-angries">@reply.AngryReactionsCount</span>
+                </div>
+            </div>
+        </div>
+    }
 </section>
