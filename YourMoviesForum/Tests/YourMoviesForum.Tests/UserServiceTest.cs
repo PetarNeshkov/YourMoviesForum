@@ -28,8 +28,6 @@ namespace YourMoviesForum.Tests
             var options = DatabaseConfigOptions(guid);
             var db = new YourMoviesDbContext(options);
 
-            var dateTimeProvider = new Mock<IDateTimeProvider>();
-
             var user = new ApplicationUser
             {
                 Id = guid,
@@ -41,7 +39,7 @@ namespace YourMoviesForum.Tests
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
 
-            var usersService = new User(db, null, dateTimeProvider.Object);
+            var usersService = new User(db, null);
             await usersService.AddRatingToUserAsync(guid, pointsToAdd);
 
             var actual = await db.Users.FirstAsync();
@@ -60,8 +58,6 @@ namespace YourMoviesForum.Tests
             var options = DatabaseConfigOptions(guid);
             var db = new YourMoviesDbContext(options);
 
-            var dateTimeProvider = new Mock<IDateTimeProvider>();
-
             var user = new ApplicationUser
             {
                 Id = guid,
@@ -72,7 +68,7 @@ namespace YourMoviesForum.Tests
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
 
-            var usersService = new User(db, null, dateTimeProvider.Object);
+            var usersService = new User(db, null);
             var isUsernameUsed = await usersService.IsUsernameUsedAsync(username);
 
             isUsernameUsed.Should().BeTrue();
@@ -89,9 +85,7 @@ namespace YourMoviesForum.Tests
             var options = DatabaseConfigOptions(guid);
             var db = new YourMoviesDbContext(options);
 
-            var dateTimeProvider = new Mock<IDateTimeProvider>();
-
-            var usersService = new User(db, null, dateTimeProvider.Object);
+            var usersService = new User(db, null);
             var isUsernameUsed = await usersService.IsUsernameUsedAsync(username);
 
             isUsernameUsed.Should().BeFalse();
@@ -108,8 +102,6 @@ namespace YourMoviesForum.Tests
             var options = DatabaseConfigOptions(guid);
             var db = new YourMoviesDbContext(options);
 
-            var dateTimeProvider = new Mock<IDateTimeProvider>();
-
             var user = new ApplicationUser
             {
                 Id = guid,
@@ -120,7 +112,7 @@ namespace YourMoviesForum.Tests
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
 
-            var usersService = new User(db, null, dateTimeProvider.Object);
+            var usersService = new User(db, null);
             var isEmailUsed = await usersService.IsEmailUsedAsync(email);
 
             isEmailUsed.Should().BeTrue();
@@ -137,9 +129,7 @@ namespace YourMoviesForum.Tests
             var options = DatabaseConfigOptions(guid);
             var db = new YourMoviesDbContext(options);
 
-            var dateTimeProvider = new Mock<IDateTimeProvider>();
-
-            var usersService = new User(db, null, dateTimeProvider.Object);
+            var usersService = new User(db, null);
             var isEmailUsed = await usersService.IsUsernameUsedAsync(email);
 
             isEmailUsed.Should().BeFalse();
@@ -160,8 +150,6 @@ namespace YourMoviesForum.Tests
             var config = MappingConfiguration();
             var mapper = config.CreateMapper();
 
-            var dateTimeProvider = new Mock<IDateTimeProvider>();
-
             var expected = new ApplicationUser
             {
                 Id = guid,
@@ -172,7 +160,7 @@ namespace YourMoviesForum.Tests
             await db.Users.AddAsync(expected);
             await db.SaveChangesAsync();
 
-            var usersService = new User(db, mapper, dateTimeProvider.Object);
+            var usersService = new User(db, mapper);
             var actual = await usersService.GetUserByIdAsync<ApplicationUser>(guid);
 
             actual.Should().BeEquivalentTo(expected);
@@ -207,7 +195,7 @@ namespace YourMoviesForum.Tests
             await db.Users.AddAsync(expected);
             await db.SaveChangesAsync();
 
-            var usersService = new User(db, mapper, dateTimeProvider.Object);
+            var usersService = new User(db, mapper);
             var actual = await usersService.GetUserByIdAsync<ApplicationUser>(guid);
 
             actual.Should().BeNull();
@@ -223,8 +211,6 @@ namespace YourMoviesForum.Tests
 
             var config = MappingConfiguration();
             var mapper = config.CreateMapper();
-
-            var dateTimeProvider = new Mock<IDateTimeProvider>();
 
             var expected = new List<ApplicationUser>
             {
@@ -245,7 +231,7 @@ namespace YourMoviesForum.Tests
             await db.Users.AddRangeAsync(expected);
             await db.SaveChangesAsync();
 
-            var usersService = new User(db, mapper, dateTimeProvider.Object);
+            var usersService = new User(db, mapper);
             var actual = await usersService.GetAllUsersAsync<ApplicationUser>();
 
             actual.Should().BeEquivalentTo(expected);
@@ -288,7 +274,7 @@ namespace YourMoviesForum.Tests
             await db.Users.AddRangeAsync(users);
             await db.SaveChangesAsync();
 
-            var usersService = new User(db, mapper, dateTimeProvider.Object);
+            var usersService = new User(db, mapper);
             var actual = await usersService.GetAllUsersAsync<ApplicationUser>();
 
             actual.Should().HaveCount(1);

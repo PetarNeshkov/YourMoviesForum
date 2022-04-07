@@ -9,6 +9,7 @@
 <link href="~/css/pagination.css" rel="stylesheet" type="text/css" />
 
 <body>
+
     @if (!Model.Any())
     {
         <div class="text-center">
@@ -25,9 +26,11 @@
                 }
             </div>
         </div>
+         <partial name="_CookieConsentPartial" />
     }
     else
     {
+         <partial name="_CookieConsentPartial" />
         <div class="header">
             <h3 id="topic">Topic</h3>
             <h3 id="category">Category</h3>

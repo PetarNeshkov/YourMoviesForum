@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.UI.Services;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
+using YourMovies.Web.Infrastructure;
 using YourMoviesForum;
 using YourMoviesForum.Data.Models;
 using YourMoviesForum.Services.Data;
@@ -86,6 +88,12 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
+
+        public static IServiceCollection AddCookiePolicyOptions(this IServiceCollection services)
+           => services
+                .Configure<CookiePolicyOptions>(options => options
+                    .CookiePolicyOptions());
+            
 
         public static IServiceCollection AddApplicationServices(
            this IServiceCollection services,

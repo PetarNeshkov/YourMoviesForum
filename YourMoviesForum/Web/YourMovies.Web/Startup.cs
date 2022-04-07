@@ -24,6 +24,7 @@ namespace YourMovies.Web
                 .AddDatabase(configuration)
                 .AddDatabaseDeveloperPageExceptionFilter()
                 .AddIdentity()
+                .AddCookiePolicyOptions()
                 .AddAntiforgeryHeader()
                 .AddControllersWithAutoAntiforgeryTokenAttribute()
                 .AddAutoMapper(typeof(MappingProfiler))
@@ -59,6 +60,7 @@ namespace YourMovies.Web
                 .UseRouting()
                 .UseAuthentication()
                 .UseAuthorization()
+                .UseCookiePolicy()
                 .UseEndpoints(endpoints =>
                 {
                     endpoints.MapDefaultControllerRoute();

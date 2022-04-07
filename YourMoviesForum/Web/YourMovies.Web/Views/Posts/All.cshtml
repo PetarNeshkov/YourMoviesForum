@@ -17,6 +17,7 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    <partial name="_CookieConsentPartial" />
     @if (!Model.Posts.Any() && Model.SearchTerm==null)
     {
         <div class="text-center">
