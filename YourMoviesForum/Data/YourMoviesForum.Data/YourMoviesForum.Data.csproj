@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\GlobalConstants\YourMoviesForum.Common\YourMoviesForum.Common.csproj" />
+    <ProjectReference Include="..\..\Services\YourMoviesForum.Services.Providers\YourMoviesForum.Services.Providers.csproj" />
     <ProjectReference Include="..\YourMoviesForum.Data.Models\YourMoviesForum.Data.Models.csproj" />
   </ItemGroup>
 

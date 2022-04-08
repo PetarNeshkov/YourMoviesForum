@@ -22,7 +22,7 @@ namespace YourMoviesForum.Data.Models
         public string Title { get; set; }
 
         [Required]
-        //[MaxLength(ContentMaxLength)]
+        [MaxLength(ContentMaxLength)]
         public string Content { get; set; }
 
         [Required]

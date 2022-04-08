@@ -12,8 +12,8 @@ using YourMoviesForum;
 namespace YourMoviesForum.Data.Migrations
 {
     [DbContext(typeof(YourMoviesDbContext))]
-    [Migration("20220403234650_Latest")]
-    partial class Latest
+    [Migration("20220407174046_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -357,6 +357,7 @@ namespace YourMoviesForum.Data.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
+                        .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedOn")

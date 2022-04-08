@@ -355,6 +355,7 @@ namespace YourMoviesForum.Data.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
+                        .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedOn")

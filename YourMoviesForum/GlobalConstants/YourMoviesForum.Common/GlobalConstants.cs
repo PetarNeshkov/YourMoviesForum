@@ -16,7 +16,7 @@
             public const int PostTitleMinLength = 3;
             public const int PostTitleMaxLength = 70;
             public const int PostContentMinLength = 10;
-            public const int PostContentMaxLength = 2000;
+            public const int PostContentMaxLength = 5000;
         }
 
         public static class Tag
