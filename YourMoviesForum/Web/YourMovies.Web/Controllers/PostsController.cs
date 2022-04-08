@@ -106,9 +106,12 @@ namespace YourMovies.Web.Controllers
 
             await this.postService.ViewAsync(id);
 
-            post.FirstLetter = await userService.GetUserFirstLetterAsync(User.Id());
-            post.BackgroundColor= await userService.GetUserBackGroundColorAsync(User.Id());
-
+            if (User.Identity.IsAuthenticated)
+            {
+                post.FirstLetter = await userService.GetUserFirstLetterAsync(User.Id());
+                post.BackgroundColor = await userService.GetUserBackGroundColorAsync(User.Id());
+            }
+            
             post.Tags = await tagService.GetAllPostsByIdAsync<PostTagViewModel>(id);
             post.Replies = await replyService.GetAllRepliesByPostIdAsync<PostRepliesDetailsViewModel>(id);
 

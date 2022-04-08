@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using YourMoviesForum.Services.Providers.DateTime;
+
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,12 +13,16 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+
 using YourMoviesForum.Data.Models;
+using YourMoviesForum.Services.Providers.Background;
 using YourMoviesForum.Services.Data.Users;
 using YourMoviesForum.Services.Providers.Email;
+using YourMoviesForum.Services.Providers.DateTime;
+
 using static YourMoviesForum.Common.ErrorMessages.User;
 using static YourMoviesForum.Common.GlobalConstants.User;
-using System;
+
 
 namespace YourMovies.Web.Areas.Identity.Pages.Account
 {
@@ -44,9 +49,6 @@ namespace YourMovies.Web.Areas.Identity.Pages.Account
             this.emailSender = emailSender;
         }
 
-
-        private List<string> BackgroundColors =
-            new List<string> { "3C79B2", "FF8F88", "6FB9FF", "C0CC44", "AFB28C", "#8B0000", "#808080", "#FFFACD", "#66CDAA", "#800000", "#4169E1", "#2E8B57" };
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -105,16 +107,13 @@ namespace YourMovies.Web.Areas.Identity.Pages.Account
                     return this.Page();
                 }
 
-                var randomIndex = new Random().Next(0, BackgroundColors.Count - 1);
-                var bgColor = BackgroundColors[randomIndex];
-
                 var user = new ApplicationUser
                 {
                     UserName = Input.Username,
                     Email = Input.Email,
                     CreatedOn = dateTimeProvider.Now(),
                     FirstLetter = char.ToUpper(Input.Username[0]),
-                    BackgroundColor = bgColor
+                    BackgroundColor = BackgroundProvider.BackgroundPicker()
                 };
 
 
