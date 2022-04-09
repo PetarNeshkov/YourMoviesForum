@@ -12,7 +12,7 @@
 
         public static class Post
         {
-            public const int PostPerPage = 5;
+            public const int PostPerPage = 7;
             public const int PostTitleMinLength = 3;
             public const int PostTitleMaxLength = 70;
             public const int PostContentMinLength = 10;

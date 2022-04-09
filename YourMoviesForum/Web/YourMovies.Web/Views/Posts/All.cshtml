@@ -18,26 +18,9 @@
 </head>
 <body>
     <partial name="_CookieConsentPartial" />
-    @if (!Model.Posts.Any() && Model.SearchTerm==null)
-    {
-        <div class="text-center">
-            <div class="jumbotron">
-                <h1 class="display-4">Welcome to @GlobalConstants.SystemName</h1>
-                <p class="lead">There are no posts in the system currently available.</p>
-                <hr class="my-4">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <p>Hurry and add some!</p>
-                    <p class="lead">
-                        <a asp-controller="Posts" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Post</a>
-                    </p>
-                }
-            </div>
-        </div>
-    }
+   
 
-    else
-    {
+  
   
        @if (Model.Posts.Count() == 0)
        {
@@ -158,7 +141,7 @@
                    </li>
                </ul>
            </nav>
-	   }
+	   
 }
 </body>
 </html>

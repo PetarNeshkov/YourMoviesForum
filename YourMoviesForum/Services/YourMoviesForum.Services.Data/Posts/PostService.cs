@@ -23,7 +23,7 @@ namespace YourMoviesForum.Services.Data.Posts
         private readonly IUserService userService;
 
         public PostService(
-            YourMoviesDbContext data, 
+            YourMoviesDbContext data,
             IMapper mapper,
             IDateTimeProvider dateTimeProvider,
             IUserService userService)
@@ -34,8 +34,8 @@ namespace YourMoviesForum.Services.Data.Posts
             this.userService = userService;
         }
         public async Task<int> CreatePostAsync(
-            string title, 
-            string content, 
+            string title,
+            string content,
             int categoryId,
             IEnumerable<int> tagIds,
             string authorId)
@@ -58,17 +58,17 @@ namespace YourMoviesForum.Services.Data.Posts
         }
 
         private async Task<Post> GetByIdAsync(int id)
-            => await data.Posts.Include(t=>t.Tags).FirstOrDefaultAsync(p => p.Id == id);
+            => await data.Posts.Include(t => t.Tags).FirstOrDefaultAsync(p => p.Id == id);
 
-        private async Task AddTagsAsync(Post post,IEnumerable<int> tagIds)
+        private async Task AddTagsAsync(Post post, IEnumerable<int> tagIds)
         {
             foreach (var tagId in tagIds)
             {
-                var tagToFind = data.Tags.FirstOrDefault(x=>x.Id==tagId);
+                var tagToFind = data.Tags.FirstOrDefault(x => x.Id == tagId);
 
-                post.Tags.Add(tagToFind);   
+                post.Tags.Add(tagToFind);
             }
-               await data.SaveChangesAsync();
+            await data.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<TModel>> GetAllPostsAsync<TModel>(PostSorting query,
@@ -109,22 +109,22 @@ namespace YourMoviesForum.Services.Data.Posts
             {
                 PostSorting.TagsCount => queryablePosts.OrderByDescending(t => t.Tags.Count),
                 PostSorting.RatingCount => queryablePosts.OrderByDescending(r => r.Rating),
-                PostSorting.ReplyCount=>queryablePosts.OrderByDescending(r=>r.Replies.Count),
+                PostSorting.ReplyCount => queryablePosts.OrderByDescending(r => r.Replies.Count),
                 PostSorting.DateCreated or _ => queryablePosts.OrderByDescending(d => d.Id)
             };
             return queryablePosts;
         }
         private string LatestActivity(string currentTime, string postTime)
         {
-            var currentTimeParsed=DateTime.Parse(currentTime);
-            var postTimeParsed=DateTime.Parse(postTime);
+            var currentTimeParsed = DateTime.Parse(currentTime);
+            var postTimeParsed = DateTime.Parse(postTime);
 
             var activity = currentTimeParsed - postTimeParsed;
             var daysFromNow = activity.Days;
             var hoursFromNow = activity.Hours;
             var minutesFromNow = activity.Minutes;
 
-            var result=String.Empty;
+            var result = String.Empty;
 
             if (daysFromNow != 0)
             {
@@ -138,19 +138,15 @@ namespace YourMoviesForum.Services.Data.Posts
             return result;
         }
 
-        public async Task<IEnumerable<TModel>> GetFourRandomPosts<TModel>()
-        {
+        public async Task<IEnumerable<TModel>> GetFiveRandomPosts<TModel>()
+            => await data.Posts
+                 .AsNoTracking()
+                 .Where(x => !x.IsDeleted)
+                 .OrderBy(x => Guid.NewGuid())
+                 .Take(5)
+                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                 .ToListAsync();
 
-            var totalPosts = await data.Posts
-                            .AsNoTracking()
-                            .Where(x => !x.IsDeleted)
-                            .OrderBy(x => Guid.NewGuid())
-                            .Take(4)
-                            .ProjectTo<TModel>(mapper.ConfigurationProvider)
-                            .ToListAsync();
-
-            return totalPosts;
-        }
 
         public async Task<int> GetPostsSearchCountAsync(string searchFilter = null)
         {
@@ -193,13 +189,13 @@ namespace YourMoviesForum.Services.Data.Posts
                  .FirstOrDefaultAsync();
 
         public async Task EditPostAsync(
-            int id, 
+            int id,
             string title,
             string content,
-            int categoryId, 
+            int categoryId,
             IEnumerable<int> tagIds)
         {
-            var post=await GetByIdAsync(id);
+            var post = await GetByIdAsync(id);
 
             post.Tags.Clear();
 
@@ -207,15 +203,15 @@ namespace YourMoviesForum.Services.Data.Posts
             post.Content = content;
             post.CategoryId = categoryId;
 
-            await AddTagsAsync(post,tagIds);
+            await AddTagsAsync(post, tagIds);
             await data.SaveChangesAsync();
         }
 
         public async Task DeletePostAsync(int id)
         {
-            var post= await GetByIdAsync(id);
+            var post = await GetByIdAsync(id);
 
-            post.IsDeleted= true;
+            post.IsDeleted = true;
             post.DeletedOn = dateTimeProvider.Now();
 
             await data.SaveChangesAsync();
@@ -225,7 +221,7 @@ namespace YourMoviesForum.Services.Data.Posts
         public async Task<IList<TModel>> GetAllPostsByCategoryIdAsync<TModel>(int categoryId, int skip = 0, int take = 0)
           => await data.Posts
                 .AsNoTracking()
-                .Where(p => !p.IsDeleted && p.CategoryId==categoryId)
+                .Where(p => !p.IsDeleted && p.CategoryId == categoryId)
                 .Skip(skip).Take(take)
                 .OrderByDescending(x => x.CreatedOn)
                 .ProjectTo<TModel>(mapper.ConfigurationProvider)
@@ -242,19 +238,19 @@ namespace YourMoviesForum.Services.Data.Posts
 
         public async Task<string> GetLatestPostActivityAsync(int id)
         {
-            var latestReplyOfPost=await data.Posts
-                .Where(p=> p.Id==id && !p.IsDeleted)
-                .SelectMany(p=>p.Replies)
-                .Where(r=>!r.IsDeleted)
-                .OrderByDescending(r=>r.CreatedOn)
-                .FirstOrDefaultAsync(r=>r.PostId==id);
+            var latestReplyOfPost = await data.Posts
+                .Where(p => p.Id == id && !p.IsDeleted)
+                .SelectMany(p => p.Replies)
+                .Where(r => !r.IsDeleted)
+                .OrderByDescending(r => r.CreatedOn)
+                .FirstOrDefaultAsync(r => r.PostId == id);
 
-            if (latestReplyOfPost!=null)
+            if (latestReplyOfPost != null)
             {
                 return LatestActivity(dateTimeProvider.Now(), latestReplyOfPost.CreatedOn);
             }
 
-            var post=await GetByIdAsync(id);
+            var post = await GetByIdAsync(id);
 
             return LatestActivity(dateTimeProvider.Now(), post.CreatedOn);
         }
