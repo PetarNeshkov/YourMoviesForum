@@ -101,6 +101,9 @@
             function(message) {
                   var content = `<div class="current-message">
                         <h4 class="user-section">
+                            <i class="icon-user" style="background-color:${message.backgroundColor}">       
+                                ${message.firstLetter}
+                            </i>
                             <span class="username hover-underline-animation">${message.authorUserName}</span>
                             <span class="time">${message.createdOn}</span>
                         </h4>

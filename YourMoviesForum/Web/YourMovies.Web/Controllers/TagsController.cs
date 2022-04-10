@@ -76,10 +76,10 @@ namespace YourMovies.Web.Controllers
             return View(viewModel);
         }
 
-        [Authorize(Roles =Administrator.AdministratorUsername)]
+        [Authorize(Roles =Administrator.AdministratorRoleName)]
         public IActionResult Create() => this.View();
 
-        [Authorize(Roles = Administrator.AdministratorUsername)]
+        [Authorize(Roles = Administrator.AdministratorRoleName)]
         [HttpPost]
         public async Task<IActionResult> Create(CreateTagInputModel input)
         {
@@ -101,7 +101,7 @@ namespace YourMovies.Web.Controllers
             return this.RedirectToAction(nameof(All));
         }
 
-        [Authorize(Roles = Administrator.AdministratorUsername)]
+        [Authorize(Roles = Administrator.AdministratorRoleName)]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

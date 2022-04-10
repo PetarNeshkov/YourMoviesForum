@@ -26,7 +26,7 @@
     }
     else
     {
-        @if(User.IsInRole(AdministratorUsername))
+        @if(User.IsInRole(AdministratorRoleName))
          {
             <div id="createTag">
                 <a id="" asp-area="Administration"
@@ -57,7 +57,7 @@
                                 Avaliable in  @tag.PostsCount posts
                             </a>
                         </h6>
-                        @if(User.IsInRole(AdministratorUsername))
+                        @if(User.IsInRole(AdministratorRoleName))
                          {
                             <div class="delete-section">
                                 <form asp-controller="Tags"

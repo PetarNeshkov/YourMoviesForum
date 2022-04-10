@@ -49,22 +49,22 @@
                                 @if (@reply.Author.Id == this.User.Id() || User.IsAdministrator())
                                 {
                                     <a asp-controller="Replies"
-                   asp-action="Edit"
-                   asp-route-id="@reply.Id"
-                   style="color: #666f74">
+                                       asp-action="Edit"
+                                       asp-route-id="@reply.Id"
+                                       style="color: #666f74">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a asp-controller="Replies"
-                   asp-action="Delete"
-                   asp-route-id="@reply.Id"
-                   style="color: #666f74">
+                                       asp-action="Delete"
+                                       asp-route-id="@reply.Id"
+                                       style="color: #666f74">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 }
                                 <a asp-controller="Replies"
-                   asp-action="Details"
-                   asp-route-id="@reply.Id"
-                   style="color: #666f74">
+                                   asp-action="Details"
+                                   asp-route-id="@reply.Id"
+                                   style="color: #666f74">
                                     <i class="fas fa-comment-dots"><use xlink:href="#icon-reply"></use></i>
                                 </a>
                             }
@@ -130,20 +130,20 @@
                     @if (@Model.Author.Id == this.User.Id() || User.IsAdministrator())
                     {
                         <a asp-controller="Replies"
-                   asp-action="Edit"
-                   asp-route-id="@Model.Id"
-                   style="color: #666f74">
+                           asp-action="Edit"
+                           asp-route-id="@Model.Id"
+                           style="color: #666f74">
                             <i class="fas fa-edit"></i>
                         </a>
                         <a asp-controller="Replies"
-                   asp-action="Delete"
-                   asp-route-id="@Model.Id"
-                   style="color: #666f74">
+                           asp-action="Delete"
+                           asp-route-id="@Model.Id"
+                           style="color: #666f74">
                             <i class="fas fa-trash"></i>
                         </a>
                     }
                     <a onclick="animateButton()"
-                   style="cursor:pointer">
+                         style="cursor:pointer">
                         <i class="fas fa-comment-dots"><use xlink:href="#icon-reply"></use></i>
                     </a>
                 }

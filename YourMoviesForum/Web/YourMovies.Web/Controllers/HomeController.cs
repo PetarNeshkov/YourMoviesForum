@@ -40,7 +40,7 @@ namespace YourMovies.Web.Controllers
             if (randomPosts==null)
             {
                  randomPosts = await postservice
-                    .GetFourRandomPosts<PostListingViewModel>();
+                    .GetFiveRandomPosts<PostListingViewModel>();
 
                 foreach (var post in randomPosts)
                 {

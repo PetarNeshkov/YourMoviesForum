@@ -11,16 +11,16 @@ namespace YourMovies.Web.Chat
 {
     public class ChatHub:Hub
     {
-        private readonly IUserService usersService;
+        private readonly IUserService userService;
         private readonly IMessageService messagesService;
         private readonly IDateTimeProvider dateTimeProvider;
 
         public ChatHub(
-            IUserService usersService,
+            IUserService userService,
             IMessageService messagesService, 
             IDateTimeProvider dateTimeProvider)
         {
-            this.usersService = usersService;
+            this.userService = userService;
             this.messagesService = messagesService;
             this.dateTimeProvider = dateTimeProvider;
         }
@@ -33,7 +33,7 @@ namespace YourMovies.Web.Chat
             }
 
             var authorId = Context.User.Id();
-            var user = await usersService.GetUserByIdAsync<ChatUserViewModel>(authorId);
+            var user = await userService.GetUserByIdAsync<ChatUserViewModel>(authorId);
 
             await messagesService.CreateMessageAsync(message, authorId, receiverId);
             await Clients.All.SendAsync(
@@ -43,6 +43,8 @@ namespace YourMovies.Web.Chat
                     AuthorId = authorId,
                     AuthorUserName = user.UserName,
                     Content = message,
+                    FirstLetter= await userService.GetUserFirstLetterAsync(user.Id),
+                    BackgroundColor=await userService.GetUserBackGroundColorAsync(user.Id),
                     CreatedOn = dateTimeProvider.Now()
                 });
         }
