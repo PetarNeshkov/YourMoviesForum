@@ -11,6 +11,13 @@
     "mssql3": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:YourMoviesDbContextConnection"
+    },
+    "secrets1": {
+      "type": "secrets"
+    },
+    "mssql4": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:DefaultConnection"
     }
   }
 }
