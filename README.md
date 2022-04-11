@@ -10,7 +10,7 @@
   - [Entity Framework Core 6.0](https://devblogs.microsoft.com/dotnet/get-to-know-ef-core-6/ "Entity Framework Core 6.0")
   - MSSQL Server
 - Back-End Language:
-  - C#
+   - C#
 - Front-End Language:
   - JavaScript
   - Razor Views
