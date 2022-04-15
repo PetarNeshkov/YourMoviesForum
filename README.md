@@ -27,6 +27,8 @@
   - SignalR
   - TinyMCE
   - HtmlSanitizer
+  - Twemoji
+  - Qrcode.js
   - Selectize.js
   - GoogleRecaptcha
   - Facebook for developers
