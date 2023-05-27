@@ -7,7 +7,7 @@
             return $"<div style=\"font-size:20px\">" +
                     $"<div>Hi {username},</div>" +
                     $"<br>" +
-                    $"<div>looks like you having problems logging in.</div>" +
+                    $"<div>Looks like you having problems logging in.</div>" +
                     $"<div>Please reset your password by <a href='{ressetPasswordLink}'>clicking here</a>.</div>" +
                     $"<br>" +
                     $"<div>Sincerely Yours,</div>" +
@@ -20,7 +20,7 @@
             return $"<div style=\"font-size:20px\">" +
                     $"<div>Hi {username},</div>" +
                     $"<br>" +
-                    $"<div>thank you for becoming a member of our forum comunity.</div>" +
+                    $"<div>Thank you for becoming a member of our forum comunity.</div>" +
                     $"<div>Please confirm your account by <a href='{confirmationLink}'>clicking here</a>.</div>" +
                     $"<br>" +
                     $"<div>Sincerely Yours,</div>" +

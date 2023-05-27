@@ -11,6 +11,8 @@ namespace Microsoft.Extensions.DependencyInjection
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequireUppercase = false;
 
+            options.SignIn.RequireConfirmedAccount = true;
+
             return options;
         }
 
