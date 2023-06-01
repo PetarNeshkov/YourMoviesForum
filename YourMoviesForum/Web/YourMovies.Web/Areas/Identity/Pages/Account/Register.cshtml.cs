@@ -39,13 +39,13 @@ namespace YourMovies.Web.Areas.Identity.Pages.Account
            SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             IDateTimeProvider dateTimeProvider,
-            IUserService usersService,
+            IUserService userService,
             IEmailSender emailSender)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.dateTimeProvider = dateTimeProvider;
-            this.userService = usersService;
+            this.userService = userService;
             this.emailSender = emailSender;
         }
 
